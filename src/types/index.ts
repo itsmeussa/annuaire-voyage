@@ -17,6 +17,10 @@ export interface Agency {
   url: string;
   description: string;
   featured: boolean;
+  location?: {
+    lat: number;
+    lng: number;
+  } | null;
 }
 
 export interface FilterOptions {

@@ -45,7 +45,7 @@ export default function AgencyCard({ agency, featured = false }: AgencyCardProps
             >
               <ExternalLink className="h-4 w-4" />
             </a>
-          )}}
+          )}
         </div>
 
         {/* Rating */}

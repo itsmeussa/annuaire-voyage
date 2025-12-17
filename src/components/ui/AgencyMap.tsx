@@ -49,7 +49,6 @@ export default function AgencyMap({
 
     const initMap = async () => {
       const L = (await import('leaflet')).default;
-      await import('leaflet/dist/leaflet.css');
 
       // Fix default marker icons
       delete (L.Icon.Default.prototype as any)._getIconUrl;

@@ -169,7 +169,7 @@ export default function Footer() {
             <p className="flex items-center gap-2">
               Developed with ❤️ by{" "}
               <a
-                href="https://oriousstrategy.com"
+                href="https://orioustrategy.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:underline font-semibold"

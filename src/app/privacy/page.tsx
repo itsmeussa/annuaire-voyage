@@ -103,7 +103,7 @@ export default function PrivacyPage() {
               <ul>
                 <li>Email: contact@travelagencies.world</li>
                 <li>
-                  Website: <a href="https://oriousstrategy.com">Orious Strategy</a>
+                  Website: <a href="https://orioustrategy.com">Orious Strategy</a>
                 </li>
               </ul>
 

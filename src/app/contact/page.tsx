@@ -210,7 +210,7 @@ export default function ContactPage() {
                         Developed by
                       </h3>
                       <a
-                        href="https://oriousstrategy.com"
+                        href="https://orioustrategy.com"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary hover:underline"

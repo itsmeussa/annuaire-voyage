@@ -114,7 +114,7 @@ This project is licensed under the MIT License.
 
 ## Credits
 
-Developed with ❤️ by [Orious Strategy](https://oriousstrategy.com)
+Developed with ❤️ by [Orious Strategy](https://orioustrategy.com)
 
 ---
 

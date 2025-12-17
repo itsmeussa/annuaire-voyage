@@ -187,7 +187,7 @@ export default function AboutPage() {
                 build platforms that deliver real value to our users.
               </p>
               <a
-                href="https://oriousstrategy.com"
+                href="https://orioustrategy.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"

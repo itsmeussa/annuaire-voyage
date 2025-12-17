@@ -121,7 +121,7 @@ export default function TermsPage() {
               <ul>
                 <li>Email: contact@travelagencies.world</li>
                 <li>
-                  Developer: <a href="https://oriousstrategy.com">Orious Strategy</a>
+                  Developer: <a href="https://orioustrategy.com">Orious Strategy</a>
                 </li>
               </ul>
             </div>

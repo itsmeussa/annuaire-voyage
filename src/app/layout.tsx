@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "best travel agencies",
     "travel agency reviews",
   ],
-  authors: [{ name: "Orious Strategy", url: "https://oriousstrategy.com" }],
+  authors: [{ name: "Orious Strategy", url: "https://orioustrategy.com" }],
   creator: "Orious Strategy",
   publisher: "Orious Strategy",
   formatDetection: {
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     description:
       "Discover and compare top-rated travel agencies around the world.",
     images: ["/og-image.jpg"],
-    creator: "@oriousstrategy",
+    creator: "@orioustrategy",
   },
   robots: {
     index: true,

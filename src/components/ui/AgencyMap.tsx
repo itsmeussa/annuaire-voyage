@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { MapPin, Maximize2, Minimize2, Layers } from 'lucide-react';
-import type { Agency } from '@/types/agency';
+import type { Agency } from '@/types';
 
 interface AgencyMapProps {
   agencies: Agency[];

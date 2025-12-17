@@ -43,7 +43,7 @@ function AgenciesContent() {
   const [selectedCategory, setSelectedCategory] = useState(
     searchParams.get("category") || ""
   );
-  const [hasWebsiteOnly, setHasWebsiteOnly] = useState(false);
+  const [websiteFilter, setWebsiteFilter] = useState<'all' | 'with' | 'without'>('all');
   const [viewMode, setViewMode] = useState<"grid" | "list" | "map">("grid");
   const [showFilters, setShowFilters] = useState(false);
   const [agencies, setAgencies] = useState<Agency[]>([]);
@@ -61,11 +61,11 @@ function AgenciesContent() {
       selectedCountry,
       selectedRating,
       selectedCategory,
-      hasWebsiteOnly
+      websiteFilter
     );
     setAgencies(filtered);
     setCurrentPage(1);
-  }, [query, selectedCity, selectedCountry, selectedRating, selectedCategory, hasWebsiteOnly]);
+  }, [query, selectedCity, selectedCountry, selectedRating, selectedCategory, websiteFilter]);
 
   const clearFilters = () => {
     setQuery("");
@@ -73,7 +73,7 @@ function AgenciesContent() {
     setSelectedCountry("");
     setSelectedRating(0);
     setSelectedCategory("");
-    setHasWebsiteOnly(false);
+    setWebsiteFilter('all');
   };
 
   const paginatedAgencies = agencies.slice(
@@ -171,12 +171,12 @@ function AgenciesContent() {
               selectedCountry={selectedCountry}
               selectedRating={selectedRating}
               selectedCategory={selectedCategory}
-              hasWebsiteOnly={hasWebsiteOnly}
+              websiteFilter={websiteFilter}
               onCityChange={setSelectedCity}
               onCountryChange={setSelectedCountry}
               onRatingChange={setSelectedRating}
               onCategoryChange={setSelectedCategory}
-              onHasWebsiteChange={setHasWebsiteOnly}
+              onWebsiteFilterChange={setWebsiteFilter}
               onClearFilters={clearFilters}
             />
           </div>
@@ -200,12 +200,12 @@ function AgenciesContent() {
                     selectedCountry={selectedCountry}
                     selectedRating={selectedRating}
                     selectedCategory={selectedCategory}
-                    hasWebsiteOnly={hasWebsiteOnly}
+                    websiteFilter={websiteFilter}
                     onCityChange={setSelectedCity}
                     onCountryChange={setSelectedCountry}
                     onRatingChange={setSelectedRating}
                     onCategoryChange={setSelectedCategory}
-                    onHasWebsiteChange={setHasWebsiteOnly}
+                    onWebsiteFilterChange={setWebsiteFilter}
                     onClearFilters={clearFilters}
                   />
                 </div>

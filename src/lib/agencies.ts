@@ -118,7 +118,7 @@ export function filterAgencies(
   country: string = "",
   rating: number = 0,
   category: string = "",
-  hasWebsiteOnly: boolean = false
+  websiteFilter: 'all' | 'with' | 'without' = 'all'
 ): Agency[] {
   let agencies = getAllAgencies();
 
@@ -148,8 +148,10 @@ export function filterAgencies(
     agencies = agencies.filter((a) => a.category === category);
   }
 
-  if (hasWebsiteOnly) {
+  if (websiteFilter === 'with') {
     agencies = agencies.filter((a) => a.website && a.website.length > 0);
+  } else if (websiteFilter === 'without') {
+    agencies = agencies.filter((a) => !a.website || a.website.length === 0);
   }
 
   return agencies.sort((a, b) => {

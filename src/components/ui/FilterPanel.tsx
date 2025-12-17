@@ -10,12 +10,12 @@ interface FilterPanelProps {
   selectedCountry: string;
   selectedRating: number;
   selectedCategory: string;
-  hasWebsiteOnly: boolean;
+  websiteFilter: 'all' | 'with' | 'without';
   onCityChange: (city: string) => void;
   onCountryChange: (country: string) => void;
   onRatingChange: (rating: number) => void;
   onCategoryChange: (category: string) => void;
-  onHasWebsiteChange: (hasWebsite: boolean) => void;
+  onWebsiteFilterChange: (filter: 'all' | 'with' | 'without') => void;
   onClearFilters: () => void;
 }
 
@@ -27,16 +27,16 @@ export default function FilterPanel({
   selectedCountry,
   selectedRating,
   selectedCategory,
-  hasWebsiteOnly,
+  websiteFilter,
   onCityChange,
   onCountryChange,
   onRatingChange,
   onCategoryChange,
-  onHasWebsiteChange,
+  onWebsiteFilterChange,
   onClearFilters,
 }: FilterPanelProps) {
   const hasActiveFilters =
-    selectedCity || selectedCountry || selectedRating > 0 || selectedCategory || hasWebsiteOnly;
+    selectedCity || selectedCountry || selectedRating > 0 || selectedCategory || websiteFilter !== 'all';
 
   return (
     <div className="bg-white rounded-xl border border-border p-6 sticky top-24">
@@ -160,39 +160,36 @@ export default function FilterPanel({
           <Globe className="h-4 w-4 text-primary" />
           Website Availability
         </label>
-        <button
-          onClick={() => onHasWebsiteChange(!hasWebsiteOnly)}
-          className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg border transition-all ${
-            hasWebsiteOnly
-              ? "border-primary bg-primary/5 text-primary"
-              : "border-border hover:border-primary/50"
-          }`}
-        >
-          <span>Has Website Only</span>
-          <div
-            className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
-              hasWebsiteOnly
-                ? "bg-primary border-primary"
-                : "border-gray-300"
-            }`}
-          >
-            {hasWebsiteOnly && (
-              <svg
-                className="w-3 h-3 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+        <div className="space-y-2">
+          {[
+            { value: 'all' as const, label: 'All Agencies' },
+            { value: 'with' as const, label: 'Has Website' },
+            { value: 'without' as const, label: 'No Website' },
+          ].map((option) => (
+            <button
+              key={option.value}
+              onClick={() => onWebsiteFilterChange(option.value)}
+              className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg border transition-all ${
+                websiteFilter === option.value
+                  ? "border-primary bg-primary/5 text-primary"
+                  : "border-border hover:border-primary/50"
+              }`}
+            >
+              <span>{option.label}</span>
+              <div
+                className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
+                  websiteFilter === option.value
+                    ? "bg-primary border-primary"
+                    : "border-gray-300"
+                }`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={3}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            )}
-          </div>
-        </button>
+                {websiteFilter === option.value && (
+                  <div className="w-2 h-2 rounded-full bg-white" />
+                )}
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Apply Button */}

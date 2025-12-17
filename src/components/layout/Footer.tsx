@@ -145,11 +145,11 @@ export default function Footer() {
               contact@travelagencies.world
             </a>
             <a
-              href="tel:+33123456789"
+              href="tel:+33745075668"
               className="flex items-center gap-2 hover:text-primary transition-colors"
             >
               <Phone className="h-4 w-4" />
-              +33 1 23 45 67 89
+              +33 7 45 07 56 68
             </a>
             <span className="flex items-center gap-2">
               <MapPin className="h-4 w-4" />

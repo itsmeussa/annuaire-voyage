@@ -193,10 +193,10 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold text-foreground">Phone</h3>
                       <a
-                        href="tel:+33123456789"
+                        href="tel:+33745075668"
                         className="text-muted-foreground hover:text-primary"
                       >
-                        +33 1 23 45 67 89
+                        +33 7 45 07 56 68
                       </a>
                     </div>
                   </div>

@@ -27,11 +27,11 @@ import {
 const faqData = [
   {
     question: "How do I find a reliable travel agency?",
-    answer: "Use TravelAgencies.World to compare verified travel agencies with real Google reviews. Filter by location, rating, and specialty to find the perfect match for your travel needs."
+    answer: "Use TravelAgencies.World to compare 2800+ verified travel agencies with real Google reviews. Filter by location, rating, and specialty to find the perfect match for your travel needs."
   },
   {
     question: "Are the travel agencies on this directory verified?",
-    answer: "Yes, all agencies in our directory are sourced from Google Maps with authentic reviews and ratings. We display real contact information and customer feedback."
+    answer: "Yes, all 2800+ agencies in our directory are sourced from Google Maps with authentic reviews and ratings. We display real contact information and customer feedback."
   },
   {
     question: "How can I contact a travel agency?",
@@ -43,11 +43,19 @@ const faqData = [
   },
   {
     question: "What countries do you cover?",
-    answer: "We cover travel agencies worldwide including Morocco, France, Spain, USA, UK, and many more countries. Our database is continuously growing."
+    answer: "We cover 2800+ travel agencies in 50+ countries including USA, Canada, Morocco, France, Spain, UK, Netherlands, Malaysia, New Zealand, Ireland and many more. Our database is continuously growing."
   },
   {
     question: "How do I choose the best travel agency for my trip?",
     answer: "Consider the agency's rating, number of reviews, location, and specialization. Read customer reviews and compare multiple agencies before making your decision."
+  },
+  {
+    question: "Which cities have the most travel agencies?",
+    answer: "Our directory features agencies in major cities worldwide including Casablanca (400+), New York (50+), Toronto (45+), Ottawa (85+), and many more destinations."
+  },
+  {
+    question: "Can I find travel agencies without a website?",
+    answer: "Yes, use our website filter to find agencies with or without websites. Many excellent local agencies rely on phone bookings and walk-ins."
   }
 ];
 

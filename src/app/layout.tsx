@@ -9,11 +9,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "TravelAgencies.World - Find the Best Travel Agencies Worldwide",
+    default: "TravelAgencies.World - 2800+ Verified Travel Agencies Worldwide",
     template: "%s | TravelAgencies.World",
   },
   description:
-    "Discover and compare top-rated travel agencies around the world. Find trusted partners for your next adventure with verified reviews, ratings, and direct contact information.",
+    "Find and compare 2800+ verified travel agencies worldwide. Browse top-rated agencies in USA, Morocco, Canada, UK, Spain, France & more. Real Google reviews, ratings & direct contact info.",
   keywords: [
     "travel agencies",
     "tour operators",
@@ -21,10 +21,18 @@ export const metadata: Metadata = {
     "vacation planning",
     "tour packages",
     "travel agents",
-    "Morocco travel",
+    "Morocco travel agencies",
+    "USA travel agents",
+    "Canada tour operators",
     "worldwide travel agencies",
     "best travel agencies",
     "travel agency reviews",
+    "New York travel agency",
+    "Toronto travel agency",
+    "Casablanca travel agency",
+    "travel agency near me",
+    "book travel agent",
+    "top rated travel agencies",
   ],
   authors: [{ name: "Orious Strategy", url: "https://orioustrategy.com" }],
   creator: "Orious Strategy",
@@ -39,9 +47,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "TravelAgencies.World - Find the Best Travel Agencies Worldwide",
+    title: "TravelAgencies.World - 2800+ Verified Travel Agencies Worldwide",
     description:
-      "Discover and compare top-rated travel agencies around the world. Find trusted partners for your next adventure.",
+      "Find and compare 2800+ verified travel agencies in USA, Morocco, Canada, UK & more. Real reviews, ratings & direct contact info.",
     url: "https://www.travelagencies.world",
     siteName: "TravelAgencies.World",
     images: [
@@ -57,9 +65,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TravelAgencies.World - Find the Best Travel Agencies Worldwide",
+    title: "TravelAgencies.World - 2800+ Verified Travel Agencies",
     description:
-      "Discover and compare top-rated travel agencies around the world.",
+      "Find verified travel agencies in USA, Morocco, Canada & worldwide. Compare reviews, ratings & book directly.",
     images: ["/og-image.jpg"],
     creator: "@orioustrategy",
   },
@@ -86,7 +94,7 @@ const organizationSchema = {
   name: "TravelAgencies.World",
   url: "https://www.travelagencies.world",
   logo: "https://www.travelagencies.world/logo.png",
-  description: "World's largest directory of verified travel agencies with reviews and ratings",
+  description: "Directory of 2800+ verified travel agencies worldwide with Google reviews and ratings",
   foundingDate: "2024",
   sameAs: [
     "https://www.instagram.com/travelagenciesworld",

@@ -1,5 +1,18 @@
 [
   {
+    "title": "Welcome to Travel | Sydney",
+    "totalScore": 5,
+    "reviewsCount": 1819,
+    "street": "812B George St",
+    "city": "Haymarket",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "http://welcometo.travel/",
+    "phone": "+61 3 7065 9970",
+    "categoryName": "Tour operator",
+    "url": "https://www.google.com/maps/search/?api=1&query=Welcome%20to%20Travel%20%7C%20Sydney&query_place_id=ChIJ1x5ypR-vEmsRxCcvSx5c94o"
+  },
+  {
     "title": "We Go Travel",
     "totalScore": 5,
     "reviewsCount": 564,
@@ -11,6 +24,32 @@
     "phone": "+212 604-084515",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=We%20Go%20Travel&query_place_id=ChIJF8UVKtzGPoQRU4Sf2xTTZwU"
+  },
+  {
+    "title": "ClickTheMouse Travel • Disney & Universal Vacation Packages",
+    "totalScore": 5,
+    "reviewsCount": 560,
+    "street": "50 Carroll St",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://clickthemouse.ca/",
+    "phone": "+1 416-420-2650",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=ClickTheMouse%20Travel%20%E2%80%A2%20Disney%20%26%20Universal%20Vacation%20Packages&query_place_id=ChIJ83-zCZfM1IkRYwDZ43C8aqg"
+  },
+  {
+    "title": "Express Travel Int",
+    "totalScore": 5,
+    "reviewsCount": 486,
+    "street": "3200 Dufferin St Unit 12/B",
+    "city": "North York",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://expresstravelint.ca/",
+    "phone": "+1 416-924-2525",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Express%20Travel%20Int&query_place_id=ChIJG7lTNMwzK4gRmlYXKxz4Zas"
   },
   {
     "title": "Sahara Safari Adventure",
@@ -130,6 +169,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Guided%20tour%20in%20FEZ&query_place_id=ChIJFaXn4fPznw0RDfdjKKBBrWI"
   },
   {
+    "title": "WAC Travel - Europe & Africa Specialist",
+    "totalScore": 5,
+    "reviewsCount": 187,
+    "street": "15 N Mill St Suite 205",
+    "city": "Nyack",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.wactravel.com/",
+    "phone": "(845) 535-1300",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=WAC%20Travel%20-%20Europe%20%26%20Africa%20Specialist&query_place_id=ChIJxys--QvqwokRTRt9uvnmMrU"
+  },
+  {
     "title": "Almas Voyages",
     "totalScore": 5,
     "reviewsCount": 183,
@@ -141,6 +193,19 @@
     "phone": "+212 632-382403",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Almas%20Voyages&query_place_id=ChIJia0SgPCX4IMRys2CwOaOq04"
+  },
+  {
+    "title": "Aspire Down Under",
+    "totalScore": 5,
+    "reviewsCount": 182,
+    "street": "441 Lexington Ave #806",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.aspiredownunder.com/?utm_source=google&utm_campaign=gbp",
+    "phone": "(212) 850-0946",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Aspire%20Down%20Under&query_place_id=ChIJqapeXQJZwokRCmC9DjLK3ZE"
   },
   {
     "title": "Lakhdar Travel",
@@ -206,6 +271,19 @@
     "phone": "+212 670-810115",
     "categoryName": "مكتب سفريات",
     "url": "https://www.google.com/maps/search/?api=1&query=DRISS%20TRAVEL&query_place_id=ChIJ2w6WZ5gTpw0RbXNniSiuWJw"
+  },
+  {
+    "title": "Syndelyns Wanderlust Travel",
+    "totalScore": 5,
+    "reviewsCount": 160,
+    "street": null,
+    "city": null,
+    "state": null,
+    "countryCode": null,
+    "website": "https://www.facebook.com/wanderlusttraveltx",
+    "phone": "(940) 284-3727",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Syndelyns%20Wanderlust%20Travel&query_place_id=ChIJoy7I6zAW_AsREaVeZhYWH7U"
   },
   {
     "title": "Merzouga Horse Riding",
@@ -312,6 +390,45 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Rawane%20Travel&query_place_id=ChIJT9wPJGRspw0Rb4FQrHk0d0g"
   },
   {
+    "title": "Now Boarding Travel",
+    "totalScore": 5,
+    "reviewsCount": 110,
+    "street": "2 Queen St E 20th Floor",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://nowboarding.travel/",
+    "phone": "+1 647-749-9099",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Now%20Boarding%20Travel&query_place_id=ChIJobUPciARu6sR7HhIXGwKbRg"
+  },
+  {
+    "title": "Unforgettable Travel Company",
+    "totalScore": 5,
+    "reviewsCount": 108,
+    "street": "167 Madison Ave Suite 205, #1010",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://unforgettabletravel.com/",
+    "phone": "(844) 879-7838",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Unforgettable%20Travel%20Company&query_place_id=ChIJ6_af_N9ZwokRQOTJjWwCrkg"
+  },
+  {
+    "title": "Lutetia Travel",
+    "totalScore": 5,
+    "reviewsCount": 104,
+    "street": "1900 Campus Commons Dr Ste 100",
+    "city": "Reston",
+    "state": "Virginia",
+    "countryCode": "US",
+    "website": "https://lutetiatravel.com/",
+    "phone": "(703) 740-3693",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Lutetia%20Travel&query_place_id=ChIJO1n5G4LUwoAR6VL9aodS55k"
+  },
+  {
     "title": "Caravane du bedouin",
     "totalScore": 5,
     "reviewsCount": 92,
@@ -338,6 +455,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Moroccan%20Travel%20Addicts%20%7C%20MTA%20Voyages&query_place_id=ChIJ9_tjkTXbnQsRsHqy90LMTU4"
   },
   {
+    "title": "Kelturas Vacations (Formerly Crystal Travel & Tours)",
+    "totalScore": 5,
+    "reviewsCount": 91,
+    "street": "100 Spring St",
+    "city": "Boston",
+    "state": "Massachusetts",
+    "countryCode": "US",
+    "website": "https://kelturas.com/",
+    "phone": "(617) 327-4242",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Kelturas%20Vacations%20(Formerly%20Crystal%20Travel%20%26%20Tours)&query_place_id=ChIJ4VQGkuh_44kRcf5Jgzs50ZI"
+  },
+  {
     "title": "Desert Day Tours",
     "totalScore": 5,
     "reviewsCount": 88,
@@ -349,6 +479,32 @@
     "phone": "+212 668-078887",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Desert%20Day%20Tours&query_place_id=ChIJsZC-L46Lnw0R1xEGK_ihB0c"
+  },
+  {
+    "title": "Creative Vacations - Travel Agency",
+    "totalScore": 5,
+    "reviewsCount": 86,
+    "street": "63rd & University Avenue {By Appointment Only",
+    "city": "Des Moines",
+    "state": "Iowa",
+    "countryCode": "US",
+    "website": "http://www.creativevacations.com/",
+    "phone": "(515) 963-4458",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Creative%20Vacations%20-%20Travel%20Agency&query_place_id=ChIJacNE7V-e7ocR5En5arGlwIk"
+  },
+  {
+    "title": "Hellenic Holidays",
+    "totalScore": 5,
+    "reviewsCount": 84,
+    "street": "The Paramount Building 1501, 1501 Broadway Suite 1808 B",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://www.hellenicholidays.com/",
+    "phone": "(212) 944-8288",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Hellenic%20Holidays&query_place_id=ChIJh3tl5lRYwokRFmX-h3opQ5I"
   },
   {
     "title": "Mozn Travel",
@@ -427,6 +583,19 @@
     "phone": "+212 666-326694",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Tour%20Bereber&query_place_id=ChIJrVQ3udv1nw0RVurEHBi5Umc"
+  },
+  {
+    "title": "Viva Vacations",
+    "totalScore": 5,
+    "reviewsCount": 78,
+    "street": "The Lace Factory, 63B Mansfield Road",
+    "city": "Nottingham",
+    "state": null,
+    "countryCode": "GB",
+    "website": "http://www.vivavacations.co.uk/",
+    "phone": "+44 115 784 5855",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Viva%20Vacations&query_place_id=ChIJBdabAYLBeUgRJhcIK4PRUR8"
   },
   {
     "title": "Fez Tour Guide",
@@ -624,6 +793,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Morocco%20Official%20Tours&query_place_id=ChIJVRmudADTpw0RYBCusCloMnM"
   },
   {
+    "title": "Happy Travels - Nomads Sydney",
+    "totalScore": 5,
+    "reviewsCount": 65,
+    "street": "477 Kent St",
+    "city": "Sydney",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "https://happytravels.com.au/",
+    "phone": "+61 2 5633 1149",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Happy%20Travels%20-%20Nomads%20Sydney&query_place_id=ChIJybC5mZevEmsRZ3BC7dA3zt8"
+  },
+  {
     "title": "Foum Zguid Desert Tour",
     "totalScore": 5,
     "reviewsCount": 63,
@@ -648,6 +830,19 @@
     "phone": "+212 638-636719",
     "categoryName": "Travel agency",
     "url": "https://www.google.com/maps/search/?api=1&query=Sun%20Trails%20%7C%20Private%20Luxury%20Tours%20in%20Morocco%20%7C%20Sahara%20Desert%20%7C%20Honeymoon%20Travel%20%7C%20All-Inclusive%20Vacation%20Packages&query_place_id=ChIJx5zP1_Htrw0RciiSYdipBsc"
+  },
+  {
+    "title": "CIRE Travel",
+    "totalScore": 5,
+    "reviewsCount": 62,
+    "street": "444 Madison Ave 30th Floor",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://ciretravel.com/",
+    "phone": "(212) 339-2957",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=CIRE%20Travel&query_place_id=ChIJV8GIHqtZwokR9CeUVFDr6u4"
   },
   {
     "title": "Maroc Ali Tours",
@@ -700,6 +895,19 @@
     "phone": "+212 649-994982",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Elabsi%20voyages%20si%C3%A8ges&query_place_id=ChIJL5UU5-4Tpw0RwdTy847b_gw"
+  },
+  {
+    "title": "Worldwide Vacation Planners",
+    "totalScore": 5,
+    "reviewsCount": 56,
+    "street": null,
+    "city": null,
+    "state": null,
+    "countryCode": null,
+    "website": "https://www.worldwidevacationplanners.com/",
+    "phone": "(281) 728-0468",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Worldwide%20Vacation%20Planners&query_place_id=ChIJX3UpkloiR4YRuuCG_EflCLs"
   },
   {
     "title": "WLD BATUTA",
@@ -819,6 +1027,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Rimal%20Travel&query_place_id=ChIJS92_VZ9ivg0RmWrdQk_w5Jk"
   },
   {
+    "title": "Your Gallivanting Guru",
+    "totalScore": 5,
+    "reviewsCount": 47,
+    "street": null,
+    "city": null,
+    "state": null,
+    "countryCode": null,
+    "website": "http://www.yourgallivantingguru.com/",
+    "phone": "(512) 636-0529",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Your%20Gallivanting%20Guru&query_place_id=ChIJrckQfGfMRIYRh8bJtmW7MTc"
+  },
+  {
     "title": "Désert Et Montagne Maroc",
     "totalScore": 5,
     "reviewsCount": 45,
@@ -830,6 +1051,19 @@
     "phone": "+212 615-919275",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=D%C3%A9sert%20Et%20Montagne%20Maroc&query_place_id=ChIJ7_z9zScRuw0Ra_UeIlPfqlc"
+  },
+  {
+    "title": "Berkeley Travel",
+    "totalScore": 5,
+    "reviewsCount": 45,
+    "street": "Waterloo Gardens, 1-4 Milner Square",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "http://www.berkeleytravel.co.uk/",
+    "phone": "+44 20 7099 0777",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Berkeley%20Travel&query_place_id=ChIJP-EXCWYbdkgRMjEwJVOORSk"
   },
   {
     "title": "Dakhla Surf Travel",
@@ -895,6 +1129,19 @@
     "phone": "+212 668-918458",
     "categoryName": "مكتب سفريات",
     "url": "https://www.google.com/maps/search/?api=1&query=Saada%20Travel%20(%20Viajes%20y%20Tours%20en%20Marruecos%20)&query_place_id=ChIJxZoOScFLmA0RALzpuInBOzA"
+  },
+  {
+    "title": "Travel Our World",
+    "totalScore": 5,
+    "reviewsCount": 43,
+    "street": "35 McCaul St",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.travelourworld.ca/",
+    "phone": null,
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travel%20Our%20World&query_place_id=ChIJn0iCGPrL1IkRRQwGpYyKyWs"
   },
   {
     "title": "Morocco Global Tours",
@@ -1040,6 +1287,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Almiaraj%20Voyages&query_place_id=ChIJl6-4PQDNpw0RW6dXd-QZOso"
   },
   {
+    "title": "Sai Ram Travels Australia",
+    "totalScore": 5,
+    "reviewsCount": 36,
+    "street": null,
+    "city": null,
+    "state": null,
+    "countryCode": null,
+    "website": "http://www.sairamtravels.com.au/",
+    "phone": "+61 447 887 017",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Sai%20Ram%20Travels%20Australia&query_place_id=ChIJh7VmRJ2vEmsRxZrF2B_70gM"
+  },
+  {
     "title": "RAYON TOURS",
     "totalScore": 5,
     "reviewsCount": 35,
@@ -1105,6 +1365,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=United%20Travel%20%26%20Services&query_place_id=ChIJt9Nn8PDNpw0R5LABuY4Fiv0"
   },
   {
+    "title": "Charissa MTA Mobile Travel Agents",
+    "totalScore": 5,
+    "reviewsCount": 34,
+    "street": null,
+    "city": null,
+    "state": null,
+    "countryCode": null,
+    "website": "https://mtatravel.com.au/charissa",
+    "phone": "+61 424 770 800",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Charissa%20MTA%20Mobile%20Travel%20Agents&query_place_id=ChIJN3cVwFDqzI8RrfaOUZmE2So"
+  },
+  {
     "title": "Almoudden travel agency وكالة الأسفار المودن",
     "totalScore": 5,
     "reviewsCount": 33,
@@ -1168,6 +1441,19 @@
     "phone": "+212 621-387229",
     "categoryName": "Travel agency",
     "url": "https://www.google.com/maps/search/?api=1&query=Holidays%20in%20Morocco%20agency&query_place_id=ChIJL0nE3nFoIS0RK7d-Bf_B7Ik"
+  },
+  {
+    "title": "Euro Travel Coach",
+    "totalScore": 5,
+    "reviewsCount": 33,
+    "street": "2505 Waunona Way",
+    "city": "Madison",
+    "state": "Wisconsin",
+    "countryCode": "US",
+    "website": "https://www.eurotravelcoach.com/",
+    "phone": "(254) 485-9700",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Euro%20Travel%20Coach&query_place_id=ChIJdZnyHb5IN4gRHOTOkKb7LwY"
   },
   {
     "title": "Dynamic Experiences",
@@ -1365,6 +1651,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Get%20Your%20Driver&query_place_id=ChIJgeTTgLfvrw0Rh18sIasmG4o"
   },
   {
+    "title": "Sarah Ives Luxury Travel Agency",
+    "totalScore": 5,
+    "reviewsCount": 28,
+    "street": "71-75 Shelton St",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://sarahivesluxurytravel.com/",
+    "phone": "+44 7515 825249",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Sarah%20Ives%20Luxury%20Travel%20Agency&query_place_id=ChIJi4GtNrcFdkgRVN-ZMcvzkL8"
+  },
+  {
     "title": "Maroc aventures",
     "totalScore": 5,
     "reviewsCount": 27,
@@ -1547,6 +1846,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Mint%20Morocco%20Travel&query_place_id=ChIJnUqTL7XpCU4Rt-4tTT_iXz8"
   },
   {
+    "title": "The Splendid Traveler",
+    "totalScore": 5,
+    "reviewsCount": 22,
+    "street": null,
+    "city": null,
+    "state": null,
+    "countryCode": null,
+    "website": "http://thesplendidtraveler.com/",
+    "phone": null,
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=The%20Splendid%20Traveler&query_place_id=ChIJH9D7_w61RIYRROxq2oY-ZIE"
+  },
+  {
     "title": "4X4 DES AMIS (Circuits, Excursions et Transferts)",
     "totalScore": 5,
     "reviewsCount": 21,
@@ -1584,6 +1896,32 @@
     "phone": "+212 691-285818",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Morocco%20Merzouga%20Tours&query_place_id=ChIJSUybHOc9lw0RiNO0Iuigapk"
+  },
+  {
+    "title": "Matt Stein - Unique Luxury Travels",
+    "totalScore": 5,
+    "reviewsCount": 21,
+    "street": "250 W 27th St",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://www.uniqueluxurytravels.com/",
+    "phone": "(917) 225-1360",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Matt%20Stein%20-%20Unique%20Luxury%20Travels&query_place_id=ChIJQdRPdjNZwokR52AdHSlZ3z4"
+  },
+  {
+    "title": "Alexandrou Travel Design",
+    "totalScore": 5,
+    "reviewsCount": 21,
+    "street": "1200 Bay St. Unit 901",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.alexandroutraveldesign.com/",
+    "phone": "+1 514-228-1289",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Alexandrou%20Travel%20Design&query_place_id=ChIJpRlZQJk1K4gR1Spg0__i-VU"
   },
   {
     "title": "Morocco Green Tours",
@@ -1727,6 +2065,19 @@
     "phone": "+212 671-159201",
     "categoryName": "Travel agency",
     "url": "https://www.google.com/maps/search/?api=1&query=Marocco%20Experience&query_place_id=ChIJvZ2nqacbuw0R9JyDRXmmHbY"
+  },
+  {
+    "title": "Cross Bay Travel Service Inc",
+    "totalScore": 5,
+    "reviewsCount": 19,
+    "street": "158, 20 A Cross Bay Blvd",
+    "city": "Howard Beach",
+    "state": "NY",
+    "countryCode": "US",
+    "website": "http://www.crossbaytravel.com/",
+    "phone": "(718) 835-3620",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Cross%20Bay%20Travel%20Service%20Inc&query_place_id=ChIJ8Y3hdH5nwokRh7mnduQjBRk"
   },
   {
     "title": "Morocco Unfiltered",
@@ -2132,6 +2483,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Souss%20%C3%89l%C3%A9gance%20%C3%89vents&query_place_id=ChIJ4c0xHCy3sw0RgsirRKLkmW4"
   },
   {
+    "title": "Many Moons Travel",
+    "totalScore": 5,
+    "reviewsCount": 14,
+    "street": "101 St Martin's Ln",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://manymoonstravel.com/?utm_source=Google%20My%20Business&utm_medium=GMB&utm_campaign=GMB&utm_term=location&utm_content=location",
+    "phone": "+44 7761 957026",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Many%20Moons%20Travel&query_place_id=ChIJlf6yNykFdkgRZk2HjXFV9kw"
+  },
+  {
     "title": "Rutas al desierto",
     "totalScore": 5,
     "reviewsCount": 13,
@@ -2208,6 +2572,32 @@
     "phone": "+212 719-111080",
     "categoryName": "Satellite communication service",
     "url": "https://www.google.com/maps/search/?api=1&query=Best%20Travel%20To%20Morocco&query_place_id=ChIJ5UflAozvrw0RrI0N1OA4iNQ"
+  },
+  {
+    "title": "Fischer Travel",
+    "totalScore": 5,
+    "reviewsCount": 13,
+    "street": "655 3rd Ave Suite #710",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://fischertravel.com/",
+    "phone": "(212) 867-4040",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Fischer%20Travel&query_place_id=ChIJ78poCgNZwokRuDR5Zxi7M2o"
+  },
+  {
+    "title": "The Pan Travels Sydney",
+    "totalScore": 5,
+    "reviewsCount": 13,
+    "street": "Suite 110/147 King St",
+    "city": "Sydney",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "http://www.thepantravels.com.au/",
+    "phone": "+61 489 273 550",
+    "categoryName": "Airline ticket agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=The%20Pan%20Travels%20Sydney&query_place_id=ChIJP2hn4QOvEmsR58sMGDn5XOg"
   },
   {
     "title": "Travel Talk",
@@ -3042,6 +3432,32 @@
     "url": "https://www.google.com/maps/search/?api=1&query=GOLD%20AGENCY%20-%20AGENCE%20%C3%89V%C3%89NEMENTIELLE%20%26%20MARKETING%20-%20CASABLANCA&query_place_id=ChIJ2Re9SLXTpw0RSkGO9EBVDEc"
   },
   {
+    "title": "Tovell Travel",
+    "totalScore": 5,
+    "reviewsCount": 7,
+    "street": "380 Wellington St",
+    "city": "London",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.tovelltravel.com/",
+    "phone": "+1 519-660-6966 ext. 648484",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Tovell%20Travel&query_place_id=ChIJ8d2eXiXyLogRWlTE1lUqgJg"
+  },
+  {
+    "title": "Murray Travel",
+    "totalScore": 5,
+    "reviewsCount": 7,
+    "street": "78 High St",
+    "city": "Forres",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://www.murraytravel.co.uk/",
+    "phone": "+44 1309 250515",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Murray%20Travel&query_place_id=ChIJwyQiPex3hUgRtbKXmLd5D8o"
+  },
+  {
     "title": "EL FATH VOYAGES",
     "totalScore": 5,
     "reviewsCount": 7,
@@ -3354,6 +3770,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=TRIPAGADIR&query_place_id=ChIJR8uiMv63sw0RavDiWhyv21I"
   },
   {
+    "title": "USA Royalty Travel",
+    "totalScore": 5,
+    "reviewsCount": 6,
+    "street": "147 W 35th St Suite 506",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": null,
+    "phone": "(212) 877-0760",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=USA%20Royalty%20Travel&query_place_id=ChIJO2D8whdawokRwbr0Z4CqKaM"
+  },
+  {
     "title": "...",
     "totalScore": 5,
     "reviewsCount": 6,
@@ -3612,6 +4041,19 @@
     "phone": "+212 665-134667",
     "categoryName": "Event management company",
     "url": "https://www.google.com/maps/search/?api=1&query=Mariage%20Chez%20Kratevent%20D%C3%A9coration%20Avec%20%C3%89clairage%20Et%20Animation&query_place_id=ChIJVW66dkcdqQ0RCtqMD6duH-k"
+  },
+  {
+    "title": "Celtic Travel Services",
+    "totalScore": 5,
+    "reviewsCount": 5,
+    "street": "5/4 Bridge St",
+    "city": "Sydney",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "http://www.travellerschoice.com.au/agent-details/celtic-travel-services",
+    "phone": "+61 2 8243 2600",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Celtic%20Travel%20Services&query_place_id=ChIJC1pngUGuEmsR12IlHzAJ60s"
   },
   {
     "title": "Nizar Cars : Location de voitures",
@@ -4537,6 +4979,45 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Travel%20Within%20Morocco%20-%20Private%20Morocco%20Tours&query_place_id=ChIJ99MgK5nvrw0R55g5WwUgPUU"
   },
   {
+    "title": "My Travel Agency of New York",
+    "totalScore": 5,
+    "reviewsCount": 3,
+    "street": "321 W 44th St suite 1308",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": null,
+    "phone": "(844) 633-6640",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=My%20Travel%20Agency%20of%20New%20York&query_place_id=ChIJh_U7TzdZwokR7jnAyajRS1E"
+  },
+  {
+    "title": "World Of Travel, Inc.",
+    "totalScore": 5,
+    "reviewsCount": 3,
+    "street": "1120 6th Ave",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://worldoftravelusa.com/",
+    "phone": "(212) 764-4500",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=World%20Of%20Travel%2C%20Inc.&query_place_id=ChIJ1SVLF_9YwokRg9Jvpov5GSE"
+  },
+  {
+    "title": "Boutique Travel Services",
+    "totalScore": 5,
+    "reviewsCount": 3,
+    "street": "L14/22 Market St",
+    "city": "Sydney",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "http://www.boutiquetravelservices.com.au/",
+    "phone": "+61 2 9299 1025",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Boutique%20Travel%20Services&query_place_id=ChIJ5ccsz0CuEmsRO4tiUB1jq2s"
+  },
+  {
     "title": "LOS TOURS MARRUECOS",
     "totalScore": 5,
     "reviewsCount": 3,
@@ -5406,6 +5887,19 @@
     "phone": "+212 5282-29768",
     "categoryName": "Event management company",
     "url": "https://www.google.com/maps/search/?api=1&query=Global%20cast&query_place_id=ChIJ-w7nTzm2sw0RnftKUJR5lx8"
+  },
+  {
+    "title": "First in Service Travel, Toronto",
+    "totalScore": 5,
+    "reviewsCount": 2,
+    "street": "1200 Bay St. Unit 901",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://firstinservice.com/",
+    "phone": "+1 416-279-1900",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=First%20in%20Service%20Travel%2C%20Toronto&query_place_id=ChIJZxYANVA1K4gRdp0aXP_YorY"
   },
   {
     "title": "Ouaria tours",
@@ -7241,6 +7735,58 @@
     "url": "https://www.google.com/maps/search/?api=1&query=%D8%A7%D9%84%D9%85%D8%B9%D8%B1%D8%B6%20%D9%88%D8%A7%D9%84%D9%85%D8%AA%D8%AD%D9%81%20%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A%20%D9%84%D9%84%D8%B3%D9%8A%D8%B1%D8%A9%20%D8%A7%D9%84%D9%86%D8%A8%D9%88%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85%D9%8A%D8%A9%20-%20%D8%A7%D9%84%D8%B1%D8%A8%D8%A7%D8%B7&query_place_id=ChIJ76AM-8htpw0R_2Z-Q3TkZAs"
   },
   {
+    "title": "Express Flights",
+    "totalScore": 4.9,
+    "reviewsCount": 2934,
+    "street": "189 Kent St",
+    "city": "Sydney",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "http://expressflights.com.au/",
+    "phone": "+61 1300 002 055",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Express%20Flights&query_place_id=ChIJNZts-iiuEmsR5lgEwkCNw7s"
+  },
+  {
+    "title": "Paran Tours Inc.",
+    "totalScore": 4.9,
+    "reviewsCount": 2549,
+    "street": "5633 Yonge St",
+    "city": "North York",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.parantours.com/",
+    "phone": "+1 416-223-7767",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Paran%20Tours%20Inc.&query_place_id=ChIJw26nsg8tK4gR0370dg8cxvc"
+  },
+  {
+    "title": "ULTIMATE Travel",
+    "totalScore": 4.9,
+    "reviewsCount": 2415,
+    "street": "Ground Floor, 806 George St",
+    "city": "Haymarket",
+    "state": "NSW",
+    "countryCode": "AU",
+    "website": "http://www.ultimate.travel/",
+    "phone": "+61 2 9211 7900",
+    "categoryName": "Tour operator",
+    "url": "https://www.google.com/maps/search/?api=1&query=ULTIMATE%20Travel&query_place_id=ChIJK4CesSauEmsR0dk6YwtdVMk"
+  },
+  {
+    "title": "Beach Bum Vacations",
+    "totalScore": 4.9,
+    "reviewsCount": 2107,
+    "street": "1011 Needle Ridge Ln",
+    "city": "Brownsburg",
+    "state": "Indiana",
+    "countryCode": "US",
+    "website": "https://beachbumvacation.com/",
+    "phone": "(877) 943-8282",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Beach%20Bum%20Vacations&query_place_id=ChIJy_QCJzOsbIgR8qpwl27boYs"
+  },
+  {
     "title": "Off Road Quad Tetouan",
     "totalScore": 4.9,
     "reviewsCount": 2051,
@@ -7265,6 +7811,58 @@
     "phone": "+212 709-951890",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Triplan%20%7C%20Agence%20de%20Voyage%20%C3%A0%20Casablanca&query_place_id=ChIJ1cuHHTctpg0R-Tdjh57sCeE"
+  },
+  {
+    "title": "EmpireOne Travel",
+    "totalScore": 4.9,
+    "reviewsCount": 1466,
+    "street": "250 Consumers Rd Suite 810",
+    "city": "North York",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://www.empireonetravel.com/",
+    "phone": "+1 416-477-1997",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=EmpireOne%20Travel&query_place_id=ChIJW2YFt17S1IkRNfOFOYvhOsk"
+  },
+  {
+    "title": "Airlink Niagara Falls Tours Toronto",
+    "totalScore": 4.9,
+    "reviewsCount": 1263,
+    "street": "18 King St E Suite #1400",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://airlinktours.ca/",
+    "phone": "+1 647-778-2660",
+    "categoryName": "Tour operator",
+    "url": "https://www.google.com/maps/search/?api=1&query=Airlink%20Niagara%20Falls%20Tours%20Toronto&query_place_id=ChIJC-W7bBlD04kRPgJdWSiZgcQ"
+  },
+  {
+    "title": "The Travel Agency: A Cannabis Store - Fifth Avenue",
+    "totalScore": 4.9,
+    "reviewsCount": 1123,
+    "street": "587 5th Ave",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://thetravelagency.co/",
+    "phone": "(212) 420-6000",
+    "categoryName": "Cannabis store",
+    "url": "https://www.google.com/maps/search/?api=1&query=The%20Travel%20Agency%3A%20A%20Cannabis%20Store%20-%20Fifth%20Avenue&query_place_id=ChIJ1fptRDRZwokREudiEQZZIPk"
+  },
+  {
+    "title": "Toureto Travel",
+    "totalScore": 4.9,
+    "reviewsCount": 1078,
+    "street": "1351 Matheson Blvd E #25",
+    "city": "Mississauga",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.toureto.com/",
+    "phone": "+1 905-276-0606",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Toureto%20Travel&query_place_id=ChIJdxbzAUR0hlQReMTvG8P0u2c"
   },
   {
     "title": "Xauen Tours",
@@ -7293,6 +7891,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=transfert%20a%C3%A9roport%20Casablanca%20service%20taxi%20VTC%20Maroc&query_place_id=ChIJdXg-J0jNpw0Rts5AFDKcWi0"
   },
   {
+    "title": "Lonely Planet Journeys (formerly Elsewhere)",
+    "totalScore": 4.9,
+    "reviewsCount": 473,
+    "street": "100 5th Ave 16th Floor 16th Floor",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://elsewhere.io/",
+    "phone": "(704) 971-2300",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Lonely%20Planet%20Journeys%20(formerly%20Elsewhere)&query_place_id=ChIJY4Kt7Vpx-4gRcp2urC8fCag"
+  },
+  {
     "title": "amouddoufamily.com",
     "totalScore": 4.9,
     "reviewsCount": 431,
@@ -7319,6 +7930,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=DAKHLA%20RIDE%20ADVENTURES%20%2F%20QUAD%20-%20BUGGY%20-%20CAMEL%20-%20SANDBOARD%20-%20VINTAGE%20SAFARI%20-%20E-BIKE&query_place_id=ChIJ3RuefapJIgwRmnVUlhqleVk"
   },
   {
+    "title": "Vou Para New York",
+    "totalScore": 4.9,
+    "reviewsCount": 384,
+    "street": "566 7th Ave #801",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.vouparanewyork.com/",
+    "phone": "(917) 396-9331",
+    "categoryName": "Tour agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Vou%20Para%20New%20York&query_place_id=ChIJs-tGVy1awokR2q8eSgrEXEM"
+  },
+  {
     "title": "Yaqeen Voyage وكالة أسفار اليقين",
     "totalScore": 4.9,
     "reviewsCount": 353,
@@ -7330,6 +7954,19 @@
     "phone": "+212 720-124190",
     "categoryName": "وكالة سياحية",
     "url": "https://www.google.com/maps/search/?api=1&query=Yaqeen%20Voyage%20%D9%88%D9%83%D8%A7%D9%84%D8%A9%20%D8%A3%D8%B3%D9%81%D8%A7%D8%B1%20%D8%A7%D9%84%D9%8A%D9%82%D9%8A%D9%86&query_place_id=ChIJA2cHSSMTpw0RY5llOK35wYQ"
+  },
+  {
+    "title": "World Ways Travel",
+    "totalScore": 4.9,
+    "reviewsCount": 349,
+    "street": "1022 Danforth Ave",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.worldwaystravel.ca/",
+    "phone": "+1 416-461-0920",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=World%20Ways%20Travel&query_place_id=ChIJGQUln4fM1IkRDSBryO9E25g"
   },
   {
     "title": "galaxy voyage",
@@ -7356,6 +7993,32 @@
     "phone": "+212 688-771349",
     "categoryName": "مكتب سفريات",
     "url": "https://www.google.com/maps/search/?api=1&query=Galaxy%20Voyage%20-%20Agence%20de%20Voyage%20%C3%A0%20Casablanca&query_place_id=ChIJ0_seBjnTpw0R0EqZcJqY8Lc"
+  },
+  {
+    "title": "Chima Travel",
+    "totalScore": 4.9,
+    "reviewsCount": 285,
+    "street": "55 Merz Blvd # B",
+    "city": "Fairlawn",
+    "state": "Ohio",
+    "countryCode": "US",
+    "website": "http://www.chima.travel/",
+    "phone": "(330) 867-4770",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Chima%20Travel&query_place_id=ChIJW3nB0ajQMIgRQQ6mdJQw4k4"
+  },
+  {
+    "title": "Travel Goals UK",
+    "totalScore": 4.9,
+    "reviewsCount": 283,
+    "street": "71-75 Shelton St",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://travelgoals.uk/",
+    "phone": "+44 20 8125 7007",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travel%20Goals%20UK&query_place_id=ChIJu2jj1wwFdkgRfUWcyrMKSa8"
   },
   {
     "title": "Maroc Expedition Travel",
@@ -7397,6 +8060,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Desert%20Dream&query_place_id=ChIJv8NlA3IQuw0RIesDIO6vDoI"
   },
   {
+    "title": "Life is Better Traveling",
+    "totalScore": 4.9,
+    "reviewsCount": 251,
+    "street": "1270 Prospect Road Homebased, no walkins, 1270 Prospect Rd",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "countryCode": "US",
+    "website": "http://lifeisbettertraveling.com/",
+    "phone": "(412) 447-1293",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Life%20is%20Better%20Traveling&query_place_id=ChIJNc6Oxf7xNIgRZWI9cHThx8k"
+  },
+  {
     "title": "Starry Morocco Tours & Excursions From Marrakech",
     "totalScore": 4.9,
     "reviewsCount": 231,
@@ -7423,6 +8099,32 @@
     "url": "https://www.google.com/maps/search/?api=1&query=MACYSCARS.MA&query_place_id=ChIJ65KvREotpg0RPNC-O-SwWD0"
   },
   {
+    "title": "EduTravel Inc.",
+    "totalScore": 4.9,
+    "reviewsCount": 210,
+    "street": "42 Sousa Mendes St",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://www.edutravelforcredit.com/",
+    "phone": "+1 416-923-4638",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=EduTravel%20Inc.&query_place_id=ChIJeaatvKA0K4gRwFd67XMDI0E"
+  },
+  {
+    "title": "Magma Global",
+    "totalScore": 4.9,
+    "reviewsCount": 195,
+    "street": "636 Broadway #720",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://magmaglobaltravel.com/",
+    "phone": "(212) 966-6416",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Magma%20Global&query_place_id=ChIJHVUQ7Y9ZwokRiFiy7JszfcE"
+  },
+  {
     "title": "المطار للسياحة و الأسفار",
     "totalScore": 4.9,
     "reviewsCount": 178,
@@ -7434,6 +8136,19 @@
     "phone": "+212 5355-70008",
     "categoryName": "مكتب سفريات",
     "url": "https://www.google.com/maps/search/?api=1&query=%D8%A7%D9%84%D9%85%D8%B7%D8%A7%D8%B1%20%D9%84%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D8%A9%20%D9%88%20%D8%A7%D9%84%D8%A3%D8%B3%D9%81%D8%A7%D8%B1&query_place_id=ChIJqTWJJGNLmA0RWQl7-qzoZj8"
+  },
+  {
+    "title": "TripCorner",
+    "totalScore": 4.9,
+    "reviewsCount": 173,
+    "street": "505 8th Ave STE 801",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://www.tripcorner.com/",
+    "phone": "(800) 200-8747",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=TripCorner&query_place_id=ChIJ16yWOKyzt4kRDAVuEFB1w6k"
   },
   {
     "title": "Marassa Sky Tours-Transport Touristique & personnel -Navette Aéroport - Transport scolaire- location de voiture",
@@ -7449,6 +8164,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Marassa%20Sky%20Tours-Transport%20Touristique%20%26%20personnel%20-Navette%20A%C3%A9roport%20-%20Transport%20scolaire-%20location%20de%20voiture&query_place_id=ChIJC3rX21ltpw0R7BRYYpCvFos"
   },
   {
+    "title": "Eclipse Travel",
+    "totalScore": 4.9,
+    "reviewsCount": 167,
+    "street": "Level 5/115 Pitt St",
+    "city": "Sydney",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "https://eclipsetravel.com.au/",
+    "phone": "+61 1300 575 752",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Eclipse%20Travel&query_place_id=ChIJlTQuSUCuEmsR1BwHAo39l7w"
+  },
+  {
     "title": "Next Voyage",
     "totalScore": 4.9,
     "reviewsCount": 161,
@@ -7460,6 +8188,19 @@
     "phone": "+212 619-192127",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Next%20Voyage&query_place_id=ChIJo0SRm7vSpw0RPfW2hao3uQc"
+  },
+  {
+    "title": "Travelpedia UK",
+    "totalScore": 4.9,
+    "reviewsCount": 157,
+    "street": "7 Bell Yard",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://travelpedia.uk/",
+    "phone": "+44 20 8125 3700",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travelpedia%20UK&query_place_id=ChIJK7g7oG0FdkgRiLrplZjvcYI"
   },
   {
     "title": "MRC Trips",
@@ -7488,6 +8229,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Remas%20Voyages&query_place_id=ChIJGw8d5wtZpw0RgCdqIT_SbU4"
   },
   {
+    "title": "Accent on Travel - Rehoboth Beach",
+    "totalScore": 4.9,
+    "reviewsCount": 142,
+    "street": "37156 Rehoboth Ave Ext Extended Suite 1",
+    "city": "Rehoboth Beach",
+    "state": "Delaware",
+    "countryCode": "US",
+    "website": "https://www.accentontravel.com/",
+    "phone": "(888) 803-4179",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Accent%20on%20Travel%20-%20Rehoboth%20Beach&query_place_id=ChIJSSU7EUi2uIkRoEiy0RvjAgQ"
+  },
+  {
     "title": "Anjoom Voyage",
     "totalScore": 4.9,
     "reviewsCount": 138,
@@ -7499,6 +8253,19 @@
     "phone": "+212 5378-40212",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Anjoom%20Voyage&query_place_id=ChIJc7te1d9rpw0RPhiHajDFw2w"
+  },
+  {
+    "title": "Chubit Travel",
+    "totalScore": 4.9,
+    "reviewsCount": 138,
+    "street": "26 Broadway 8th floor",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.chubit.com/",
+    "phone": "(866) 924-8248",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Chubit%20Travel&query_place_id=ChIJy0TAP8hFwokRfFc7DjOIYz0"
   },
   {
     "title": "Desert Foum Zguid",
@@ -7566,6 +8333,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Morocco%20Tours%20Services&query_place_id=ChIJt28fdATTpw0RDgHaX8OqTW8"
   },
   {
+    "title": "Sports Traveler",
+    "totalScore": 4.9,
+    "reviewsCount": 125,
+    "street": "3100 95th St",
+    "city": "Evergreen Park",
+    "state": "Illinois",
+    "countryCode": "US",
+    "website": "https://www.sportstraveler.net/",
+    "phone": "(888) 654-7755",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Sports%20Traveler&query_place_id=ChIJ2zzSdHIlDogRqHljGl4bR6I"
+  },
+  {
     "title": "Camp Sahara Holidays",
     "totalScore": 4.9,
     "reviewsCount": 124,
@@ -7592,6 +8372,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=EPIC%20HOLIDAYS%20%26%20MICE&query_place_id=ChIJB7QenPzTpw0Rfqj6JJVhQXQ"
   },
   {
+    "title": "FirstClass.com.au",
+    "totalScore": 4.9,
+    "reviewsCount": 117,
+    "street": "Level 20/135 King St",
+    "city": "Sydney",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "http://www.firstclass.com.au/",
+    "phone": "+61 2 9299 0088",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=FirstClass.com.au&query_place_id=ChIJLUcZ9TiuEmsRPIo13-Q8ygw"
+  },
+  {
     "title": "SH VACANCES",
     "totalScore": 4.9,
     "reviewsCount": 115,
@@ -7605,6 +8398,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=SH%20VACANCES&query_place_id=ChIJiWjquPXTpw0RyFjai9QUcOo"
   },
   {
+    "title": "BE NY Travel Inc.",
+    "totalScore": 4.9,
+    "reviewsCount": 114,
+    "street": "52-03 Center Blvd Apt. 1408",
+    "city": "Long Island City",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.newyork.be/",
+    "phone": "(646) 884-4042",
+    "categoryName": "Tour agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=BE%20NY%20Travel%20Inc.&query_place_id=ChIJ_ZxnKMJYwokR85jXbXxTO2s"
+  },
+  {
     "title": "Moroccan Travels Explore",
     "totalScore": 4.9,
     "reviewsCount": 108,
@@ -7616,6 +8422,19 @@
     "phone": "+212 669-060303",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Moroccan%20Travels%20Explore&query_place_id=ChIJ2_kuhiUtpg0RSR8K-4NwRgg"
+  },
+  {
+    "title": "Joy Travel USA LLC",
+    "totalScore": 4.9,
+    "reviewsCount": 104,
+    "street": "580 Crown St",
+    "city": "Brooklyn",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.joytravel.com/",
+    "phone": "(718) 473-7622",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Joy%20Travel%20USA%20LLC&query_place_id=ChIJE2_40YFcwokRdQLzShPXTUs"
   },
   {
     "title": "Morocco Itran Tours",
@@ -7644,6 +8463,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Aisha%20Morocco%20Tours&query_place_id=ChIJEUbxKIPSpw0RGtjTZN0gnwQ"
   },
   {
+    "title": "Shore to Sea Vacations Travel Agency",
+    "totalScore": 4.9,
+    "reviewsCount": 93,
+    "street": "5 Concetta Ct",
+    "city": "Howell Township",
+    "state": "New Jersey",
+    "countryCode": "US",
+    "website": "http://www.shoretoseavacations.com/utm_source=google",
+    "phone": "(732) 685-6680",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Shore%20to%20Sea%20Vacations%20Travel%20Agency&query_place_id=ChIJgaNDYGqBwYkR1G-8flO5ikA"
+  },
+  {
     "title": "AGENCE DESERT PASSIONS",
     "totalScore": 4.9,
     "reviewsCount": 91,
@@ -7655,6 +8487,19 @@
     "phone": "+212 661-522048",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=AGENCE%20DESERT%20PASSIONS&query_place_id=ChIJUQZ-T59ivg0RoJGEmlw8T1I"
+  },
+  {
+    "title": "Travel With Pam Draper",
+    "totalScore": 4.9,
+    "reviewsCount": 87,
+    "street": "221 County House Rd",
+    "city": "Sewell",
+    "state": "New Jersey",
+    "countryCode": "US",
+    "website": "http://www.travelwithpamdraper.com/",
+    "phone": "(856) 956-3532",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travel%20With%20Pam%20Draper&query_place_id=ChIJ0VwU_bHWxokRTNuaVonFsPk"
   },
   {
     "title": "Mrani Travel & Tours",
@@ -7735,6 +8580,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Marina%20Tickets&query_place_id=ChIJvQiPOsIzeA0RhPWthN3bJmE"
   },
   {
+    "title": "Total Advantage Travel & Tours, Inc.",
+    "totalScore": 4.9,
+    "reviewsCount": 67,
+    "street": "2011 Lawrence Ave W #25",
+    "city": null,
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://totaladvantagetravel.com/",
+    "phone": "+1 416-240-7700",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Total%20Advantage%20Travel%20%26%20Tours%2C%20Inc.&query_place_id=ChIJN_kUYiYxK4gREg0GNivTY5E"
+  },
+  {
     "title": "So nice event",
     "totalScore": 4.9,
     "reviewsCount": 64,
@@ -7746,6 +8604,19 @@
     "phone": "+212 666-757403",
     "categoryName": "Event planner",
     "url": "https://www.google.com/maps/search/?api=1&query=So%20nice%20event&query_place_id=ChIJQ_qLmXTJsw0RSaooBQlb-JU"
+  },
+  {
+    "title": "American Travel Abroad",
+    "totalScore": 4.9,
+    "reviewsCount": 64,
+    "street": "505 8th Ave STE 801",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://www.amta.com/",
+    "phone": "(212) 586-5230",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=American%20Travel%20Abroad&query_place_id=ChIJdwQ5ua1ZwokRAhvJCrOPdj0"
   },
   {
     "title": "Morocco Go Go Tours .desert tour -day tour - Morocco trips and Exursion",
@@ -7943,6 +8814,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Travel%20Marrocos%20Tours&query_place_id=ChIJJf59Yo7urw0R_mTqE7Y-9T8"
   },
   {
+    "title": "あっとニューヨーク",
+    "totalScore": 4.9,
+    "reviewsCount": 48,
+    "street": "939 8th Ave #504",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://www.at-newyork.com/",
+    "phone": null,
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=%E3%81%82%E3%81%A3%E3%81%A8%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A8%E3%83%BC%E3%82%AF&query_place_id=ChIJ89PzEVhYwokR8XfCoZzVKcA"
+  },
+  {
     "title": "Marruecos Rutas Tours & Viajes",
     "totalScore": 4.9,
     "reviewsCount": 45,
@@ -8123,6 +9007,45 @@
     "phone": "+212 650-630207",
     "categoryName": "وكالة سياحية",
     "url": "https://www.google.com/maps/search/?api=1&query=%D9%88%D9%83%D8%A7%D9%84%D8%A9%20%D8%A3%D8%B3%D9%81%D8%A7%D8%B1%20%D8%A7%D9%84%D8%B1%D9%81%D8%A7%D8%B9%D9%8A%20%D9%84%D9%84%D8%AD%D8%AC%20%D9%88%D8%A7%D9%84%D8%B9%D9%85%D8%B1%D8%A9%20%D9%88%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D8%A9%20%D9%88%D8%A7%D9%84%D8%B3%D9%81%D8%B1%20%D9%88%D8%A7%D9%84%D8%B1%D8%AD%D9%84%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AF%D8%A7%D8%AE%D9%84%D9%8A%D8%A9&query_place_id=ChIJeZwoZDHHsw0RNP82xKEC8Q8"
+  },
+  {
+    "title": "Book Me Travel",
+    "totalScore": 4.9,
+    "reviewsCount": 35,
+    "street": "397 Eglinton Ave E #103",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.bookmetravel.ca/",
+    "phone": "+1 416-322-5808",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Book%20Me%20Travel&query_place_id=ChIJhYjstjwzK4gRlywetazPiNI"
+  },
+  {
+    "title": "Vacation Spirit",
+    "totalScore": 4.9,
+    "reviewsCount": 34,
+    "street": "2202 Avenue X",
+    "city": "Brooklyn",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.vacationspirit.com/",
+    "phone": "(718) 934-8881",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Vacation%20Spirit&query_place_id=ChIJTxhdCYhEwokRlk5ytx6lDGA"
+  },
+  {
+    "title": "Travel Agent Finder",
+    "totalScore": 4.9,
+    "reviewsCount": 34,
+    "street": null,
+    "city": null,
+    "state": null,
+    "countryCode": null,
+    "website": "http://www.travelagentfinder.com.au/",
+    "phone": "+61 2 8599 2880",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travel%20Agent%20Finder&query_place_id=ChIJYVTerfUO1aQRpoFv_eqzBl8"
   },
   {
     "title": "السفر الذهبي | Voyage Or",
@@ -8372,6 +9295,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Ligue%20Du%20Grand%20Casablanca%20de%20Football&query_place_id=ChIJW3St-h_Npw0RTS1GFNvi2Ss"
   },
   {
+    "title": "Travelers Choice",
+    "totalScore": 4.9,
+    "reviewsCount": 17,
+    "street": "39 Broadway suite 1120",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.travelerschoice.com/",
+    "phone": "(212) 868-8698",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travelers%20Choice&query_place_id=ChIJhQjR0t_8ZUARN0iGu66MYTI"
+  },
+  {
     "title": "Tulip travel",
     "totalScore": 4.9,
     "reviewsCount": 16,
@@ -8398,6 +9334,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=ElOtmania%20Voyages&query_place_id=ChIJZYSFVwATpw0ROAqslNplofQ"
   },
   {
+    "title": "Holiday Seasons Travel",
+    "totalScore": 4.9,
+    "reviewsCount": 16,
+    "street": "1175 Dundas St W",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": null,
+    "phone": "+1 416-588-8001",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Holiday%20Seasons%20Travel&query_place_id=ChIJ0Y5QQ_k0K4gR3e-6bgg9rFE"
+  },
+  {
     "title": "Traveletoile",
     "totalScore": 4.9,
     "reviewsCount": 15,
@@ -8422,6 +9371,19 @@
     "phone": "+212 663-152994",
     "categoryName": "Event management company",
     "url": "https://www.google.com/maps/search/?api=1&query=Oupla%20event&query_place_id=ChIJ83B-o0sFpg0RhnAor2XthuQ"
+  },
+  {
+    "title": "Trailfinders Southampton",
+    "totalScore": 4.9,
+    "reviewsCount": 15,
+    "street": "49 Above Bar St",
+    "city": "Southampton",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://www.trailfinders.com/travel-centre/SOU",
+    "phone": "+44 23 8251 4920",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Trailfinders%20Southampton&query_place_id=ChIJ_QvC5Rl3dEgR89LL3DtGZfw"
   },
   {
     "title": "Taznajatauto",
@@ -8684,6 +9646,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=CTM%20Figuig&query_place_id=ChIJT1h3M_PYhQ0RL2NrX1uk99g"
   },
   {
+    "title": "America's Favorite Travel Agency",
+    "totalScore": 4.8,
+    "reviewsCount": 1575,
+    "street": "733 3rd Ave",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": null,
+    "phone": "(888) 418-5324",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=America's%20Favorite%20Travel%20Agency&query_place_id=ChIJRRb7ugJZwokRwRwlIRLi_o8"
+  },
+  {
     "title": "VOYAGE OR",
     "totalScore": 4.8,
     "reviewsCount": 527,
@@ -8749,6 +9724,32 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Sahara%20ATV%20Quad%20Experience&query_place_id=ChIJT1YT60g_lw0RfHbNiHbLdEI"
   },
   {
+    "title": "Travel Crafters",
+    "totalScore": 4.8,
+    "reviewsCount": 271,
+    "street": null,
+    "city": null,
+    "state": null,
+    "countryCode": null,
+    "website": "https://travelcrafters.com.au/",
+    "phone": "+61 2 8964 4221",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travel%20Crafters&query_place_id=ChIJ9czc8j6vEmsRVD18-uciidI"
+  },
+  {
+    "title": "TravelManagers Australia",
+    "totalScore": 4.8,
+    "reviewsCount": 261,
+    "street": "National Partnership, Office Level 12/280 Elizabeth St",
+    "city": "Surry Hills",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "http://www.travelmanagers.com.au/?utm_source=gmb&utm_medium=organic&utm_campaign=googlemybusinesslisting&utm_term=plcid_11682820194023415670",
+    "phone": "+61 2 8062 6400",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=TravelManagers%20Australia&query_place_id=ChIJh69VzDyuEmsRP92bJkj3qbA"
+  },
+  {
     "title": "Kabdani Voyages",
     "totalScore": 4.8,
     "reviewsCount": 248,
@@ -8775,6 +9776,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Kabdani%20voyages&query_place_id=ChIJq7l02B_Tpw0RkxGsUx0lieQ"
   },
   {
+    "title": "BNT Travel Group",
+    "totalScore": 4.8,
+    "reviewsCount": 229,
+    "street": "703 Brighton Beach Ave",
+    "city": "Brooklyn",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://bnttravelgroup.com/",
+    "phone": "(718) 887-7887",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=BNT%20Travel%20Group&query_place_id=ChIJ4b6O-WlEwokRyoeLrUduTYA"
+  },
+  {
     "title": "3T - Morocco Tours & Excursions",
     "totalScore": 4.8,
     "reviewsCount": 218,
@@ -8786,6 +9800,32 @@
     "phone": "+212 678-493272",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=3T%20-%20Morocco%20Tours%20%26%20Excursions&query_place_id=ChIJz4AuQN3znw0RdydmL5Om4OU"
+  },
+  {
+    "title": "Cook Travel, Inc",
+    "totalScore": 4.8,
+    "reviewsCount": 218,
+    "street": "295 Central Prk W Suite 5",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://www.cooktravel.net/",
+    "phone": "(800) 435-8776",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Cook%20Travel%2C%20Inc&query_place_id=ChIJEdOvY49YwokR7tjpZjcMHNA"
+  },
+  {
+    "title": "Windy City Travel",
+    "totalScore": 4.8,
+    "reviewsCount": 189,
+    "street": "1357 N Wells St",
+    "city": "Chicago",
+    "state": "Illinois",
+    "countryCode": "US",
+    "website": "https://windycitytravel.com/",
+    "phone": "(312) 951-0710",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Windy%20City%20Travel&query_place_id=ChIJD5qwZkbTD4gRupgGE6ex5Rw"
   },
   {
     "title": "GOOD TIMES TRAVEL",
@@ -8812,6 +9852,19 @@
     "phone": "+212 530-096323",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Swisse%20travel&query_place_id=ChIJBaq1h4Jrpw0RzuflcomgWbg"
+  },
+  {
+    "title": "Brentwood Travel",
+    "totalScore": 4.8,
+    "reviewsCount": 168,
+    "street": "1022 Executive Pkwy Dr",
+    "city": "St. Louis",
+    "state": "Missouri",
+    "countryCode": "US",
+    "website": "http://www.brentwoodtravel.com/",
+    "phone": "(314) 439-5700",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Brentwood%20Travel&query_place_id=ChIJPaljURQt34cRxt47kzs0bVg"
   },
   {
     "title": "Caravane Du Grand Erg & Morocco Sahara Tours Camel trekking and Desert Camp",
@@ -8931,6 +9984,45 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Tut%20Travel%20And%20Tourism&query_place_id=ChIJTUUu5Ydrpw0R4M1djxm4IdA"
   },
   {
+    "title": "Ontario Sarracini Travel",
+    "totalScore": 4.8,
+    "reviewsCount": 130,
+    "street": "142 Westmount Ave Second Floor",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://sarracini.com/",
+    "phone": "+1 905-695-4000",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Ontario%20Sarracini%20Travel&query_place_id=ChIJKVNJvUAvK4gRCuoOi96r0Yg"
+  },
+  {
+    "title": "Lida Travel Inc",
+    "totalScore": 4.8,
+    "reviewsCount": 119,
+    "street": "1023 15th St NW suite 350",
+    "city": "Washington",
+    "state": "District of Columbia",
+    "countryCode": "US",
+    "website": "http://lidatravelinc.com/",
+    "phone": "(703) 582-5432",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Lida%20Travel%20Inc&query_place_id=ChIJG-Su6VSwt4kR68W0wzCvmzc"
+  },
+  {
+    "title": "Travala",
+    "totalScore": 4.8,
+    "reviewsCount": 118,
+    "street": "130 Old St",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://www.travala.com/",
+    "phone": "+44 20 8133 8858",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travala&query_place_id=ChIJzQBzcqgcdkgRJx3lZlS0r6I"
+  },
+  {
     "title": "حبتى ترافيل",
     "totalScore": 4.8,
     "reviewsCount": 109,
@@ -8942,6 +10034,19 @@
     "phone": "+212 661-159067",
     "categoryName": "مكتب سفريات",
     "url": "https://www.google.com/maps/search/?api=1&query=%D8%AD%D8%A8%D8%AA%D9%89%20%D8%AA%D8%B1%D8%A7%D9%81%D9%8A%D9%84&query_place_id=ChIJW_dSHpPvrw0RtlkdhNpvjno"
+  },
+  {
+    "title": "Travendly",
+    "totalScore": 4.8,
+    "reviewsCount": 109,
+    "street": "137 W 25th St #11",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://travendly.com/",
+    "phone": "(800) 646-9741",
+    "categoryName": "Tour operator",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travendly&query_place_id=ChIJhd63PaVZwokRDR96BoE-Dvo"
   },
   {
     "title": "Loud Sahara",
@@ -8970,6 +10075,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Beautiful%20Morocco%20Voyages&query_place_id=ChIJG0l7do5rpw0R-bynupo_hvc"
   },
   {
+    "title": "4 Moons Travel",
+    "totalScore": 4.8,
+    "reviewsCount": 104,
+    "street": "1228 Guilford College Rd #105",
+    "city": "Jamestown",
+    "state": "North Carolina",
+    "countryCode": "US",
+    "website": "http://www.4moonstravel.com/",
+    "phone": "(336) 299-4164",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=4%20Moons%20Travel&query_place_id=ChIJ6zomwI-lU4gRtQuNEdjkjso"
+  },
+  {
     "title": "Oumassine voyages oujda",
     "totalScore": 4.8,
     "reviewsCount": 100,
@@ -8994,6 +10112,19 @@
     "phone": "+212 624-985357",
     "categoryName": "Voyagiste",
     "url": "https://www.google.com/maps/search/?api=1&query=Morocco%20Arukikata%20Private%20Tours&query_place_id=ChIJnW2z4GYmCw0Rcfo2qc3LTr4"
+  },
+  {
+    "title": "Unlimited Trips",
+    "totalScore": 4.8,
+    "reviewsCount": 91,
+    "street": "2309 W Market St",
+    "city": "Akron",
+    "state": "Ohio",
+    "countryCode": "US",
+    "website": null,
+    "phone": "(330) 940-4321",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Unlimited%20Trips&query_place_id=ChIJ754opaMnMYgRZTJ2N7Wq_as"
   },
   {
     "title": "Discover Morocco Tours",
@@ -9061,6 +10192,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Travelwings.com&query_place_id=ChIJ70fodaLTpw0Rd_BLy51x61M"
   },
   {
+    "title": "Valle Verde Inc.",
+    "totalScore": 4.8,
+    "reviewsCount": 70,
+    "street": "3883 Broadway",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": null,
+    "phone": "(212) 740-2400",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Valle%20Verde%20Inc.&query_place_id=ChIJuxqRuYT2wokRXCzOu4-p7Eo"
+  },
+  {
     "title": "Morocco Desert Tour",
     "totalScore": 4.8,
     "reviewsCount": 68,
@@ -9100,6 +10244,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Excursion%20Marrakech%20Prix%20Pas%20Cher&query_place_id=ChIJqbOwWZrvrw0RlYu0XCrDro4"
   },
   {
+    "title": "Cheap Flights , Hotels and Holidays From the UK with Budget Travel UK",
+    "totalScore": 4.8,
+    "reviewsCount": 64,
+    "street": "12 Stephen Mews",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://budgettraveluk.co.uk/",
+    "phone": "+44 20 7183 9390",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Cheap%20Flights%20%2C%20Hotels%20and%20Holidays%20From%20the%20UK%20with%20Budget%20Travel%20UK&query_place_id=ChIJixqyXCwbdkgRrn13bNq0wUo"
+  },
+  {
     "title": "Nice Morrocco Travel",
     "totalScore": 4.8,
     "reviewsCount": 62,
@@ -9113,6 +10270,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Nice%20Morrocco%20Travel&query_place_id=ChIJta8Ho2yLnw0Rf4ieweY1zv8"
   },
   {
+    "title": "Neil Travel & Tours",
+    "totalScore": 4.8,
+    "reviewsCount": 62,
+    "street": "317 High St N",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "http://www.neiltravel.com/",
+    "phone": "+44 20 8548 1210",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Neil%20Travel%20%26%20Tours&query_place_id=ChIJ7cjN90ym2EcRsVM4cBmvy08"
+  },
+  {
     "title": "Swisse travel Rabat",
     "totalScore": 4.8,
     "reviewsCount": 57,
@@ -9124,6 +10294,32 @@
     "phone": "+212 661-105424",
     "categoryName": "مكتب سفريات",
     "url": "https://www.google.com/maps/search/?api=1&query=Swisse%20travel%20Rabat&query_place_id=ChIJRbydUiFrpw0RS5Mz8fWVW3M"
+  },
+  {
+    "title": "My Travel World",
+    "totalScore": 4.8,
+    "reviewsCount": 57,
+    "street": "106 Dunton Rd.",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://www.mytravelworld.co.uk/",
+    "phone": "+44 20 3393 1773",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=My%20Travel%20World&query_place_id=ChIJvW9jsW4DdkgRHyvGdJmX4dc"
+  },
+  {
+    "title": "Mr Travel - Greece Vacations Packages Toronto",
+    "totalScore": 4.8,
+    "reviewsCount": 56,
+    "street": "398 Danforth Ave",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.mrtravel.ca/",
+    "phone": "+1 416-461-2424",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Mr%20Travel%20-%20Greece%20Vacations%20Packages%20Toronto&query_place_id=ChIJk1R7JZzM1IkR6pVPh8uI6JU"
   },
   {
     "title": "Agence de voyage naktachfo bladna",
@@ -9163,6 +10359,32 @@
     "phone": "+212 531-140344",
     "categoryName": "مستشار تأشيرات",
     "url": "https://www.google.com/maps/search/?api=1&query=Arvisaok%20-%20%D9%85%D9%83%D8%AA%D8%A8%20%D8%A7%D9%84%D8%AF%D8%B1%D8%A7%D8%B3%D8%A9%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AE%D8%A7%D8%B1%D8%AC&query_place_id=ChIJe83EmUt_DA0R-N0FHycQM1M"
+  },
+  {
+    "title": "Simply Enchanted Travel",
+    "totalScore": 4.8,
+    "reviewsCount": 51,
+    "street": null,
+    "city": null,
+    "state": null,
+    "countryCode": null,
+    "website": "https://www.simplyenchantedtravel.com/",
+    "phone": "(517) 914-4812",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Simply%20Enchanted%20Travel&query_place_id=ChIJnfhjYBvALksRI2eFmBzXS0M"
+  },
+  {
+    "title": "Travigent",
+    "totalScore": 4.8,
+    "reviewsCount": 50,
+    "street": "8080 N Central Expy # 1700",
+    "city": "Dallas",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://travigent.com/",
+    "phone": "(214) 412-0104",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travigent&query_place_id=ChIJr6UTjb2fToYRXCIctiQKSBM"
   },
   {
     "title": "SEEKERS TRAVEL MOROCCO",
@@ -9217,6 +10439,32 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Tangier%20Private%20Tours&query_place_id=ChIJBenAYVh5DA0Rg9JtJBbQjTs"
   },
   {
+    "title": "Dreams World Travel & Tours Canada",
+    "totalScore": 4.8,
+    "reviewsCount": 45,
+    "street": "1978 Yonge St Suite 200s",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://dreamsworldtravel.com/",
+    "phone": "+1 416-991-8131",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Dreams%20World%20Travel%20%26%20Tours%20Canada&query_place_id=ChIJVVVVOQEuK4gRqJC6qo5Glgo"
+  },
+  {
+    "title": "Royal London Travels",
+    "totalScore": 4.8,
+    "reviewsCount": 44,
+    "street": "unit9B, 4 Raven Rd",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "http://www.royallondontravels.com/",
+    "phone": "+44 7908 360267",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Royal%20London%20Travels&query_place_id=ChIJxS_Y7NGn2EcR03z3cxVGvUs"
+  },
+  {
     "title": "Agence de voyages - Shehri Voyages",
     "totalScore": 4.8,
     "reviewsCount": 43,
@@ -9228,6 +10476,32 @@
     "phone": "+212 770-707074",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Agence%20de%20voyages%20-%20Shehri%20Voyages&query_place_id=ChIJjRwmoYdrpw0RMSub0JMPYWw"
+  },
+  {
+    "title": "Black Tomato",
+    "totalScore": 4.8,
+    "reviewsCount": 42,
+    "street": "1115 Broadway",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://www.blacktomato.com/us/?utm_source=google&utm_medium=organic&utm_campaign=gmb",
+    "phone": "(646) 558-3644",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Black%20Tomato&query_place_id=ChIJcRsf4KRZwokRN9iU1pAKF2g"
+  },
+  {
+    "title": "Ania Travel Agency Inc",
+    "totalScore": 4.8,
+    "reviewsCount": 38,
+    "street": "57-53 61st St",
+    "city": "Maspeth",
+    "state": "New York",
+    "countryCode": "US",
+    "website": null,
+    "phone": "(718) 416-0645",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Ania%20Travel%20Agency%20Inc&query_place_id=ChIJvaA7qJNewokRopMxynjPxO4"
   },
   {
     "title": "Morocco Desert legend",
@@ -9451,6 +10725,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=%D8%AA%D8%A7%D8%B4%D9%8A%D8%B1%D8%A9%20%D9%85%D8%B5%D8%B1%20%D9%88%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%A7%D9%85%D8%A7%D8%B1%D8%A7%D8%AA%20%D9%88%D9%82%D8%B7%D8%B1%20%D9%88%D8%A7%D9%84%D8%B5%D9%8A%D9%86%20%D9%84%D9%84%D9%85%D8%BA%D8%A7%D8%B1%D8%A8%D8%A9&query_place_id=ChIJfdACP2PTpw0Rc1Ov-wlXnXU"
   },
   {
+    "title": "Seven Heaven Travel",
+    "totalScore": 4.8,
+    "reviewsCount": 21,
+    "street": "1178 Broadway 3rd Floor #1535",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://www.sevenheaventravel.com/",
+    "phone": "(347) 725-8065",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Seven%20Heaven%20Travel&query_place_id=ChIJm-VRzgZFwokR4iPoPqghgzM"
+  },
+  {
     "title": "Patrimoine Travel Agency",
     "totalScore": 4.8,
     "reviewsCount": 20,
@@ -9659,6 +10946,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Morocco%20Expert%20Tours&query_place_id=ChIJP_mOwzjTpw0RGEv5t1NAjWI"
   },
   {
+    "title": "Big Blue Travel",
+    "totalScore": 4.8,
+    "reviewsCount": 11,
+    "street": "307 7th Ave",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.bigbluetravel.com/",
+    "phone": "(212) 244-2583",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Big%20Blue%20Travel&query_place_id=ChIJs3t9HqtZwokRQ4NdRG_n03M"
+  },
+  {
     "title": "Agence Zerguite VISA",
     "totalScore": 4.8,
     "reviewsCount": 10,
@@ -9828,6 +11128,71 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Agence%20voyage%20zahrane&query_place_id=ChIJt6WC8XkLpQ0Rvz3VP1Jx1xM"
   },
   {
+    "title": "Travel House UK",
+    "totalScore": 4.7,
+    "reviewsCount": 2491,
+    "street": "12 Stephen Mews",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://www.travelhouseuk.co.uk/",
+    "phone": "+44 20 7183 8841",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travel%20House%20UK&query_place_id=ChIJuyjBPyobdkgRXnFvS66LjDQ"
+  },
+  {
+    "title": "Safeway Tours",
+    "totalScore": 4.7,
+    "reviewsCount": 2264,
+    "street": "30 Carlton St.",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://safewaytours.net/",
+    "phone": "+1 416-593-0593",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Safeway%20Tours&query_place_id=ChIJgSGOxbQ0K4gR5ZGuV7SGhMI"
+  },
+  {
+    "title": "The Travel Agency: A Cannabis Store - Union Square",
+    "totalScore": 4.7,
+    "reviewsCount": 1568,
+    "street": "835 Broadway",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://thetravelagency.co/",
+    "phone": "(646) 777-7420",
+    "categoryName": "Cannabis store",
+    "url": "https://www.google.com/maps/search/?api=1&query=The%20Travel%20Agency%3A%20A%20Cannabis%20Store%20-%20Union%20Square&query_place_id=ChIJQ5Z5i1xZwokRJ0qkaA_4Q-I"
+  },
+  {
+    "title": "Tripmasters",
+    "totalScore": 4.7,
+    "reviewsCount": 1377,
+    "street": "8730 Georgia Ave Suite 600B",
+    "city": "Silver Spring",
+    "state": "Maryland",
+    "countryCode": "US",
+    "website": "https://www.tripmasters.com/?utm_source=goog&utm_medium=s&utm_campaign=googsearchbizwebsitedirect",
+    "phone": "(800) 430-0484",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Tripmasters&query_place_id=ChIJE9peuSTMt4kR7qt4xtNdovU"
+  },
+  {
+    "title": "Happy Travels - Sydney",
+    "totalScore": 4.7,
+    "reviewsCount": 675,
+    "street": "790 George St",
+    "city": "Haymarket",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "http://happytravels.com.au/",
+    "phone": "+61 2 5633 1149",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Happy%20Travels%20-%20Sydney&query_place_id=ChIJW_YyjyOuEmsRDiykQpLscJY"
+  },
+  {
     "title": "Follow Me Travel By Asfari voyage",
     "totalScore": 4.7,
     "reviewsCount": 377,
@@ -9906,6 +11271,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Zagora%20Desert%20Travel%20%26%20Morocco%20Desert%20Tours&query_place_id=ChIJSzF9-fI2vA0RoezTjZmYLew"
   },
   {
+    "title": "Gullivers Travel Pvt Ltd",
+    "totalScore": 4.7,
+    "reviewsCount": 159,
+    "street": "1700 Wilson Ave",
+    "city": "North York",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": null,
+    "phone": "+1 416-241-4114",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Gullivers%20Travel%20Pvt%20Ltd&query_place_id=ChIJqde9_AIxK4gR-N1xJWniOC4"
+  },
+  {
     "title": "MAMOUN TOURS",
     "totalScore": 4.7,
     "reviewsCount": 157,
@@ -9917,6 +11295,19 @@
     "phone": "+212 5228-00352",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=MAMOUN%20TOURS&query_place_id=ChIJWyyHXXPNpw0RK03DBbiuY88"
+  },
+  {
+    "title": "Global Tours And Travel Inc",
+    "totalScore": 4.7,
+    "reviewsCount": 139,
+    "street": "37-12 75th St 2nd Floor Suite : 206",
+    "city": "Jackson Heights",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://globaltravelbd.com/",
+    "phone": "(718) 200-2655",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Global%20Tours%20And%20Travel%20Inc&query_place_id=ChIJC0pUqRhfwokRTriuJKBT844"
   },
   {
     "title": "Yanis Moroccan Experience - Agence de Voyages",
@@ -9982,6 +11373,32 @@
     "phone": "+212 661-210117",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Voyages%20les%20Honorables&query_place_id=ChIJVfFAHchBpw0Rkvz2ePj30o0"
+  },
+  {
+    "title": "Star Travel UK LTD",
+    "totalScore": 4.7,
+    "reviewsCount": 122,
+    "street": "Golden Cross House, 8 Duncannon St",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://staruk.uk/",
+    "phone": "+44 20 8137 8136",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Star%20Travel%20UK%20LTD&query_place_id=ChIJGTfXnv0PdkgR_doLWiSvgK0"
+  },
+  {
+    "title": "Jumbo Travel U.K. LTD",
+    "totalScore": 4.7,
+    "reviewsCount": 107,
+    "street": "157 Robert St",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "http://www.jumbotravel.co.uk/",
+    "phone": "+44 20 7387 8264",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Jumbo%20Travel%20U.K.%20LTD&query_place_id=ChIJAxmg_tgadkgRZyhbWT573vE"
   },
   {
     "title": "وكالة الأسفار إليغ للسياحة",
@@ -10192,6 +11609,32 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Renova%20Tour&query_place_id=ChIJLTXYZ15tpw0RtvVdx9buSbU"
   },
   {
+    "title": "Mandala Travel",
+    "totalScore": 4.7,
+    "reviewsCount": 63,
+    "street": "1268 St Clair Ave W",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://www.mandalatravel.ca/",
+    "phone": "+1 416-855-1363",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Mandala%20Travel&query_place_id=ChIJ39ZhO3M0K4gRDT5f89MtaBo"
+  },
+  {
+    "title": "Sultan Travel Ltd.",
+    "totalScore": 4.7,
+    "reviewsCount": 59,
+    "street": "3 Bestobell Rd",
+    "city": null,
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.sultantravel.ca/",
+    "phone": "+1 416-503-3030",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Sultan%20Travel%20Ltd.&query_place_id=ChIJ1-H53LpUV0ARbhn7FJrip68"
+  },
+  {
     "title": "Ataouaf Travel",
     "totalScore": 4.7,
     "reviewsCount": 56,
@@ -10270,6 +11713,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Utess%20Voyages&query_place_id=ChIJ-fa4kevSpw0RygtT-ET_Oag"
   },
   {
+    "title": "IACE TRAVEL",
+    "totalScore": 4.7,
+    "reviewsCount": 39,
+    "street": "60 St Clair Ave E Suite 200",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://iace-canada.com/",
+    "phone": "+1 416-324-9101",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=IACE%20TRAVEL&query_place_id=ChIJvWEYvq80K4gRmLQprLeoRmY"
+  },
+  {
     "title": "MILLENIUM TRAVEL",
     "totalScore": 4.7,
     "reviewsCount": 38,
@@ -10333,6 +11789,32 @@
     "phone": "+212 661-602865",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=AGENCE%20DE%20VOYAGE%20RISSALA%20TRAVEL&query_place_id=ChIJvbV_aeNZpw0Rfo7rjA2e7aY"
+  },
+  {
+    "title": "Downunder Travel",
+    "totalScore": 4.7,
+    "reviewsCount": 31,
+    "street": "2 St Clair Ave W 18th Floor",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://downunder-travel.com/?utm_source=organic&utm_medium=gbp&utm_campaign=gbp-link",
+    "phone": "+1 905-597-4329",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Downunder%20Travel&query_place_id=ChIJs739n8IyK4gRYDNt_62sJIY"
+  },
+  {
+    "title": "Gateway Travel Sydney – VIP Luxury & Transformational Travel",
+    "totalScore": 4.7,
+    "reviewsCount": 29,
+    "street": null,
+    "city": null,
+    "state": null,
+    "countryCode": null,
+    "website": "http://www.gatewaytravel.com.au/",
+    "phone": "+61 414 955 109",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Gateway%20Travel%20Sydney%20%E2%80%93%20VIP%20Luxury%20%26%20Transformational%20Travel&query_place_id=ChIJb5Issia7EmsRwH4UqrvJ7fg"
   },
   {
     "title": "AMTOUDI AVENTURE",
@@ -10528,6 +12010,32 @@
     "phone": "+212 5378-50669",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Nassim%20Voyages%20Sal%C3%A9&query_place_id=ChIJqQcbqttrpw0RBgm1KPtzCPQ"
+  },
+  {
+    "title": "ROME TRAVEL AGENCY INC",
+    "totalScore": 4.7,
+    "reviewsCount": 13,
+    "street": "792 St Clair Ave W",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://www.romatravel.com/",
+    "phone": "+1 416-654-2434",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=ROME%20TRAVEL%20AGENCY%20INC&query_place_id=ChIJxR5NQH80K4gRzcATcxTSAcs"
+  },
+  {
+    "title": "Amnet New York",
+    "totalScore": 4.7,
+    "reviewsCount": 12,
+    "street": "19 W 44th St #407",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://travelwithamnet.com/",
+    "phone": "(212) 247-1900",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Amnet%20New%20York&query_place_id=ChIJe_j1e_dYwokRcxT0CUDYFnA"
   },
   {
     "title": "Voyages Bab Azhar Tours",
@@ -10738,6 +12246,32 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Voltaire%20Tours&query_place_id=ChIJLfzW5AGndw0RJ-v96dPuwlI"
   },
   {
+    "title": "Niagara Falls Canada Tours - Niagara Falls Sightseeing Tours & Boat Cruise From Toronto",
+    "totalScore": 4.6,
+    "reviewsCount": 75625,
+    "street": "192 Spadina Ave.",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://niagarafallscanadatours.com/",
+    "phone": "+1 647-477-1520",
+    "categoryName": "Tour agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Niagara%20Falls%20Canada%20Tours%20-%20Niagara%20Falls%20Sightseeing%20Tours%20%26%20Boat%20Cruise%20From%20Toronto&query_place_id=ChIJmZwi-Q5D04kRwKEs08Xhoyc"
+  },
+  {
+    "title": "Crystal Travel",
+    "totalScore": 4.6,
+    "reviewsCount": 5530,
+    "street": "12 Stephen Mews",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://www.crystaltravel.co.uk/",
+    "phone": "+44 20 7612 0500",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Crystal%20Travel&query_place_id=ChIJRaUzPiobdkgRYZu8LfNKSDw"
+  },
+  {
     "title": "Marrakesh Desert Tours",
     "totalScore": 4.6,
     "reviewsCount": 688,
@@ -10749,6 +12283,32 @@
     "phone": "+212 649-029000",
     "categoryName": "Travel agency",
     "url": "https://www.google.com/maps/search/?api=1&query=Marrakesh%20Desert%20Tours&query_place_id=ChIJmf___2jurw0RrMV6qgyXRKM"
+  },
+  {
+    "title": "WorldMark Hunt Stablewood Springs",
+    "totalScore": 4.6,
+    "reviewsCount": 648,
+    "street": "245 Stablewood Springs Dr W",
+    "city": "Ingram",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.extraholidays.com/hunt-texas/worldmark-hunt-stablewood-springs-resort?utm_medium=listing&utm_source=google-local&utm_campaign=na_gmb_na_locallisting_na_allusers&utm_content=wmhuntstablewoodsprings",
+    "phone": "(866) 723-9878",
+    "categoryName": "Resort hotel",
+    "url": "https://www.google.com/maps/search/?api=1&query=WorldMark%20Hunt%20Stablewood%20Springs&query_place_id=ChIJU4QBi79bWYYRSQcOzCeyLxg"
+  },
+  {
+    "title": "Maria's Travel",
+    "totalScore": 4.6,
+    "reviewsCount": 441,
+    "street": "294 Audubon Ave",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": null,
+    "phone": "(212) 927-1105",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Maria's%20Travel&query_place_id=ChIJYZAcoB_0wokRNgjfZu0l4yo"
   },
   {
     "title": "AjiNsafro, Aji Nsafro",
@@ -10777,6 +12337,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=%D8%A2%D8%AC%D9%8A%20%D9%86%D8%B3%D8%A7%D9%81%D8%B1%D9%88&query_place_id=ChIJmw7EW6eACw0R5NNmFbEK5WI"
   },
   {
+    "title": "World Tours And Travel Inc",
+    "totalScore": 4.6,
+    "reviewsCount": 425,
+    "street": "37-12 75th St 2nd Floor Suite : 206",
+    "city": "Jackson Heights",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://mybestfly.com/",
+    "phone": "(718) 406-9745",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=World%20Tours%20And%20Travel%20Inc&query_place_id=ChIJ_adHGQdfwokRlf1zF_aYp1I"
+  },
+  {
     "title": "MARRAKESH TRAVEL SERVICES",
     "totalScore": 4.6,
     "reviewsCount": 395,
@@ -10803,6 +12376,32 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Ksar%20Bicha%20Hotel%20%2C%20Bivouac%20%26%20Excursions&query_place_id=ChIJKTgwXSA8lw0RWBbdal6b-ww"
   },
   {
+    "title": "SellOffVacations",
+    "totalScore": 4.6,
+    "reviewsCount": 284,
+    "street": "3329 Yonge St",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.selloffvacations.com/",
+    "phone": "+1 416-789-1010",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=SellOffVacations&query_place_id=ChIJRez55ekyK4gRv9kj-TYHM0w"
+  },
+  {
+    "title": "SUPREME TRAVELS",
+    "totalScore": 4.6,
+    "reviewsCount": 244,
+    "street": "415 The Westway",
+    "city": null,
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://supremetravels.com/",
+    "phone": "+1 416-649-9999",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=SUPREME%20TRAVELS&query_place_id=ChIJS65MfhMwK4gR1ILJnyhEUVU"
+  },
+  {
     "title": "Tetouan Quad Xplorer",
     "totalScore": 4.6,
     "reviewsCount": 241,
@@ -10814,6 +12413,32 @@
     "phone": "+212 661-802585",
     "categoryName": "خدمة تأجير مركبات لجميع التضاريس",
     "url": "https://www.google.com/maps/search/?api=1&query=Tetouan%20Quad%20Xplorer&query_place_id=ChIJP25M-BBDCw0R9AN5-Q1PQXk"
+  },
+  {
+    "title": "Pet Relocation",
+    "totalScore": 4.6,
+    "reviewsCount": 232,
+    "street": null,
+    "city": null,
+    "state": null,
+    "countryCode": null,
+    "website": "https://www.petrelocation.com/",
+    "phone": "(512) 362-6100",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Pet%20Relocation&query_place_id=ChIJA45fqrq1RIYRC_RR2w-qj7M"
+  },
+  {
+    "title": "Global Concepts",
+    "totalScore": 4.6,
+    "reviewsCount": 230,
+    "street": "316 Midnight Dr",
+    "city": "San Antonio",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "http://www.globalconcepts210.com/",
+    "phone": "(210) 437-4966",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Global%20Concepts&query_place_id=ChIJbVjcPgNgXIYR2tuFFq3NN9s"
   },
   {
     "title": "We Travel - Morocco",
@@ -10840,6 +12465,19 @@
     "phone": "+212 5376-75467",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Alhambra%20voyages&query_place_id=ChIJFd2ZSoZrpw0Rf3HcRt2BUlg"
+  },
+  {
+    "title": "Yulini Travel Agency",
+    "totalScore": 4.6,
+    "reviewsCount": 165,
+    "street": "104-11 122nd St",
+    "city": "South Richmond Hill",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://southrichmondhilltravelagency.com/",
+    "phone": "(347) 508-4485",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Yulini%20Travel%20Agency&query_place_id=ChIJSRLUgklnwokRRx-FThcrt8M"
   },
   {
     "title": "Le Studio des Arts Vivants",
@@ -10920,6 +12558,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Prestige%20Tour%20%3A%20Location%20de%20voitures%20Sidi%20Maarouf&query_place_id=ChIJixpWvaktpg0R5KiCOXpC2ko"
   },
   {
+    "title": "Do All Travel",
+    "totalScore": 4.6,
+    "reviewsCount": 84,
+    "street": "4620 18th Ave",
+    "city": "Brooklyn",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://doalltravel.com/",
+    "phone": "(718) 972-6000",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Do%20All%20Travel&query_place_id=ChIJyVog9dZEwokRvQCGUAmvy9g"
+  },
+  {
     "title": "مجموعة طيبة العالمية للسفر والسياحة GROUPE TAYBA INTERNATIONAL",
     "totalScore": 4.6,
     "reviewsCount": 70,
@@ -10957,6 +12608,32 @@
     "phone": "+212 711-688048",
     "categoryName": "وكالة عمل جولات في المعالم السياحية",
     "url": "https://www.google.com/maps/search/?api=1&query=Marrakech%20Outdoor%20Trips&query_place_id=ChIJeaix-K3vrw0RtwI0G8arpf0"
+  },
+  {
+    "title": "Hannah Travel, Travel Agency in London Ontario, Call Now For Cheap Flights",
+    "totalScore": 4.6,
+    "reviewsCount": 65,
+    "street": null,
+    "city": null,
+    "state": null,
+    "countryCode": null,
+    "website": "http://www.hannahtravel.ca/",
+    "phone": "+1 519-601-7222",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Hannah%20Travel%2C%20Travel%20Agency%20in%20London%20Ontario%2C%20Call%20Now%20For%20Cheap%20Flights&query_place_id=ChIJkf2lk0fwLogRtJC58mXnpwU"
+  },
+  {
+    "title": "Skylark Travel",
+    "totalScore": 4.6,
+    "reviewsCount": 61,
+    "street": "666 3rd Ave",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://skylark.com/",
+    "phone": "(212) 759-5275",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Skylark%20Travel&query_place_id=ChIJaZJBcZhZwokRRg2i7RxTL08"
   },
   {
     "title": "AM Plaisance Boat Tours",
@@ -11024,6 +12701,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=%D9%88%D9%83%D8%A7%D9%84%D8%A9%20%D8%A3%D8%B3%D9%81%D8%A7%D8%B1%20%D9%85%D9%88%D8%A8%D8%A7%D8%B1%D9%83%D8%A9_%D8%AA%D9%85%D8%A7%D8%B1%D8%A9&query_place_id=ChIJke6Mh2QNpw0RjyGPoWb5G7s"
   },
   {
+    "title": "Easy Escapes Travel",
+    "totalScore": 4.6,
+    "reviewsCount": 34,
+    "street": "5 Pennsylvania Plaza 23rd fl",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.easyescapestravel.com/",
+    "phone": "(800) 294-6643",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Easy%20Escapes%20Travel&query_place_id=ChIJzRbW5qxZwokRdrAdvkeNQUM"
+  },
+  {
     "title": "sevenpm",
     "totalScore": 4.6,
     "reviewsCount": 31,
@@ -11035,6 +12725,19 @@
     "phone": "+212 777-777759",
     "categoryName": "Agence événementielle",
     "url": "https://www.google.com/maps/search/?api=1&query=sevenpm&query_place_id=ChIJuQTwxiXTpw0RCPrjguFqYqY"
+  },
+  {
+    "title": "RA Travel",
+    "totalScore": 4.6,
+    "reviewsCount": 26,
+    "street": "39 W 14th St Suite 306",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.ratravel.com/",
+    "phone": "(212) 633-8300",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=RA%20Travel&query_place_id=ChIJb8BQ45dZwokRFqoEAwoHFVU"
   },
   {
     "title": "Fadel voyages",
@@ -11245,6 +12948,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Numidian%20Morocco%20Tours&query_place_id=ChIJgd2zo7_JvA0RaUYIvXHIUrw"
   },
   {
+    "title": "First in Service Travel",
+    "totalScore": 4.6,
+    "reviewsCount": 10,
+    "street": "444 Madison Ave 30th Floor",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.firstinservice.com/",
+    "phone": "(212) 398-6555",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=First%20in%20Service%20Travel&query_place_id=ChIJ0dCh06pZwokRQY3mwokEleE"
+  },
+  {
     "title": "Privilège Voyages",
     "totalScore": 4.6,
     "reviewsCount": 9,
@@ -11256,6 +12972,32 @@
     "phone": "+212 5222-09615",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Privil%C3%A8ge%20Voyages&query_place_id=ChIJ2xuqnKLSpw0RyWCPkRrJvHY"
+  },
+  {
+    "title": "LUSO Travel Agency Toronto",
+    "totalScore": 4.6,
+    "reviewsCount": 8,
+    "street": "11 Brant St",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": null,
+    "phone": "+1 416-537-0701",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=LUSO%20Travel%20Agency%20Toronto&query_place_id=ChIJM3DYP_k0K4gRaWccI3fC-K8"
+  },
+  {
+    "title": "Judy Perl Travel",
+    "totalScore": 4.6,
+    "reviewsCount": 8,
+    "street": "214 Sullivan St # 2C",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.judyperltravel.com/",
+    "phone": "(212) 979-7400",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Judy%20Perl%20Travel&query_place_id=ChIJUa6kZ5tZwokR8mLmoL-m83k"
   },
   {
     "title": "Agence de Voyage Martil",
@@ -11310,6 +13052,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=View%20Morocco&query_place_id=ChIJySYiksrvrw0R3ha21RmslCA"
   },
   {
+    "title": "Premier Travels",
+    "totalScore": 4.6,
+    "reviewsCount": 7,
+    "street": "2071 Central Ct Suite B100",
+    "city": "Green Bay",
+    "state": "Wisconsin",
+    "countryCode": "US",
+    "website": "http://www.premiertravels.com/",
+    "phone": "(920) 845-2600",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Premier%20Travels&query_place_id=ChIJbZe6mV3FAogR4MJcLOGRsDQ"
+  },
+  {
     "title": "SAIDIA TRAVEL",
     "totalScore": 4.6,
     "reviewsCount": 5,
@@ -11362,6 +13117,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Terratour&query_place_id=ChIJ_a_-PmZrpw0RQdty_aaGetg"
   },
   {
+    "title": "Mi Viaje a Nueva York",
+    "totalScore": 4.5,
+    "reviewsCount": 194,
+    "street": "324 W 47th St",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://www.miviajeanuevayork.com/",
+    "phone": "(929) 634-7423",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Mi%20Viaje%20a%20Nueva%20York&query_place_id=ChIJf14EAFRYwokRKOeukUzDJbA"
+  },
+  {
     "title": "Premices voyages مكتب الاوائل للأسفار",
     "totalScore": 4.5,
     "reviewsCount": 186,
@@ -11375,6 +13143,32 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Premices%20voyages%20%D9%85%D9%83%D8%AA%D8%A8%20%D8%A7%D9%84%D8%A7%D9%88%D8%A7%D8%A6%D9%84%20%D9%84%D9%84%D8%A3%D8%B3%D9%81%D8%A7%D8%B1&query_place_id=ChIJp04nkY5spw0RCEmIMZbT0vU"
   },
   {
+    "title": "Amax Travel Services",
+    "totalScore": 4.5,
+    "reviewsCount": 182,
+    "street": "11211 Katy Fwy # 275",
+    "city": "Houston",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.amaxtravel.com/",
+    "phone": "(713) 278-8685",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Amax%20Travel%20Services&query_place_id=ChIJiVLkCr_DQIYRj0GfiO_5UrI"
+  },
+  {
+    "title": "Senior Discovery Tours",
+    "totalScore": 4.5,
+    "reviewsCount": 179,
+    "street": "225 Eglinton Ave W",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.seniordiscoverytours.ca/",
+    "phone": "(800) 268-3492",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Senior%20Discovery%20Tours&query_place_id=ChIJQ2TtWBYzK4gRYuB9GpQRYY0"
+  },
+  {
     "title": "El Qods Voyages",
     "totalScore": 4.5,
     "reviewsCount": 157,
@@ -11386,6 +13180,19 @@
     "phone": "+212 5224-40009",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=El%20Qods%20Voyages&query_place_id=ChIJ3YioyYLSpw0RBI7-hbAkn5k"
+  },
+  {
+    "title": "Intrepid Travel",
+    "totalScore": 4.5,
+    "reviewsCount": 140,
+    "street": "215 Spadina Ave. Unit #300",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://www.intrepidtravel.com/",
+    "phone": "(855) 299-1211",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Intrepid%20Travel&query_place_id=ChIJmf-3Vec0K4gRQC2T2JdHFDg"
   },
   {
     "title": "Monte Carlo",
@@ -11440,6 +13247,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Agence%20Numytours%20Et%20Events&query_place_id=ChIJd-oQLOg-qQgRHwmANpwol7s"
   },
   {
+    "title": "Marinasol Travel & Consultants",
+    "totalScore": 4.5,
+    "reviewsCount": 103,
+    "street": "1201 Dundas St W",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.marinasol.ca/",
+    "phone": "+1 416-536-7686",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Marinasol%20Travel%20%26%20Consultants&query_place_id=ChIJ_9iKH_k0K4gRATGEBjUDO0M"
+  },
+  {
     "title": "EL YAKOUT VOYAGES",
     "totalScore": 4.5,
     "reviewsCount": 93,
@@ -11490,6 +13310,19 @@
     "phone": "+212 661-475409",
     "categoryName": "منظم الجولات السياحية",
     "url": "https://www.google.com/maps/search/?api=1&query=%D8%A2%D8%AC%D9%8A%20%D8%AA%D8%B1%D8%A7%D9%81%D9%84%20Aji%20Travel&query_place_id=ChIJM52Onh2Lnw0RMlNHPjfd7n8"
+  },
+  {
+    "title": "Anna-Pol Travel Agency",
+    "totalScore": 4.5,
+    "reviewsCount": 63,
+    "street": "821 Manhattan Ave",
+    "city": "Brooklyn",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://www.annapoltravel.com/",
+    "phone": "(718) 349-2423",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Anna-Pol%20Travel%20Agency&query_place_id=ChIJaW4ivEZZwokRczTtzMMFXxM"
   },
   {
     "title": "UTRAV",
@@ -11622,6 +13455,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Dakhla%20Travel&query_place_id=ChIJt6ai6ABJIgwRc5xC5ACNXag"
   },
   {
+    "title": "Direct Travel - Toronto (Downtown)",
+    "totalScore": 4.5,
+    "reviewsCount": 29,
+    "street": "1075 Bay St.",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": null,
+    "phone": "+1 416-928-3113",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Direct%20Travel%20-%20Toronto%20(Downtown)&query_place_id=ChIJ3TIOsLE0K4gReR4YqQz1pGM"
+  },
+  {
     "title": "Sava Travel Agency",
     "totalScore": 4.5,
     "reviewsCount": 28,
@@ -11633,6 +13479,19 @@
     "phone": "+212 5397-17171",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Sava%20Travel%20Agency&query_place_id=ChIJhWmknwhDCw0RAEoa1Qgnhyg"
+  },
+  {
+    "title": "Travel Edge",
+    "totalScore": 4.5,
+    "reviewsCount": 28,
+    "street": "2 Queen St E Unit 1800",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.traveledge.com/",
+    "phone": "+1 647-943-8998",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travel%20Edge&query_place_id=ChIJAxXCETPL1IkRzQOnfrMSO2Q"
   },
   {
     "title": "Wilaya Tours : Agence de voyages & tourisme",
@@ -11739,6 +13598,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=AL%20ABTAL%20TRAVEL&query_place_id=ChIJtZCzxX5tpw0R24sDH_9icWk"
   },
   {
+    "title": "World Travel NYC LLC",
+    "totalScore": 4.5,
+    "reviewsCount": 20,
+    "street": "120-20 Liberty Ave FL 1 #3",
+    "city": "South Richmond Hill",
+    "state": "New York",
+    "countryCode": "US",
+    "website": null,
+    "phone": "(718) 738-1900",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=World%20Travel%20NYC%20LLC&query_place_id=ChIJmZ2EOElnwokRsqsBsWyaLbs"
+  },
+  {
     "title": "NOUR AL FIRDAWS voyages",
     "totalScore": 4.5,
     "reviewsCount": 19,
@@ -11776,6 +13648,19 @@
     "phone": "+212 616-221456",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Authentik%20Traveller%20Maroc&query_place_id=ChIJxQGjD9aACw0RWOjSJJsdklQ"
+  },
+  {
+    "title": "Travel Australia Centre",
+    "totalScore": 4.5,
+    "reviewsCount": 18,
+    "street": "Suite 92/515 Kent St",
+    "city": "Sydney",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "http://www.travelaustraliacentre.com/",
+    "phone": "+61 2 8880 8088",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travel%20Australia%20Centre&query_place_id=ChIJHcpr0T-uEmsRLmAUMKMaLqw"
   },
   {
     "title": "وكالة أسفار طيبة",
@@ -12259,6 +14144,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=%D9%81%D9%86%D8%AF%D9%82%20%D8%A5%D9%8A%D8%A8%D8%B3%20%D8%B3%D9%8A%D8%AF%D9%8A%20%D9%85%D8%B9%D8%B1%D9%88%D9%81&query_place_id=ChIJE_ahhD0tpg0R8BDxfLexjEw"
   },
   {
+    "title": "Dawn Travels",
+    "totalScore": 4.4,
+    "reviewsCount": 566,
+    "street": "421 7th Ave #1211",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.dawntravels.com/",
+    "phone": "(212) 244-1818",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Dawn%20Travels&query_place_id=ChIJwwo8TKlZwokRa0_e4ieZJvk"
+  },
+  {
     "title": "دار فنون",
     "totalScore": 4.4,
     "reviewsCount": 544,
@@ -12270,6 +14168,19 @@
     "phone": "+212 5376-68579",
     "categoryName": "متحف فني",
     "url": "https://www.google.com/maps/search/?api=1&query=%D8%AF%D8%A7%D8%B1%20%D9%81%D9%86%D9%88%D9%86&query_place_id=ChIJNzlWQYFrpw0RmBjRfShcGT8"
+  },
+  {
+    "title": "Sunita Travel Agency LLC",
+    "totalScore": 4.4,
+    "reviewsCount": 265,
+    "street": "131-20 Liberty Ave",
+    "city": "South Richmond Hill",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://sunitatravelagency.com/",
+    "phone": "(718) 738-1700",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Sunita%20Travel%20Agency%20LLC&query_place_id=ChIJFbMACDVnwokRfTX7z4qd8qE"
   },
   {
     "title": "AGENCE DE VOYAGE QAFILAT TAYBA",
@@ -12285,6 +14196,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=AGENCE%20DE%20VOYAGE%20QAFILAT%20TAYBA&query_place_id=ChIJE305sX_urw0R1dQq945KzM0"
   },
   {
+    "title": "VMS Travel",
+    "totalScore": 4.4,
+    "reviewsCount": 151,
+    "street": "3351 Markham Rd unit137a",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.vmstravels.ca/",
+    "phone": "+1 416-293-5800",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=VMS%20Travel&query_place_id=ChIJbXaTUjHS1IkRvzAk-bQZ6hQ"
+  },
+  {
     "title": "Rif Croisières",
     "totalScore": 4.4,
     "reviewsCount": 119,
@@ -12296,6 +14220,19 @@
     "phone": "+212 641-599894",
     "categoryName": "Agence d'excursions en bateau",
     "url": "https://www.google.com/maps/search/?api=1&query=Rif%20Croisi%C3%A8res&query_place_id=ChIJOTT2M_IxdA0RWV5M86lIFvM"
+  },
+  {
+    "title": "Omega Tours",
+    "totalScore": 4.4,
+    "reviewsCount": 97,
+    "street": "142 Westmount Ave Second Floor",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://omegatours.ca/",
+    "phone": "+1 905-695-1250",
+    "categoryName": "Tour operator",
+    "url": "https://www.google.com/maps/search/?api=1&query=Omega%20Tours&query_place_id=ChIJx1bdl0AvK4gRVldlYm6NVhI"
   },
   {
     "title": "Belkatours Agence de voyage et de Tourisme",
@@ -12350,6 +14287,45 @@
     "url": "https://www.google.com/maps/search/?api=1&query=%D9%82%D8%B5%D8%B1%20%D8%A3%D8%A8%D9%88%D8%B9%D8%A7%D9%85&query_place_id=ChIJp3eJ7Clylw0Rl0Gxq77p0tw"
   },
   {
+    "title": "St Clair Travel Agency",
+    "totalScore": 4.4,
+    "reviewsCount": 74,
+    "street": "1293 St Clair Ave W",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://stclairtravel.com/",
+    "phone": "+1 416-654-9600",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=St%20Clair%20Travel%20Agency&query_place_id=ChIJewIJ1Qw0K4gR_6gwqfoCcPQ"
+  },
+  {
+    "title": "Rivas Travel",
+    "totalScore": 4.4,
+    "reviewsCount": 73,
+    "street": "4321 Broadway",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.rivastravel.com/",
+    "phone": "(212) 928-7000",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Rivas%20Travel&query_place_id=ChIJ4y9T5B30wokRBxHiqB2f_co"
+  },
+  {
+    "title": "Transat Travel",
+    "totalScore": 4.4,
+    "reviewsCount": 63,
+    "street": "56 Church St",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://transattravel.com/travel-agencies/toronto/toronto-church-st-42663",
+    "phone": "+1 416-366-1961",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Transat%20Travel&query_place_id=ChIJxzFcfTLL1IkRFTgTeJzZT0s"
+  },
+  {
     "title": "Destino Marruecos",
     "totalScore": 4.4,
     "reviewsCount": 53,
@@ -12389,6 +14365,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=GO%20MAKKAH%20ANFA&query_place_id=ChIJlyL_n9bTpw0Rnzg4d0btbRg"
   },
   {
+    "title": "Queen Travel",
+    "totalScore": 4.4,
+    "reviewsCount": 50,
+    "street": "1550 Danforth Ave",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": null,
+    "phone": "+1 416-504-7687",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Queen%20Travel&query_place_id=ChIJJ68aY2XM1IkRKz5wsCeGv-o"
+  },
+  {
     "title": "Plage Blanche Travel",
     "totalScore": 4.4,
     "reviewsCount": 48,
@@ -12402,6 +14391,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Plage%20Blanche%20Travel&query_place_id=ChIJqbo0Cx8DtQ0RNWfUUD1kH2o"
   },
   {
+    "title": "Travel Outlet",
+    "totalScore": 4.4,
+    "reviewsCount": 47,
+    "street": "1874 Union Rd",
+    "city": "West Seneca",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://traveloutletwny.com/",
+    "phone": "(716) 675-1190",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Travel%20Outlet&query_place_id=ChIJ_3Uiv6kO04kRzcS3X13-s00"
+  },
+  {
     "title": "Access Morocco",
     "totalScore": 4.4,
     "reviewsCount": 46,
@@ -12413,6 +14415,19 @@
     "phone": "+212 5224-74848",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Access%20Morocco&query_place_id=ChIJz8_r4uzSpw0RAveCcOOokeg"
+  },
+  {
+    "title": "Trailfinders London City",
+    "totalScore": 4.4,
+    "reviewsCount": 45,
+    "street": "56-57 Cheapside",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://www.trailfinders.com/travel-centre/lcy",
+    "phone": "+44 20 7147 5300",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Trailfinders%20London%20City&query_place_id=ChIJX8sYO1MDdkgR4PfkChb_zjY"
   },
   {
     "title": "Tangiertours.ma",
@@ -12504,6 +14519,32 @@
     "phone": "+212 5243-29231",
     "categoryName": "خدمة وسائل النقل",
     "url": "https://www.google.com/maps/search/?api=1&query=Krikich%20Tours&query_place_id=ChIJsWM1eGHurw0RQI1cxu68UcY"
+  },
+  {
+    "title": "Dejavu Travel Agency Toronto",
+    "totalScore": 4.4,
+    "reviewsCount": 18,
+    "street": "113 Yorkville Ave",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://sackeyosei.wixsite.com/colombiana-experienc",
+    "phone": null,
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Dejavu%20Travel%20Agency%20Toronto&query_place_id=ChIJ0xR0wBYzK4gR1Ix0pCmtXNk"
+  },
+  {
+    "title": "H.I.S. Australia Pty Ltd, Sydney",
+    "totalScore": 4.4,
+    "reviewsCount": 18,
+    "street": "Level 16/175 Pitt St",
+    "city": "Sydney",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "https://his-australia.com/",
+    "phone": "+61 2 8365 7010",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=H.I.S.%20Australia%20Pty%20Ltd%2C%20Sydney&query_place_id=ChIJ_x2vrz6uEmsROounaFvaVy8"
   },
   {
     "title": "Alghoufrane Voyages أسفار الغفران",
@@ -12740,6 +14781,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=AGENCE%20BELGE%20TRANS%20KHAI&query_place_id=ChIJqQqD_3pleA0RGCgwIfvXhB8"
   },
   {
+    "title": "Cheap Flights Fares LLC",
+    "totalScore": 4.3,
+    "reviewsCount": 2002,
+    "street": "123 Columbia Turnpike Suite 204A",
+    "city": "Florham Park",
+    "state": "New Jersey",
+    "countryCode": "US",
+    "website": "https://www.cheapflightsfares.com/",
+    "phone": "(216) 302-2732",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Cheap%20Flights%20Fares%20LLC&query_place_id=ChIJ3QZwmMP6MIgR5tsZ8ypUcwY"
+  },
+  {
     "title": "Ando Travel",
     "totalScore": 4.3,
     "reviewsCount": 287,
@@ -12946,6 +15000,32 @@
     "phone": "+212 666-146713",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=KHAMLIA%20TOUR%20sarl&query_place_id=ChIJy6qqqkY8lw0RnzA_cB2QepM"
+  },
+  {
+    "title": "GLOBAL TRAVEL AGENCY",
+    "totalScore": 4.3,
+    "reviewsCount": 43,
+    "street": "1075 College St",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": null,
+    "phone": "+1 416-516-1113",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=GLOBAL%20TRAVEL%20AGENCY&query_place_id=ChIJGaHHt1A0K4gR4PNhr0cRHSQ"
+  },
+  {
+    "title": "Hays Travel Hillsborough",
+    "totalScore": 4.3,
+    "reviewsCount": 41,
+    "street": "20 Middlewood Rd",
+    "city": "Sheffield",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://www.haystravel.co.uk/branches/hillsborough/",
+    "phone": "+44 114 407 5194",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Hays%20Travel%20Hillsborough&query_place_id=ChIJG3a5xRt5eUgRKEUoJ0q1lXg"
   },
   {
     "title": "Maouassim Voyages et tourisme",
@@ -13442,6 +15522,32 @@
     "url": "https://www.google.com/maps/search/?api=1&query=%D9%85%D9%83%D8%AA%D8%A8%20%D9%88%D9%83%D8%A7%D9%84%D8%A9%20%D8%A7%D9%84%D8%A3%D8%B3%D9%81%D8%A7%D8%B1%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%D8%A9&query_place_id=ChIJr4o_64drpw0RZ9b5ipV_E9E"
   },
   {
+    "title": "SkyRoute Travel Services",
+    "totalScore": 4.2,
+    "reviewsCount": 307,
+    "street": "1200 Markham Rd #106",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.skyroutetravel.com/",
+    "phone": "+1 416-439-4000",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=SkyRoute%20Travel%20Services&query_place_id=ChIJbT5S_ffQ1IkRKSXj-71lrTQ"
+  },
+  {
+    "title": "Flight Centre",
+    "totalScore": 4.2,
+    "reviewsCount": 201,
+    "street": "50 Bloor St W C24",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://www.flightcentre.ca/stores/holt-renfrew-centre",
+    "phone": "(888) 243-2051",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Flight%20Centre&query_place_id=ChIJpWucHbI0K4gRJPr-wsBNYNM"
+  },
+  {
     "title": "ساحة لالة عودة",
     "totalScore": 4.2,
     "reviewsCount": 182,
@@ -13466,6 +15572,19 @@
     "phone": "+212 5223-69393",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=L'atelier%20du%20Voyage&query_place_id=ChIJM_Ioz-jSpw0R4OA7uOOtBX4"
+  },
+  {
+    "title": "Skylight Travel & Tours Inc",
+    "totalScore": 4.2,
+    "reviewsCount": 157,
+    "street": "3341 Markham Rd UNIT 123",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://www.skylighttravel.ca/",
+    "phone": "+1 416-751-8000",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Skylight%20Travel%20%26%20Tours%20Inc&query_place_id=ChIJRQcef8zW1IkRUeCLaQY9se4"
   },
   {
     "title": "Alkhaber Travel Agence de Voyage",
@@ -13557,6 +15676,32 @@
     "phone": "+212 530-164343",
     "categoryName": "وكالة سياحية",
     "url": "https://www.google.com/maps/search/?api=1&query=Good%20Fly&query_place_id=ChIJf1ZU0EBrpw0RXqlpdm1_3bg"
+  },
+  {
+    "title": "JTB Australia",
+    "totalScore": 4.2,
+    "reviewsCount": 84,
+    "street": "Level 18/456 Kent St",
+    "city": "Sydney",
+    "state": "New South Wales",
+    "countryCode": "AU",
+    "website": "https://jtbtravel.com.au/",
+    "phone": "+61 1300 739 330",
+    "categoryName": "Tour agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=JTB%20Australia&query_place_id=ChIJdw1TKDmuEmsRoRo9v22-qpY"
+  },
+  {
+    "title": "Goway Travel",
+    "totalScore": 4.2,
+    "reviewsCount": 82,
+    "street": "3284 Yonge St Suite 500",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://www.goway.com/",
+    "phone": "+1 416-322-1034",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Goway%20Travel&query_place_id=ChIJ9XmDyz4zK4gRaQ-r17nEusw"
   },
   {
     "title": "MHT Travels : Maroc Horizon Tours",
@@ -14027,6 +16172,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=%D9%88%D9%83%D8%A7%D9%84%D8%A9%20%D9%85%D8%A7%D9%84%D9%8A%D8%B2%D9%8A%D8%A7%20%D9%84%D9%84%D8%A3%D8%B3%D9%81%D8%A7%D8%B1%20%D9%88%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%AD%D8%A9&query_place_id=ChIJBQFWtfmndw0Rh9TR605CBDI"
   },
   {
+    "title": "Altitude Luxury Travel",
+    "totalScore": 4.2,
+    "reviewsCount": 10,
+    "street": "15 Paternoster Row",
+    "city": "Sheffield",
+    "state": null,
+    "countryCode": "GB",
+    "website": "http://www.altitudeluxurytravel.com/",
+    "phone": "+44 114 345 1977",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Altitude%20Luxury%20Travel&query_place_id=ChIJT2-Jz8GEeUgRp4Rtvnbcnk0"
+  },
+  {
     "title": "Malaysia Travel",
     "totalScore": 4.2,
     "reviewsCount": 10,
@@ -14209,6 +16367,58 @@
     "url": "https://www.google.com/maps/search/?api=1&query=%D8%B3%D8%AA%D9%8A%D8%A7%D9%85%20%D9%88%D8%B1%D8%B2%D8%A7%D8%B2%D8%A7%D8%AA&query_place_id=ChIJtTtHinIQuw0RsZeT2MussLo"
   },
   {
+    "title": "Tinma",
+    "totalScore": 4.1,
+    "reviewsCount": 410,
+    "street": "6 Elizabeth St",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://tinma-mjv.com/",
+    "phone": "(212) 385-1688",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Tinma&query_place_id=ChIJTbcyuidawokRNQbb_cL93G4"
+  },
+  {
+    "title": "Atlas Travel, Canada",
+    "totalScore": 4.1,
+    "reviewsCount": 332,
+    "street": "6075 Yonge St",
+    "city": null,
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://atlas.travel/",
+    "phone": "(877) 222-7779",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Atlas%20Travel%2C%20Canada&query_place_id=ChIJO3UikwMtK4gRnzLppcQme9g"
+  },
+  {
+    "title": "Flight Centre George Street",
+    "totalScore": 4.1,
+    "reviewsCount": 218,
+    "street": "Ground Floor & Levels 1 & 2, 474, 478 George St",
+    "city": "Sydney",
+    "state": "NSW",
+    "countryCode": "AU",
+    "website": "https://www.flightcentre.com.au/stores/sydney/fc-george-st-sydney-red?utm_source=google-my-business&utm_medium=organic&utm_campaign=new-google-my-business-listing",
+    "phone": "+61 1300 534 763",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Flight%20Centre%20George%20Street&query_place_id=ChIJx9B_9z6uEmsRyX2I3dteV6U"
+  },
+  {
+    "title": "Darel Salam Travel",
+    "totalScore": 4.1,
+    "reviewsCount": 108,
+    "street": "280 Madison Ave #500",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://darelsalam.com/",
+    "phone": "(212) 725-2022",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Darel%20Salam%20Travel&query_place_id=ChIJXz0j4wBZwokR1-t1feP1Q9U"
+  },
+  {
     "title": "FAVORI Voyages Casablanca",
     "totalScore": 4.1,
     "reviewsCount": 93,
@@ -14272,6 +16482,19 @@
     "phone": "+212 5225-76401",
     "categoryName": "وكالة سياحية",
     "url": "https://www.google.com/maps/search/?api=1&query=agence%20de%20voyages%20nassim&query_place_id=ChIJIRxLAbgypg0RpaaMh-A55YQ"
+  },
+  {
+    "title": "Correia Travel",
+    "totalScore": 4.1,
+    "reviewsCount": 53,
+    "street": "912 Dundas St W",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "http://correiatravel.ca/",
+    "phone": "+1 416-603-0869",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Correia%20Travel&query_place_id=ChIJYa3ba-U0K4gRdWvRh24Rf4c"
   },
   {
     "title": "Ghazala Messagerie - Agence Nador",
@@ -14363,6 +16586,19 @@
     "phone": "+212 5373-71730",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Agence%20Smact%20Voyages&query_place_id=ChIJD3FdROFZpw0RzU3D59CoCto"
+  },
+  {
+    "title": "BlueOrange Travel - NYC Travel Agency",
+    "totalScore": 4.1,
+    "reviewsCount": 15,
+    "street": "1633 Broadway 35th floor",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://blueorangetravel.com/",
+    "phone": "(212) 257-3549",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=BlueOrange%20Travel%20-%20NYC%20Travel%20Agency&query_place_id=ChIJaYy_H6tZwokRPJAWSxb1mxI"
   },
   {
     "title": "Anaam Tours, Anaam Travel",
@@ -14586,6 +16822,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=MEGA%20TOURS&query_place_id=ChIJBVxPqpwzpg0RqAMutpax4t4"
   },
   {
+    "title": "Fora Travel, Inc.",
+    "totalScore": 4,
+    "reviewsCount": 87,
+    "street": "225 Broadway 23rd floor",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.foratravel.com/",
+    "phone": null,
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Fora%20Travel%2C%20Inc.&query_place_id=ChIJy8t3bWNbwokRvQdG3hwgWPE"
+  },
+  {
     "title": "Monarch Travel",
     "totalScore": 4,
     "reviewsCount": 78,
@@ -14662,6 +16911,19 @@
     "phone": "+212 5224-72222",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=KTI%20Voyages&query_place_id=ChIJl4T2ZezSpw0R-m9_7GTSE-c"
+  },
+  {
+    "title": "Fei Yang Travel",
+    "totalScore": 4,
+    "reviewsCount": 35,
+    "street": "195 Canal St STE 203",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://feiyangtravel.com/",
+    "phone": "(212) 202-1668",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Fei%20Yang%20Travel&query_place_id=ChIJ9QBteidawokRe0NWOdqv8aY"
   },
   {
     "title": "Visit Morocco Travel & Events",
@@ -15184,6 +17446,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Afrah%20Dar%20Lfakia&query_place_id=ChIJMfcLx6e3sw0Rlg9LkZ2wgZI"
   },
   {
+    "title": "Virtuoso Ltd.",
+    "totalScore": 4,
+    "reviewsCount": 4,
+    "street": "777 Main St #900",
+    "city": "Fort Worth",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.virtuoso.com/?utm_source=google&utm_medium=organic&utm_campaign=gbp-fortworth",
+    "phone": "(817) 870-0300",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Virtuoso%20Ltd.&query_place_id=ChIJSx8TZ0BxToYRkS9b21duRC8"
+  },
+  {
     "title": "Travel Events And Logistics Morocco",
     "totalScore": 4,
     "reviewsCount": 3,
@@ -15509,6 +17784,32 @@
     "url": "https://www.google.com/maps/search/?api=1&query=Emirates%20World&query_place_id=ChIJ90PiLO3Spw0Rh4pXUW9-dXA"
   },
   {
+    "title": "Pacific Holidays Inc.",
+    "totalScore": 3.9,
+    "reviewsCount": 75,
+    "street": "12 W 32nd St Suite #602",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.pacificholidaysinc.com/",
+    "phone": "(212) 629-3888",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Pacific%20Holidays%20Inc.&query_place_id=ChIJzfG-8ahZwokRlHmp5FuyJng"
+  },
+  {
+    "title": "City Travel NYC",
+    "totalScore": 3.9,
+    "reviewsCount": 71,
+    "street": "350 5th Ave 59th fl",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "http://www.citytravelnyc.com/",
+    "phone": "(347) 737-7218",
+    "categoryName": "Tour operator",
+    "url": "https://www.google.com/maps/search/?api=1&query=City%20Travel%20NYC&query_place_id=ChIJe7JF8wxfwokRCf4vf54boVk"
+  },
+  {
     "title": "SAVA TRAVEL AGENCY",
     "totalScore": 3.9,
     "reviewsCount": 69,
@@ -15546,6 +17847,19 @@
     "phone": "+212 5355-23211",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Agence%20de%20voyages%20ADRAR&query_place_id=ChIJcXRC09hEoA0Rrrb05lVW42I"
+  },
+  {
+    "title": "Valeria Travel Agency Toronto",
+    "totalScore": 3.9,
+    "reviewsCount": 51,
+    "street": "886 Wilson Ave",
+    "city": null,
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://sackeyosei.wixsite.com/colombiana-experienc",
+    "phone": null,
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Valeria%20Travel%20Agency%20Toronto&query_place_id=ChIJ2U3ksOwxK4gRwYWL8KImFGg"
   },
   {
     "title": "Drissi Voyages",
@@ -15871,6 +18185,19 @@
     "phone": "+212 5220-68664",
     "categoryName": "Agence de voyages",
     "url": "https://www.google.com/maps/search/?api=1&query=Ajial%20voyages&query_place_id=ChIJ54YU6FQspg0R-60jUl5ta8A"
+  },
+  {
+    "title": "London Travel Agency",
+    "totalScore": 3.8,
+    "reviewsCount": 10,
+    "street": "48 Warwick St, Piccadilly Circus",
+    "city": "London",
+    "state": null,
+    "countryCode": "GB",
+    "website": "https://www.londontravelagency.co.uk/",
+    "phone": "+44 20 8346 1660",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=London%20Travel%20Agency&query_place_id=ChIJcwIbZ1QXdkgRTAWWeVtHFc8"
   },
   {
     "title": "Dakhla Regency Travel",
@@ -16302,6 +18629,19 @@
     "url": "https://www.google.com/maps/search/?api=1&query=%D8%A7%D8%B3%D9%81%D8%A7%D8%B1%20%D8%A7%D9%84%D8%B5%D8%AD%D8%B1%D8%A7%D8%A1&query_place_id=ChIJM01K6THNpw0RwjN8El5PgYI"
   },
   {
+    "title": "Focus Travel",
+    "totalScore": 3.6,
+    "reviewsCount": 478,
+    "street": "87 Division St",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://www.heylongbus.com/",
+    "phone": "(215) 625-2727",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Focus%20Travel&query_place_id=ChIJRUy1-yhawokRFGhJ0paprUA"
+  },
+  {
     "title": "Turkish Airlines",
     "totalScore": 3.6,
     "reviewsCount": 186,
@@ -16391,6 +18731,19 @@
     "phone": "+212 5399-38220",
     "categoryName": "مكتب سفريات",
     "url": "https://www.google.com/maps/search/?api=1&query=Ibn%20Batouta%20Travel%20Agency&query_place_id=ChIJBdEzEkWBCw0RyY47JJKBjLY"
+  },
+  {
+    "title": "H.I.S. International Tours Inc. NYC (New York Branch)",
+    "totalScore": 3.6,
+    "reviewsCount": 23,
+    "street": "545 5th Ave 9th Floor",
+    "city": "New York",
+    "state": "New York",
+    "countryCode": "US",
+    "website": "https://top.his-usa.com/",
+    "phone": null,
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=H.I.S.%20International%20Tours%20Inc.%20NYC%20(New%20York%20Branch)&query_place_id=ChIJ3dXPRQBZwokR_G0fBp4qLWA"
   },
   {
     "title": "Ajnihat Al Khair",
@@ -16768,6 +19121,19 @@
     "phone": "+212 635-406185",
     "categoryName": "محطة قطار",
     "url": "https://www.google.com/maps/search/?api=1&query=%D8%AD%D9%8A%20%D8%B9%D9%8A%D9%86%20%D8%A7%D9%84%D8%B3%D8%A8%D8%B9&query_place_id=ChIJPRwPJH7Lpw0RJJBCmdArzYs"
+  },
+  {
+    "title": "The Travel Agent Next Door",
+    "totalScore": 3.4,
+    "reviewsCount": 69,
+    "street": "55 York St #1003",
+    "city": "Toronto",
+    "state": "Ontario",
+    "countryCode": "CA",
+    "website": "https://www.thetravelagentnextdoor.ca/",
+    "phone": "(844) 245-8263",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=The%20Travel%20Agent%20Next%20Door&query_place_id=ChIJP_sWD9M0K4gRLAhoVBVY6gc"
   },
   {
     "title": "وكالة الأسفار بني درار",
@@ -17223,6 +19589,19 @@
     "phone": "+212 5228-53545",
     "categoryName": "محطة حافلات",
     "url": "https://www.google.com/maps/search/?api=1&query=Gare%20Routiere%20Ouled%20Ziane&query_place_id=ChIJgRfQMmbNpw0RwdasYmmZs2g"
+  },
+  {
+    "title": "United",
+    "totalScore": 3.2,
+    "reviewsCount": 144,
+    "street": "3600 Presidential Blvd",
+    "city": "Austin",
+    "state": "Texas",
+    "countryCode": "US",
+    "website": "https://www.united.com/",
+    "phone": "(800) 864-8331",
+    "categoryName": "Airline",
+    "url": "https://www.google.com/maps/search/?api=1&query=United&query_place_id=ChIJ3b38TzCxRIYR32JkRH7VzSQ"
   },
   {
     "title": "Papillon Voyages",
@@ -18120,6 +20499,19 @@
     "phone": "+212 5288-45051",
     "categoryName": "وكالة عمل جولات في المعالم السياحية",
     "url": "https://www.google.com/maps/search/?api=1&query=Globus%20Voyages&query_place_id=ChIJpQ8pIoG3sw0RTo1E1fsPrT8"
+  },
+  {
+    "title": "Envoyage",
+    "totalScore": 2.4,
+    "reviewsCount": 40,
+    "street": "5 Paragon Dr",
+    "city": "Montvale",
+    "state": "New Jersey",
+    "countryCode": "US",
+    "website": "https://www.envoyage.com/locations/nj/montvale/5-paragon-drive",
+    "phone": "(888) 340-8653",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Envoyage&query_place_id=ChIJiaNqKznhwokRXAt9-IXPDPw"
   },
   {
     "title": "Clicholidays",
@@ -21097,6 +23489,32 @@
     "phone": "+212 5223-61304",
     "categoryName": "Association / Organization",
     "url": "https://www.google.com/maps/search/?api=1&query=MTM%20DMC%20CLUB&query_place_id=ChIJraYE_OvSpw0RjprmOYpcv9U"
+  },
+  {
+    "title": "Singapore Airways",
+    "totalScore": null,
+    "reviewsCount": null,
+    "street": "17 Brangbourne Rd",
+    "city": "Bromley",
+    "state": null,
+    "countryCode": "GB",
+    "website": null,
+    "phone": "+44 20 3832 8680",
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Singapore%20Airways&query_place_id=ChIJrd8qJVsBdkgRwISaPCd81hg"
+  },
+  {
+    "title": "Global Excursion UK - Package Tour Operator for Dubai, Europe, Singapore",
+    "totalScore": null,
+    "reviewsCount": null,
+    "street": "4, Pump Ln",
+    "city": "Hayes",
+    "state": null,
+    "countryCode": "GB",
+    "website": "http://www.globalexcursionuk.com/",
+    "phone": null,
+    "categoryName": "Travel agency",
+    "url": "https://www.google.com/maps/search/?api=1&query=Global%20Excursion%20UK%20-%20Package%20Tour%20Operator%20for%20Dubai%2C%20Europe%2C%20Singapore&query_place_id=ChIJETiIBkZzdkgRw1CGOXASu8w"
   },
   {
     "title": "Daily Morocco Vacation",

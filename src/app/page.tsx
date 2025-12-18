@@ -71,8 +71,83 @@ export default function Home() {
     },
   ];
 
+  // Structured data for the home page
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "TravelAgencies.World",
+    url: "https://travelagencies.world",
+    description: "Find the best travel agencies worldwide. Compare ratings, read reviews, and connect with trusted travel professionals.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://travelagencies.world/agencies?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "TravelAgencies.World",
+    url: "https://travelagencies.world",
+    logo: "https://travelagencies.world/logo.png",
+    description: "World's largest directory of verified travel agencies",
+    sameAs: [
+      "https://www.instagram.com/travelagenciesworld",
+      "https://www.facebook.com/travelagenciesworld"
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+33-7-45-07-56-68",
+      contactType: "customer service",
+      availableLanguage: ["English", "French"]
+    }
+  };
+
+  const collectionPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Travel Agency Directory",
+    description: `Browse ${totalAgencies}+ verified travel agencies worldwide`,
+    url: "https://travelagencies.world",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: totalAgencies,
+      itemListElement: featuredAgencies.map((agency, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "TravelAgency",
+          name: agency.title,
+          url: `https://travelagencies.world/agencies/${agency.slug}`,
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: agency.cityNormalized,
+            addressCountry: agency.country
+          }
+        }
+      }))
+    }
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageJsonLd) }}
+      />
+
       {/* Hero Section */}
       <section className="hero-gradient text-white py-20 md:py-32 relative overflow-hidden">
         {/* Animated background elements */}
@@ -354,6 +429,102 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section for SEO */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Common questions about finding and choosing travel agencies
+            </p>
+          </div>
+          <div className="max-w-3xl mx-auto space-y-4">
+            {[
+              {
+                question: "How do I find the best travel agency for my trip?",
+                answer: "Use our directory to compare travel agencies by location, ratings, and reviews. Look for agencies with high ratings (4.5+), many positive reviews, and experience in your destination. You can filter by city, country, and specialty to find the perfect match."
+              },
+              {
+                question: "Are the travel agencies on TravelAgencies.World verified?",
+                answer: "Yes, all agencies in our directory are real businesses with verified information sourced from Google Maps. We display authentic ratings and reviews from actual customers to help you make informed decisions."
+              },
+              {
+                question: "How can I contact a travel agency?",
+                answer: "Each agency listing includes direct contact information such as phone numbers, websites, and links to their Google Maps location. You can reach out directly to discuss your travel plans and get quotes."
+              },
+              {
+                question: "What types of travel agencies are listed?",
+                answer: "Our directory includes various types of travel agencies: general tour operators, adventure travel specialists, luxury travel agencies, honeymoon planners, family vacation experts, and destination-specific agencies for Morocco, France, Spain, and many other countries."
+              },
+              {
+                question: "Is it free to use TravelAgencies.World?",
+                answer: "Yes, TravelAgencies.World is completely free for travelers. You can browse, search, compare, and contact any travel agency in our directory at no cost."
+              }
+            ].map((faq, index) => (
+              <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-border">
+                <h3 className="text-lg font-semibold text-foreground mb-2">{faq.question}</h3>
+                <p className="text-muted-foreground">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "How do I find the best travel agency for my trip?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Use our directory to compare travel agencies by location, ratings, and reviews. Look for agencies with high ratings (4.5+), many positive reviews, and experience in your destination. You can filter by city, country, and specialty to find the perfect match."
+                }
+              },
+              {
+                "@type": "Question",
+                name: "Are the travel agencies on TravelAgencies.World verified?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, all agencies in our directory are real businesses with verified information sourced from Google Maps. We display authentic ratings and reviews from actual customers to help you make informed decisions."
+                }
+              },
+              {
+                "@type": "Question",
+                name: "How can I contact a travel agency?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Each agency listing includes direct contact information such as phone numbers, websites, and links to their Google Maps location. You can reach out directly to discuss your travel plans and get quotes."
+                }
+              },
+              {
+                "@type": "Question",
+                name: "What types of travel agencies are listed?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Our directory includes various types of travel agencies: general tour operators, adventure travel specialists, luxury travel agencies, honeymoon planners, family vacation experts, and destination-specific agencies for Morocco, France, Spain, and many other countries."
+                }
+              },
+              {
+                "@type": "Question",
+                name: "Is it free to use TravelAgencies.World?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes, TravelAgencies.World is completely free for travelers. You can browse, search, compare, and contact any travel agency in our directory at no cost."
+                }
+              }
+            ]
+          })
+        }}
+      />
     </>
   );
 }

@@ -8,9 +8,26 @@ import {
 } from "@/lib/agencies";
 
 export const metadata: Metadata = {
-  title: "Destinations - Browse Travel Agencies by Location",
+  title: "Travel Destinations - Find Agencies by City & Country | 50+ Locations",
   description:
-    "Explore our travel agency directory by destination. Find trusted travel agencies in cities and countries around the world.",
+    "Explore travel agencies in Morocco (Marrakech, Casablanca, Fes), France (Paris, Lille), Spain, Italy and 50+ destinations. Find local tour operators and travel agents by location.",
+  keywords: [
+    "travel agencies by destination",
+    "Morocco travel agencies",
+    "Marrakech tour operators",
+    "Paris travel agents",
+    "travel agencies near me",
+    "local travel agencies",
+    "destination travel agents",
+  ],
+  openGraph: {
+    title: "Browse Travel Agencies by Destination | TravelAgencies.World",
+    description: "Find trusted travel agencies in 50+ cities and countries worldwide.",
+    url: "https://travelagencies.world/destinations",
+  },
+  alternates: {
+    canonical: "/destinations",
+  },
 };
 
 export default function DestinationsPage() {

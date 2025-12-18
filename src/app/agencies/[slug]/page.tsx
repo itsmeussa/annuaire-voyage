@@ -54,16 +54,51 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const ratingText = agency.totalScore ? ` ⭐ ${agency.totalScore}/5` : "";
+  const reviewText = agency.reviewsCount ? ` (${agency.reviewsCount} reviews)` : "";
+  
+  const seoDescription = `${agency.title} - ${agency.category} in ${agency.cityNormalized}, ${agency.country}.${ratingText}${reviewText} Contact: ${agency.phone || "Available on request"}. ${agency.description?.slice(0, 120) || ""}`;
+
   return {
-    title: `${agency.title} - Travel Agency in ${agency.cityNormalized}`,
-    description: agency.description,
+    title: `${agency.title} | ${agency.category} in ${agency.cityNormalized}, ${agency.country}`,
+    description: seoDescription,
+    keywords: [
+      agency.title,
+      `${agency.category} ${agency.cityNormalized}`,
+      `travel agency ${agency.cityNormalized}`,
+      `${agency.category} ${agency.country}`,
+      `tour operator ${agency.cityNormalized}`,
+      `vacation packages ${agency.country}`,
+      agency.cityNormalized,
+      agency.country,
+    ],
     openGraph: {
-      title: `${agency.title} - Travel Agency in ${agency.cityNormalized}`,
-      description: agency.description,
+      title: `${agency.title} | Best ${agency.category} in ${agency.cityNormalized}`,
+      description: seoDescription,
       type: "website",
+      url: `https://travelagencies.world/agencies/${agency.slug}`,
+      siteName: "TravelAgencies.World",
+      locale: "en_US",
+      images: [
+        {
+          url: "/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: `${agency.title} - Travel Agency`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${agency.title} | ${agency.category} in ${agency.cityNormalized}`,
+      description: seoDescription,
     },
     alternates: {
       canonical: `/agencies/${agency.slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }
@@ -84,8 +119,10 @@ export default async function AgencyPage({ params }: PageProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
+    "@id": `https://travelagencies.world/agencies/${agency.slug}`,
     name: agency.title,
     description: agency.description,
+    image: "/og-image.jpg",
     address: {
       "@type": "PostalAddress",
       streetAddress: agency.street,
@@ -93,16 +130,50 @@ export default async function AgencyPage({ params }: PageProps) {
       addressCountry: agency.country,
     },
     telephone: agency.phone,
-    url: agency.website,
+    url: agency.website || `https://travelagencies.world/agencies/${agency.slug}`,
+    sameAs: agency.website ? [agency.website] : undefined,
+    priceRange: "$$",
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
     aggregateRating: agency.totalScore
       ? {
           "@type": "AggregateRating",
           ratingValue: agency.totalScore,
-          reviewCount: agency.reviewsCount,
+          reviewCount: agency.reviewsCount || 1,
           bestRating: 5,
           worstRating: 1,
         }
       : undefined,
+  };
+
+  // Breadcrumb structured data
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://travelagencies.world",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Agencies",
+        item: "https://travelagencies.world/agencies",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: agency.title,
+        item: `https://travelagencies.world/agencies/${agency.slug}`,
+      },
+    ],
   };
 
   return (
@@ -110,6 +181,10 @@ export default async function AgencyPage({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       {/* Breadcrumb */}

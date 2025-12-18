@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://travelagencies.world"),
+  metadataBase: new URL("https://www.travelagencies.world"),
   alternates: {
     canonical: "/",
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "TravelAgencies.World - Find the Best Travel Agencies Worldwide",
     description:
       "Discover and compare top-rated travel agencies around the world. Find trusted partners for your next adventure.",
-    url: "https://travelagencies.world",
+    url: "https://www.travelagencies.world",
     siteName: "TravelAgencies.World",
     images: [
       {
@@ -83,8 +83,8 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "TravelAgencies.World",
-  url: "https://travelagencies.world",
-  logo: "https://travelagencies.world/logo.png",
+  url: "https://www.travelagencies.world",
+  logo: "https://www.travelagencies.world/logo.png",
   description: "World's largest directory of verified travel agencies with reviews and ratings",
   foundingDate: "2024",
   sameAs: [
@@ -103,13 +103,13 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "TravelAgencies.World",
-  url: "https://travelagencies.world",
+  url: "https://www.travelagencies.world",
   description: "Find and compare the best travel agencies worldwide",
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://travelagencies.world/agencies?q={search_term_string}"
+      urlTemplate: "https://www.travelagencies.world/agencies?q={search_term_string}"
     },
     "query-input": "required name=search_term_string"
   }

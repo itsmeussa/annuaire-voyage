@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/private/"],
     },
-    sitemap: "https://travelagencies.world/sitemap.xml",
+    sitemap: "https://www.travelagencies.world/sitemap.xml",
   };
 }

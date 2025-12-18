@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const agencies = getAllAgencies();
   const cities = getUniqueCities();
   const countries = getUniqueCountries();
-  const baseUrl = "https://travelagencies.world";
+  const baseUrl = "https://www.travelagencies.world";
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [

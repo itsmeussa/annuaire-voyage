@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { Grid, List, SlidersHorizontal, X, Map, LayoutGrid } from "lucide-react";
 import AgencyCard from "@/components/ui/AgencyCard";
@@ -29,6 +29,7 @@ const AgencyMap = dynamic(() => import("@/components/ui/AgencyMap"), {
 
 function AgenciesContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const [query, setQuery] = useState(searchParams.get("q") || "");
   const [selectedCity, setSelectedCity] = useState(
@@ -43,16 +44,35 @@ function AgenciesContent() {
   const [selectedCategory, setSelectedCategory] = useState(
     searchParams.get("category") || ""
   );
-  const [websiteFilter, setWebsiteFilter] = useState<'all' | 'with' | 'without'>('all');
+  const [websiteFilter, setWebsiteFilter] = useState<'all' | 'with' | 'without'>(
+    (searchParams.get("website") as 'all' | 'with' | 'without') || 'all'
+  );
   const [viewMode, setViewMode] = useState<"grid" | "list" | "map">("grid");
   const [showFilters, setShowFilters] = useState(false);
   const [agencies, setAgencies] = useState<Agency[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(
+    Number(searchParams.get("page")) || 1
+  );
   const itemsPerPage = 12;
 
   const cities = getUniqueCities();
   const countries = getUniqueCountries();
   const categories = getUniqueCategories();
+
+  // Update URL when filters change
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (query) params.set("q", query);
+    if (selectedCity) params.set("city", selectedCity);
+    if (selectedCountry) params.set("country", selectedCountry);
+    if (selectedRating > 0) params.set("rating", String(selectedRating));
+    if (selectedCategory) params.set("category", selectedCategory);
+    if (websiteFilter !== 'all') params.set("website", websiteFilter);
+    if (currentPage > 1) params.set("page", String(currentPage));
+
+    const newUrl = params.toString() ? `?${params.toString()}` : "/agencies";
+    router.replace(newUrl, { scroll: false });
+  }, [query, selectedCity, selectedCountry, selectedRating, selectedCategory, websiteFilter, currentPage, router]);
 
   useEffect(() => {
     const filtered = filterAgencies(
@@ -64,8 +84,12 @@ function AgenciesContent() {
       websiteFilter
     );
     setAgencies(filtered);
-    setCurrentPage(1);
   }, [query, selectedCity, selectedCountry, selectedRating, selectedCategory, websiteFilter]);
+
+  // Scroll to top when page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
 
   const clearFilters = () => {
     setQuery("");
@@ -74,6 +98,7 @@ function AgenciesContent() {
     setSelectedRating(0);
     setSelectedCategory("");
     setWebsiteFilter('all');
+    setCurrentPage(1);
   };
 
   const paginatedAgencies = agencies.slice(

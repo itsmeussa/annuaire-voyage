@@ -82,16 +82,62 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/agencies?country=${encodeURIComponent(country)}`,
     lastModified: new Date(),
     changeFrequency: "daily" as const,
+    priority: 0.85,
+  }));
+
+  // City filter pages for SEO (top 100 cities)
+  const cityPages: MetadataRoute.Sitemap = cities.slice(0, 100).map((city) => ({
+    url: `${baseUrl}/agencies?city=${encodeURIComponent(city)}`,
+    lastModified: new Date(),
+    changeFrequency: "daily" as const,
     priority: 0.8,
   }));
 
-  // City filter pages for SEO (top 50 cities)
-  const cityPages: MetadataRoute.Sitemap = cities.slice(0, 50).map((city) => ({
-    url: `${baseUrl}/agencies?city=${encodeURIComponent(city)}`,
+  // Rating filter pages for SEO
+  const ratingPages: MetadataRoute.Sitemap = [5, 4, 3].map((rating) => ({
+    url: `${baseUrl}/agencies?rating=${rating}`,
     lastModified: new Date(),
     changeFrequency: "daily" as const,
     priority: 0.75,
   }));
+
+  // Website filter pages for SEO
+  const websiteFilterPages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/agencies?website=with`,
+      lastModified: new Date(),
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/agencies?website=without`,
+      lastModified: new Date(),
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    },
+  ];
+
+  // Country + City combination pages for top countries
+  const topCountries = ["Morocco", "United States", "Canada", "France", "United Kingdom"];
+  const countryCityPages: MetadataRoute.Sitemap = [];
+  
+  topCountries.forEach((country) => {
+    // Get top 10 cities for each top country
+    const countryCities = agencies
+      .filter((a) => a.country === country)
+      .map((a) => a.cityNormalized)
+      .filter((city, index, self) => city && self.indexOf(city) === index)
+      .slice(0, 10);
+    
+    countryCities.forEach((city) => {
+      countryCityPages.push({
+        url: `${baseUrl}/agencies?country=${encodeURIComponent(country)}&city=${encodeURIComponent(city)}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly" as const,
+        priority: 0.75,
+      });
+    });
+  });
 
   // Dynamic agency pages - prioritize by rating
   const agencyPages: MetadataRoute.Sitemap = agencies.map((agency) => {
@@ -117,5 +163,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  return [...staticPages, ...countryPages, ...cityPages, ...agencyPages];
+  return [...staticPages, ...countryPages, ...cityPages, ...ratingPages, ...websiteFilterPages, ...countryCityPages, ...agencyPages];
 }

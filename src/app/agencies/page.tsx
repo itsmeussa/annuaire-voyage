@@ -317,56 +317,108 @@ function AgenciesContent() {
 
             {/* Pagination - only show for grid/list views */}
             {viewMode !== "map" && totalPages > 1 && (
-              <div className="flex justify-center gap-2 mt-8">
-                <button
-                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                  disabled={currentPage === 1}
-                  className="px-4 py-2 rounded-lg bg-muted disabled:opacity-50"
-                >
-                  Previous
-                </button>
-                <div className="flex items-center gap-1">
-                  {[...Array(Math.min(5, totalPages))].map((_, i) => {
-                    const page = i + 1;
-                    return (
-                      <button
-                        key={page}
-                        onClick={() => setCurrentPage(page)}
-                        className={`w-10 h-10 rounded-lg ${
-                          currentPage === page
-                            ? "bg-primary text-white"
-                            : "bg-muted"
-                        }`}
-                      >
-                        {page}
-                      </button>
-                    );
-                  })}
-                  {totalPages > 5 && (
-                    <>
-                      <span className="px-2">...</span>
-                      <button
-                        onClick={() => setCurrentPage(totalPages)}
-                        className={`w-10 h-10 rounded-lg ${
-                          currentPage === totalPages
-                            ? "bg-primary text-white"
-                            : "bg-muted"
-                        }`}
-                      >
-                        {totalPages}
-                      </button>
-                    </>
-                  )}
+              <div className="flex flex-col items-center gap-4 mt-8">
+                {/* Page input for quick navigation */}
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <span>Go to page:</span>
+                  <input
+                    type="number"
+                    min={1}
+                    max={totalPages}
+                    value={currentPage}
+                    onChange={(e) => {
+                      const val = parseInt(e.target.value);
+                      if (val >= 1 && val <= totalPages) {
+                        setCurrentPage(val);
+                      }
+                    }}
+                    className="w-16 px-2 py-1 border border-border rounded-lg text-center focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  />
+                  <span>of {totalPages}</span>
                 </div>
-                <button
-                  onClick={() =>
-                    setCurrentPage((p) => Math.min(totalPages, p + 1))
-                  }
-                  disabled={currentPage === totalPages}
-                  className="px-4 py-2 rounded-lg bg-muted disabled:opacity-50"
-                >
-                  Next
-                </button>
+                
+                {/* Pagination buttons */}
+                <div className="flex justify-center gap-2 flex-wrap">
+                  <button
+                    onClick={() => setCurrentPage(1)}
+                    disabled={currentPage === 1}
+                    className="px-3 py-2 rounded-lg bg-muted disabled:opacity-50 text-sm"
+                  >
+                    First
+                  </button>
+                  <button
+                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 rounded-lg bg-muted disabled:opacity-50"
+                  >
+                    Previous
+                  </button>
+                  <div className="flex items-center gap-1">
+                    {(() => {
+                      const pages: (number | string)[] = [];
+                      const showEllipsisStart = currentPage > 3;
+                      const showEllipsisEnd = currentPage < totalPages - 2;
+                      
+                      // Always show first page
+                      pages.push(1);
+                      
+                      if (showEllipsisStart) {
+                        pages.push('...');
+                      }
+                      
+                      // Show pages around current page
+                      for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
+                        if (!pages.includes(i)) {
+                          pages.push(i);
+                        }
+                      }
+                      
+                      if (showEllipsisEnd) {
+                        pages.push('...');
+                      }
+                      
+                      // Always show last page
+                      if (totalPages > 1 && !pages.includes(totalPages)) {
+                        pages.push(totalPages);
+                      }
+                      
+                      return pages.map((page, idx) => {
+                        if (page === '...') {
+                          return <span key={`ellipsis-${idx}`} className="px-2 text-muted-foreground">...</span>;
+                        }
+                        return (
+                          <button
+                            key={page}
+                            onClick={() => setCurrentPage(page as number)}
+                            className={`w-10 h-10 rounded-lg transition-all ${
+                              currentPage === page
+                                ? "bg-primary text-white shadow-md"
+                                : "bg-muted hover:bg-muted/80"
+                            }`}
+                          >
+                            {page}
+                          </button>
+                        );
+                      });
+                    })()}
+                  </div>
+                  <button
+                    onClick={() =>
+                      setCurrentPage((p) => Math.min(totalPages, p + 1))
+                    }
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-2 rounded-lg bg-muted disabled:opacity-50"
+                  >
+                    Next
+                  </button>
+                  <button
+                    onClick={() => setCurrentPage(totalPages)}
+                    disabled={currentPage === totalPages}
+                    className="px-3 py-2 rounded-lg bg-muted disabled:opacity-50 text-sm"
+                  >
+                    Last
+                  </button>
+                </div>
               </div>
             )}
           </div>

@@ -10,17 +10,17 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us - TravelAgencies.World",
+  title: "About Us - TravelAgencies.World | Free Travel Agency Directory",
   description:
-    "Learn about TravelAgencies.World, the leading global directory for finding and comparing travel agencies worldwide. Developed by Orious Strategy.",
+    "Learn about TravelAgencies.World, the leading free global directory with 4000+ verified travel agencies. Find agencies in Morocco, France, USA, Canada & more. Built by Orious Strategy.",
 };
 
 export default function AboutPage() {
   const stats = [
-    { value: "500+", label: "Travel Agencies" },
-    { value: "50+", label: "Cities Covered" },
+    { value: "4000+", label: "Travel Agencies" },
+    { value: "50+", label: "Countries Covered" },
     { value: "10K+", label: "Monthly Visitors" },
-    { value: "4.7", label: "Average Rating" },
+    { value: "4.5", label: "Average Rating" },
   ];
 
   const values = [

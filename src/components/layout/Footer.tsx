@@ -14,7 +14,9 @@ export default function Footer() {
     destinations: [
       { href: "/agencies?country=MA", label: "Morocco" },
       { href: "/agencies?country=FR", label: "France" },
-      { href: "/agencies?country=ES", label: "Spain" },
+      { href: "/agencies?country=US", label: "USA" },
+      { href: "/agencies?country=CA", label: "Canada" },
+      { href: "/agencies?country=GB", label: "United Kingdom" },
       { href: "/agencies?country=AE", label: "UAE" },
     ],
     company: [
@@ -44,9 +46,9 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-slate-400 mb-6 max-w-md">
-              Your trusted global directory for finding the best travel agencies
-              worldwide. Compare ratings, read reviews, and connect directly with
-              verified travel professionals.
+              Your trusted free global directory with 4000+ verified travel agencies
+              worldwide. Compare ratings, read real Google reviews, and connect directly with
+              travel professionals in Morocco, France, USA, Canada & more.
             </p>
             <div className="flex gap-4">
               <a

@@ -27,11 +27,11 @@ import {
 const faqData = [
   {
     question: "How do I find a reliable travel agency?",
-    answer: "Use TravelAgencies.World to compare 2800+ verified travel agencies with real Google reviews. Filter by location, rating, and specialty to find the perfect match for your travel needs."
+    answer: "Use TravelAgencies.World to compare 4000+ verified travel agencies with real Google reviews. Filter by location, rating, and specialty to find the perfect match for your travel needs."
   },
   {
     question: "Are the travel agencies on this directory verified?",
-    answer: "Yes, all 2800+ agencies in our directory are sourced from Google Maps with authentic reviews and ratings. We display real contact information and customer feedback."
+    answer: "Yes, all 4000+ agencies in our directory are sourced from Google Maps with authentic reviews and ratings. We display real contact information and customer feedback."
   },
   {
     question: "How can I contact a travel agency?",
@@ -43,7 +43,7 @@ const faqData = [
   },
   {
     question: "What countries do you cover?",
-    answer: "We cover 2800+ travel agencies in 50+ countries including USA, Canada, Morocco, France, Spain, UK, Netherlands, Malaysia, New Zealand, Ireland and many more. Our database is continuously growing."
+    answer: "We cover 4000+ travel agencies in 50+ countries including Morocco, France, USA, Canada, UK, Spain, Netherlands, Malaysia, United Arab Emirates and many more. Our database is continuously growing."
   },
   {
     question: "How do I choose the best travel agency for my trip?",

@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Browse All Travel Agencies - Find & Compare Tour Operators Worldwide",
+  title: "Browse 4000+ Travel Agencies - Find & Compare Tour Operators Worldwide",
   description:
-    "Search and compare 1600+ verified travel agencies worldwide. Filter by country, city, rating, and specialty. Read real reviews, check ratings, and contact agencies directly. Free to use.",
+    "Search and compare 4000+ verified travel agencies worldwide. Filter by country, city, rating, and specialty. Morocco (1500+), France (800+), USA (500+), Canada (200+). Real reviews, direct contact. Free directory.",
   keywords: [
     "travel agencies directory",
     "find travel agency",
@@ -14,20 +14,25 @@ export const metadata: Metadata = {
     "verified travel agencies",
     "travel agency reviews",
     "Morocco travel agencies",
+    "France travel agencies",
+    "USA travel agencies",
+    "Canada travel agencies",
+    "Casablanca travel agency",
+    "Paris travel agency",
     "worldwide tour operators",
   ],
   openGraph: {
-    title: "Browse All Travel Agencies - Find & Compare Worldwide",
+    title: "Browse 4000+ Travel Agencies - Find & Compare Worldwide",
     description:
-      "Search 1600+ verified travel agencies. Filter by location, rating, specialty. Real reviews and direct contact.",
+      "Search 4000+ verified travel agencies. Morocco, France, USA, Canada & more. Filter by location, rating. Real reviews and direct contact.",
     url: "https://travelagencies.world/agencies",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Browse All Travel Agencies Worldwide",
+    title: "Browse 4000+ Travel Agencies Worldwide",
     description:
-      "Search and compare verified travel agencies. Filter by location, rating, specialty.",
+      "Search and compare 4000+ verified travel agencies. Morocco, France, USA, Canada. Filter by location, rating, specialty.",
   },
   alternates: {
     canonical: "/agencies",

@@ -56,29 +56,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const ratingText = agency.totalScore ? ` ⭐ ${agency.totalScore}/5` : "";
   const reviewText = agency.reviewsCount ? ` (${agency.reviewsCount} reviews)` : "";
-  
-  const seoDescription = `${agency.title} - ${agency.category} in ${agency.cityNormalized}, ${agency.country}.${ratingText}${reviewText} Contact: ${agency.phone || "Available on request"}. ${agency.description?.slice(0, 120) || ""}`;
+  const description = `${agency.title} - ${agency.category} in ${agency.cityNormalized}, ${agency.country}.${ratingText}${reviewText} Contact: ${agency.phone || "Available on request"}. ${agency.description?.slice(0, 120) || "Find verified travel agency information, reviews, and contact details."}`;
 
   return {
-    title: `${agency.title} | ${agency.category} in ${agency.cityNormalized}, ${agency.country}`,
-    description: seoDescription,
+    title: `${agency.title} - ${agency.category} in ${agency.cityNormalized}, ${agency.country}`,
+    description: description,
     keywords: [
       agency.title,
-      `${agency.category} ${agency.cityNormalized}`,
       `travel agency ${agency.cityNormalized}`,
       `${agency.category} ${agency.country}`,
       `tour operator ${agency.cityNormalized}`,
-      `vacation packages ${agency.country}`,
-      agency.cityNormalized,
-      agency.country,
+      `${agency.cityNormalized} travel agent`,
+      `best travel agency ${agency.country}`,
     ],
     openGraph: {
-      title: `${agency.title} | Best ${agency.category} in ${agency.cityNormalized}`,
-      description: seoDescription,
+      title: `${agency.title} - ${agency.category} in ${agency.cityNormalized}`,
+      description: description,
       type: "website",
       url: `https://travelagencies.world/agencies/${agency.slug}`,
-      siteName: "TravelAgencies.World",
-      locale: "en_US",
       images: [
         {
           url: "/og-image.jpg",
@@ -90,15 +85,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: `${agency.title} | ${agency.category} in ${agency.cityNormalized}`,
-      description: seoDescription,
+      title: `${agency.title} - Travel Agency`,
+      description: description,
     },
     alternates: {
       canonical: `/agencies/${agency.slug}`,
     },
-    robots: {
-      index: true,
-      follow: true,
+    other: {
+      "business:contact_data:street_address": agency.street || "",
+      "business:contact_data:locality": agency.cityNormalized,
+      "business:contact_data:country_name": agency.country,
+      "business:contact_data:phone_number": agency.phone || "",
+      "business:contact_data:website": agency.website || "",
     },
   };
 }
@@ -116,26 +114,33 @@ export default async function AgencyPage({ params }: PageProps) {
     .filter((a) => a.id !== agency.id)
     .slice(0, 3);
 
+  // Enhanced JSON-LD Schema for rich snippets
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     "@id": `https://travelagencies.world/agencies/${agency.slug}`,
     name: agency.title,
-    description: agency.description,
-    image: "/og-image.jpg",
+    description: agency.description || `${agency.title} is a verified travel agency located in ${agency.cityNormalized}, ${agency.country}. Contact them for tours, travel packages, and vacation planning.`,
+    image: "https://travelagencies.world/og-image.jpg",
     address: {
       "@type": "PostalAddress",
-      streetAddress: agency.street,
+      streetAddress: agency.street || "",
       addressLocality: agency.cityNormalized,
+      addressRegion: agency.cityNormalized,
       addressCountry: agency.country,
     },
+    geo: agency.location ? {
+      "@type": "GeoCoordinates",
+      latitude: agency.location.lat,
+      longitude: agency.location.lng,
+    } : undefined,
     telephone: agency.phone,
     url: agency.website || `https://travelagencies.world/agencies/${agency.slug}`,
-    sameAs: agency.website ? [agency.website] : undefined,
+    sameAs: agency.website ? [agency.website] : [],
     priceRange: "$$",
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       opens: "09:00",
       closes: "18:00",
     },
@@ -148,10 +153,41 @@ export default async function AgencyPage({ params }: PageProps) {
           worstRating: 1,
         }
       : undefined,
+    areaServed: {
+      "@type": "Country",
+      name: agency.country,
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Travel Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Tour Packages",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Flight Bookings",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Hotel Reservations",
+          },
+        },
+      ],
+    },
   };
 
-  // Breadcrumb structured data
-  const breadcrumbJsonLd = {
+  // Breadcrumb Schema
+  const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
@@ -184,7 +220,7 @@ export default async function AgencyPage({ params }: PageProps) {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Breadcrumb */}

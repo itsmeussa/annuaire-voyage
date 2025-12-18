@@ -12,6 +12,7 @@ import {
   Plane,
   Hotel,
   Camera,
+  HelpCircle,
 } from "lucide-react";
 import AgencyCard from "@/components/ui/AgencyCard";
 import CTASection from "@/components/ui/CTASection";
@@ -19,12 +20,102 @@ import {
   getFeaturedAgencies,
   getUniqueCities,
   getAllAgencies,
+  getUniqueCountries,
 } from "@/lib/agencies";
+
+// FAQ data for SEO
+const faqData = [
+  {
+    question: "How do I find a reliable travel agency?",
+    answer: "Use TravelAgencies.World to compare verified travel agencies with real Google reviews. Filter by location, rating, and specialty to find the perfect match for your travel needs."
+  },
+  {
+    question: "Are the travel agencies on this directory verified?",
+    answer: "Yes, all agencies in our directory are sourced from Google Maps with authentic reviews and ratings. We display real contact information and customer feedback."
+  },
+  {
+    question: "How can I contact a travel agency?",
+    answer: "Each agency listing includes direct contact information including phone numbers, websites, and Google Maps links. You can reach out directly without any intermediary."
+  },
+  {
+    question: "Is it free to use TravelAgencies.World?",
+    answer: "Yes, our directory is completely free to use for travelers. Browse, compare, and contact travel agencies at no cost."
+  },
+  {
+    question: "What countries do you cover?",
+    answer: "We cover travel agencies worldwide including Morocco, France, Spain, USA, UK, and many more countries. Our database is continuously growing."
+  },
+  {
+    question: "How do I choose the best travel agency for my trip?",
+    answer: "Consider the agency's rating, number of reviews, location, and specialization. Read customer reviews and compare multiple agencies before making your decision."
+  }
+];
 
 export default function Home() {
   const featuredAgencies = getFeaturedAgencies(6);
   const cities = getUniqueCities().slice(0, 8);
+  const countries = getUniqueCountries();
   const totalAgencies = getAllAgencies().length;
+
+  // JSON-LD for homepage
+  const homePageSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "TravelAgencies.World - Find the Best Travel Agencies Worldwide",
+    description: "Discover and compare top-rated travel agencies around the world. Find trusted partners for your next adventure with verified reviews, ratings, and direct contact information.",
+    url: "https://travelagencies.world",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: totalAgencies,
+      itemListElement: featuredAgencies.slice(0, 6).map((agency, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "TravelAgency",
+          name: agency.title,
+          url: `https://travelagencies.world/agencies/${agency.slug}`,
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: agency.cityNormalized,
+            addressCountry: agency.country
+          },
+          aggregateRating: agency.totalScore ? {
+            "@type": "AggregateRating",
+            ratingValue: agency.totalScore,
+            reviewCount: agency.reviewsCount || 1,
+            bestRating: 5,
+            worstRating: 1
+          } : undefined
+        }
+      }))
+    }
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqData.map(faq => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer
+      }
+    }))
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://travelagencies.world"
+      }
+    ]
+  };
 
   const features = [
     {
@@ -71,81 +162,20 @@ export default function Home() {
     },
   ];
 
-  // Structured data for the home page
-  const websiteJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "TravelAgencies.World",
-    url: "https://travelagencies.world",
-    description: "Find the best travel agencies worldwide. Compare ratings, read reviews, and connect with trusted travel professionals.",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: "https://travelagencies.world/agencies?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    }
-  };
-
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "TravelAgencies.World",
-    url: "https://travelagencies.world",
-    logo: "https://travelagencies.world/logo.png",
-    description: "World's largest directory of verified travel agencies",
-    sameAs: [
-      "https://www.instagram.com/travelagenciesworld",
-      "https://www.facebook.com/travelagenciesworld"
-    ],
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+33-7-45-07-56-68",
-      contactType: "customer service",
-      availableLanguage: ["English", "French"]
-    }
-  };
-
-  const collectionPageJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: "Travel Agency Directory",
-    description: `Browse ${totalAgencies}+ verified travel agencies worldwide`,
-    url: "https://travelagencies.world",
-    mainEntity: {
-      "@type": "ItemList",
-      numberOfItems: totalAgencies,
-      itemListElement: featuredAgencies.map((agency, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        item: {
-          "@type": "TravelAgency",
-          name: agency.title,
-          url: `https://travelagencies.world/agencies/${agency.slug}`,
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: agency.cityNormalized,
-            addressCountry: agency.country
-          }
-        }
-      }))
-    }
-  };
-
   return (
     <>
+      {/* Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Hero Section */}
@@ -403,6 +433,38 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ Section for SEO */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Everything you need to know about finding the right travel agency
+            </p>
+          </div>
+          <div className="max-w-3xl mx-auto space-y-4">
+            {faqData.map((faq, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-xl p-6 border border-border hover:shadow-lg transition-shadow"
+              >
+                <div className="flex items-start gap-4">
+                  <HelpCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-foreground mb-2">
+                      {faq.question}
+                    </h3>
+                    <p className="text-muted-foreground">{faq.answer}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <CTASection variant="primary" />
 
@@ -429,102 +491,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* FAQ Section for SEO */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Common questions about finding and choosing travel agencies
-            </p>
-          </div>
-          <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              {
-                question: "How do I find the best travel agency for my trip?",
-                answer: "Use our directory to compare travel agencies by location, ratings, and reviews. Look for agencies with high ratings (4.5+), many positive reviews, and experience in your destination. You can filter by city, country, and specialty to find the perfect match."
-              },
-              {
-                question: "Are the travel agencies on TravelAgencies.World verified?",
-                answer: "Yes, all agencies in our directory are real businesses with verified information sourced from Google Maps. We display authentic ratings and reviews from actual customers to help you make informed decisions."
-              },
-              {
-                question: "How can I contact a travel agency?",
-                answer: "Each agency listing includes direct contact information such as phone numbers, websites, and links to their Google Maps location. You can reach out directly to discuss your travel plans and get quotes."
-              },
-              {
-                question: "What types of travel agencies are listed?",
-                answer: "Our directory includes various types of travel agencies: general tour operators, adventure travel specialists, luxury travel agencies, honeymoon planners, family vacation experts, and destination-specific agencies for Morocco, France, Spain, and many other countries."
-              },
-              {
-                question: "Is it free to use TravelAgencies.World?",
-                answer: "Yes, TravelAgencies.World is completely free for travelers. You can browse, search, compare, and contact any travel agency in our directory at no cost."
-              }
-            ].map((faq, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-border">
-                <h3 className="text-lg font-semibold text-foreground mb-2">{faq.question}</h3>
-                <p className="text-muted-foreground">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "How do I find the best travel agency for my trip?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Use our directory to compare travel agencies by location, ratings, and reviews. Look for agencies with high ratings (4.5+), many positive reviews, and experience in your destination. You can filter by city, country, and specialty to find the perfect match."
-                }
-              },
-              {
-                "@type": "Question",
-                name: "Are the travel agencies on TravelAgencies.World verified?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes, all agencies in our directory are real businesses with verified information sourced from Google Maps. We display authentic ratings and reviews from actual customers to help you make informed decisions."
-                }
-              },
-              {
-                "@type": "Question",
-                name: "How can I contact a travel agency?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Each agency listing includes direct contact information such as phone numbers, websites, and links to their Google Maps location. You can reach out directly to discuss your travel plans and get quotes."
-                }
-              },
-              {
-                "@type": "Question",
-                name: "What types of travel agencies are listed?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Our directory includes various types of travel agencies: general tour operators, adventure travel specialists, luxury travel agencies, honeymoon planners, family vacation experts, and destination-specific agencies for Morocco, France, Spain, and many other countries."
-                }
-              },
-              {
-                "@type": "Question",
-                name: "Is it free to use TravelAgencies.World?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Yes, TravelAgencies.World is completely free for travelers. You can browse, search, compare, and contact any travel agency in our directory at no cost."
-                }
-              }
-            ]
-          })
-        }}
-      />
     </>
   );
 }

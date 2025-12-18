@@ -1,35 +1,33 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Browse 1600+ Travel Agencies Worldwide | Find Tour Operators",
+  title: "Browse All Travel Agencies - Find & Compare Tour Operators Worldwide",
   description:
-    "Search and compare travel agencies from Morocco, France, Spain and 50+ countries. Filter by city, rating, and specialty. Find verified tour operators with real reviews. Contact agencies directly.",
+    "Search and compare 1600+ verified travel agencies worldwide. Filter by country, city, rating, and specialty. Read real reviews, check ratings, and contact agencies directly. Free to use.",
   keywords: [
-    "travel agency directory",
+    "travel agencies directory",
     "find travel agency",
-    "tour operators list",
+    "tour operators",
     "travel agents near me",
+    "best travel agencies",
     "compare travel agencies",
-    "Morocco travel agencies",
-    "Marrakech tour operators",
-    "Paris travel agents",
-    "best rated travel agencies",
     "verified travel agencies",
+    "travel agency reviews",
+    "Morocco travel agencies",
+    "worldwide tour operators",
   ],
   openGraph: {
-    title: "Browse 1600+ Travel Agencies Worldwide | TravelAgencies.World",
+    title: "Browse All Travel Agencies - Find & Compare Worldwide",
     description:
-      "Search and compare travel agencies from 50+ countries. Filter by city, rating, and specialty. Find your perfect travel partner.",
+      "Search 1600+ verified travel agencies. Filter by location, rating, specialty. Real reviews and direct contact.",
     url: "https://travelagencies.world/agencies",
     type: "website",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Travel Agency Directory - TravelAgencies.World",
-      },
-    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Browse All Travel Agencies Worldwide",
+    description:
+      "Search and compare verified travel agencies. Filter by location, rating, specialty.",
   },
   alternates: {
     canonical: "/agencies",

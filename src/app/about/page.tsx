@@ -10,17 +10,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About TravelAgencies.World - The Leading Travel Agency Directory",
+  title: "About Us - TravelAgencies.World",
   description:
-    "TravelAgencies.World is the world's largest verified travel agency directory. Find 1600+ trusted tour operators with real Google reviews. Free to use, developed by Orious Strategy.",
-  openGraph: {
-    title: "About TravelAgencies.World - Travel Agency Directory",
-    description: "Learn about the world's leading travel agency directory.",
-    url: "https://travelagencies.world/about",
-  },
-  alternates: {
-    canonical: "/about",
-  },
+    "Learn about TravelAgencies.World, the leading global directory for finding and comparing travel agencies worldwide. Developed by Orious Strategy.",
 };
 
 export default function AboutPage() {

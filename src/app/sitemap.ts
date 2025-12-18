@@ -1,10 +1,10 @@
 import { MetadataRoute } from "next";
-import { getAllAgencies, getUniqueCountries, getUniqueCities } from "@/lib/agencies";
+import { getAllAgencies, getUniqueCities, getUniqueCountries } from "@/lib/agencies";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const agencies = getAllAgencies();
-  const countries = getUniqueCountries();
   const cities = getUniqueCities();
+  const countries = getUniqueCountries();
   const baseUrl = "https://travelagencies.world";
 
   // Static pages
@@ -37,31 +37,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/blog/how-to-choose-travel-agency`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/blog/top-destinations-2025`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/blog/morocco-travel-guide`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.6,
     },
     {
       url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.6,
     },
     {
       url: `${baseUrl}/privacy`,
@@ -77,13 +77,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Dynamic agency pages - higher priority for agencies with reviews
-  const agencyPages: MetadataRoute.Sitemap = agencies.map((agency) => ({
-    url: `${baseUrl}/agencies/${agency.slug}`,
+  // Country filter pages for SEO
+  const countryPages: MetadataRoute.Sitemap = countries.map((country) => ({
+    url: `${baseUrl}/agencies?country=${encodeURIComponent(country)}`,
     lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: agency.totalScore && agency.totalScore >= 4.5 ? 0.85 : agency.totalScore ? 0.75 : 0.65,
+    changeFrequency: "daily" as const,
+    priority: 0.8,
   }));
 
-  return [...staticPages, ...agencyPages];
+  // City filter pages for SEO (top 50 cities)
+  const cityPages: MetadataRoute.Sitemap = cities.slice(0, 50).map((city) => ({
+    url: `${baseUrl}/agencies?city=${encodeURIComponent(city)}`,
+    lastModified: new Date(),
+    changeFrequency: "daily" as const,
+    priority: 0.75,
+  }));
+
+  // Dynamic agency pages - prioritize by rating
+  const agencyPages: MetadataRoute.Sitemap = agencies.map((agency) => {
+    // Calculate priority based on rating and reviews
+    let priority = 0.6;
+    if (agency.totalScore && agency.totalScore >= 4.5) {
+      priority = 0.85;
+    } else if (agency.totalScore && agency.totalScore >= 4.0) {
+      priority = 0.75;
+    } else if (agency.totalScore && agency.totalScore >= 3.5) {
+      priority = 0.7;
+    }
+    // Boost featured agencies
+    if (agency.featured) {
+      priority = Math.min(priority + 0.1, 0.9);
+    }
+
+    return {
+      url: `${baseUrl}/agencies/${agency.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority,
+    };
+  });
+
+  return [...staticPages, ...countryPages, ...cityPages, ...agencyPages];
 }

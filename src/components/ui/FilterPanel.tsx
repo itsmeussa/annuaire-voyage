@@ -1,6 +1,8 @@
 "use client";
 
 import { Star, MapPin, Tag, X, Globe } from "lucide-react";
+import PromoWidget from "./PromoWidget";
+import PromoWidgetCAN from "./PromoWidgetCAN";
 
 interface FilterPanelProps {
   cities: string[];
@@ -195,10 +197,13 @@ export default function FilterPanel({
       {/* Apply Button */}
       <button
         onClick={onClearFilters}
-        className="w-full bg-muted text-foreground py-3 rounded-lg font-medium hover:bg-muted/80 transition-colors"
+        className="w-full bg-muted text-foreground py-3 rounded-lg font-medium hover:bg-muted/80 transition-colors mb-6"
       >
         Reset Filters
       </button>
+
+      {/* Promo Widget - Show CAN promo for Morocco, otherwise New Year promo */}
+      {selectedCountry === "Morocco" ? <PromoWidgetCAN /> : <PromoWidget />}
     </div>
   );
 }

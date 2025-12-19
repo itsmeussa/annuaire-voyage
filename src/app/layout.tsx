@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/ui/ScrollToTop";
+import PromoBanner from "@/components/ui/PromoBanner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -146,6 +147,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
+          <PromoBanner />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

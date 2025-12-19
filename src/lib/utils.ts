@@ -29,19 +29,107 @@ export function truncateText(text: string, maxLength: number): string {
 
 export function getCountryName(code: string | null): string {
   const countries: Record<string, string> = {
+    // Africa
     MA: "Morocco",
+    EG: "Egypt",
+    TN: "Tunisia",
+    DZ: "Algeria",
+    ZA: "South Africa",
+    KE: "Kenya",
+    NG: "Nigeria",
+    GH: "Ghana",
+    EH: "Morocco", // Western Sahara
+    
+    // Europe
     FR: "France",
     ES: "Spain",
     IT: "Italy",
     DE: "Germany",
+    GB: "United Kingdom",
     UK: "United Kingdom",
+    NL: "Netherlands",
+    BE: "Belgium",
+    AT: "Austria",
+    CH: "Switzerland",
+    PT: "Portugal",
+    IE: "Ireland",
+    SE: "Sweden",
+    NO: "Norway",
+    DK: "Denmark",
+    FI: "Finland",
+    PL: "Poland",
+    CZ: "Czech Republic",
+    GR: "Greece",
+    TR: "Turkey",
+    RU: "Russia",
+    IS: "Iceland",
+    HU: "Hungary",
+    RO: "Romania",
+    BG: "Bulgaria",
+    HR: "Croatia",
+    SK: "Slovakia",
+    SI: "Slovenia",
+    LU: "Luxembourg",
+    MT: "Malta",
+    CY: "Cyprus",
+    
+    // North America
     US: "United States",
+    CA: "Canada",
+    MX: "Mexico",
+    
+    // South America
+    BR: "Brazil",
+    AR: "Argentina",
+    CL: "Chile",
+    CO: "Colombia",
+    PE: "Peru",
+    VE: "Venezuela",
+    EC: "Ecuador",
+    UY: "Uruguay",
+    
+    // Asia
     AE: "United Arab Emirates",
     SA: "Saudi Arabia",
-    EG: "Egypt",
-    TN: "Tunisia",
-    DZ: "Algeria",
-    EH: "Morocco", // Western Sahara is part of Morocco
+    QA: "Qatar",
+    KW: "Kuwait",
+    BH: "Bahrain",
+    OM: "Oman",
+    JO: "Jordan",
+    LB: "Lebanon",
+    IL: "Israel",
+    JP: "Japan",
+    KR: "South Korea",
+    CN: "China",
+    HK: "Hong Kong",
+    TW: "Taiwan",
+    SG: "Singapore",
+    MY: "Malaysia",
+    TH: "Thailand",
+    VN: "Vietnam",
+    ID: "Indonesia",
+    PH: "Philippines",
+    IN: "India",
+    PK: "Pakistan",
+    BD: "Bangladesh",
+    LK: "Sri Lanka",
+    NP: "Nepal",
+    MM: "Myanmar",
+    KH: "Cambodia",
+    LA: "Laos",
+    
+    // Oceania
+    AU: "Australia",
+    NZ: "New Zealand",
+    FJ: "Fiji",
+    
+    // Caribbean
+    JM: "Jamaica",
+    CU: "Cuba",
+    DO: "Dominican Republic",
+    PR: "Puerto Rico",
+    TT: "Trinidad and Tobago",
+    BS: "Bahamas",
   };
   return code ? countries[code] || code : "Unknown";
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, Sparkles, Rocket } from "lucide-react";
 
 interface CTASectionProps {
   variant?: "primary" | "secondary";
@@ -7,7 +7,7 @@ interface CTASectionProps {
 
 export default function CTASection({ variant = "primary" }: CTASectionProps) {
   const benefits = [
-    "Access to 500+ verified travel agencies",
+    "Access to 4000+ verified travel agencies",
     "Compare ratings and reviews instantly",
     "Direct contact with travel professionals",
     "Free to use, no registration required",
@@ -25,7 +25,7 @@ export default function CTASection({ variant = "primary" }: CTASectionProps) {
               Connect with the best travel agencies worldwide and turn your dream
               vacation into reality.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
               <Link
                 href="/agencies"
                 className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/25"
@@ -39,6 +39,39 @@ export default function CTASection({ variant = "primary" }: CTASectionProps) {
               >
                 Contact Us
               </Link>
+            </div>
+
+            {/* Promo Card */}
+            <div className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 rounded-2xl p-8 text-white relative overflow-hidden">
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-yellow-400/20 rounded-full blur-3xl" />
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-pink-400/20 rounded-full blur-3xl" />
+              </div>
+              <div className="relative">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <Rocket className="h-6 w-6 text-yellow-300" />
+                  <span className="bg-yellow-400 text-purple-900 text-sm font-bold px-3 py-1 rounded-full">
+                    🎉 NEW YEAR 2025 SPECIAL
+                  </span>
+                  <Sparkles className="h-6 w-6 text-yellow-300" />
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold mb-3">
+                  Own a Travel Agency? Get Your Website!
+                </h3>
+                <p className="text-white/90 mb-6 max-w-2xl mx-auto">
+                  Launch a stunning, professional website for your travel agency. 
+                  <span className="text-yellow-300 font-bold"> 50% OFF</span> on all website packages until January 31st!
+                </p>
+                <Link
+                  href="https://www.orioustrategy.com/promo-new-year"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-white text-purple-700 px-8 py-3 rounded-full font-bold hover:bg-yellow-300 hover:text-purple-900 transition-all hover:scale-105 shadow-lg"
+                >
+                  Claim Your 50% Discount
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -75,20 +108,20 @@ export default function CTASection({ variant = "primary" }: CTASectionProps) {
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
-          <div className="relative">
+          <div className="relative space-y-6">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
               <h3 className="text-2xl font-bold mb-4">Quick Stats</h3>
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <div className="text-4xl font-bold">500+</div>
+                  <div className="text-4xl font-bold">4000+</div>
                   <div className="text-white/80">Travel Agencies</div>
                 </div>
                 <div>
                   <div className="text-4xl font-bold">50+</div>
-                  <div className="text-white/80">Cities Covered</div>
+                  <div className="text-white/80">Countries Covered</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold">10K+</div>
+                  <div className="text-4xl font-bold">100K+</div>
                   <div className="text-white/80">Happy Travelers</div>
                 </div>
                 <div>
@@ -97,6 +130,30 @@ export default function CTASection({ variant = "primary" }: CTASectionProps) {
                 </div>
               </div>
             </div>
+
+            {/* Promo Card */}
+            <Link
+              href="https://www.orioustrategy.com/promo-new-year"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-500 rounded-2xl p-6 border border-white/30 hover:scale-[1.02] transition-transform cursor-pointer group"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <span className="bg-white text-orange-600 text-xs font-bold px-2 py-1 rounded-full">
+                  🚀 NEW YEAR DEAL
+                </span>
+                <Sparkles className="h-5 w-5 text-white animate-pulse" />
+              </div>
+              <h4 className="text-xl font-bold text-white mb-2">
+                Travel Agency Owner? Get 50% OFF Your Website!
+              </h4>
+              <p className="text-white/90 text-sm mb-3">
+                Professional website design to boost your bookings in 2025.
+              </p>
+              <span className="inline-flex items-center gap-2 text-white font-semibold group-hover:gap-3 transition-all">
+                Claim Offer <ArrowRight className="h-4 w-4" />
+              </span>
+            </Link>
           </div>
         </div>
       </div>

@@ -188,16 +188,11 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="text-white py-20 md:py-32 relative overflow-hidden">
-        {/* Video Background */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        >
-          <source src="/travellogos/background.mp4" type="video/mp4" />
-        </video>
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1920&auto=format&fit=crop')" }}
+        />
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/50 z-[1]" />
         

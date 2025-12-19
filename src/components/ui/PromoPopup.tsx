@@ -23,8 +23,8 @@ function PromoPopupContent() {
     
     if (dismissed) {
       const dismissedTime = parseInt(dismissed);
-      // Show again after 12 hours
-      if (Date.now() - dismissedTime < 12 * 60 * 60 * 1000) {
+      // Show again after 10 minutes
+      if (Date.now() - dismissedTime < 10 * 60 * 1000) {
         return;
       }
     }

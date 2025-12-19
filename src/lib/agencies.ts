@@ -5,6 +5,9 @@ import { getCityCoordinates } from "@/lib/cityCoordinates";
 // Import all agency data files
 import data1 from "@/data/agencies-processed.json";
 
+// Cache for agencies to avoid reprocessing
+let cachedAgencies: Agency[] | null = null;
+
 // Category mapping from Arabic to English
 const categoryMap: Record<string, string> = {
   "مكتب سفريات": "Travel Agency",
@@ -32,6 +35,11 @@ function generateDescription(agency: Partial<Agency>): string {
 }
 
 export function getAllAgencies(): Agency[] {
+  // Return cached agencies if available
+  if (cachedAgencies) {
+    return cachedAgencies;
+  }
+
   const rawData = data1 as Array<{
     title: string;
     totalScore: number | null;
@@ -89,6 +97,8 @@ export function getAllAgencies(): Agency[] {
       } as Agency;
     });
 
+  // Cache the result
+  cachedAgencies = agencies;
   return agencies;
 }
 

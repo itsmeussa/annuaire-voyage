@@ -5,6 +5,8 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
+  // Increase static generation timeout for large sites
+  staticPageGenerationTimeout: 180,
 };
 
 export default nextConfig;

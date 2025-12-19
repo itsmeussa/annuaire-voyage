@@ -23,8 +23,8 @@ function PromoBannerContent() {
     const dismissed = localStorage.getItem(bannerKey);
     if (dismissed) {
       const dismissedTime = parseInt(dismissed);
-      // Show again after 24 hours
-      if (Date.now() - dismissedTime < 24 * 60 * 60 * 1000) {
+      // Show again after 10 minutes
+      if (Date.now() - dismissedTime < 10 * 60 * 1000) {
         setIsVisible(false);
       }
     }

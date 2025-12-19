@@ -1,12 +1,10 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { MapPin, Globe, ArrowRight } from "lucide-react";
-import {
-  getUniqueCities,
-  getUniqueCountries,
-  filterAgencies,
-  getAllAgencies,
-} from "@/lib/agencies";
+import { getAllAgencies } from "@/lib/agencies";
+
+// Force dynamic rendering to avoid build timeout
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: "Travel Agency Destinations - Find Agencies by Country & City",
@@ -32,21 +30,33 @@ export const metadata: Metadata = {
 };
 
 export default function DestinationsPage() {
-  const cities = getUniqueCities();
-  const countries = getUniqueCountries();
-  const totalAgencies = getAllAgencies().length;
+  const agencies = getAllAgencies();
+  const totalAgencies = agencies.length;
 
-  // Get agency count per city
-  const cityData = cities.map((city) => ({
-    name: city,
-    count: filterAgencies("", city, "", 0, "").length,
-  })).sort((a, b) => b.count - a.count);
+  // Efficiently count agencies per country and city in a single pass
+  const countryCount = new Map<string, number>();
+  const cityCount = new Map<string, number>();
 
-  // Get agency count per country
-  const countryData = countries.map((country) => ({
-    name: country,
-    count: filterAgencies("", "", country, 0, "").length,
-  })).sort((a, b) => b.count - a.count);
+  agencies.forEach((agency) => {
+    if (agency.country) {
+      countryCount.set(agency.country, (countryCount.get(agency.country) || 0) + 1);
+    }
+    if (agency.cityNormalized) {
+      cityCount.set(agency.cityNormalized, (cityCount.get(agency.cityNormalized) || 0) + 1);
+    }
+  });
+
+  // Convert maps to sorted arrays
+  const countryData = Array.from(countryCount.entries())
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count);
+
+  const cityData = Array.from(cityCount.entries())
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count);
+
+  const countries = countryData.map(c => c.name);
+  const cities = cityData.map(c => c.name);
 
   // Structured data for destinations page
   const destinationsSchema = {

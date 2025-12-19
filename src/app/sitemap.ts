@@ -1,6 +1,11 @@
 import { MetadataRoute } from "next";
 import { getAllAgencies, getUniqueCities, getUniqueCountries, getUniqueCategories } from "@/lib/agencies";
 
+// Helper to escape XML special characters in URLs
+function escapeXmlUrl(url: string): string {
+  return url.replace(/&/g, '&amp;');
+}
+
 // Blog posts data for sitemap
 const blogPosts = [
   { slug: "how-to-choose-travel-agency", date: "2024-12-15" },
@@ -203,7 +208,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     sortedCities.forEach(({ city }) => {
       countryCityComboPages.push({
-        url: `${baseUrl}/agencies?country=${encodeURIComponent(country)}&city=${encodeURIComponent(city)}`,
+        url: escapeXmlUrl(`${baseUrl}/agencies?country=${encodeURIComponent(country)}&city=${encodeURIComponent(city)}`),
         lastModified: today,
         changeFrequency: "weekly" as const,
         priority: 0.7,
@@ -220,7 +225,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     
     countryCategories.forEach((category) => {
       countryCategoryPages.push({
-        url: `${baseUrl}/agencies?country=${encodeURIComponent(country)}&category=${encodeURIComponent(category)}`,
+        url: escapeXmlUrl(`${baseUrl}/agencies?country=${encodeURIComponent(country)}&category=${encodeURIComponent(category)}`),
         lastModified: today,
         changeFrequency: "weekly" as const,
         priority: 0.65,
@@ -233,7 +238,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   countries.slice(0, 15).forEach((country) => {
     [5, 4].forEach((rating) => {
       countryRatingPages.push({
-        url: `${baseUrl}/agencies?country=${encodeURIComponent(country)}&rating=${rating}`,
+        url: escapeXmlUrl(`${baseUrl}/agencies?country=${encodeURIComponent(country)}&rating=${rating}`),
         lastModified: today,
         changeFrequency: "weekly" as const,
         priority: 0.6,

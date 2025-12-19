@@ -10,6 +10,7 @@ interface FastAgencyMapProps {
   maxMarkers?: number;
   maxSearchResults?: number;
   onAgencyClick?: (agency: Agency) => void;
+  minimal?: boolean; // Hide search bar and extra controls for single agency view
 }
 
 // Calculate distance between two points in km (Haversine formula)
@@ -31,6 +32,7 @@ export default function FastAgencyMap({
   maxMarkers = 100,
   maxSearchResults = 100,
   onAgencyClick,
+  minimal = false,
 }: FastAgencyMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
@@ -434,55 +436,61 @@ export default function FastAgencyMap({
       {/* Map */}
       <div ref={mapRef} className="w-full h-full" />
 
-      {/* Search bar */}
-      <div className="absolute top-3 left-3 right-16 z-[1000]">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search agencies, cities..."
-            className="w-full pl-9 pr-8 py-2.5 bg-white/95 backdrop-blur-sm rounded-lg shadow-md text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery('')}
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded"
-            >
-              <X className="h-4 w-4 text-gray-400" />
-            </button>
-          )}
+      {/* Search bar - hidden in minimal mode */}
+      {!minimal && (
+        <div className="absolute top-3 left-3 right-16 z-[1000]">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search agencies, cities..."
+              className="w-full pl-9 pr-8 py-2.5 bg-white/95 backdrop-blur-sm rounded-lg shadow-md text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded"
+              >
+                <X className="h-4 w-4 text-gray-400" />
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* Stats badge */}
-      <div className="absolute bottom-3 left-3 z-[1000]">
-        <div className="bg-white/95 backdrop-blur-sm px-3 py-2 rounded-lg shadow-md flex items-center gap-2">
-          <MapPin className="h-4 w-4 text-primary" />
-          <span className="text-sm font-medium">
-            {visibleCount} agencies
-            {userLocation && !searchQuery && ' nearby'}
-          </span>
+      {/* Stats badge - simplified in minimal mode */}
+      {!minimal && (
+        <div className="absolute bottom-3 left-3 z-[1000]">
+          <div className="bg-white/95 backdrop-blur-sm px-3 py-2 rounded-lg shadow-md flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-primary" />
+            <span className="text-sm font-medium">
+              {visibleCount} agencies
+              {userLocation && !searchQuery && ' nearby'}
+            </span>
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* Controls */}
-      <div className="absolute bottom-3 right-3 z-[1000] flex gap-2">
-        <button
-          onClick={relocateUser}
-          disabled={isLocating}
-          className={`bg-white/95 backdrop-blur-sm p-2.5 rounded-lg shadow-md hover:bg-white transition-colors ${
-            userLocation ? 'ring-2 ring-blue-500' : ''
-          }`}
-          title="Find my location"
-        >
-          {isLocating ? (
-            <Loader2 className="h-5 w-5 text-blue-500 animate-spin" />
-          ) : (
-            <Navigation className={`h-5 w-5 ${userLocation ? 'text-blue-500' : 'text-gray-700'}`} />
-          )}
-        </button>
+      {/* Controls - simplified in minimal mode */}
+      <div className={`absolute bottom-3 ${minimal ? 'left-3' : 'right-3'} z-[1000] flex gap-2`}>
+        {!minimal && (
+          <button
+            onClick={relocateUser}
+            disabled={isLocating}
+            className={`bg-white/95 backdrop-blur-sm p-2.5 rounded-lg shadow-md hover:bg-white transition-colors ${
+              userLocation ? 'ring-2 ring-blue-500' : ''
+            }`}
+            title="Find my location"
+          >
+            {isLocating ? (
+              <Loader2 className="h-5 w-5 text-blue-500 animate-spin" />
+            ) : (
+              <Navigation className={`h-5 w-5 ${userLocation ? 'text-blue-500' : 'text-gray-700'}`} />
+            )}
+          </button>
+        )}
 
         <button
           onClick={() => setMapStyle(s => s === 'streets' ? 'satellite' : 'streets')}

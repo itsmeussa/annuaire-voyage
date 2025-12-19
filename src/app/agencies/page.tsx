@@ -108,14 +108,19 @@ function AgenciesContent() {
   const totalPages = Math.ceil(agencies.length / itemsPerPage);
 
   return (
-    <div className="min-h-screen bg-muted/30">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50/50 to-white">
       {/* Header */}
-      <div className="bg-white border-b border-border py-8">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 animate-fade-in-up">
+      <div className="bg-gradient-to-r from-primary via-blue-600 to-primary text-white py-12 relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in-up">
             Find Travel Agencies
           </h1>
-          <p className="text-lg text-muted-foreground mb-6 animate-fade-in-up delay-100">
+          <p className="text-lg text-white/80 mb-6 animate-fade-in-up delay-100">
             Browse our directory of {agencies.length} verified travel agencies
             worldwide.
           </p>
@@ -128,12 +133,12 @@ function AgenciesContent() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search by agency name, city, or category..."
-                className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40 focus:bg-white/15 transition-all text-white placeholder:text-white/60 backdrop-blur-sm"
               />
             </div>
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="md:hidden flex items-center justify-center gap-2 px-4 py-3 bg-muted rounded-lg font-medium hover:bg-muted/80 transition-colors"
+              className="md:hidden flex items-center justify-center gap-2 px-4 py-3 bg-white/10 border border-white/20 rounded-xl font-medium hover:bg-white/20 transition-colors backdrop-blur-sm"
             >
               <SlidersHorizontal className="h-5 w-5" />
               Filters
@@ -147,33 +152,33 @@ function AgenciesContent() {
             selectedCategory) && (
             <div className="flex flex-wrap gap-2 mt-4">
               {selectedCity && (
-                <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
                   City: {selectedCity}
-                  <button onClick={() => setSelectedCity("")}>
+                  <button onClick={() => setSelectedCity("")} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
                     <X className="h-4 w-4" />
                   </button>
                 </span>
               )}
               {selectedCountry && (
-                <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
                   Country: {selectedCountry}
-                  <button onClick={() => setSelectedCountry("")}>
+                  <button onClick={() => setSelectedCountry("")} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
                     <X className="h-4 w-4" />
                   </button>
                 </span>
               )}
               {selectedRating > 0 && (
-                <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
                   Rating: {selectedRating}+
-                  <button onClick={() => setSelectedRating(0)}>
+                  <button onClick={() => setSelectedRating(0)} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
                     <X className="h-4 w-4" />
                   </button>
                 </span>
               )}
               {selectedCategory && (
-                <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
+                <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
                   {selectedCategory}
-                  <button onClick={() => setSelectedCategory("")}>
+                  <button onClick={() => setSelectedCategory("")} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
                     <X className="h-4 w-4" />
                   </button>
                 </span>

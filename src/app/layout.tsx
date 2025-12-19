@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -7,7 +7,11 @@ import ScrollToTop from "@/components/ui/ScrollToTop";
 import PromoBanner from "@/components/ui/PromoBanner";
 import PromoPopup from "@/components/ui/PromoPopup";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({ 
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -95,7 +99,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: "TravelAgencies.World",
   url: "https://www.travelagencies.world",
-  logo: "https://www.travelagencies.world/logo.png",
+  logo: "https://www.travelagencies.world/travellogos/travelagencies-text-blue-white-nbackground.png",
   description: "Free directory of 4000+ verified travel agencies worldwide with Google reviews and ratings",
   foundingDate: "2024",
   sameAs: [
@@ -134,8 +138,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/travellogos/square-blue-no-background.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/travellogos/square-blue-white-background.png" />
         <link rel="manifest" href="/manifest.json" />
         <script
           type="application/ld+json"
@@ -146,7 +150,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={poppins.className}>
         <div className="flex flex-col min-h-screen">
           <PromoBanner />
           <Header />

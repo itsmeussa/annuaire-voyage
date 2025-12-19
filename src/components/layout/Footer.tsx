@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Phone, Mail, Globe, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 export default function Footer() {
@@ -34,16 +35,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-6">
-              <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center">
-                <Globe className="h-6 w-6 text-white" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-bold text-white">
-                  TravelAgencies
-                </span>
-                <span className="text-xs text-slate-400 -mt-1">.World</span>
-              </div>
+            <Link href="/" className="flex items-center mb-6">
+              <Image
+                src="/travellogos/travelagencies-text-white-no-background.png"
+                alt="TravelAgencies.World"
+                width={180}
+                height={44}
+                className="h-10 w-auto"
+              />
             </Link>
             <p className="text-slate-400 mb-6 max-w-md">
               Your trusted free global directory with 4000+ verified travel agencies

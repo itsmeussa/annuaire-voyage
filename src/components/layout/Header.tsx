@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, MapPin, Phone, Globe } from "lucide-react";
 
@@ -44,18 +45,15 @@ export default function Header() {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center">
-              <Globe className="h-6 w-6 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-gradient">
-                TravelAgencies
-              </span>
-              <span className="text-xs text-muted-foreground -mt-1">
-                .World
-              </span>
-            </div>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/travellogos/travelagencies-text-blue-no-background.png"
+              alt="TravelAgencies.World"
+              width={180}
+              height={44}
+              className="h-10 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

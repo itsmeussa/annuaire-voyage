@@ -149,7 +149,7 @@ export default async function AgencyPage({ params }: PageProps) {
     name: agency.title,
     description: agency.description || `${agency.title} is a verified ${agency.category?.toLowerCase() || "travel agency"} located in ${agency.cityNormalized}, ${agency.country}. Contact them for tours, travel packages, and vacation planning.`,
     image: "https://www.travelagencies.world/og-image.jpg",
-    logo: "https://www.travelagencies.world/og-image.jpg",
+    logo: "https://www.travelagencies.world/travellogos/travelagencies-text-blue-white-nbackground.png",
     address: {
       "@type": "PostalAddress",
       streetAddress: agency.street || "",
@@ -360,66 +360,78 @@ export default async function AgencyPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* Breadcrumb */}
-      <div className="bg-muted/30 border-b border-border">
-        <div className="container mx-auto px-4 py-4">
-          <nav className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-primary">
+      {/* Hero Header */}
+      <section className="relative text-white overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ 
+            backgroundImage: `url(https://picsum.photos/seed/${agency.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 1000}/1920/600)` 
+          }}
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-blue-600/85 to-primary/90" />
+        {/* Additional decorations */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
+        </div>
+        
+        <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-sm text-white/70 mb-6">
+            <Link href="/" className="hover:text-white transition-colors">
               Home
             </Link>
             <span>/</span>
-            <Link href="/agencies" className="hover:text-primary">
+            <Link href="/agencies" className="hover:text-white transition-colors">
               Agencies
             </Link>
             <span>/</span>
-            <span className="text-foreground">{agency.title}</span>
+            <span className="text-white">{agency.title}</span>
           </nav>
-        </div>
-      </div>
 
-      {/* Agency Header */}
-      <section className="bg-white border-b border-border">
-        <div className="container mx-auto px-4 py-8 md:py-12">
-          <Link
-            href="/agencies"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to all agencies
-          </Link>
-
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
             <div className="animate-fade-in-up">
               {agency.featured && (
-                <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-                  <Star className="h-4 w-4 fill-primary" />
+                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-yellow-400 text-yellow-900 rounded-full text-sm font-semibold mb-4">
+                  <Star className="h-4 w-4 fill-yellow-900" />
                   Featured Agency
                 </span>
               )}
-              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+              <h1 className="text-4xl md:text-5xl font-bold mb-3 drop-shadow-lg">
                 {agency.title}
               </h1>
-              <p className="text-lg text-muted-foreground mb-4">
+              <p className="text-xl text-white/90 mb-6 drop-shadow-md">
                 {agency.category} in {agency.cityNormalized}, {agency.country}
               </p>
 
-              <div className="flex flex-wrap items-center gap-4">
-                <StarRating rating={agency.totalScore} size="lg" />
+              <div className="flex flex-wrap items-center gap-6">
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <StarRating rating={agency.totalScore} size="lg" />
+                  {agency.totalScore && (
+                    <span className="font-bold text-lg">{agency.totalScore}</span>
+                  )}
+                </div>
                 {agency.reviewsCount && (
-                  <span className="flex items-center gap-1 text-muted-foreground">
-                    <Users className="h-4 w-4" />
-                    {agency.reviewsCount} reviews
+                  <span className="flex items-center gap-2 text-white/80">
+                    <Users className="h-5 w-5" />
+                    {agency.reviewsCount.toLocaleString()} reviews
                   </span>
                 )}
+                <span className="flex items-center gap-2 text-white/80">
+                  <MapPin className="h-5 w-5" />
+                  {agency.cityNormalized}
+                </span>
               </div>
             </div>
 
             {/* Actions */}
-            <div className="flex flex-wrap gap-3 animate-fade-in-up delay-200">
+            <div className="flex flex-col sm:flex-row gap-3 animate-fade-in-up delay-200">
               {agency.phone && (
                 <a
                   href={`tel:${agency.phone}`}
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all hover-glow btn-glow"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-primary px-8 py-4 rounded-xl font-bold hover:bg-white/90 transition-all shadow-lg hover:shadow-xl hover:scale-105"
                 >
                   <Phone className="h-5 w-5" />
                   Call Now
@@ -430,7 +442,7 @@ export default async function AgencyPage({ params }: PageProps) {
                   href={agency.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-muted text-foreground px-6 py-3 rounded-lg font-semibold hover:bg-muted/80 transition-all hover:shadow-md"
+                  className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all"
                 >
                   <Globe className="h-5 w-5" />
                   Visit Website
@@ -440,7 +452,7 @@ export default async function AgencyPage({ params }: PageProps) {
                 href={agency.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-muted text-foreground px-6 py-3 rounded-lg font-semibold hover:bg-muted/80 transition-all hover:shadow-md"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all"
               >
                 <ExternalLink className="h-5 w-5" />
                 View on Google
@@ -451,98 +463,109 @@ export default async function AgencyPage({ params }: PageProps) {
       </section>
 
       {/* Main Content */}
-      <section className="py-12 bg-muted/30">
+      <section className="py-12 bg-gradient-to-b from-blue-50/50 to-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Left Column - Details */}
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-2 space-y-6">
               {/* About */}
-              <div className="bg-white rounded-xl border border-border p-6 animate-fade-in-up hover:shadow-lg transition-shadow">
-                <h2 className="text-xl font-bold text-foreground mb-4">
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-lg shadow-gray-200/50 p-8 animate-fade-in-up hover:shadow-xl transition-all">
+                <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+                  <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center">
+                    <Users className="h-5 w-5 text-white" />
+                  </div>
                   About {agency.title}
                 </h2>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed text-lg">
                   {agency.description}
                 </p>
               </div>
 
               {/* Map Location */}
               {agency.location?.lat && agency.location?.lng && (
-                <div className="bg-white rounded-xl border border-border p-6 animate-fade-in-up delay-100 hover:shadow-lg transition-shadow">
-                  <h2 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-primary" />
+                <div className="bg-white rounded-2xl border border-gray-100 shadow-lg shadow-gray-200/50 p-8 animate-fade-in-up delay-100 hover:shadow-xl transition-all">
+                  <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+                    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center">
+                      <MapPin className="h-5 w-5 text-white" />
+                    </div>
                     Location
                   </h2>
-                  <FastAgencyMap
-                    agencies={[agency]}
-                    height="300px"
-                    maxMarkers={1}
-                  />
+                  <div className="rounded-xl overflow-hidden border border-gray-100">
+                    <FastAgencyMap
+                      agencies={[agency]}
+                      height="300px"
+                      maxMarkers={1}
+                      minimal={true}
+                    />
+                  </div>
                   {agency.street && (
-                    <p className="mt-4 text-muted-foreground flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-primary" />
-                      {agency.street}, {agency.cityNormalized}, {agency.country}
-                    </p>
+                    <div className="mt-4 p-4 bg-blue-50 rounded-xl flex items-center gap-3">
+                      <MapPin className="h-5 w-5 text-primary flex-shrink-0" />
+                      <span className="text-foreground font-medium">{agency.street}, {agency.cityNormalized}, {agency.country}</span>
+                    </div>
                   )}
                 </div>
               )}
 
               {/* Services */}
-              <div className="bg-white rounded-xl border border-border p-6 animate-fade-in-up delay-200 hover:shadow-lg transition-shadow">
-                <h2 className="text-xl font-bold text-foreground mb-4">
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-lg shadow-gray-200/50 p-8 animate-fade-in-up delay-200 hover:shadow-xl transition-all">
+                <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+                  <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center">
+                    <CheckCircle className="h-5 w-5 text-white" />
+                  </div>
                   Our Services
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
                   {[
-                    "Flight Bookings",
-                    "Hotel Reservations",
-                    "Tour Packages",
-                    "Visa Assistance",
-                    "Travel Insurance",
-                    "Airport Transfers",
+                    { name: "Flight Bookings", icon: "✈️" },
+                    { name: "Hotel Reservations", icon: "🏨" },
+                    { name: "Tour Packages", icon: "🗺️" },
+                    { name: "Visa Assistance", icon: "📋" },
+                    { name: "Travel Insurance", icon: "🛡️" },
+                    { name: "Airport Transfers", icon: "🚗" },
                   ].map((service, index) => (
                     <div
-                      key={service}
-                      className="flex items-center gap-2 text-muted-foreground animate-fade-in"
+                      key={service.name}
+                      className="flex items-center gap-3 p-4 bg-gradient-to-r from-blue-50 to-transparent rounded-xl border border-blue-100/50 hover:border-primary/30 hover:shadow-md transition-all animate-fade-in"
                       style={{ animationDelay: `${index * 0.1}s` }}
                     >
-                      <CheckCircle className="h-5 w-5 text-green-500" />
-                      {service}
+                      <span className="text-2xl">{service.icon}</span>
+                      <span className="font-medium text-foreground">{service.name}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Why Choose Us */}
-              <div className="bg-white rounded-xl border border-border p-6 animate-fade-in-up delay-300 hover:shadow-lg transition-shadow">
-                <h2 className="text-xl font-bold text-foreground mb-4">
-                  Why Choose Us
+              <div className="bg-gradient-to-r from-primary via-blue-600 to-primary text-white rounded-2xl p-8 animate-fade-in-up delay-300">
+                <h2 className="text-2xl font-bold mb-8 text-center">
+                  Why Choose {agency.title}?
                 </h2>
-                <div className="grid md:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-3 gap-8">
                   <div className="text-center group">
-                    <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                      <Shield className="h-6 w-6 text-primary" />
+                    <div className="h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all">
+                      <Shield className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="font-semibold mb-1">Trusted & Verified</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <h3 className="font-bold text-lg mb-2">Trusted & Verified</h3>
+                    <p className="text-white/80 text-sm">
                       Google-verified with real customer reviews
                     </p>
                   </div>
                   <div className="text-center group">
-                    <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                      <Clock className="h-6 w-6 text-primary" />
+                    <div className="h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all">
+                      <Clock className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="font-semibold mb-1">Quick Response</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <h3 className="font-bold text-lg mb-2">Quick Response</h3>
+                    <p className="text-white/80 text-sm">
                       Fast and efficient service
                     </p>
                   </div>
                   <div className="text-center group">
-                    <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                      <Users className="h-6 w-6 text-primary" />
+                    <div className="h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all">
+                      <Users className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="font-semibold mb-1">Expert Team</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <h3 className="font-bold text-lg mb-2">Expert Team</h3>
+                    <p className="text-white/80 text-sm">
                       Experienced travel professionals
                     </p>
                   </div>
@@ -552,17 +575,22 @@ export default async function AgencyPage({ params }: PageProps) {
 
             {/* Right Column - Contact Card */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-xl border border-border p-6 sticky top-24 animate-slide-in-right hover:shadow-lg transition-shadow">
-                <h3 className="text-lg font-bold text-foreground mb-4">
-                  Contact Information
-                </h3>
+              <div className="bg-white rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 p-6 sticky top-24 animate-slide-in-right">
+                <div className="text-center mb-6">
+                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center mx-auto mb-4">
+                    <Phone className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">
+                    Contact Information
+                  </h3>
+                </div>
 
                 <div className="space-y-4">
                   {agency.street && (
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-xl">
                       <MapPin className="h-5 w-5 text-primary mt-0.5" />
                       <div>
-                        <p className="font-medium">Address</p>
+                        <p className="font-semibold text-foreground">Address</p>
                         <p className="text-muted-foreground text-sm">
                           {agency.street}
                           <br />
@@ -573,13 +601,13 @@ export default async function AgencyPage({ params }: PageProps) {
                   )}
 
                   {agency.phone && (
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-xl">
                       <Phone className="h-5 w-5 text-primary mt-0.5" />
                       <div>
-                        <p className="font-medium">Phone</p>
+                        <p className="font-semibold text-foreground">Phone</p>
                         <a
                           href={`tel:${agency.phone}`}
-                          className="text-primary hover:underline text-sm"
+                          className="text-primary hover:underline font-medium"
                         >
                           {agency.phone}
                         </a>
@@ -588,42 +616,42 @@ export default async function AgencyPage({ params }: PageProps) {
                   )}
 
                   {agency.website && (
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-xl">
                       <Globe className="h-5 w-5 text-primary mt-0.5" />
                       <div>
-                        <p className="font-medium">Website</p>
+                        <p className="font-semibold text-foreground">Website</p>
                         <a
                           href={agency.website}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-primary hover:underline text-sm break-all"
                         >
-                          {agency.website.replace(/^https?:\/\//, "")}
+                          {agency.website.replace(/^https?:\/\//, "").slice(0, 30)}...
                         </a>
                       </div>
                     </div>
                   )}
                 </div>
 
-                <hr className="my-6" />
+                <div className="mt-6 space-y-3">
+                  {agency.phone && (
+                    <a
+                      href={`tel:${agency.phone}`}
+                      className="block w-full text-center bg-gradient-to-r from-primary to-blue-600 text-white py-4 rounded-xl font-bold hover:from-primary/90 hover:to-blue-500 transition-all shadow-lg shadow-primary/25 hover:shadow-xl hover:scale-[1.02]"
+                    >
+                      📞 Call Now
+                    </a>
+                  )}
 
-                {agency.phone && (
                   <a
-                    href={`tel:${agency.phone}`}
-                    className="block w-full text-center bg-primary text-primary-foreground py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all hover:shadow-md btn-glow mb-3"
+                    href={agency.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center bg-white border-2 border-primary text-primary py-3.5 rounded-xl font-semibold hover:bg-primary hover:text-white transition-all"
                   >
-                    Call Now
+                    View on Google Maps
                   </a>
-                )}
-
-                <a
-                  href={agency.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center bg-muted text-foreground py-3 rounded-lg font-semibold hover:bg-muted/80 transition-all hover:shadow-md"
-                >
-                  View on Google Maps
-                </a>
+                </div>
               </div>
             </div>
           </div>
@@ -632,17 +660,29 @@ export default async function AgencyPage({ params }: PageProps) {
 
       {/* Similar Agencies */}
       {similarAgencies.length > 0 && (
-        <section className="py-12 bg-white">
+        <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold text-foreground mb-6 animate-fade-in-up">
-              Similar Agencies in {agency.cityNormalized}
-            </h2>
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-bold text-foreground mb-3 animate-fade-in-up">
+                Similar Agencies in {agency.cityNormalized}
+              </h2>
+              <p className="text-muted-foreground">Discover more trusted travel agencies near you</p>
+            </div>
             <div className="grid md:grid-cols-3 gap-6 stagger-children">
               {similarAgencies.map((a, index) => (
                 <div key={a.id} className="hover-lift" style={{ animationDelay: `${index * 0.1}s` }}>
                   <AgencyCard agency={a} />
                 </div>
               ))}
+            </div>
+            <div className="text-center mt-10">
+              <Link
+                href={`/agencies?city=${agency.cityNormalized}`}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:from-primary/90 hover:to-blue-500 transition-all shadow-lg shadow-primary/25 hover:shadow-xl"
+              >
+                View All Agencies in {agency.cityNormalized}
+                <ArrowLeft className="h-5 w-5 rotate-180" />
+              </Link>
             </div>
           </div>
         </section>

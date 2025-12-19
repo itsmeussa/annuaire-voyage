@@ -187,13 +187,19 @@ export default function Home() {
       />
 
       {/* Hero Section */}
-      <section className="hero-gradient text-white py-20 md:py-32 relative overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-float delay-500" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/3 rounded-full blur-3xl" />
-        </div>
+      <section className="text-white py-20 md:py-32 relative overflow-hidden">
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/travellogos/background.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/50 z-[1]" />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -215,24 +221,24 @@ export default function Home() {
             </p>
 
             {/* Search Box */}
-            <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-6 max-w-3xl mx-auto animate-scale-in delay-300 hover:shadow-3xl transition-shadow duration-500">
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl p-4 md:p-6 max-w-3xl mx-auto animate-scale-in delay-300 hover:bg-white/15 transition-all duration-500">
               <form
                 action="/agencies"
                 method="get"
                 className="flex flex-col md:flex-row gap-4"
               >
                 <div className="flex-1 relative group">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 group-focus-within:text-primary transition-colors" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/60 group-focus-within:text-white transition-colors" />
                   <input
                     type="text"
                     name="q"
                     placeholder="Search by agency name or location..."
-                    className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-gray-900"
+                    className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40 focus:bg-white/15 transition-all text-white placeholder:text-white/50"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="bg-primary text-white px-8 py-4 rounded-xl font-semibold hover:bg-primary/90 transition-all flex items-center justify-center gap-2 btn-glow hover:scale-105"
+                  className="bg-gradient-to-r from-primary to-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-primary/90 hover:to-blue-500 transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/30 hover:scale-105 hover:shadow-xl hover:shadow-primary/40"
                 >
                   <Search className="h-5 w-5" />
                   Search

@@ -157,84 +157,122 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-muted/30 to-white">
       {/* Hero */}
-      <section className="relative h-[50vh] min-h-[400px]">
+      <section className="relative h-[60vh] min-h-[500px]">
         <img
           src={post.image}
           alt={post.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="container mx-auto px-4 text-center text-white">
-            <span className="inline-block bg-primary px-4 py-1 rounded-full text-sm font-medium mb-4">
-              {post.category}
-            </span>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 max-w-4xl mx-auto">
-              {post.title}
-            </h1>
-            <div className="flex items-center justify-center gap-6 text-white/80">
-              <span className="flex items-center gap-2">
-                <User className="h-4 w-4" />
-                {post.author}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
+        <div className="absolute inset-0 flex items-end pb-16">
+          <div className="container mx-auto px-4 text-white">
+            <div className="max-w-4xl">
+              <span className="inline-block bg-primary px-4 py-1.5 rounded-full text-sm font-medium mb-6 shadow-lg">
+                {post.category}
               </span>
-              <span className="flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
-                {new Date(post.date).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </span>
-              <span className="flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                {post.readTime}
-              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                {post.title}
+              </h1>
+              <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl">
+                {post.excerpt}
+              </p>
+              <div className="flex flex-wrap items-center gap-6 text-white/90">
+                <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <User className="h-4 w-4" />
+                  {post.author}
+                </span>
+                <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <Calendar className="h-4 w-4" />
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </span>
+                <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <Clock className="h-4 w-4" />
+                  {post.readTime}
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Content */}
-      <section className="py-16">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8 group"
             >
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
               Back to Blog
             </Link>
 
-            <article
-              className="prose prose-lg max-w-none"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            {/* Article Card */}
+            <div className="bg-gradient-to-b from-muted/30 to-transparent rounded-2xl p-8 md:p-12 -mx-4 md:mx-0">
+              <article
+                className="prose prose-lg max-w-none"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
+            </div>
+
+            {/* Author Card */}
+            <div className="mt-12 p-6 bg-muted/50 rounded-2xl flex items-center gap-4">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                <User className="h-8 w-8 text-primary" />
+              </div>
+              <div>
+                <p className="font-semibold text-foreground">{post.author}</p>
+                <p className="text-sm text-muted-foreground">Travel & Tourism Expert</p>
+              </div>
+            </div>
 
             {/* Share */}
             <div className="mt-12 pt-8 border-t border-border">
-              <h3 className="font-semibold mb-4">Share this article</h3>
+              <h3 className="font-semibold mb-4 text-foreground">Share this article</h3>
               <div className="flex gap-3">
                 <a
                   href="#"
-                  className="h-10 w-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                  className="h-10 w-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors"
                 >
                   <Facebook className="h-5 w-5" />
                 </a>
                 <a
                   href="#"
-                  className="h-10 w-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                  className="h-10 w-10 rounded-full bg-sky-500 text-white flex items-center justify-center hover:bg-sky-600 transition-colors"
                 >
                   <Twitter className="h-5 w-5" />
                 </a>
                 <a
                   href="#"
-                  className="h-10 w-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                  className="h-10 w-10 rounded-full bg-blue-700 text-white flex items-center justify-center hover:bg-blue-800 transition-colors"
                 >
                   <Linkedin className="h-5 w-5" />
                 </a>
+              </div>
+            </div>
+
+            {/* Related Articles */}
+            <div className="mt-16">
+              <h3 className="text-2xl font-bold mb-6 text-foreground">Continue Reading</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <Link href="/blog/how-to-choose-travel-agency" className="group">
+                  <div className="bg-muted/30 rounded-xl p-4 hover:bg-muted/50 transition-colors">
+                    <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">How to Choose the Right Travel Agency</h4>
+                    <p className="text-sm text-muted-foreground mt-2">5 min read</p>
+                  </div>
+                </Link>
+                <Link href="/blog/top-destinations-2025" className="group">
+                  <div className="bg-muted/30 rounded-xl p-4 hover:bg-muted/50 transition-colors">
+                    <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">Top 10 Travel Destinations for 2025</h4>
+                    <p className="text-sm text-muted-foreground mt-2">8 min read</p>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

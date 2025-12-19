@@ -21,7 +21,7 @@ import AgencyCard from "@/components/ui/AgencyCard";
 import { getAgencyBySlug, getAllAgencies, filterAgencies } from "@/lib/agencies";
 
 // Dynamic import for map component (no SSR)
-const AgencyMap = dynamic(() => import("@/components/ui/AgencyMap"), {
+const FastAgencyMap = dynamic(() => import("@/components/ui/FastAgencyMap"), {
   ssr: false,
   loading: () => (
     <div className="h-[300px] bg-muted rounded-xl flex items-center justify-center">
@@ -473,12 +473,10 @@ export default async function AgencyPage({ params }: PageProps) {
                     <MapPin className="h-5 w-5 text-primary" />
                     Location
                   </h2>
-                  <AgencyMap
+                  <FastAgencyMap
                     agencies={[agency]}
-                    center={[agency.location.lat, agency.location.lng]}
-                    zoom={15}
                     height="300px"
-                    showFullscreenControl={true}
+                    maxMarkers={1}
                   />
                   {agency.street && (
                     <p className="mt-4 text-muted-foreground flex items-center gap-2">
@@ -651,7 +649,7 @@ export default async function AgencyPage({ params }: PageProps) {
       )}
 
       {/* CTA */}
-      <CTASection variant="secondary" />
+      <CTASection variant="secondary" country={agency.country} />
     </>
   );
 }

@@ -330,3 +330,123 @@ html {
 .btn-glow:hover::before {
   left: 100%;
 }
+
+/* Article/Prose Styling */
+.prose {
+  @apply text-foreground leading-relaxed;
+}
+
+.prose p {
+  @apply text-lg text-muted-foreground mb-6 leading-8;
+}
+
+.prose h2 {
+  @apply text-2xl font-bold text-foreground mt-12 mb-6 pb-3 border-b border-border relative;
+}
+
+.prose h2::before {
+  content: '';
+  @apply absolute left-0 bottom-0 w-16 h-1 bg-gradient-to-r from-primary to-blue-400 rounded-full;
+}
+
+.prose h3 {
+  @apply text-xl font-semibold text-foreground mt-8 mb-4;
+}
+
+.prose h4 {
+  @apply text-lg font-semibold text-foreground mt-6 mb-3;
+}
+
+.prose ul {
+  @apply my-6 space-y-3;
+}
+
+.prose ul li {
+  @apply text-muted-foreground pl-8 relative text-lg leading-7;
+}
+
+.prose ul li::before {
+  content: '';
+  @apply absolute left-0 top-3 w-2 h-2 bg-primary rounded-full;
+}
+
+.prose ol {
+  @apply my-6 space-y-3 list-none;
+  counter-reset: item;
+}
+
+.prose ol li {
+  @apply text-muted-foreground pl-10 relative text-lg leading-7;
+  counter-increment: item;
+}
+
+.prose ol li::before {
+  content: counter(item);
+  @apply absolute left-0 top-0 w-7 h-7 bg-primary text-white text-sm font-bold rounded-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prose strong {
+  @apply font-semibold text-foreground;
+}
+
+.prose a {
+  @apply text-primary font-medium underline decoration-primary/30 hover:decoration-primary transition-colors;
+}
+
+.prose blockquote {
+  @apply my-8 pl-6 border-l-4 border-primary bg-primary/5 py-4 pr-4 rounded-r-lg italic text-muted-foreground;
+}
+
+.prose blockquote p {
+  @apply mb-0;
+}
+
+.prose img {
+  @apply rounded-xl shadow-lg my-8;
+}
+
+.prose code {
+  @apply bg-muted px-2 py-1 rounded text-sm font-mono;
+}
+
+.prose pre {
+  @apply bg-slate-900 text-white p-6 rounded-xl overflow-x-auto my-8;
+}
+
+.prose hr {
+  @apply my-12 border-border;
+}
+
+/* Callout boxes for articles */
+.prose .tip {
+  @apply bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl my-8;
+}
+
+.prose .warning {
+  @apply bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-xl my-8;
+}
+
+.prose .info {
+  @apply bg-slate-50 border-l-4 border-slate-500 p-6 rounded-r-xl my-8;
+}
+
+/* Table styling */
+.prose table {
+  @apply w-full my-8 border-collapse;
+}
+
+.prose th {
+  @apply bg-muted text-left p-4 font-semibold border-b-2 border-border;
+}
+
+.prose td {
+  @apply p-4 border-b border-border text-muted-foreground;
+}
+
+.prose tr:hover td {
+  @apply bg-muted/50;
+}
+

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, Phone, Globe, ExternalLink, Users, Star } from "lucide-react";
+import { MapPin, Phone, Globe, ExternalLink, Users, Star, Map } from "lucide-react";
 import StarRating from "@/components/ui/StarRating";
 import { Agency } from "@/types";
 
@@ -90,6 +90,18 @@ export default function AgencyCard({ agency, featured = false }: AgencyCardProps
             >
               <Globe className="h-3 w-3" />
               Website
+            </a>
+          )}
+          {agency.url && (
+            <a
+              href={agency.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-sm bg-blue-50 text-blue-600 px-3 py-1.5 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 hover:shadow-md"
+              title="View on Google Maps"
+            >
+              <Map className="h-3 w-3" />
+              Maps
             </a>
           )}
         </div>

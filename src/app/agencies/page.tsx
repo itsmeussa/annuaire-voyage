@@ -15,13 +15,13 @@ import {
 import { Agency } from "@/types";
 
 // Dynamic import for map component (no SSR)
-const AgencyMap = dynamic(() => import("@/components/ui/AgencyMap"), {
+const FastAgencyMap = dynamic(() => import("@/components/ui/FastAgencyMap"), {
   ssr: false,
   loading: () => (
-    <div className="h-[500px] bg-muted rounded-xl flex items-center justify-center">
+    <div className="h-[600px] bg-muted rounded-xl flex items-center justify-center">
       <div className="flex flex-col items-center">
         <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mb-3" />
-        <p className="text-muted-foreground">Chargement de la carte...</p>
+        <p className="text-muted-foreground">Loading map...</p>
       </div>
     </div>
   ),
@@ -53,7 +53,7 @@ function AgenciesContent() {
   const [currentPage, setCurrentPage] = useState(
     Number(searchParams.get("page")) || 1
   );
-  const itemsPerPage = 12;
+  const itemsPerPage = 24;
 
   const cities = getUniqueCities();
   const countries = getUniqueCountries();
@@ -279,7 +279,7 @@ function AgenciesContent() {
             {/* Map View */}
             {viewMode === "map" && (
               <div className="mb-8 animate-fade-in">
-                <AgencyMap agencies={agencies} height="600px" />
+                <FastAgencyMap agencies={agencies} height="600px" maxMarkers={100} maxSearchResults={100} />
               </div>
             )}
 

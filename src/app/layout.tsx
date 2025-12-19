@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import PromoBanner from "@/components/ui/PromoBanner";
+import PromoPopup from "@/components/ui/PromoPopup";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -153,6 +154,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <ScrollToTop />
+        <PromoPopup />
       </body>
     </html>
   );

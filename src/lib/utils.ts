@@ -131,7 +131,7 @@ export function getCountryName(code: string | null): string {
     TT: "Trinidad and Tobago",
     BS: "Bahamas",
   };
-  return code ? countries[code] || code : "Unknown";
+  return code ? countries[code] || code : "Others";
 }
 
 export function getCityName(city: string | null): string {

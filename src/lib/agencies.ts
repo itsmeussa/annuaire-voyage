@@ -1,5 +1,6 @@
 import { Agency } from "@/types";
 import { slugify, getCountryName, getCityName } from "@/lib/utils";
+import { getCityCoordinates } from "@/lib/cityCoordinates";
 
 // Import all agency data files
 import data1 from "@/data/agencies-processed.json";
@@ -71,6 +72,15 @@ export function getAllAgencies(): Agency[] {
         category,
         url: item.url,
         featured: (item.totalScore || 0) >= 4.8 && (item.reviewsCount || 0) >= 50,
+        location: (() => {
+          const coords = getCityCoordinates(cityNormalized, item.countryCode);
+          if (coords) {
+            // Add small random offset to prevent markers stacking
+            const offset = () => (Math.random() - 0.5) * 0.02;
+            return { lat: coords[0] + offset(), lng: coords[1] + offset() };
+          }
+          return null;
+        })(),
       };
 
       return {
@@ -82,10 +92,21 @@ export function getAllAgencies(): Agency[] {
   return agencies;
 }
 
+// Helper function to check if text contains Arabic characters
+function containsArabic(text: string): boolean {
+  const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
+  return arabicPattern.test(text);
+}
+
 export function getFeaturedAgencies(limit: number = 6): Agency[] {
   return getAllAgencies()
-    .filter((a) => a.featured)
-    .sort((a, b) => (b.reviewsCount || 0) - (a.reviewsCount || 0))
+    .filter((a) => a.featured && !containsArabic(a.title) && (a.reviewsCount || 0) >= 1000)
+    .sort((a, b) => {
+      // Sort by reviews count first (most famous), then by score
+      const reviewsDiff = (b.reviewsCount || 0) - (a.reviewsCount || 0);
+      if (reviewsDiff !== 0) return reviewsDiff;
+      return (b.totalScore || 0) - (a.totalScore || 0);
+    })
     .slice(0, limit);
 }
 

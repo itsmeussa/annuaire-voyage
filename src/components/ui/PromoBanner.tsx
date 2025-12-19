@@ -107,20 +107,17 @@ function PromoBannerContent() {
         <div className="absolute bottom-0 right-1/4 w-96 h-32 bg-indigo-500/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 py-2 relative">
-        <div className={`flex flex-wrap items-center justify-center gap-2 sm:gap-6 transition-all duration-700 ${isAnimated ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
+      <div className="container mx-auto px-3 sm:px-4 py-1.5 sm:py-2 relative">
+        <div className={`flex items-center justify-center gap-1.5 sm:gap-6 pr-6 transition-all duration-700 ${isAnimated ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
           {/* Badge */}
-          <span className="flex items-center gap-1.5 bg-gradient-to-r from-amber-400 to-orange-400 text-slate-900 text-xs font-bold px-2 py-0.5 rounded-md shadow-lg">
-            <Rocket className="h-3 w-3" />
+          <span className="flex items-center gap-1 bg-gradient-to-r from-amber-400 to-orange-400 text-slate-900 text-[10px] sm:text-xs font-bold px-1.5 sm:px-2 py-0.5 rounded shrink-0">
+            <Rocket className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
             NEW YEAR DEAL
           </span>
 
-          {/* Main Text - Shortened for mobile */}
-          <span className="text-xs sm:text-sm font-medium text-center">
-            <span className="hidden sm:inline">Launch your travel agency website in 2025! </span>
-            <span className="sm:hidden">Travel agency website </span>
-            <span className="text-amber-400 font-bold">50% OFF</span>
-            <span className="hidden sm:inline"> on professional websites</span>
+          {/* Main Text */}
+          <span className="text-[11px] sm:text-sm font-medium whitespace-nowrap">
+            Travel agency website <span className="text-amber-400 font-bold">50% OFF</span>
           </span>
 
           {/* CTA Button */}
@@ -128,19 +125,19 @@ function PromoBannerContent() {
             href="https://www.orioustrategy.com/promo-new-year"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-400 to-orange-400 text-slate-900 px-3 py-1 rounded-md text-xs sm:text-sm font-bold hover:from-amber-300 hover:to-orange-300 transition-all duration-300 hover:shadow-lg hover:shadow-amber-500/25"
+            className="group inline-flex items-center gap-1 bg-gradient-to-r from-amber-400 to-orange-400 text-slate-900 px-2 sm:px-3 py-0.5 sm:py-1 rounded text-[10px] sm:text-sm font-bold hover:from-amber-300 hover:to-orange-300 transition-all shrink-0"
           >
             Claim Offer
-            <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-0.5 transition-transform" />
+            <ArrowRight className="h-2.5 w-2.5 sm:h-4 sm:w-4" />
           </Link>
 
           {/* Close Button */}
           <button
             onClick={handleDismiss}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-white/10 rounded transition-colors text-white/60 hover:text-white"
+            className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 p-0.5 sm:p-1 hover:bg-white/10 rounded transition-colors text-white/60 hover:text-white"
             aria-label="Dismiss banner"
           >
-            <X className="h-4 w-4" />
+            <X className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </button>
         </div>
       </div>

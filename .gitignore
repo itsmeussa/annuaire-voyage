@@ -43,3 +43,8 @@ next-env.d.ts
 
 # Misc
 *.log
+# API Keys & Secrets
+scripts/service_account.json
+service_account.json
+*.pem
+*.key

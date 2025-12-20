@@ -128,7 +128,7 @@ export default function InscriptionMaroc() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-emerald-500" />
-                  <span>Activation 24h</span>
+                  <span>Activation en 1h</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-emerald-500" />

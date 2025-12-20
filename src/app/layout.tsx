@@ -158,7 +158,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <ScrollToTop />
-        <PromoPopup />
+        {/* <PromoPopup /> */}
       </body>
     </html>
   );

@@ -7,18 +7,14 @@ import {
   Users,
   Search,
   Shield,
-  Infinity,
-  ChartLine,
+  TrendingUp,
   Copy,
   Phone,
-  Building,
-  CreditCard,
-  MessageCircle,
-  Star,
   ArrowRight,
   ChevronDown,
+  ExternalLink,
+  Check,
 } from "lucide-react";
-import Link from "next/link";
 
 export default function InscriptionMaroc() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -30,463 +26,355 @@ export default function InscriptionMaroc() {
     setTimeout(() => setCopiedField(null), 2000);
   };
 
+  const googleFormUrl = "https://forms.gle/2uy1cRSPCch7GxZ38";
+
   const benefits = [
     {
       icon: Globe,
       title: "Visibilité Mondiale",
-      description:
-        "Soyez visible par des millions de voyageurs à travers le monde cherchant des agences au Maroc.",
+      description: "Soyez trouvé par des voyageurs du monde entier recherchant des agences au Maroc.",
     },
     {
       icon: Search,
-      title: "SEO Optimisé",
-      description:
-        "Notre site est optimisé pour les moteurs de recherche, augmentant vos chances d'être trouvé.",
+      title: "Référencement Google",
+      description: "Profitez de notre SEO optimisé pour apparaître dans les résultats de recherche.",
     },
     {
       icon: Users,
       title: "Clients Qualifiés",
-      description:
-        "Recevez des demandes de clients réellement intéressés par vos services de voyage.",
+      description: "Recevez des demandes de clients vraiment intéressés par vos services.",
     },
     {
-      icon: ChartLine,
-      title: "Croissance Garantie",
-      description:
-        "Développez votre activité grâce à une exposition internationale continue.",
+      icon: TrendingUp,
+      title: "Croissance Assurée",
+      description: "Développez votre clientèle grâce à une exposition internationale.",
     },
     {
       icon: Shield,
-      title: "Crédibilité Renforcée",
-      description:
-        "Être listé sur un annuaire professionnel renforce la confiance de vos futurs clients.",
+      title: "Crédibilité",
+      description: "Renforcez la confiance avec une présence sur un annuaire professionnel.",
     },
     {
-      icon: Infinity,
+      icon: CheckCircle,
       title: "Inscription à Vie",
-      description:
-        "Un seul paiement de 500 DH pour une visibilité permanente. Pas d'abonnement!",
-    },
-  ];
-
-  const steps = [
-    {
-      number: 1,
-      title: "Effectuez le paiement",
-      description: "Transférez 500 DH vers notre compte bancaire ci-dessous",
-    },
-    {
-      number: 2,
-      title: "Envoyez le reçu",
-      description:
-        "Envoyez-nous le reçu de paiement + les infos de votre agence via WhatsApp",
-    },
-    {
-      number: 3,
-      title: "Profitez!",
-      description:
-        "Votre agence sera en ligne sous 24h et visible dans le monde entier",
+      description: "Un seul paiement, une visibilité permanente. Pas d'abonnement.",
     },
   ];
 
   const faqs = [
     {
       question: "Combien de temps pour être en ligne ?",
-      answer:
-        "Votre agence sera visible sur TravelAgencies.World dans les 24 heures suivant la réception de votre paiement et des informations de votre agence.",
+      answer: "Votre agence sera visible dans les 24 heures suivant la réception de votre paiement.",
     },
     {
       question: "Est-ce un paiement unique ou un abonnement ?",
-      answer:
-        "C'est un paiement unique de 500 DH. Votre agence restera visible à vie sur notre plateforme, sans frais supplémentaires ni abonnement mensuel.",
+      answer: "C'est un paiement unique de 500 DH. Pas de frais mensuels ni d'abonnement.",
     },
     {
-      question: "Puis-je modifier mes informations après inscription ?",
-      answer:
-        "Oui, vous pouvez nous contacter à tout moment via WhatsApp pour mettre à jour les informations de votre agence gratuitement.",
+      question: "Puis-je modifier mes informations ?",
+      answer: "Oui, contactez-nous via WhatsApp pour mettre à jour vos informations gratuitement.",
     },
     {
-      question: "Quels moyens de paiement acceptez-vous ?",
-      answer:
-        "Nous acceptons les virements bancaires vers notre compte BMCE. Les coordonnées complètes sont disponibles dans la section paiement ci-dessous.",
-    },
-    {
-      question: "Comment les clients me contacteront-ils ?",
-      answer:
-        "Vos coordonnées (téléphone, email, site web) seront affichées sur votre page dédiée. Les clients pourront vous contacter directement via ces canaux.",
+      question: "Comment les clients me contacteront ?",
+      answer: "Vos coordonnées seront affichées sur votre page. Les clients vous contactent directement.",
     },
   ];
 
   const includedFeatures = [
     "Page dédiée pour votre agence",
-    "Affichage de vos coordonnées complètes",
+    "Coordonnées complètes affichées",
     "Lien vers votre site web",
     "Visibilité sur Google",
-    "Exposition aux clients internationaux",
-    "Support dédié",
+    "Clients internationaux",
+    "Support WhatsApp",
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-red-700 via-red-600 to-green-700 overflow-hidden">
-        {/* Moroccan Pattern Overlay */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
+      <section className="relative bg-slate-900 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?w=1920"
+            alt="Morocco"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/95 to-slate-900/80" />
+        </div>
 
-        {/* CAN 2025 Morocco Background Image */}
-        <div
-          className="absolute inset-0 opacity-25"
-          style={{
-            backgroundImage:
-              "url('https://www.financialafrik.com/wp-content/uploads/2024/09/CAN-2025-Maroc.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-
-        <div className="relative max-w-7xl mx-auto px-4 py-20 lg:py-28">
+        <div className="relative max-w-6xl mx-auto px-4 py-16 lg:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="text-white">
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                <span className="text-2xl">🇲🇦</span>
-                <span className="text-sm font-medium">
-                  Offre spéciale CAN 2025 Maroc ⚽
+            <div>
+              <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
+                <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                <span className="text-emerald-400 text-sm font-medium">
+                  CAN 2025 — Opportunité unique
                 </span>
               </div>
 
-              <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
-                Référencez Votre{" "}
-                <span className="text-yellow-400">Agence de Voyage</span> sur
-                l'Annuaire Mondial
+              <h1 className="text-3xl lg:text-5xl font-bold text-white leading-tight mb-6">
+                Référencez votre agence sur l'annuaire mondial
               </h1>
 
-              <p className="text-lg text-white/90 mb-8">
-                Augmentez votre visibilité internationale et attirez des clients
-                du monde entier grâce à notre plateforme dédiée aux agences de
-                voyage.
+              <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+                Rejoignez plus de 3800 agences de voyage déjà présentes sur TravelAgencies.World 
+                et attirez des clients du monde entier.
               </p>
 
-              {/* Price Badge */}
-              <div className="inline-block mb-8">
-                <div className="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full text-3xl font-bold shadow-xl animate-pulse">
-                  💰 Seulement 500 DH
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-4 text-sm">
+              <div className="flex flex-wrap gap-6 text-slate-400 text-sm mb-8">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-yellow-400" />
+                  <Check className="w-4 h-4 text-emerald-500" />
                   <span>Inscription à vie</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-yellow-400" />
-                  <span>Visibilité mondiale</span>
+                  <Check className="w-4 h-4 text-emerald-500" />
+                  <span>Activation 24h</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-yellow-400" />
-                  <span>Activation sous 24h</span>
+                  <Check className="w-4 h-4 text-emerald-500" />
+                  <span>Sans abonnement</span>
                 </div>
               </div>
-            </div>
 
-            {/* Right Card */}
-            <div className="bg-white rounded-3xl p-8 shadow-2xl">
-              <div className="flex items-center gap-3 mb-6">
-                <Star className="w-8 h-8 text-yellow-500 fill-yellow-500" />
-                <h3 className="text-xl font-bold text-gray-900">
-                  Ce qui est inclus
-                </h3>
-              </div>
-
-              <ul className="space-y-4">
-                {includedFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-8">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href={googleFormUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                >
+                  Remplir le formulaire
+                  <ArrowRight className="w-4 h-4" />
+                </a>
                 <a
                   href="#paiement"
-                  className="w-full bg-gradient-to-r from-red-600 to-green-600 text-white py-4 px-6 rounded-xl font-semibold text-lg flex items-center justify-center gap-2 hover:shadow-lg transition-all"
+                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-medium transition-colors border border-white/20"
                 >
-                  S'inscrire maintenant
-                  <ArrowRight className="w-5 h-5" />
+                  Voir le tarif
                 </a>
               </div>
             </div>
+
+            {/* Pricing Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-2xl">
+              <div className="text-center mb-6">
+                <div className="text-sm text-slate-500 mb-1">Prix unique</div>
+                <div className="text-5xl font-bold text-slate-900">500 <span className="text-2xl">DH</span></div>
+                <div className="text-slate-500 mt-1">Inscription à vie</div>
+              </div>
+
+              <div className="border-t border-slate-100 pt-6">
+                <ul className="space-y-3">
+                  {includedFeatures.map((feature, index) => (
+                    <li key={index} className="flex items-center gap-3 text-slate-700">
+                      <Check className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <a
+                href={googleFormUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 w-full inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white py-4 rounded-lg font-semibold transition-colors"
+              >
+                Commencer l'inscription
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
-
-        {/* Flag Bar */}
-        <div className="h-2 bg-gradient-to-r from-red-600 via-red-600 to-green-600" />
       </section>
 
-      {/* CAN 2025 Section */}
-      <section className="py-12 bg-gradient-to-r from-green-800 to-green-600 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img
-            src="https://i0.wp.com/media.lequipe.fr/img-photo-jpg/-eric-music-for-press-press-sports-press-sports-via-afp/1500000001941952/0:0,1996:1331-828-552-75/92cc5.jpg"
-            alt="CAN 2025"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+      {/* CAN 2025 Banner */}
+      <section className="bg-emerald-600 py-6">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-white text-center md:text-left">
-              <div className="flex items-center gap-3 mb-4 justify-center md:justify-start">
-                <span className="text-4xl">⚽</span>
-                <h3 className="text-2xl lg:text-3xl font-bold">
-                  CAN 2025 au Maroc !
-                </h3>
-                <span className="text-4xl">🏆</span>
-              </div>
-              <p className="text-lg text-white/90 max-w-xl">
-                Des millions de supporters vont visiter le Maroc pendant la Coupe d'Afrique des Nations. 
-                <strong> C'est le moment idéal pour référencer votre agence !</strong>
-              </p>
+              <p className="font-semibold">CAN 2025 au Maroc</p>
+              <p className="text-emerald-100 text-sm">Des millions de supporters vont visiter le pays. C'est le moment idéal pour être visible.</p>
             </div>
-            <div className="flex flex-wrap justify-center gap-4">
-              <div className="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-4 text-center">
-                <div className="text-3xl font-bold text-yellow-400">24</div>
-                <div className="text-white text-sm">Équipes</div>
+            <div className="flex gap-6 text-white">
+              <div className="text-center">
+                <div className="text-2xl font-bold">24</div>
+                <div className="text-xs text-emerald-100">Équipes</div>
               </div>
-              <div className="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-4 text-center">
-                <div className="text-3xl font-bold text-yellow-400">6</div>
-                <div className="text-white text-sm">Villes hôtes</div>
+              <div className="text-center">
+                <div className="text-2xl font-bold">6</div>
+                <div className="text-xs text-emerald-100">Villes</div>
               </div>
-              <div className="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-4 text-center">
-                <div className="text-3xl font-bold text-yellow-400">1M+</div>
-                <div className="text-white text-sm">Visiteurs attendus</div>
+              <div className="text-center">
+                <div className="text-2xl font-bold">1M+</div>
+                <div className="text-xs text-emerald-100">Visiteurs</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* Benefits */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-slate-900 mb-3">
               Pourquoi rejoindre TravelAgencies.World ?
             </h2>
-            <p className="text-gray-600 text-lg">
-              Découvrez les avantages d'être référencé sur notre annuaire
-              mondial
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Notre annuaire vous connecte avec des voyageurs du monde entier
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="bg-gray-50 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-red-500"
+                className="bg-white rounded-xl p-6 hover:shadow-lg transition-shadow"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-green-600 rounded-full flex items-center justify-center mb-4">
-                  <benefit.icon className="w-8 h-8 text-white" />
+                <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
+                  <benefit.icon className="w-6 h-6 text-emerald-600" />
                 </div>
-                <h4 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">
                   {benefit.title}
-                </h4>
-                <p className="text-gray-600">{benefit.description}</p>
+                </h3>
+                <p className="text-slate-600 text-sm">{benefit.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Steps Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4">
+      {/* How it works */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Comment ça marche ?
+            <h2 className="text-3xl font-bold text-slate-900 mb-3">
+              Comment ça marche
             </h2>
-            <p className="text-gray-600 text-lg">
-              3 étapes simples pour être référencé
-            </p>
+            <p className="text-slate-600">Trois étapes simples pour être référencé</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {steps.map((step, index) => (
-              <div key={index} className="relative text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
-                  {step.number}
+            {[
+              { step: "1", title: "Formulaire", desc: "Remplissez vos informations" },
+              { step: "2", title: "Paiement", desc: "Transférez 500 DH" },
+              { step: "3", title: "En ligne", desc: "Visible sous 24h" },
+            ].map((item, index) => (
+              <div key={index} className="text-center">
+                <div className="w-14 h-14 bg-slate-900 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                  {item.step}
                 </div>
-                <h4 className="text-xl font-semibold text-gray-900 mb-2">
-                  {step.title}
-                </h4>
-                <p className="text-gray-600">{step.description}</p>
-
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-[60%] w-[80%]">
-                    <ArrowRight className="w-8 h-8 text-red-400" />
-                  </div>
-                )}
+                <h3 className="font-semibold text-slate-900 mb-1">{item.title}</h3>
+                <p className="text-slate-500 text-sm">{item.desc}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <a
+              href={googleFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+            >
+              Commencer maintenant
+              <ArrowRight className="w-5 h-5" />
+            </a>
           </div>
         </div>
       </section>
 
       {/* Payment Section */}
-      <section id="paiement" className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-4">
-          <div className="bg-white rounded-3xl shadow-2xl border-4 border-red-600 overflow-hidden">
-            {/* Header */}
-            <div className="bg-gradient-to-r from-red-600 to-green-600 text-white text-center py-8 px-6">
-              <CreditCard className="w-12 h-12 mx-auto mb-4" />
-              <h2 className="text-2xl font-bold mb-2">
-                Informations de Paiement
-              </h2>
-              <div className="text-5xl font-bold">500 DH</div>
-              <p className="text-white/80 mt-2">
-                Paiement unique - Inscription à vie
-              </p>
+      <section id="paiement" className="py-20 bg-slate-50">
+        <div className="max-w-2xl mx-auto px-4">
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div className="bg-slate-900 text-white text-center py-8 px-6">
+              <h2 className="text-xl font-semibold mb-2">Informations de paiement</h2>
+              <div className="text-4xl font-bold">500 DH</div>
+              <p className="text-slate-400 text-sm mt-1">Paiement unique</p>
             </div>
 
-            {/* Bank Details */}
-            <div className="p-8">
-              <div className="bg-gray-50 rounded-2xl p-6 mb-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <Building className="w-6 h-6 text-red-600" />
-                  <h3 className="text-xl font-bold text-gray-900">
-                    Coordonnées Bancaires
-                  </h3>
+            <div className="p-6">
+              <div className="space-y-4">
+                <div className="flex justify-between items-center py-3 border-b border-slate-100">
+                  <span className="text-slate-500">Titulaire</span>
+                  <span className="font-medium text-slate-900">M. OUSSAMA MOUNAJJIM</span>
                 </div>
 
-                <div className="space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 border-b border-dashed border-gray-300">
-                    <span className="text-gray-500 font-medium">
-                      Type de compte
-                    </span>
-                    <span className="text-gray-900 font-semibold">
-                      Compte Chèque Particulier
-                    </span>
-                  </div>
+                <div className="flex justify-between items-center py-3 border-b border-slate-100">
+                  <span className="text-slate-500">Banque</span>
+                  <span className="font-medium text-slate-900">BMCE</span>
+                </div>
 
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 border-b border-dashed border-gray-300">
-                    <span className="text-gray-500 font-medium">Titulaire</span>
-                    <span className="text-gray-900 font-semibold">
-                      M. OUSSAMA MOUNAJJIM
-                    </span>
+                <div className="py-3 border-b border-slate-100">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-slate-500">RIB</span>
+                    <button
+                      onClick={() => copyToClipboard("011791000002200000291419", "rib")}
+                      className="text-emerald-600 hover:text-emerald-700 text-sm flex items-center gap-1"
+                    >
+                      {copiedField === "rib" ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                      {copiedField === "rib" ? "Copié" : "Copier"}
+                    </button>
                   </div>
+                  <code className="text-slate-900 text-sm bg-slate-100 px-3 py-2 rounded block font-mono">
+                    011 791 0000022000002914 19
+                  </code>
+                </div>
 
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 border-b border-dashed border-gray-300 gap-2">
-                    <span className="text-gray-500 font-medium">RIB</span>
-                    <div className="flex items-center gap-2">
-                      <code className="text-gray-900 font-mono text-sm bg-gray-200 px-2 py-1 rounded">
-                        011 791 0000022000002914 19
-                      </code>
-                      <button
-                        onClick={() =>
-                          copyToClipboard("011791000002200000291419", "rib")
-                        }
-                        className="bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition-colors"
-                      >
-                        {copiedField === "rib" ? (
-                          <CheckCircle className="w-4 h-4" />
-                        ) : (
-                          <Copy className="w-4 h-4" />
-                        )}
-                      </button>
-                    </div>
+                <div className="py-3 border-b border-slate-100">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-slate-500">IBAN</span>
+                    <button
+                      onClick={() => copyToClipboard("MA64011791000002200000291419", "iban")}
+                      className="text-emerald-600 hover:text-emerald-700 text-sm flex items-center gap-1"
+                    >
+                      {copiedField === "iban" ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                      {copiedField === "iban" ? "Copié" : "Copier"}
+                    </button>
                   </div>
+                  <code className="text-slate-900 text-sm bg-slate-100 px-3 py-2 rounded block font-mono break-all">
+                    MA64 0117 9100 0002 2000 0029 1419
+                  </code>
+                </div>
 
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 border-b border-dashed border-gray-300 gap-2">
-                    <span className="text-gray-500 font-medium">IBAN</span>
-                    <div className="flex items-center gap-2">
-                      <code className="text-gray-900 font-mono text-sm bg-gray-200 px-2 py-1 rounded break-all">
-                        MA64 0117 9100 0002 2000 0029 1419
-                      </code>
-                      <button
-                        onClick={() =>
-                          copyToClipboard(
-                            "MA64011791000002200000291419",
-                            "iban"
-                          )
-                        }
-                        className="bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition-colors flex-shrink-0"
-                      >
-                        {copiedField === "iban" ? (
-                          <CheckCircle className="w-4 h-4" />
-                        ) : (
-                          <Copy className="w-4 h-4" />
-                        )}
-                      </button>
-                    </div>
+                <div className="py-3">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-slate-500">BIC</span>
+                    <button
+                      onClick={() => copyToClipboard("BMCEMAMC", "bic")}
+                      className="text-emerald-600 hover:text-emerald-700 text-sm flex items-center gap-1"
+                    >
+                      {copiedField === "bic" ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                      {copiedField === "bic" ? "Copié" : "Copier"}
+                    </button>
                   </div>
-
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-3 gap-2">
-                    <span className="text-gray-500 font-medium">BIC</span>
-                    <div className="flex items-center gap-2">
-                      <code className="text-gray-900 font-mono text-sm bg-gray-200 px-2 py-1 rounded">
-                        BMCEMAMC
-                      </code>
-                      <button
-                        onClick={() => copyToClipboard("BMCEMAMC", "bic")}
-                        className="bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition-colors"
-                      >
-                        {copiedField === "bic" ? (
-                          <CheckCircle className="w-4 h-4" />
-                        ) : (
-                          <Copy className="w-4 h-4" />
-                        )}
-                      </button>
-                    </div>
-                  </div>
+                  <code className="text-slate-900 text-sm bg-slate-100 px-3 py-2 rounded block font-mono">
+                    BMCEMAMC
+                  </code>
                 </div>
               </div>
 
-              {/* WhatsApp Section */}
-              <div className="bg-green-500 rounded-2xl p-6 text-white">
-                <div className="flex items-center justify-center gap-3 mb-4">
-                  <MessageCircle className="w-8 h-8" />
-                  <h3 className="text-xl font-bold">
-                    Envoyez votre reçu sur WhatsApp
-                  </h3>
-                </div>
-
-                <p className="text-center text-white/90 mb-4">
-                  Après avoir effectué le paiement, envoyez-nous le reçu
-                  accompagné des informations de votre agence :
-                </p>
-
-                <ul className="text-left mb-6 space-y-1 max-w-sm mx-auto">
-                  <li>• Nom de l'agence</li>
-                  <li>• Adresse complète</li>
-                  <li>• Numéro de téléphone</li>
-                  <li>• Email</li>
-                  <li>• Site web (si disponible)</li>
-                  <li>• Description de vos services</li>
-                </ul>
-
-                <div className="text-center mb-6">
-                  <div className="inline-flex items-center gap-2 text-3xl font-bold">
-                    <Phone className="w-8 h-8" />
-                    +33 7 45 07 56 68
+              {/* WhatsApp */}
+              <div className="mt-8 p-6 bg-slate-50 rounded-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-slate-900">Envoyez votre reçu</p>
+                    <p className="text-slate-500 text-sm">+33 7 45 07 56 68</p>
                   </div>
                 </div>
-
                 <a
                   href="https://wa.me/33745075668?text=Bonjour%2C%20je%20souhaite%20référencer%20mon%20agence%20de%20voyage%20sur%20TravelAgencies.World.%20Voici%20mon%20reçu%20de%20paiement%20%3A"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full bg-white text-green-600 py-4 px-6 rounded-xl font-bold text-lg text-center hover:shadow-xl transition-all"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-medium transition-colors"
                 >
-                  <span className="flex items-center justify-center gap-2">
-                    <MessageCircle className="w-6 h-6" />
-                    Envoyer sur WhatsApp
-                  </span>
+                  Ouvrir WhatsApp
+                  <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -494,34 +382,29 @@ export default function InscriptionMaroc() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Questions Fréquentes
-            </h2>
-          </div>
+      {/* FAQ */}
+      <section className="py-20 bg-white">
+        <div className="max-w-2xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-slate-900 text-center mb-12">
+            Questions fréquentes
+          </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl shadow-md overflow-hidden"
-              >
+              <div key={index} className="border border-slate-200 rounded-lg overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full flex items-center justify-between p-6 text-left font-semibold text-gray-900 hover:text-red-600 transition-colors"
+                  className="w-full flex items-center justify-between p-5 text-left font-medium text-slate-900 hover:bg-slate-50 transition-colors"
                 >
                   {faq.question}
                   <ChevronDown
-                    className={`w-5 h-5 transition-transform ${
+                    className={`w-5 h-5 text-slate-400 transition-transform ${
                       openFaq === index ? "rotate-180" : ""
                     }`}
                   />
                 </button>
                 {openFaq === index && (
-                  <div className="px-6 pb-6 text-gray-600">{faq.answer}</div>
+                  <div className="px-5 pb-5 text-slate-600">{faq.answer}</div>
                 )}
               </div>
             ))}
@@ -530,34 +413,33 @@ export default function InscriptionMaroc() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 bg-gradient-to-r from-red-600 to-green-600 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-15">
-          <img
-            src="https://www.financialafrik.com/wp-content/uploads/2024/09/CAN-2025-Maroc.jpg"
-            alt="CAN 2025 Morocco"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="max-w-4xl mx-auto px-4 text-center text-white relative z-10">
-          <div className="text-5xl mb-4">🇲🇦 ⚽ 🏆</div>
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Prêt à profiter de la CAN 2025 ?
+      <section className="py-16 bg-slate-900">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Prêt à développer votre clientèle ?
           </h2>
-          <p className="text-lg text-white/90 mb-8">
-            Des millions de supporters africains vont visiter le Maroc. Soyez visible et attirez ces nouveaux clients !
+          <p className="text-slate-400 mb-8 max-w-xl mx-auto">
+            Rejoignez les agences de voyage déjà présentes sur TravelAgencies.World
           </p>
-          <a
-            href="#paiement"
-            className="inline-flex items-center gap-2 bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition-all shadow-xl"
-          >
-            S'inscrire pour 500 DH
-            <ArrowRight className="w-5 h-5" />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href={googleFormUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+            >
+              S'inscrire maintenant
+              <ArrowRight className="w-5 h-5" />
+            </a>
+            <a
+              href="#paiement"
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+            >
+              Voir les tarifs
+            </a>
+          </div>
         </div>
       </section>
-
-      {/* Flag Bar */}
-      <div className="h-2 bg-gradient-to-r from-red-600 via-red-600 to-green-600" />
     </div>
   );
 }

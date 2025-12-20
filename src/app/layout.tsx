@@ -15,11 +15,11 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    default: "TravelAgencies.World - 4000+ Verified Travel Agencies Worldwide | Find & Compare",
+    default: "TravelAgencies.World - 3800+ Verified Travel Agencies Worldwide | Find & Compare",
     template: "%s | TravelAgencies.World",
   },
   description:
-    "Find and compare 4000+ verified travel agencies worldwide. Browse top-rated agencies in Morocco, France, USA, Canada, UK, Spain & more. Real Google reviews, ratings & direct contact info. Free directory.",
+    "Find and compare 3800+ verified travel agencies worldwide. Browse top-rated agencies in France, USA, Canada, UK, Spain & more. Real Google reviews, ratings & direct contact info. Free directory.",
   keywords: [
     "travel agencies",
     "tour operators",
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "TravelAgencies.World - 4000+ Verified Travel Agencies Worldwide",
+    title: "TravelAgencies.World - 3800+ Verified Travel Agencies Worldwide",
     description:
-      "Find and compare 4000+ verified travel agencies in Morocco, France, USA, Canada, UK & more. Real reviews, ratings & direct contact info. Free directory.",
+      "Find and compare 3800+ verified travel agencies in France, USA, Canada, UK & more. Real reviews, ratings & direct contact info. Free directory.",
     url: "https://www.travelagencies.world",
     siteName: "TravelAgencies.World",
     images: [
@@ -71,9 +71,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TravelAgencies.World - 4000+ Verified Travel Agencies",
+    title: "TravelAgencies.World - 3800+ Verified Travel Agencies",
     description:
-      "Find verified travel agencies in Morocco, France, USA, Canada & worldwide. Compare reviews, ratings & contact directly. Free to use.",
+      "Find verified travel agencies in France, USA, Canada & worldwide. Compare reviews, ratings & contact directly. Free to use.",
     images: ["/og-image.jpg"],
     creator: "@orioustrategy",
   },
@@ -100,7 +100,7 @@ const organizationSchema = {
   name: "TravelAgencies.World",
   url: "https://www.travelagencies.world",
   logo: "https://www.travelagencies.world/travellogos/travelagencies-text-blue-white-nbackground.png",
-  description: "Free directory of 4000+ verified travel agencies worldwide with Google reviews and ratings",
+  description: "Free directory of 3800+ verified travel agencies worldwide with Google reviews and ratings",
   foundingDate: "2024",
   sameAs: [
     "https://www.instagram.com/travelagenciesworld",

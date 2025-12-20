@@ -12,12 +12,12 @@ import {
 export const metadata: Metadata = {
   title: "About Us - TravelAgencies.World | Free Travel Agency Directory",
   description:
-    "Learn about TravelAgencies.World, the leading free global directory with 4000+ verified travel agencies. Find agencies in Morocco, France, USA, Canada & more. Built by Orious Strategy.",
+    "Learn about TravelAgencies.World, the leading free global directory with 3800+ verified travel agencies. Find agencies in France, USA, Canada & more. Built by Orious Strategy.",
 };
 
 export default function AboutPage() {
   const stats = [
-    { value: "4000+", label: "Travel Agencies" },
+    { value: "3800+", label: "Travel Agencies" },
     { value: "50+", label: "Countries Covered" },
     { value: "10K+", label: "Monthly Visitors" },
     { value: "4.5", label: "Average Rating" },

@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Browse 4000+ Travel Agencies - Find & Compare Tour Operators Worldwide",
+  title: "Browse 3800+ Travel Agencies - Find & Compare Tour Operators Worldwide",
   description:
-    "Search and compare 4000+ verified travel agencies worldwide. Filter by country, city, rating, and specialty. Morocco (1500+), France (800+), USA (500+), Canada (200+). Real reviews, direct contact. Free directory.",
+    "Search and compare 3800+ verified travel agencies worldwide. Filter by country, city, rating, and specialty. France (800+), USA (500+), Canada (200+). Real reviews, direct contact. Free directory.",
   keywords: [
     "travel agencies directory",
     "find travel agency",
@@ -22,17 +22,17 @@ export const metadata: Metadata = {
     "worldwide tour operators",
   ],
   openGraph: {
-    title: "Browse 4000+ Travel Agencies - Find & Compare Worldwide",
+    title: "Browse 3800+ Travel Agencies - Find & Compare Worldwide",
     description:
-      "Search 4000+ verified travel agencies. Morocco, France, USA, Canada & more. Filter by location, rating. Real reviews and direct contact.",
+      "Search 3800+ verified travel agencies. France, USA, Canada & more. Filter by location, rating. Real reviews and direct contact.",
     url: "https://travelagencies.world/agencies",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Browse 4000+ Travel Agencies Worldwide",
+    title: "Browse 3800+ Travel Agencies Worldwide",
     description:
-      "Search and compare 4000+ verified travel agencies. Morocco, France, USA, Canada. Filter by location, rating, specialty.",
+      "Search and compare 3800+ verified travel agencies. France, USA, Canada. Filter by location, rating, specialty.",
   },
   alternates: {
     canonical: "/agencies",

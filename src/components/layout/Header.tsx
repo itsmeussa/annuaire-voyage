@@ -29,7 +29,7 @@ export default function Header() {
             </span>
             <span className="flex items-center gap-1">
               <MapPin className="h-4 w-4" />
-              <span className="hidden sm:inline">4000+ Agencies Listed</span>
+              <span className="hidden sm:inline">3800+ Agencies Listed</span>
             </span>
           </div>
           <div className="flex items-center gap-1">

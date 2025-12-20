@@ -64,7 +64,7 @@ export default function InscriptionMaroc() {
   const faqs = [
     {
       question: "Combien de temps pour être en ligne ?",
-      answer: "Votre agence sera visible dans les 24 heures suivant la réception de votre paiement.",
+      answer: "Votre agence sera visible dans l'heure suivant la réception de votre paiement.",
     },
     {
       question: "Est-ce un paiement unique ou un abonnement ?",

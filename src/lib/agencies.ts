@@ -97,9 +97,27 @@ export function getAllAgencies(): Agency[] {
       } as Agency;
     });
 
+  // Filter Moroccan agencies: keep only top 5 by rating and reviews
+  const moroccanAgencies = agencies
+    .filter((a) => a.countryCode === "MA")
+    .sort((a, b) => {
+      // Sort by score first, then by reviews count
+      const scoreDiff = (b.totalScore || 0) - (a.totalScore || 0);
+      if (scoreDiff !== 0) return scoreDiff;
+      return (b.reviewsCount || 0) - (a.reviewsCount || 0);
+    })
+    .slice(0, 5);
+
+  const moroccanAgencyIds = new Set(moroccanAgencies.map((a) => a.id));
+
+  // Keep non-Moroccan agencies + top 5 Moroccan agencies
+  const filteredAgencies = agencies.filter(
+    (a) => a.countryCode !== "MA" || moroccanAgencyIds.has(a.id)
+  );
+
   // Cache the result
-  cachedAgencies = agencies;
-  return agencies;
+  cachedAgencies = filteredAgencies;
+  return filteredAgencies;
 }
 
 // Helper function to check if text contains Arabic characters

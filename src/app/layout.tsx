@@ -49,6 +49,11 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL("https://www.travelagencies.world"),
+  icons: {
+    icon: "/travellogos/travel logo icon.png",
+    shortcut: "/travellogos/travel logo icon.png",
+    apple: "/travellogos/travel logo icon.png",
+  },
   alternates: {
     canonical: "/",
   },

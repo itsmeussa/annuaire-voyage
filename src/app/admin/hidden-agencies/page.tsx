@@ -4,10 +4,11 @@ import { useEffect, useState, useMemo } from "react";
 import { Agency } from "@/types";
 import { slugify, getCountryName, getCityName } from "@/lib/utils";
 import data1 from "@/data/agencies-processed.json";
-import { ExternalLink, MapPin, Star, Phone, Globe, Eye, EyeOff, ArrowUpDown, Search, X } from "lucide-react";
+import { ExternalLink, MapPin, Star, Phone, Globe, Eye, EyeOff, ArrowUpDown, Search, X, User } from "lucide-react";
 
-type SortField = "name" | "city" | "score" | "reviews";
+type SortField = "name" | "city" | "score" | "reviews" | "assignedTo";
 type SortOrder = "asc" | "desc";
+type AssignedTo = "Zaki" | "Ussa";
 
 // Get ALL Moroccan agencies (hidden ones)
 function getAllMoroccanAgencies(): Agency[] {
@@ -81,6 +82,7 @@ export default function HiddenAgenciesPage() {
   const [cityFilter, setCityFilter] = useState<string>("");
   const [minScore, setMinScore] = useState<string>("");
   const [minReviews, setMinReviews] = useState<string>("");
+  const [assignedFilter, setAssignedFilter] = useState<"all" | "Zaki" | "Ussa">("all");
 
   useEffect(() => {
     setAgencies(getAllMoroccanAgencies());
@@ -104,6 +106,18 @@ export default function HiddenAgenciesPage() {
   const visibleIds = useMemo(() => {
     return new Set(sortedByRank.slice(0, 5).map((a) => a.id));
   }, [sortedByRank]);
+
+  // Assign hidden agencies to Zaki (first half) and Ussa (second half)
+  const hiddenAgencies = useMemo(() => {
+    return sortedByRank.filter((a) => !visibleIds.has(a.id));
+  }, [sortedByRank, visibleIds]);
+
+  const getAssignedTo = (agencyId: string): AssignedTo => {
+    const index = hiddenAgencies.findIndex((a) => a.id === agencyId);
+    if (index === -1) return "Zaki"; // visible agencies default to Zaki
+    const halfPoint = Math.ceil(hiddenAgencies.length / 2);
+    return index < halfPoint ? "Zaki" : "Ussa";
+  };
 
   // Filter and sort agencies
   const filteredAgencies = useMemo(() => {
@@ -144,6 +158,11 @@ export default function HiddenAgenciesPage() {
       result = result.filter((a) => (a.reviewsCount || 0) >= min);
     }
 
+    // Assigned to filter
+    if (assignedFilter !== "all") {
+      result = result.filter((a) => getAssignedTo(a.id) === assignedFilter);
+    }
+
     // Sort
     result.sort((a, b) => {
       let comparison = 0;
@@ -160,12 +179,15 @@ export default function HiddenAgenciesPage() {
         case "reviews":
           comparison = (a.reviewsCount || 0) - (b.reviewsCount || 0);
           break;
+        case "assignedTo":
+          comparison = getAssignedTo(a.id).localeCompare(getAssignedTo(b.id));
+          break;
       }
       return sortOrder === "asc" ? comparison : -comparison;
     });
 
     return result;
-  }, [agencies, filter, searchTerm, cityFilter, minScore, minReviews, sortField, sortOrder, visibleIds]);
+  }, [agencies, filter, searchTerm, cityFilter, minScore, minReviews, assignedFilter, sortField, sortOrder, visibleIds, hiddenAgencies]);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -182,10 +204,13 @@ export default function HiddenAgenciesPage() {
     setMinScore("");
     setMinReviews("");
     setFilter("all");
+    setAssignedFilter("all");
   };
 
   const visibleCount = 5;
   const hiddenCount = agencies.length - visibleCount;
+  const zakiCount = hiddenAgencies.slice(0, Math.ceil(hiddenAgencies.length / 2)).length;
+  const ussaCount = hiddenAgencies.length - zakiCount;
 
   const SortButton = ({ field, label }: { field: SortField; label: string }) => (
     <button
@@ -299,7 +324,42 @@ export default function HiddenAgenciesPage() {
               Cachées ({hiddenCount})
             </button>
 
-            {(searchTerm || cityFilter || minScore || minReviews || filter !== "all") && (
+            <div className="w-px h-6 bg-slate-300 mx-2"></div>
+
+            <button
+              onClick={() => setAssignedFilter("all")}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                assignedFilter === "all"
+                  ? "bg-purple-600 text-white"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              Tous
+            </button>
+            <button
+              onClick={() => setAssignedFilter("Zaki")}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1 ${
+                assignedFilter === "Zaki"
+                  ? "bg-blue-600 text-white"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              <User className="w-3 h-3" />
+              Zaki ({zakiCount})
+            </button>
+            <button
+              onClick={() => setAssignedFilter("Ussa")}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1 ${
+                assignedFilter === "Ussa"
+                  ? "bg-orange-600 text-white"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              <User className="w-3 h-3" />
+              Ussa ({ussaCount})
+            </button>
+
+            {(searchTerm || cityFilter || minScore || minReviews || filter !== "all" || assignedFilter !== "all") && (
               <button
                 onClick={clearFilters}
                 className="ml-auto px-3 py-1.5 text-sm text-slate-500 hover:text-slate-700 flex items-center gap-1"
@@ -325,6 +385,9 @@ export default function HiddenAgenciesPage() {
                   <th className="px-4 py-3 text-left text-sm font-medium text-slate-600">#</th>
                   <th className="px-4 py-3 text-left text-sm font-medium text-slate-600">Statut</th>
                   <th className="px-4 py-3 text-left">
+                    <SortButton field="assignedTo" label="Assigné" />
+                  </th>
+                  <th className="px-4 py-3 text-left">
                     <SortButton field="name" label="Agence" />
                   </th>
                   <th className="px-4 py-3 text-left">
@@ -344,6 +407,8 @@ export default function HiddenAgenciesPage() {
                 {filteredAgencies.map((agency, index) => {
                   const isVisible = visibleIds.has(agency.id);
                   const originalRank = sortedByRank.findIndex((a) => a.id === agency.id) + 1;
+                  const assignedTo = getAssignedTo(agency.id);
+                  const personName = assignedTo === "Zaki" ? "Zakaria" : "Oussama";
 
                   return (
                     <tr
@@ -363,6 +428,16 @@ export default function HiddenAgenciesPage() {
                             Caché
                           </span>
                         )}
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
+                          assignedTo === "Zaki" 
+                            ? "bg-blue-100 text-blue-700" 
+                            : "bg-orange-100 text-orange-700"
+                        }`}>
+                          <User className="w-3 h-3" />
+                          {assignedTo}
+                        </span>
                       </td>
                       <td className="px-4 py-3">
                         <div className="font-medium text-slate-900">{agency.title}</div>
@@ -391,7 +466,7 @@ export default function HiddenAgenciesPage() {
                         {agency.phone ? (
                           <a
                             href={`https://wa.me/${formatPhoneForWhatsApp(agency.phone)}?text=${encodeURIComponent(
-                              `Bonjour ${agency.title}, je vous contacte depuis TravelAgencies.World concernant votre référencement sur notre annuaire mondial des agences de voyage.`
+                              `Salam, ana ${personName} cheft khdma dialk f ${agency.title} dakchi mzyan tbarklah elik, ila kan eandk chwiya dl waqt tchuf had l audio : `
                             )}`}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -439,7 +514,7 @@ export default function HiddenAgenciesPage() {
         {/* Summary */}
         <div className="mt-8 p-6 bg-white rounded-xl">
           <h2 className="font-semibold text-slate-900 mb-4">Résumé</h2>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-5 gap-4">
             <div className="p-4 bg-slate-50 rounded-lg">
               <div className="text-2xl font-bold text-slate-900">{agencies.length}</div>
               <div className="text-sm text-slate-500">Total agences marocaines</div>
@@ -451,6 +526,14 @@ export default function HiddenAgenciesPage() {
             <div className="p-4 bg-red-50 rounded-lg">
               <div className="text-2xl font-bold text-red-600">{hiddenCount}</div>
               <div className="text-sm text-red-700">Actuellement cachées</div>
+            </div>
+            <div className="p-4 bg-blue-50 rounded-lg">
+              <div className="text-2xl font-bold text-blue-600">{zakiCount}</div>
+              <div className="text-sm text-blue-700">Assignées à Zaki</div>
+            </div>
+            <div className="p-4 bg-orange-50 rounded-lg">
+              <div className="text-2xl font-bold text-orange-600">{ussaCount}</div>
+              <div className="text-sm text-orange-700">Assignées à Ussa</div>
             </div>
           </div>
           <p className="mt-4 text-sm text-slate-500">

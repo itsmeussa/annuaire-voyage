@@ -8,7 +8,7 @@ import { ExternalLink, MapPin, Star, Phone, Globe, Eye, EyeOff, ArrowUpDown, Sea
 
 type SortField = "name" | "city" | "score" | "reviews" | "assignedTo";
 type SortOrder = "asc" | "desc";
-type AssignedTo = "Zaki" | "Ussa";
+type AssignedTo = "Aya" | "Zaki" | "Ussa";
 
 // Get ALL Moroccan agencies (hidden ones)
 function getAllMoroccanAgencies(): Agency[] {
@@ -82,7 +82,7 @@ export default function HiddenAgenciesPage() {
   const [cityFilter, setCityFilter] = useState<string>("");
   const [minScore, setMinScore] = useState<string>("");
   const [minReviews, setMinReviews] = useState<string>("");
-  const [assignedFilter, setAssignedFilter] = useState<"all" | "Zaki" | "Ussa">("all");
+  const [assignedFilter, setAssignedFilter] = useState<"all" | "Aya" | "Zaki" | "Ussa">("all");
 
   useEffect(() => {
     setAgencies(getAllMoroccanAgencies());
@@ -114,9 +114,12 @@ export default function HiddenAgenciesPage() {
 
   const getAssignedTo = (agencyId: string): AssignedTo => {
     const index = hiddenAgencies.findIndex((a) => a.id === agencyId);
-    if (index === -1) return "Zaki"; // visible agencies default to Zaki
+    if (index === -1) return "Aya"; // visible agencies default to Aya
+    const quarterPoint = Math.ceil(hiddenAgencies.length / 4);
     const halfPoint = Math.ceil(hiddenAgencies.length / 2);
-    return index < halfPoint ? "Zaki" : "Ussa";
+    if (index < quarterPoint) return "Aya";
+    if (index < halfPoint) return "Zaki";
+    return "Ussa";
   };
 
   // Filter and sort agencies
@@ -209,8 +212,11 @@ export default function HiddenAgenciesPage() {
 
   const visibleCount = 5;
   const hiddenCount = agencies.length - visibleCount;
-  const zakiCount = hiddenAgencies.slice(0, Math.ceil(hiddenAgencies.length / 2)).length;
-  const ussaCount = hiddenAgencies.length - zakiCount;
+  const quarterPoint = Math.ceil(hiddenAgencies.length / 4);
+  const halfPoint = Math.ceil(hiddenAgencies.length / 2);
+  const ayaCount = quarterPoint;
+  const zakiCount = halfPoint - quarterPoint;
+  const ussaCount = hiddenAgencies.length - halfPoint;
 
   const SortButton = ({ field, label }: { field: SortField; label: string }) => (
     <button
@@ -337,6 +343,17 @@ export default function HiddenAgenciesPage() {
               Tous
             </button>
             <button
+              onClick={() => setAssignedFilter("Aya")}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1 ${
+                assignedFilter === "Aya"
+                  ? "bg-pink-600 text-white"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              <User className="w-3 h-3" />
+              Aya ({ayaCount})
+            </button>
+            <button
               onClick={() => setAssignedFilter("Zaki")}
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1 ${
                 assignedFilter === "Zaki"
@@ -408,7 +425,7 @@ export default function HiddenAgenciesPage() {
                   const isVisible = visibleIds.has(agency.id);
                   const originalRank = sortedByRank.findIndex((a) => a.id === agency.id) + 1;
                   const assignedTo = getAssignedTo(agency.id);
-                  const personName = assignedTo === "Zaki" ? "Zakaria" : "Oussama";
+                  const personName = assignedTo === "Aya" ? "Aya" : assignedTo === "Zaki" ? "Zakaria" : "Oussama";
 
                   return (
                     <tr
@@ -431,7 +448,9 @@ export default function HiddenAgenciesPage() {
                       </td>
                       <td className="px-4 py-3">
                         <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
-                          assignedTo === "Zaki" 
+                          assignedTo === "Aya" 
+                            ? "bg-pink-100 text-pink-700" 
+                            : assignedTo === "Zaki" 
                             ? "bg-blue-100 text-blue-700" 
                             : "bg-orange-100 text-orange-700"
                         }`}>
@@ -514,7 +533,7 @@ export default function HiddenAgenciesPage() {
         {/* Summary */}
         <div className="mt-8 p-6 bg-white rounded-xl">
           <h2 className="font-semibold text-slate-900 mb-4">Résumé</h2>
-          <div className="grid md:grid-cols-5 gap-4">
+          <div className="grid md:grid-cols-6 gap-4">
             <div className="p-4 bg-slate-50 rounded-lg">
               <div className="text-2xl font-bold text-slate-900">{agencies.length}</div>
               <div className="text-sm text-slate-500">Total agences marocaines</div>
@@ -526,6 +545,10 @@ export default function HiddenAgenciesPage() {
             <div className="p-4 bg-red-50 rounded-lg">
               <div className="text-2xl font-bold text-red-600">{hiddenCount}</div>
               <div className="text-sm text-red-700">Actuellement cachées</div>
+            </div>
+            <div className="p-4 bg-pink-50 rounded-lg">
+              <div className="text-2xl font-bold text-pink-600">{ayaCount}</div>
+              <div className="text-sm text-pink-700">Assignées à Aya</div>
             </div>
             <div className="p-4 bg-blue-50 rounded-lg">
               <div className="text-2xl font-bold text-blue-600">{zakiCount}</div>

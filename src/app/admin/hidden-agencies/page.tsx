@@ -3,12 +3,20 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { Agency } from "@/types";
 import { slugify, getCountryName, getCityName } from "@/lib/utils";
+import { supabase } from "@/lib/supabase";
 import data1 from "@/data/agencies-processed.json";
-import { ExternalLink, MapPin, Star, Phone, Globe, Eye, EyeOff, ArrowUpDown, Search, X, User, Check } from "lucide-react";
+import { ExternalLink, MapPin, Star, Phone, Globe, Eye, EyeOff, ArrowUpDown, Search, X, User, Check, RefreshCw, Lock, LogOut } from "lucide-react";
 
 type SortField = "name" | "city" | "score" | "reviews" | "assignedTo" | "contacted";
 type SortOrder = "asc" | "desc";
 type AssignedTo = "Aya" | "Zaki" | "Ussa";
+
+// User profiles with passwords
+const USER_PROFILES: { name: AssignedTo; password: string; color: string; bgColor: string; borderColor: string }[] = [
+  { name: "Aya", password: "aya2024", color: "text-pink-600", bgColor: "bg-pink-500", borderColor: "border-pink-500" },
+  { name: "Zaki", password: "zaki2024", color: "text-blue-600", bgColor: "bg-blue-500", borderColor: "border-blue-500" },
+  { name: "Ussa", password: "ussa2024", color: "text-orange-600", bgColor: "bg-orange-500", borderColor: "border-orange-500" },
+];
 
 interface ContactedAgency {
   id: string;
@@ -23,9 +31,6 @@ interface TriedAgency {
   triedBy: string;
   triedAt: string;
 }
-
-const STORAGE_KEY = "contacted-agencies";
-const TRIED_STORAGE_KEY = "tried-agencies";
 
 // Get ALL Moroccan agencies (hidden ones)
 function getAllMoroccanAgencies(): Agency[] {
@@ -91,6 +96,12 @@ function formatPhoneForWhatsApp(phone: string): string {
 }
 
 export default function HiddenAgenciesPage() {
+  // Authentication state
+  const [currentUser, setCurrentUser] = useState<AssignedTo | null>(null);
+  const [passwordInput, setPasswordInput] = useState("");
+  const [loginError, setLoginError] = useState("");
+  const [selectedProfile, setSelectedProfile] = useState<AssignedTo>("Aya");
+
   const [agencies, setAgencies] = useState<Agency[]>([]);
   const [filter, setFilter] = useState<"all" | "visible" | "hidden">("all");
   const [sortField, setSortField] = useState<SortField>("score");
@@ -107,95 +118,219 @@ export default function HiddenAgenciesPage() {
   const [whatsappFilter, setWhatsappFilter] = useState<"all" | "with" | "without">("all");
   const [triedAgencies, setTriedAgencies] = useState<Record<string, TriedAgency>>({});
   const [triedFilter, setTriedFilter] = useState<"all" | "tried" | "not-tried">("all");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSyncing, setIsSyncing] = useState(false);
 
-  // Load contacted agencies from localStorage
-  const loadContactedAgencies = useCallback(() => {
+  // Check for saved session on mount
+  useEffect(() => {
+    const savedUser = localStorage.getItem("admin-user");
+    if (savedUser && ["Aya", "Zaki", "Ussa"].includes(savedUser)) {
+      setCurrentUser(savedUser as AssignedTo);
+    }
+  }, []);
+
+  // Get current user profile
+  const currentUserProfile = useMemo(() => {
+    return USER_PROFILES.find(p => p.name === currentUser);
+  }, [currentUser]);
+
+  // Login handler
+  const handleLogin = () => {
+    const profile = USER_PROFILES.find(p => p.name === selectedProfile);
+    if (profile && passwordInput === profile.password) {
+      setCurrentUser(selectedProfile);
+      localStorage.setItem("admin-user", selectedProfile);
+      setLoginError("");
+      setPasswordInput("");
+    } else {
+      setLoginError("Mot de passe incorrect");
+    }
+  };
+
+  // Logout handler
+  const handleLogout = () => {
+    setCurrentUser(null);
+    localStorage.removeItem("admin-user");
+  };
+
+  // Load contacted agencies from Supabase
+  const loadContactedAgencies = useCallback(async () => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        setContactedAgencies(JSON.parse(stored));
-      }
+      const { data, error } = await supabase
+        .from('contacted_agencies')
+        .select('*');
+      
+      if (error) throw error;
+      
+      const contactedMap: Record<string, ContactedAgency> = {};
+      data?.forEach((record) => {
+        contactedMap[record.agency_id] = {
+          id: record.agency_id,
+          contacted: record.contacted,
+          contactedBy: record.contacted_by,
+          contactedAt: record.contacted_at,
+        };
+      });
+      setContactedAgencies(contactedMap);
     } catch (error) {
       console.error("Error loading contacted agencies:", error);
     }
   }, []);
 
-  // Save contacted agencies to localStorage
-  const saveContactedAgencies = useCallback((data: Record<string, ContactedAgency>) => {
+  // Load tried agencies from Supabase
+  const loadTriedAgencies = useCallback(async () => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    } catch (error) {
-      console.error("Error saving contacted agencies:", error);
-    }
-  }, []);
-
-  // Load tried agencies from localStorage
-  const loadTriedAgencies = useCallback(() => {
-    try {
-      const stored = localStorage.getItem(TRIED_STORAGE_KEY);
-      if (stored) {
-        setTriedAgencies(JSON.parse(stored));
-      }
+      const { data, error } = await supabase
+        .from('tried_agencies')
+        .select('*');
+      
+      if (error) throw error;
+      
+      const triedMap: Record<string, TriedAgency> = {};
+      data?.forEach((record) => {
+        triedMap[record.agency_id] = {
+          id: record.agency_id,
+          tried: record.tried,
+          triedBy: record.tried_by,
+          triedAt: record.tried_at,
+        };
+      });
+      setTriedAgencies(triedMap);
     } catch (error) {
       console.error("Error loading tried agencies:", error);
     }
   }, []);
 
-  // Save tried agencies to localStorage
-  const saveTriedAgencies = useCallback((data: Record<string, TriedAgency>) => {
-    try {
-      localStorage.setItem(TRIED_STORAGE_KEY, JSON.stringify(data));
-    } catch (error) {
-      console.error("Error saving tried agencies:", error);
-    }
-  }, []);
+  // Refresh data from Supabase
+  const refreshData = async () => {
+    setIsSyncing(true);
+    await Promise.all([loadContactedAgencies(), loadTriedAgencies()]);
+    setIsSyncing(false);
+  };
 
   useEffect(() => {
-    setAgencies(getAllMoroccanAgencies());
-    loadContactedAgencies();
-    loadTriedAgencies();
+    const init = async () => {
+      setAgencies(getAllMoroccanAgencies());
+      await Promise.all([loadContactedAgencies(), loadTriedAgencies()]);
+      setIsLoading(false);
+    };
+    init();
+
+    // Subscribe to real-time changes
+    const contactedSubscription = supabase
+      .channel('contacted_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'contacted_agencies' }, () => {
+        loadContactedAgencies();
+      })
+      .subscribe();
+
+    const triedSubscription = supabase
+      .channel('tried_changes')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'tried_agencies' }, () => {
+        loadTriedAgencies();
+      })
+      .subscribe();
+
+    return () => {
+      contactedSubscription.unsubscribe();
+      triedSubscription.unsubscribe();
+    };
   }, [loadContactedAgencies, loadTriedAgencies]);
 
   // Toggle contacted status
-  const toggleContacted = (agencyId: string, assignedTo: AssignedTo) => {
+  const toggleContacted = async (agencyId: string) => {
+    if (!currentUser) return;
     const isCurrentlyContacted = !!contactedAgencies[agencyId]?.contacted;
     
-    const newData = { ...contactedAgencies };
-    
-    if (!isCurrentlyContacted) {
-      newData[agencyId] = {
-        id: agencyId,
-        contacted: true,
-        contactedBy: assignedTo,
-        contactedAt: new Date().toISOString(),
-      };
-    } else {
-      delete newData[agencyId];
+    try {
+      if (!isCurrentlyContacted) {
+        // Insert new record
+        const { error } = await supabase
+          .from('contacted_agencies')
+          .upsert({
+            agency_id: agencyId,
+            contacted: true,
+            contacted_by: currentUser,
+            contacted_at: new Date().toISOString(),
+          });
+        
+        if (error) throw error;
+        
+        setContactedAgencies(prev => ({
+          ...prev,
+          [agencyId]: {
+            id: agencyId,
+            contacted: true,
+            contactedBy: currentUser,
+            contactedAt: new Date().toISOString(),
+          }
+        }));
+      } else {
+        // Delete record
+        const { error } = await supabase
+          .from('contacted_agencies')
+          .delete()
+          .eq('agency_id', agencyId);
+        
+        if (error) throw error;
+        
+        setContactedAgencies(prev => {
+          const newData = { ...prev };
+          delete newData[agencyId];
+          return newData;
+        });
+      }
+    } catch (error) {
+      console.error("Error toggling contacted status:", error);
     }
-    
-    setContactedAgencies(newData);
-    saveContactedAgencies(newData);
   };
 
-  // Toggle tried status (for agencies without WhatsApp)
-  const toggleTried = (agencyId: string, assignedTo: AssignedTo) => {
+  // Toggle tried status
+  const toggleTried = async (agencyId: string) => {
+    if (!currentUser) return;
     const isCurrentlyTried = !!triedAgencies[agencyId]?.tried;
     
-    const newData = { ...triedAgencies };
-    
-    if (!isCurrentlyTried) {
-      newData[agencyId] = {
-        id: agencyId,
-        tried: true,
-        triedBy: assignedTo,
-        triedAt: new Date().toISOString(),
-      };
-    } else {
-      delete newData[agencyId];
+    try {
+      if (!isCurrentlyTried) {
+        // Insert new record
+        const { error } = await supabase
+          .from('tried_agencies')
+          .upsert({
+            agency_id: agencyId,
+            tried: true,
+            tried_by: currentUser,
+            tried_at: new Date().toISOString(),
+          });
+        
+        if (error) throw error;
+        
+        setTriedAgencies(prev => ({
+          ...prev,
+          [agencyId]: {
+            id: agencyId,
+            tried: true,
+            triedBy: currentUser,
+            triedAt: new Date().toISOString(),
+          }
+        }));
+      } else {
+        // Delete record
+        const { error } = await supabase
+          .from('tried_agencies')
+          .delete()
+          .eq('agency_id', agencyId);
+        
+        if (error) throw error;
+        
+        setTriedAgencies(prev => {
+          const newData = { ...prev };
+          delete newData[agencyId];
+          return newData;
+        });
+      }
+    } catch (error) {
+      console.error("Error toggling tried status:", error);
     }
-    
-    setTriedAgencies(newData);
-    saveTriedAgencies(newData);
   };
 
   // Get unique cities for filter
@@ -388,18 +523,119 @@ export default function HiddenAgenciesPage() {
     </button>
   );
 
+  // Login Page
+  if (!currentUser) {
+    return (
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+        <div className="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Lock className="w-8 h-8 text-emerald-600" />
+            </div>
+            <h1 className="text-2xl font-bold text-slate-900">Admin Access</h1>
+            <p className="text-slate-500 mt-2">Connectez-vous pour accéder au tableau de bord</p>
+          </div>
+
+          <div className="space-y-4">
+            {/* Profile Selection */}
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Choisir le profil</label>
+              <div className="grid grid-cols-3 gap-2">
+                {USER_PROFILES.map((profile) => (
+                  <button
+                    key={profile.name}
+                    onClick={() => setSelectedProfile(profile.name)}
+                    className={`py-3 px-4 rounded-lg font-medium transition-all ${
+                      selectedProfile === profile.name
+                        ? `${profile.bgColor} text-white shadow-lg scale-105`
+                        : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                    }`}
+                  >
+                    {profile.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Password Input */}
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Mot de passe</label>
+              <input
+                type="password"
+                value={passwordInput}
+                onChange={(e) => setPasswordInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+                placeholder="Entrez votre mot de passe"
+                className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              />
+            </div>
+
+            {/* Error Message */}
+            {loginError && (
+              <div className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm">
+                {loginError}
+              </div>
+            )}
+
+            {/* Login Button */}
+            <button
+              onClick={handleLogin}
+              className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg transition-colors"
+            >
+              Se connecter
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
       <div className="bg-slate-900 text-white py-8">
         <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-2">Agences Marocaines - Admin View</h1>
-          <p className="text-slate-400">
-            Total: {agencies.length} agences | Visibles: {visibleCount} | Cachées: {hiddenCount}
-          </p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold mb-2">Agences Marocaines - Admin View</h1>
+              <p className="text-slate-400">
+                Total: {agencies.length} agences | Visibles: {visibleCount} | Cachées: {hiddenCount}
+              </p>
+            </div>
+            <div className="flex items-center gap-4">
+              {/* Current User Badge */}
+              <div className={`flex items-center gap-2 px-4 py-2 ${currentUserProfile?.bgColor} rounded-lg`}>
+                <User className="w-4 h-4" />
+                <span className="font-medium">{currentUser}</span>
+              </div>
+              {/* Refresh Button */}
+              <button
+                onClick={refreshData}
+                disabled={isSyncing}
+                className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-800 text-white rounded-lg transition-colors"
+              >
+                <RefreshCw className={`w-4 h-4 ${isSyncing ? 'animate-spin' : ''}`} />
+                {isSyncing ? 'Sync...' : 'Rafraîchir'}
+              </button>
+              {/* Logout Button */}
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors"
+              >
+                <LogOut className="w-4 h-4" />
+                Déconnexion
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
+      {isLoading ? (
+        <div className="flex items-center justify-center py-20">
+          <RefreshCw className="w-8 h-8 animate-spin text-emerald-600" />
+          <span className="ml-3 text-slate-600">Chargement des données...</span>
+        </div>
+      ) : (
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Search and Filters */}
         <div className="bg-white rounded-xl p-4 mb-6 shadow-sm">
@@ -681,7 +917,11 @@ export default function HiddenAgenciesPage() {
                   const isVisible = visibleIds.has(agency.id);
                   const originalRank = sortedByRank.findIndex((a) => a.id === agency.id) + 1;
                   const assignedTo = getAssignedTo(agency.id);
-                  const personName = assignedTo === "Aya" ? "Aya" : assignedTo === "Zaki" ? "Zakaria" : "Oussama";
+                  const personName = currentUser === "Aya" ? "Aya" : currentUser === "Zaki" ? "Zakaria" : "Oussama";
+                  
+                  // Get the profile of who contacted/tried this agency
+                  const contactedByProfile = USER_PROFILES.find(p => p.name === contactedAgencies[agency.id]?.contactedBy);
+                  const triedByProfile = USER_PROFILES.find(p => p.name === triedAgencies[agency.id]?.triedBy);
 
                   return (
                     <tr
@@ -691,19 +931,11 @@ export default function HiddenAgenciesPage() {
                       <td className="px-4 py-3 text-sm text-slate-500">{originalRank}</td>
                       <td className="px-4 py-3">
                         <button
-                          onClick={() => toggleContacted(agency.id, assignedTo)}
+                          onClick={() => toggleContacted(agency.id)}
                           className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all cursor-pointer hover:scale-110 ${
                             contactedAgencies[agency.id]?.contacted
-                              ? assignedTo === "Aya"
-                                ? "bg-pink-500 border-pink-500 text-white"
-                                : assignedTo === "Zaki"
-                                ? "bg-blue-500 border-blue-500 text-white"
-                                : "bg-orange-500 border-orange-500 text-white"
-                              : assignedTo === "Aya"
-                              ? "border-pink-300 hover:border-pink-500"
-                              : assignedTo === "Zaki"
-                              ? "border-blue-300 hover:border-blue-500"
-                              : "border-orange-300 hover:border-orange-500"
+                              ? `${contactedByProfile?.bgColor || 'bg-green-500'} ${contactedByProfile?.borderColor || 'border-green-500'} text-white`
+                              : `${currentUserProfile?.borderColor?.replace('border-', 'border-') || 'border-slate-300'} hover:${currentUserProfile?.borderColor || 'border-slate-500'}`
                           }`}
                           title={contactedAgencies[agency.id]?.contacted 
                             ? `Contacté par ${contactedAgencies[agency.id]?.contactedBy} le ${new Date(contactedAgencies[agency.id]?.contactedAt).toLocaleDateString()}`
@@ -783,11 +1015,11 @@ export default function HiddenAgenciesPage() {
                       <td className="px-4 py-3">
                         {/* Tried checkbox - for agencies that don't respond on WhatsApp */}
                         <button
-                          onClick={() => toggleTried(agency.id, assignedTo)}
+                          onClick={() => toggleTried(agency.id)}
                           className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all cursor-pointer hover:scale-110 ${
                             triedAgencies[agency.id]?.tried
-                              ? "bg-amber-500 border-amber-500 text-white"
-                              : "border-amber-300 hover:border-amber-500"
+                              ? `${triedByProfile?.bgColor || 'bg-amber-500'} ${triedByProfile?.borderColor || 'border-amber-500'} text-white`
+                              : `${currentUserProfile?.borderColor?.replace('border-', 'border-') || 'border-amber-300'} hover:${currentUserProfile?.borderColor || 'border-amber-500'}`
                           }`}
                           title={triedAgencies[agency.id]?.tried 
                             ? `Essayé par ${triedAgencies[agency.id]?.triedBy} le ${new Date(triedAgencies[agency.id]?.triedAt).toLocaleDateString()}`
@@ -871,6 +1103,7 @@ export default function HiddenAgenciesPage() {
           </p>
         </div>
       </div>
+      )}
     </div>
   );
 }

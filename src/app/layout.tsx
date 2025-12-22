@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import PromoBanner from "@/components/ui/PromoBanner";
 import PromoPopup from "@/components/ui/PromoPopup";
+import ChatBot from "@/components/ui/ChatBot";
 
 const poppins = Poppins({ 
   subsets: ["latin"],
@@ -205,6 +206,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <ScrollToTop />
+        <ChatBot />
         {/* <PromoPopup /> */}
       </body>
     </html>

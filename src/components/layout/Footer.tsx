@@ -23,43 +23,25 @@ export default function Footer() {
     setStatus("loading");
 
     try {
-      // Option 1: Using Brevo (Sendinblue) - Free up to 300 emails/day
-      // Replace YOUR_LIST_ID and YOUR_API_KEY with your Brevo credentials
-      // const response = await fetch("https://api.brevo.com/v3/contacts", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "api-key": "YOUR_API_KEY",
-      //   },
-      //   body: JSON.stringify({
-      //     email: email,
-      //     listIds: [YOUR_LIST_ID],
-      //     updateEnabled: true,
-      //   }),
-      // });
+      // Call our API route to add contact to Brevo
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
 
-      // Option 2: Using Google Form (Free & Simple)
-      // Create a Google Form with email field and use the form URL
-      const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfXXXXXXXXXXXXXXXXXXXXX/formResponse";
-      const formData = new FormData();
-      formData.append("entry.XXXXXXXXXX", email); // Replace with your form field ID
-      
-      // For now, we'll simulate success and store locally
-      // In production, uncomment the fetch above with your form URL
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Store in localStorage for demo
-      const subscribers = JSON.parse(localStorage.getItem("newsletter_subscribers") || "[]");
-      if (!subscribers.includes(email)) {
-        subscribers.push(email);
-        localStorage.setItem("newsletter_subscribers", JSON.stringify(subscribers));
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("success");
+        setMessage(data.message || "Thank you for subscribing! 🎉");
+        setEmail("");
+      } else {
+        setStatus("error");
+        setMessage(data.error || "Something went wrong. Please try again.");
       }
-
-      setStatus("success");
-      setMessage("Thank you for subscribing! 🎉");
-      setEmail("");
       
       // Reset after 5 seconds
       setTimeout(() => {

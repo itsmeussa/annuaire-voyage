@@ -32,7 +32,7 @@ const blogPosts: Record<string, {
       <ul>
         <li><strong>Défense Solide :</strong> Yassine Bounou (Bono), Achraf Hakimi, et Nayef Aguerd forment l'une des meilleures défenses du continent</li>
         <li><strong>Milieu Créatif :</strong> Sofyan Amrabat et Azzedine Ounahi contrôlent le rythme du jeu</li>
-        <li><strong>Attaque Efficace :</strong> Hakim Ziyech et En-Nesyri apportent la créativité et le danger</li>
+        <li><strong>Attaque Efficace :</strong> Brahim Diaz et En-Nesyri apportent la créativité et le danger</li>
         <li><strong>Avantage à Domicile :</strong> Le soutien des supporters marocains sera un facteur clé</li>
       </ul>
 
@@ -63,7 +63,7 @@ const blogPosts: Record<string, {
       <h2>Les Grands Favoris</h2>
 
       <h3>🇲🇦 Maroc - Le Grand Favori</h3>
-      <p>Pays hôte et demi-finaliste de la Coupe du Monde 2022, le Maroc est le favori numéro 1. Avec Hakimi, Ziyech, et Bono, les Lions de l'Atlas ont l'équipe pour aller jusqu'au bout.</p>
+      <p>Pays hôte et demi-finaliste de la Coupe du Monde 2022, le Maroc est le favori numéro 1. Avec Hakimi, Brahim Diaz, et Bono, les Lions de l'Atlas ont l'équipe pour aller jusqu'au bout.</p>
 
       <h3>🇳🇬 Nigeria - Les Super Eagles</h3>
       <p>Finalistes de la CAN 2023, le Nigeria possède un effectif talentueux avec Victor Osimhen en attaque. Ils seront les principaux rivaux du Maroc.</p>
@@ -120,7 +120,7 @@ const blogPosts: Record<string, {
         <li><strong>Yassine Bounou (Bono) :</strong> Le mur infranchissable</li>
         <li><strong>Achraf Hakimi :</strong> Le meilleur latéral droit du monde</li>
         <li><strong>Sofyan Amrabat :</strong> Le moteur du milieu de terrain</li>
-        <li><strong>Hakim Ziyech :</strong> Le génie créatif</li>
+        <li><strong>Brahim Diaz :</strong> Le génie créatif du Real Madrid</li>
         <li><strong>Youssef En-Nesyri :</strong> Le buteur de classe mondiale</li>
       </ul>
 

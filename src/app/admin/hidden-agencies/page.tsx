@@ -17,7 +17,15 @@ interface ContactedAgency {
   contactedAt: string;
 }
 
+interface TriedAgency {
+  id: string;
+  tried: boolean;
+  triedBy: string;
+  triedAt: string;
+}
+
 const STORAGE_KEY = "contacted-agencies";
+const TRIED_STORAGE_KEY = "tried-agencies";
 
 // Get ALL Moroccan agencies (hidden ones)
 function getAllMoroccanAgencies(): Agency[] {
@@ -97,6 +105,8 @@ export default function HiddenAgenciesPage() {
   const [websiteFilter, setWebsiteFilter] = useState<"all" | "with" | "without">("all");
   const [phoneFilter, setPhoneFilter] = useState<"all" | "with" | "without">("all");
   const [whatsappFilter, setWhatsappFilter] = useState<"all" | "with" | "without">("all");
+  const [triedAgencies, setTriedAgencies] = useState<Record<string, TriedAgency>>({});
+  const [triedFilter, setTriedFilter] = useState<"all" | "tried" | "not-tried">("all");
 
   // Load contacted agencies from localStorage
   const loadContactedAgencies = useCallback(() => {
@@ -119,10 +129,32 @@ export default function HiddenAgenciesPage() {
     }
   }, []);
 
+  // Load tried agencies from localStorage
+  const loadTriedAgencies = useCallback(() => {
+    try {
+      const stored = localStorage.getItem(TRIED_STORAGE_KEY);
+      if (stored) {
+        setTriedAgencies(JSON.parse(stored));
+      }
+    } catch (error) {
+      console.error("Error loading tried agencies:", error);
+    }
+  }, []);
+
+  // Save tried agencies to localStorage
+  const saveTriedAgencies = useCallback((data: Record<string, TriedAgency>) => {
+    try {
+      localStorage.setItem(TRIED_STORAGE_KEY, JSON.stringify(data));
+    } catch (error) {
+      console.error("Error saving tried agencies:", error);
+    }
+  }, []);
+
   useEffect(() => {
     setAgencies(getAllMoroccanAgencies());
     loadContactedAgencies();
-  }, [loadContactedAgencies]);
+    loadTriedAgencies();
+  }, [loadContactedAgencies, loadTriedAgencies]);
 
   // Toggle contacted status
   const toggleContacted = (agencyId: string, assignedTo: AssignedTo) => {
@@ -143,6 +175,27 @@ export default function HiddenAgenciesPage() {
     
     setContactedAgencies(newData);
     saveContactedAgencies(newData);
+  };
+
+  // Toggle tried status (for agencies without WhatsApp)
+  const toggleTried = (agencyId: string, assignedTo: AssignedTo) => {
+    const isCurrentlyTried = !!triedAgencies[agencyId]?.tried;
+    
+    const newData = { ...triedAgencies };
+    
+    if (!isCurrentlyTried) {
+      newData[agencyId] = {
+        id: agencyId,
+        tried: true,
+        triedBy: assignedTo,
+        triedAt: new Date().toISOString(),
+      };
+    } else {
+      delete newData[agencyId];
+    }
+    
+    setTriedAgencies(newData);
+    saveTriedAgencies(newData);
   };
 
   // Get unique cities for filter
@@ -251,6 +304,13 @@ export default function HiddenAgenciesPage() {
       result = result.filter((a) => !a.phone || a.phone.trim() === "");
     }
 
+    // Tried filter (for agencies without WhatsApp that were attempted)
+    if (triedFilter === "tried") {
+      result = result.filter((a) => triedAgencies[a.id]?.tried);
+    } else if (triedFilter === "not-tried") {
+      result = result.filter((a) => !triedAgencies[a.id]?.tried);
+    }
+
     // Sort
     result.sort((a, b) => {
       let comparison = 0;
@@ -280,7 +340,7 @@ export default function HiddenAgenciesPage() {
     });
 
     return result;
-  }, [agencies, filter, searchTerm, cityFilter, minScore, minReviews, assignedFilter, contactedFilter, websiteFilter, phoneFilter, whatsappFilter, sortField, sortOrder, visibleIds, hiddenAgencies, contactedAgencies]);
+  }, [agencies, filter, searchTerm, cityFilter, minScore, minReviews, assignedFilter, contactedFilter, websiteFilter, phoneFilter, whatsappFilter, triedFilter, sortField, sortOrder, visibleIds, hiddenAgencies, contactedAgencies, triedAgencies]);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -302,6 +362,7 @@ export default function HiddenAgenciesPage() {
     setWebsiteFilter("all");
     setPhoneFilter("all");
     setWhatsappFilter("all");
+    setTriedFilter("all");
   };
 
   const visibleCount = 5;
@@ -313,6 +374,7 @@ export default function HiddenAgenciesPage() {
   const ussaCount = hiddenAgencies.length - halfPoint;
   const contactedCount = Object.values(contactedAgencies).filter(c => c.contacted).length;
   const notContactedCount = agencies.length - contactedCount;
+  const triedCount = Object.values(triedAgencies).filter(t => t.tried).length;
 
   const SortButton = ({ field, label }: { field: SortField; label: string }) => (
     <button
@@ -551,7 +613,22 @@ export default function HiddenAgenciesPage() {
               <option value="with">💬 Avec WhatsApp</option>
               <option value="without">💬 Sans WhatsApp</option>
             </select>
-            {(searchTerm || cityFilter || minScore || minReviews || filter !== "all" || assignedFilter !== "all" || contactedFilter !== "all" || websiteFilter !== "all" || phoneFilter !== "all" || whatsappFilter !== "all") && (
+
+            {/* Tried filter (for agencies without WhatsApp) */}
+            <select
+              value={triedFilter}
+              onChange={(e) => setTriedFilter(e.target.value as "all" | "tried" | "not-tried")}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors border ${
+                triedFilter !== "all"
+                  ? "bg-amber-600 text-white border-amber-600"
+                  : "bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200"
+              }`}
+            >
+              <option value="all">🔄 Essayé: Tous</option>
+              <option value="tried">🔄 Essayé ({triedCount})</option>
+              <option value="not-tried">🔄 Pas essayé</option>
+            </select>
+            {(searchTerm || cityFilter || minScore || minReviews || filter !== "all" || assignedFilter !== "all" || contactedFilter !== "all" || websiteFilter !== "all" || phoneFilter !== "all" || whatsappFilter !== "all" || triedFilter !== "all") && (
               <button
                 onClick={clearFilters}
                 className="ml-auto px-3 py-1.5 text-sm text-slate-500 hover:text-slate-700 flex items-center gap-1"
@@ -595,6 +672,7 @@ export default function HiddenAgenciesPage() {
                     <SortButton field="reviews" label="Avis" />
                   </th>
                   <th className="px-4 py-3 text-left text-sm font-medium text-slate-600">WhatsApp</th>
+                  <th className="px-4 py-3 text-left text-sm font-medium text-slate-600">Essayé</th>
                   <th className="px-4 py-3 text-left text-sm font-medium text-slate-600">Actions</th>
                 </tr>
               </thead>
@@ -701,6 +779,25 @@ export default function HiddenAgenciesPage() {
                         ) : (
                           <span className="text-slate-400 text-sm">Pas de tél</span>
                         )}
+                      </td>
+                      <td className="px-4 py-3">
+                        {/* Tried checkbox - for agencies that don't respond on WhatsApp */}
+                        <button
+                          onClick={() => toggleTried(agency.id, assignedTo)}
+                          className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all cursor-pointer hover:scale-110 ${
+                            triedAgencies[agency.id]?.tried
+                              ? "bg-amber-500 border-amber-500 text-white"
+                              : "border-amber-300 hover:border-amber-500"
+                          }`}
+                          title={triedAgencies[agency.id]?.tried 
+                            ? `Essayé par ${triedAgencies[agency.id]?.triedBy} le ${new Date(triedAgencies[agency.id]?.triedAt).toLocaleDateString()}`
+                            : "Marquer comme essayé (pas de réponse WhatsApp)"
+                          }
+                        >
+                          {triedAgencies[agency.id]?.tried && (
+                            <Check className="w-4 h-4" />
+                          )}
+                        </button>
                       </td>
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">

@@ -97,8 +97,8 @@ export function getAllAgencies(): Agency[] {
       } as Agency;
     });
 
-  // Hide ALL agencies from the platform
-  const filteredAgencies: Agency[] = [];
+  // Hide Moroccan agencies only, show all others
+  const filteredAgencies = agencies.filter((a) => a.countryCode !== "MA");
 
   // Cache the result
   cachedAgencies = filteredAgencies;

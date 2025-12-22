@@ -10,9 +10,33 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us - TravelAgencies.World | Free Travel Agency Directory",
+  title: "About TravelAgencies.World | #1 Free Travel Agency Directory Worldwide",
   description:
-    "Learn about TravelAgencies.World, the leading free global directory with 3800+ verified travel agencies. Find agencies in France, USA, Canada & more. Built by Orious Strategy.",
+    "Discover TravelAgencies.World - the world's largest free directory with 2670+ verified travel agencies across 50+ countries. CAN 2025 Morocco travel specialists. Find trusted agencies in Casablanca, Marrakech, Paris, New York, Toronto & more.",
+  keywords: [
+    "about TravelAgencies.World",
+    "travel agency directory",
+    "free travel agency listing",
+    "verified travel agencies",
+    "CAN 2025 travel agencies",
+    "Morocco travel directory",
+    "international travel agents",
+    "tour operator directory",
+  ],
+  openGraph: {
+    title: "About TravelAgencies.World | World's #1 Free Travel Agency Directory",
+    description: "Learn about the world's largest free travel agency directory with 2670+ verified agencies in 50+ countries. CAN 2025 Morocco specialists.",
+    url: "https://www.travelagencies.world/about",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About TravelAgencies.World",
+    description: "World's largest free travel agency directory - 2670+ verified agencies in 50+ countries.",
+  },
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {
@@ -50,7 +74,51 @@ export default function AboutPage() {
     },
   ];
 
+  // Structured data for About page
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About TravelAgencies.World",
+    description: "Learn about the world's largest free travel agency directory with 2670+ verified agencies.",
+    url: "https://www.travelagencies.world/about",
+    mainEntity: {
+      "@type": "Organization",
+      name: "TravelAgencies.World",
+      description: "Free global directory of verified travel agencies",
+      numberOfEmployees: "2-10",
+      foundingDate: "2024"
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.travelagencies.world"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About",
+        item: "https://www.travelagencies.world/about"
+      }
+    ]
+  };
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
     <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient text-white py-20">
@@ -220,5 +288,6 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

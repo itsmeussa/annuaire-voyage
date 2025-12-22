@@ -57,6 +57,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/blog`,
       lastModified: today,
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/inscription-maroc`,
+      lastModified: today,
       changeFrequency: "weekly",
       priority: 0.85,
     },
@@ -64,13 +70,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/about`,
       lastModified: today,
       changeFrequency: "monthly",
-      priority: 0.6,
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/contact`,
       lastModified: today,
       changeFrequency: "monthly",
-      priority: 0.6,
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/privacy`,
@@ -87,13 +93,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // ========================================
-  // 2. BLOG POSTS
+  // 2. BLOG POSTS (CAN 2025 = Highest Priority)
   // ========================================
   const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date),
-    changeFrequency: post.slug.includes("can-2025") ? "weekly" as const : "monthly" as const,
-    priority: post.slug.includes("can-2025") ? 0.85 : 0.7,
+    changeFrequency: post.slug.includes("can-2025") ? "daily" as const : "weekly" as const,
+    priority: post.slug.includes("can-2025") ? 0.95 : 0.75,
   }));
 
   // ========================================

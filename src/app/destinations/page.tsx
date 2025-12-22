@@ -7,22 +7,38 @@ import { getAllAgencies } from "@/lib/agencies";
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: "Travel Agency Destinations - Find Agencies by Country & City",
+  title: "Travel Agencies by Destination | 50+ Countries & 500+ Cities Worldwide",
   description:
-    "Browse travel agencies by destination. Find verified tour operators and travel agents in Morocco, France, Spain, USA, and 50+ countries worldwide. Compare ratings & reviews.",
+    "Find travel agencies by country & city. 2670+ verified agencies in Morocco (CAN 2025), France, USA, Canada, UK, Spain, UAE & 50+ countries. Compare ratings, read reviews, book directly.",
   keywords: [
     "travel agencies by country",
     "travel agencies by city",
     "find travel agency near me",
     "tour operators worldwide",
-    "Morocco travel agencies",
-    "France travel agents",
+    "Morocco travel agencies CAN 2025",
+    "Casablanca travel agency",
+    "Marrakech travel agency",
+    "Rabat travel agency",
+    "France travel agencies",
+    "Paris travel agency",
+    "USA travel agencies",
+    "New York travel agency",
+    "Canada travel agencies",
+    "Toronto travel agency",
+    "UK travel agencies",
     "international travel agencies",
+    "agence de voyage",
   ],
   openGraph: {
-    title: "Travel Agency Destinations - Browse by Country & City",
-    description: "Find verified travel agencies in your desired destination. 50+ countries and hundreds of cities covered.",
-    url: "https://travelagencies.world/destinations",
+    title: "Travel Agencies by Destination | 50+ Countries Covered",
+    description: "Browse 2670+ verified travel agencies by country & city. Morocco CAN 2025, France, USA, Canada & more.",
+    url: "https://www.travelagencies.world/destinations",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Find Travel Agencies by Destination",
+    description: "2670+ verified agencies in 50+ countries. Morocco, France, USA, Canada & more.",
   },
   alternates: {
     canonical: "/destinations",

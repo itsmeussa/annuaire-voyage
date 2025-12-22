@@ -617,7 +617,7 @@ export default function HiddenAgenciesPage() {
                         {agency.phone ? (
                           <a
                             href={`https://wa.me/${formatPhoneForWhatsApp(agency.phone)}?text=${encodeURIComponent(
-                              `Salam, ana ${personName} cheft khdma dialk f ${agency.title} dakchi mzyan tbarklah elik, ila kan eandk chwiya dl waqt tchuf had l audio : `
+                              `Salam، m3ak ${personName}.\nCheft khdma dyalk f ${agency.title} saraha tbarklah 3lik.`
                             )}`}
                             target="_blank"
                             rel="noopener noreferrer"

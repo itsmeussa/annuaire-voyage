@@ -127,8 +127,26 @@ const organizationSchema = {
     "@type": "ContactPoint",
     telephone: "+33-7-45-07-56-68",
     contactType: "customer service",
-    availableLanguage: ["English", "French", "Arabic"]
-  }
+    email: "contact@travelagencies.world",
+    availableLanguage: ["English", "French", "Arabic", "Spanish"]
+  },
+  areaServed: [
+    { "@type": "Country", name: "Morocco" },
+    { "@type": "Country", name: "France" },
+    { "@type": "Country", name: "United States" },
+    { "@type": "Country", name: "Canada" },
+    { "@type": "Country", name: "United Kingdom" },
+    { "@type": "Country", name: "Spain" },
+    { "@type": "Country", name: "United Arab Emirates" }
+  ],
+  knowsAbout: [
+    "Travel Agencies",
+    "Tour Operators", 
+    "CAN 2025",
+    "Africa Cup of Nations",
+    "Morocco Tourism",
+    "Travel Planning"
+  ]
 };
 
 const websiteSchema = {
@@ -185,6 +203,18 @@ export default function RootLayout({
         <link rel="icon" href="/travellogos/square-blue-no-background.png" type="image/png" />
         <link rel="apple-touch-icon" href="/travellogos/square-blue-white-background.png" />
         <link rel="manifest" href="/manifest.json" />
+        {/* Preconnect for performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://api.openai.com" />
+        <link rel="dns-prefetch" href="https://api.brevo.com" />
+        {/* Hreflang for international SEO */}
+        <link rel="alternate" hrefLang="en" href="https://www.travelagencies.world" />
+        <link rel="alternate" hrefLang="fr" href="https://www.travelagencies.world" />
+        <link rel="alternate" hrefLang="ar" href="https://www.travelagencies.world" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.travelagencies.world" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

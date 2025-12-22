@@ -17,6 +17,8 @@ interface ContactedAgency {
   contactedAt: string;
 }
 
+const STORAGE_KEY = "contacted-agencies";
+
 // Get ALL Moroccan agencies (hidden ones)
 function getAllMoroccanAgencies(): Agency[] {
   const rawData = data1 as Array<{
@@ -92,47 +94,52 @@ export default function HiddenAgenciesPage() {
   const [assignedFilter, setAssignedFilter] = useState<"all" | "Aya" | "Zaki" | "Ussa">("all");
   const [contactedAgencies, setContactedAgencies] = useState<Record<string, ContactedAgency>>({});
   const [contactedFilter, setContactedFilter] = useState<"all" | "contacted" | "not-contacted">("all");
-  const [loadingContacted, setLoadingContacted] = useState<string | null>(null);
 
-  // Fetch contacted agencies from API
-  const fetchContactedAgencies = useCallback(async () => {
+  // Load contacted agencies from localStorage
+  const loadContactedAgencies = useCallback(() => {
     try {
-      const response = await fetch("/api/contacted-agencies");
-      const data = await response.json();
-      setContactedAgencies(data);
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        setContactedAgencies(JSON.parse(stored));
+      }
     } catch (error) {
-      console.error("Error fetching contacted agencies:", error);
+      console.error("Error loading contacted agencies:", error);
+    }
+  }, []);
+
+  // Save contacted agencies to localStorage
+  const saveContactedAgencies = useCallback((data: Record<string, ContactedAgency>) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch (error) {
+      console.error("Error saving contacted agencies:", error);
     }
   }, []);
 
   useEffect(() => {
     setAgencies(getAllMoroccanAgencies());
-    fetchContactedAgencies();
-  }, [fetchContactedAgencies]);
+    loadContactedAgencies();
+  }, [loadContactedAgencies]);
 
   // Toggle contacted status
-  const toggleContacted = async (agencyId: string, assignedTo: AssignedTo) => {
-    setLoadingContacted(agencyId);
-    try {
-      const isCurrentlyContacted = !!contactedAgencies[agencyId]?.contacted;
-      const response = await fetch("/api/contacted-agencies", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: agencyId,
-          contacted: !isCurrentlyContacted,
-          contactedBy: assignedTo,
-        }),
-      });
-
-      if (response.ok) {
-        await fetchContactedAgencies();
-      }
-    } catch (error) {
-      console.error("Error toggling contacted status:", error);
-    } finally {
-      setLoadingContacted(null);
+  const toggleContacted = (agencyId: string, assignedTo: AssignedTo) => {
+    const isCurrentlyContacted = !!contactedAgencies[agencyId]?.contacted;
+    
+    const newData = { ...contactedAgencies };
+    
+    if (!isCurrentlyContacted) {
+      newData[agencyId] = {
+        id: agencyId,
+        contacted: true,
+        contactedBy: assignedTo,
+        contactedAt: new Date().toISOString(),
+      };
+    } else {
+      delete newData[agencyId];
     }
+    
+    setContactedAgencies(newData);
+    saveContactedAgencies(newData);
   };
 
   // Get unique cities for filter
@@ -535,12 +542,7 @@ export default function HiddenAgenciesPage() {
                       <td className="px-4 py-3">
                         <button
                           onClick={() => toggleContacted(agency.id, assignedTo)}
-                          disabled={loadingContacted === agency.id}
-                          className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all ${
-                            loadingContacted === agency.id
-                              ? "opacity-50 cursor-wait"
-                              : "cursor-pointer hover:scale-110"
-                          } ${
+                          className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all cursor-pointer hover:scale-110 ${
                             contactedAgencies[agency.id]?.contacted
                               ? assignedTo === "Aya"
                                 ? "bg-pink-500 border-pink-500 text-white"

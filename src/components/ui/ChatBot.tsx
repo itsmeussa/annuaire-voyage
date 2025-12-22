@@ -93,10 +93,10 @@ export default function ChatBot() {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
+        className={`fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-lg flex items-center justify-center transition-transform duration-200 hover:scale-110 ${
           isOpen
             ? "bg-slate-700 hover:bg-slate-800"
-            : "bg-primary hover:bg-primary/90 animate-pulse hover:animate-none"
+            : "bg-primary hover:bg-primary/90"
         }`}
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
@@ -109,22 +109,29 @@ export default function ChatBot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)] bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
+        <div className="fixed z-50 bg-white shadow-2xl border border-slate-200 overflow-hidden md:bottom-24 md:right-6 md:w-[380px] md:rounded-2xl md:max-w-[calc(100vw-48px)] inset-0 md:inset-auto flex flex-col">
           {/* Header */}
-          <div className="bg-gradient-to-r from-primary to-blue-600 p-4 text-white">
+          <div className="bg-gradient-to-r from-primary to-blue-600 p-4 text-white flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center">
                 <Plane className="h-5 w-5" />
               </div>
-              <div>
+              <div className="flex-1">
                 <h3 className="font-semibold">Travel Assistant</h3>
                 <p className="text-xs text-white/80">Powered by AI • Online</p>
               </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="md:hidden h-8 w-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
+                aria-label="Close chat"
+              >
+                <X className="h-5 w-5" />
+              </button>
             </div>
           </div>
 
           {/* Messages */}
-          <div className="h-[350px] overflow-y-auto p-4 space-y-4 bg-slate-50">
+          <div className="flex-1 md:h-[350px] md:flex-none overflow-y-auto p-4 space-y-4 bg-slate-50">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -172,7 +179,7 @@ export default function ChatBot() {
 
           {/* Quick Questions */}
           {messages.length <= 2 && (
-            <div className="px-4 py-2 border-t border-slate-100 bg-white">
+            <div className="px-4 py-2 border-t border-slate-100 bg-white flex-shrink-0">
               <p className="text-xs text-slate-500 mb-2">Quick questions:</p>
               <div className="flex flex-wrap gap-2">
                 {quickQuestions.map((q) => (
@@ -192,7 +199,7 @@ export default function ChatBot() {
           )}
 
           {/* Input */}
-          <form onSubmit={sendMessage} className="p-4 border-t border-slate-200 bg-white">
+          <form onSubmit={sendMessage} className="p-4 border-t border-slate-200 bg-white flex-shrink-0">
             <div className="flex gap-2">
               <input
                 ref={inputRef}

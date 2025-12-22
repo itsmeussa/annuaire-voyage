@@ -543,6 +543,7 @@ export default function HiddenAgenciesPage() {
               <div className="grid grid-cols-3 gap-2">
                 {USER_PROFILES.map((profile) => (
                   <button
+                    type="button"
                     key={profile.name}
                     onClick={() => setSelectedProfile(profile.name)}
                     className={`py-3 px-4 rounded-lg font-medium transition-all ${

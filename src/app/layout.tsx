@@ -62,9 +62,13 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://www.travelagencies.world"),
   icons: {
-    icon: "/travellogos/travel logo icon.png",
-    shortcut: "/travellogos/travel logo icon.png",
-    apple: "/travellogos/travel logo icon.png",
+    icon: [
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/travellogos/square-blue-white-background.png", sizes: "192x192", type: "image/png" },
+      { url: "/travellogos/square-blue-white-background.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.png",
+    apple: "/travellogos/square-blue-white-background.png",
   },
   alternates: {
     canonical: "/",
@@ -114,9 +118,17 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://www.travelagencies.world/#organization",
   name: "TravelAgencies.World",
   url: "https://www.travelagencies.world",
-  logo: "https://www.travelagencies.world/travellogos/travelagencies-text-blue-white-nbackground.png",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://www.travelagencies.world/travellogos/square-blue-white-background.png",
+    width: 512,
+    height: 512,
+    caption: "TravelAgencies.World Logo"
+  },
+  image: "https://www.travelagencies.world/travellogos/square-blue-white-background.png",
   description: "Free directory of 2670+ verified travel agencies worldwide. Best agencies for CAN 2025 Africa Cup of Nations in Morocco.",
   foundingDate: "2024",
   sameAs: [

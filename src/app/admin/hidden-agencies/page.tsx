@@ -94,6 +94,9 @@ export default function HiddenAgenciesPage() {
   const [assignedFilter, setAssignedFilter] = useState<"all" | "Aya" | "Zaki" | "Ussa">("all");
   const [contactedAgencies, setContactedAgencies] = useState<Record<string, ContactedAgency>>({});
   const [contactedFilter, setContactedFilter] = useState<"all" | "contacted" | "not-contacted">("all");
+  const [websiteFilter, setWebsiteFilter] = useState<"all" | "with" | "without">("all");
+  const [phoneFilter, setPhoneFilter] = useState<"all" | "with" | "without">("all");
+  const [whatsappFilter, setWhatsappFilter] = useState<"all" | "with" | "without">("all");
 
   // Load contacted agencies from localStorage
   const loadContactedAgencies = useCallback(() => {
@@ -227,6 +230,27 @@ export default function HiddenAgenciesPage() {
       result = result.filter((a) => !contactedAgencies[a.id]?.contacted);
     }
 
+    // Website filter
+    if (websiteFilter === "with") {
+      result = result.filter((a) => a.website && a.website.trim() !== "");
+    } else if (websiteFilter === "without") {
+      result = result.filter((a) => !a.website || a.website.trim() === "");
+    }
+
+    // Phone filter
+    if (phoneFilter === "with") {
+      result = result.filter((a) => a.phone && a.phone.trim() !== "");
+    } else if (phoneFilter === "without") {
+      result = result.filter((a) => !a.phone || a.phone.trim() === "");
+    }
+
+    // WhatsApp filter (check if phone starts with common WhatsApp-compatible formats)
+    if (whatsappFilter === "with") {
+      result = result.filter((a) => a.phone && a.phone.trim() !== "");
+    } else if (whatsappFilter === "without") {
+      result = result.filter((a) => !a.phone || a.phone.trim() === "");
+    }
+
     // Sort
     result.sort((a, b) => {
       let comparison = 0;
@@ -256,7 +280,7 @@ export default function HiddenAgenciesPage() {
     });
 
     return result;
-  }, [agencies, filter, searchTerm, cityFilter, minScore, minReviews, assignedFilter, contactedFilter, sortField, sortOrder, visibleIds, hiddenAgencies, contactedAgencies]);
+  }, [agencies, filter, searchTerm, cityFilter, minScore, minReviews, assignedFilter, contactedFilter, websiteFilter, phoneFilter, whatsappFilter, sortField, sortOrder, visibleIds, hiddenAgencies, contactedAgencies]);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -275,6 +299,9 @@ export default function HiddenAgenciesPage() {
     setFilter("all");
     setAssignedFilter("all");
     setContactedFilter("all");
+    setWebsiteFilter("all");
+    setPhoneFilter("all");
+    setWhatsappFilter("all");
   };
 
   const visibleCount = 5;
@@ -478,8 +505,53 @@ export default function HiddenAgenciesPage() {
             >
               Non contactés ({notContactedCount})
             </button>
+            <div className="w-px h-6 bg-slate-300 mx-2"></div>
 
-            {(searchTerm || cityFilter || minScore || minReviews || filter !== "all" || assignedFilter !== "all" || contactedFilter !== "all") && (
+            {/* Website filter */}
+            <select
+              value={websiteFilter}
+              onChange={(e) => setWebsiteFilter(e.target.value as "all" | "with" | "without")}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors border ${
+                websiteFilter !== "all"
+                  ? "bg-indigo-600 text-white border-indigo-600"
+                  : "bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200"
+              }`}
+            >
+              <option value="all">🌐 Website: Tous</option>
+              <option value="with">🌐 Avec site</option>
+              <option value="without">🌐 Sans site</option>
+            </select>
+
+            {/* Phone filter */}
+            <select
+              value={phoneFilter}
+              onChange={(e) => setPhoneFilter(e.target.value as "all" | "with" | "without")}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors border ${
+                phoneFilter !== "all"
+                  ? "bg-teal-600 text-white border-teal-600"
+                  : "bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200"
+              }`}
+            >
+              <option value="all">📞 Téléphone: Tous</option>
+              <option value="with">📞 Avec tél</option>
+              <option value="without">📞 Sans tél</option>
+            </select>
+
+            {/* WhatsApp filter */}
+            <select
+              value={whatsappFilter}
+              onChange={(e) => setWhatsappFilter(e.target.value as "all" | "with" | "without")}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors border ${
+                whatsappFilter !== "all"
+                  ? "bg-green-600 text-white border-green-600"
+                  : "bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200"
+              }`}
+            >
+              <option value="all">💬 WhatsApp: Tous</option>
+              <option value="with">💬 Avec WhatsApp</option>
+              <option value="without">💬 Sans WhatsApp</option>
+            </select>
+            {(searchTerm || cityFilter || minScore || minReviews || filter !== "all" || assignedFilter !== "all" || contactedFilter !== "all" || websiteFilter !== "all" || phoneFilter !== "all" || whatsappFilter !== "all") && (
               <button
                 onClick={clearFilters}
                 className="ml-auto px-3 py-1.5 text-sm text-slate-500 hover:text-slate-700 flex items-center gap-1"

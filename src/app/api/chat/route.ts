@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Using Azure OpenAI
-const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT || "";
-const AZURE_OPENAI_KEY = process.env.AZURE_OPENAI_KEY || "";
+// Using OpenAI GPT-3.5 Turbo
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
 
 const SYSTEM_PROMPT = `You are a helpful travel assistant for TravelAgencies.World - the world's largest directory of travel agencies with 2670+ verified agencies worldwide.
 
@@ -39,24 +38,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!AZURE_OPENAI_ENDPOINT || !AZURE_OPENAI_KEY) {
-      console.error("Azure OpenAI credentials not set");
+    if (!OPENAI_API_KEY) {
+      console.error("OPENAI_API_KEY is not set");
       return NextResponse.json(
-        { error: "Chat service is not configured." },
+        { error: "Chat service is not configured. Please add OPENAI_API_KEY to environment variables." },
         { status: 500 }
       );
     }
 
-    // Azure AI Foundry inference endpoint
-    const apiUrl = `${AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-08-01-preview`;
-
-    const response = await fetch(apiUrl, {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${AZURE_OPENAI_KEY}`,
+        "Authorization": `Bearer ${OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
+        model: "gpt-3.5-turbo",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
           ...messages.slice(-10),
@@ -69,9 +66,9 @@ export async function POST(request: NextRequest) {
     const responseData = await response.json().catch(() => null);
 
     if (!response.ok) {
-      console.error("Azure OpenAI API error:", response.status, responseData);
+      console.error("OpenAI API error:", response.status, responseData);
       return NextResponse.json(
-        { error: responseData?.error?.message || `Azure API error: ${response.status}` },
+        { error: responseData?.error?.message || `OpenAI API error: ${response.status}` },
         { status: 500 }
       );
     }

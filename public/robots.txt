@@ -1,0 +1,28 @@
+# ============================================
+# TravelAgencies.World - Robots.txt
+# ============================================
+
+Sitemap: https://www.travelagencies.world/sitemap.xml
+
+# ============================================
+# GENERAL RULES
+# ============================================
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /contact
+
+# Block all agency pages from indexing
+Disallow: /agency/
+Disallow: /agencies
+Disallow: /agencies/
+Disallow: /search
+
+# Disallow development/system files
+Disallow: /*.json$
+Disallow: /manifest.json
+
+# ============================================
+# HOST
+# ============================================
+Host: https://www.travelagencies.world

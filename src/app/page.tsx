@@ -1,4 +1,5 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   Search,
   MapPin,
@@ -22,6 +23,12 @@ import {
   getAllAgencies,
   getUniqueCountries,
 } from "@/lib/agencies";
+
+// Lazy load video background for performance
+const VideoBackground = dynamic(() => import("@/components/ui/VideoBackground"), {
+  ssr: false,
+  loading: () => null,
+});
 
 // FAQ data for SEO
 const faqData = [
@@ -187,14 +194,14 @@ export default function Home() {
       />
 
       {/* Hero Section */}
-      <section className="text-white py-20 md:py-32 relative overflow-hidden">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1920&auto=format&fit=crop')" }}
+      <section className="text-white py-20 md:py-32 relative overflow-hidden min-h-[600px]">
+        {/* Video Background - lazy loaded */}
+        <VideoBackground 
+          posterImage="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1920&auto=format&fit=crop"
+          videoUrl="https://videos.pexels.com/video-files/3015510/3015510-hd_1920_1080_24fps.mp4"
         />
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/50 z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 z-[1]" />
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">

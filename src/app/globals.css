@@ -450,3 +450,34 @@ html {
   @apply bg-muted/50;
 }
 
+/* Performance optimizations */
+video {
+  will-change: transform;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  video {
+    display: none;
+  }
+}
+
+/* GPU acceleration for smooth animations */
+.animate-fade-in,
+.animate-fade-in-up,
+.animate-fade-in-down,
+.animate-scale-in,
+.animate-slide-in-left,
+.animate-slide-in-right {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+

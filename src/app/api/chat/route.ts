@@ -38,8 +38,9 @@ export async function POST(request: NextRequest) {
     }
 
     if (!OPENAI_API_KEY) {
+      console.error("OPENAI_API_KEY is not set");
       return NextResponse.json(
-        { error: "Chat service is not configured" },
+        { error: "Chat service is not configured. Please add OPENAI_API_KEY to environment variables." },
         { status: 500 }
       );
     }
@@ -54,30 +55,30 @@ export async function POST(request: NextRequest) {
         model: "gpt-3.5-turbo",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
-          ...messages.slice(-10), // Keep last 10 messages for context
+          ...messages.slice(-10),
         ],
         max_tokens: 300,
         temperature: 0.7,
       }),
     });
 
+    const responseData = await response.json().catch(() => null);
+
     if (!response.ok) {
-      const error = await response.json().catch(() => ({}));
-      console.error("OpenAI API error:", error);
+      console.error("OpenAI API error:", response.status, responseData);
       return NextResponse.json(
-        { error: "Failed to get response" },
+        { error: responseData?.error?.message || `OpenAI API error: ${response.status}` },
         { status: 500 }
       );
     }
 
-    const data = await response.json();
-    const assistantMessage = data.choices[0]?.message?.content || "Sorry, I couldn't process that.";
+    const assistantMessage = responseData?.choices?.[0]?.message?.content || "Sorry, I couldn't process that.";
 
     return NextResponse.json({ message: assistantMessage });
-  } catch (error) {
-    console.error("Chat error:", error);
+  } catch (error: any) {
+    console.error("Chat error:", error?.message || error);
     return NextResponse.json(
-      { error: "An error occurred" },
+      { error: `Server error: ${error?.message || "Unknown error"}` },
       { status: 500 }
     );
   }

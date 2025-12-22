@@ -18,6 +18,279 @@ const blogPosts: Record<string, {
   category: string;
   readTime: string;
 }> = {
+  // CAN 2025 Blog Posts
+  "can-2025-predictions-maroc-favori": {
+    title: "CAN 2025 : Le Maroc Favori pour Remporter la Coupe - Analyse Complète",
+    excerpt: "Découvrez pourquoi le Maroc est considéré comme le grand favori de la CAN 2025.",
+    content: `
+      <p>La Coupe d'Afrique des Nations 2025 au Maroc s'annonce comme l'une des plus passionnantes de l'histoire. En tant que pays hôte et avec une équipe nationale au sommet de sa forme, les Lions de l'Atlas sont considérés comme les grands favoris du tournoi.</p>
+
+      <h2>Pourquoi le Maroc est Favori ?</h2>
+      <p>Après leur parcours historique à la Coupe du Monde 2022 au Qatar, où ils sont devenus la première équipe africaine à atteindre les demi-finales, les Lions de l'Atlas ont prouvé qu'ils peuvent rivaliser avec les meilleures équipes du monde.</p>
+
+      <h2>Les Atouts de l'Équipe Marocaine</h2>
+      <ul>
+        <li><strong>Défense Solide :</strong> Yassine Bounou (Bono), Achraf Hakimi, et Nayef Aguerd forment l'une des meilleures défenses du continent</li>
+        <li><strong>Milieu Créatif :</strong> Sofyan Amrabat et Azzedine Ounahi contrôlent le rythme du jeu</li>
+        <li><strong>Attaque Efficace :</strong> Hakim Ziyech et En-Nesyri apportent la créativité et le danger</li>
+        <li><strong>Avantage à Domicile :</strong> Le soutien des supporters marocains sera un facteur clé</li>
+      </ul>
+
+      <h2>L'Avantage du Pays Hôte</h2>
+      <p>Jouer à domicile représente un avantage considérable. Les équipes hôtes ont remporté la CAN à plusieurs reprises. L'atmosphère dans les stades marocains sera électrique, avec des supporters passionnés qui pousseront leur équipe vers la victoire.</p>
+
+      <h2>La Préparation Exemplaire</h2>
+      <p>Sous la direction de Walid Regragui, l'équipe marocaine a maintenu un niveau de performance exceptionnel. Le sélectionneur a su créer un esprit d'équipe fort et une cohésion qui font du Maroc une équipe redoutable.</p>
+
+      <h2>Pronostic Final</h2>
+      <p>Avec tous ces atouts, le Maroc a toutes les chances de remporter la CAN 2025. Cela serait la deuxième victoire du Maroc dans cette compétition après 1976.</p>
+
+      <h2>Réservez Votre Voyage pour la CAN 2025</h2>
+      <p>Ne manquez pas cette occasion historique ! Trouvez une agence de voyage au Maroc pour organiser votre séjour pendant la CAN 2025. Vivez l'expérience unique du football africain au cœur du Royaume.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1200&h=600&fit=crop",
+    date: "2025-01-15",
+    author: "Expert Football",
+    category: "CAN 2025",
+    readTime: "8 min read",
+  },
+  "can-2025-qui-va-gagner-pronostics": {
+    title: "CAN 2025 : Qui Va Gagner ? Pronostics et Favoris du Tournoi",
+    excerpt: "Nos pronostics pour la Coupe d'Afrique des Nations 2025 au Maroc.",
+    content: `
+      <p>La CAN 2025 réunit les meilleures équipes africaines. Voici notre analyse complète des favoris et nos pronostics pour le vainqueur final de cette Coupe d'Afrique des Nations.</p>
+
+      <h2>Les Grands Favoris</h2>
+
+      <h3>🇲🇦 Maroc - Le Grand Favori</h3>
+      <p>Pays hôte et demi-finaliste de la Coupe du Monde 2022, le Maroc est le favori numéro 1. Avec Hakimi, Ziyech, et Bono, les Lions de l'Atlas ont l'équipe pour aller jusqu'au bout.</p>
+
+      <h3>🇳🇬 Nigeria - Les Super Eagles</h3>
+      <p>Finalistes de la CAN 2023, le Nigeria possède un effectif talentueux avec Victor Osimhen en attaque. Ils seront les principaux rivaux du Maroc.</p>
+
+      <h3>🇸🇳 Sénégal - Champions en Titre</h3>
+      <p>Vainqueurs en 2022, les Lions de la Téranga veulent défendre leur titre. Même sans Sadio Mané, ils restent une force à surveiller.</p>
+
+      <h3>🇨🇮 Côte d'Ivoire - Champions 2023</h3>
+      <p>Les Éléphants ont remporté la CAN 2023 à domicile. Ils voudront prouver que ce n'était pas un hasard.</p>
+
+      <h2>Les Outsiders</h2>
+      <ul>
+        <li><strong>Égypte :</strong> Mohamed Salah peut faire la différence à lui seul</li>
+        <li><strong>Algérie :</strong> Champions 2019, les Fennecs veulent retrouver leur gloire</li>
+        <li><strong>Cameroun :</strong> Toujours dangereux avec leur expérience</li>
+      </ul>
+
+      <h2>Notre Pronostic Final</h2>
+      <p><strong>Vainqueur :</strong> Maroc 🏆</p>
+      <p><strong>Finaliste :</strong> Nigeria</p>
+      <p><strong>Demi-finalistes :</strong> Sénégal, Côte d'Ivoire</p>
+      <p><strong>Meilleur buteur :</strong> Victor Osimhen (Nigeria)</p>
+      <p><strong>Meilleur joueur :</strong> Achraf Hakimi (Maroc)</p>
+
+      <h2>Venez Vivre la CAN au Maroc !</h2>
+      <p>Réservez dès maintenant votre voyage pour la CAN 2025. Nos agences de voyage partenaires au Maroc vous aideront à organiser un séjour inoubliable.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&h=600&fit=crop",
+    date: "2025-01-14",
+    author: "Analyste Sportif",
+    category: "CAN 2025",
+    readTime: "10 min read",
+  },
+  "can-2025-maroc-parcours-mondial": {
+    title: "Le Maroc en Route vers la Gloire : Du Mondial 2022 à la CAN 2025",
+    excerpt: "Retour sur le parcours exceptionnel des Lions de l'Atlas depuis la Coupe du Monde 2022.",
+    content: `
+      <p>Le football marocain vit une période dorée. Depuis l'exploit historique de la Coupe du Monde 2022, les Lions de l'Atlas n'ont cessé d'impressionner. Retour sur ce parcours extraordinaire vers la CAN 2025.</p>
+
+      <h2>La Coupe du Monde 2022 : L'Histoire se Fait</h2>
+      <p>Au Qatar, le Maroc a réalisé l'impossible. Première équipe africaine à atteindre les demi-finales d'une Coupe du Monde, les Lions de l'Atlas ont fait vibrer tout un continent.</p>
+      <ul>
+        <li>Victoire contre la Belgique (2-0)</li>
+        <li>Victoire contre l'Espagne aux tirs au but</li>
+        <li>Victoire contre le Portugal (1-0)</li>
+        <li>Demi-finale contre la France</li>
+      </ul>
+
+      <h2>L'Après Mondial : Maintenir le Niveau</h2>
+      <p>Sous la direction de Walid Regragui, le Maroc a maintenu un niveau de jeu exceptionnel. L'équipe a continué à progresser, intégrant de nouveaux talents tout en conservant ses cadres expérimentés.</p>
+
+      <h2>Les Héros du Maroc</h2>
+      <ul>
+        <li><strong>Yassine Bounou (Bono) :</strong> Le mur infranchissable</li>
+        <li><strong>Achraf Hakimi :</strong> Le meilleur latéral droit du monde</li>
+        <li><strong>Sofyan Amrabat :</strong> Le moteur du milieu de terrain</li>
+        <li><strong>Hakim Ziyech :</strong> Le génie créatif</li>
+        <li><strong>Youssef En-Nesyri :</strong> Le buteur de classe mondiale</li>
+      </ul>
+
+      <h2>La CAN 2025 : L'Objectif Ultime</h2>
+      <p>Après avoir conquis le monde, les Lions de l'Atlas visent maintenant la conquête de l'Afrique. La CAN 2025 à domicile représente l'opportunité parfaite pour couronner cette génération dorée.</p>
+
+      <h2>Le Soutien du Douzième Homme</h2>
+      <p>Les supporters marocains sont reconnus comme parmi les plus passionnés au monde. Lors de la CAN 2025, les stades marocains seront une véritable forteresse pour les Lions de l'Atlas.</p>
+
+      <h2>Rejoignez l'Aventure !</h2>
+      <p>Ne manquez pas cette page d'histoire du football africain. Réservez votre voyage au Maroc pour la CAN 2025 et vivez l'expérience avec les supporters marocains.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=1200&h=600&fit=crop",
+    date: "2025-01-13",
+    author: "Chroniqueur Sportif",
+    category: "CAN 2025",
+    readTime: "7 min read",
+  },
+  "can-2025-calendrier-matchs-maroc": {
+    title: "CAN 2025 Calendrier : Tous les Matchs du Maroc et Programme Complet",
+    excerpt: "Calendrier complet de la CAN 2025 avec tous les matchs de l'équipe du Maroc.",
+    content: `
+      <p>La CAN 2025 se déroulera au Maroc du 21 décembre 2025 au 18 janvier 2026. Voici le calendrier complet avec tous les matchs importants à ne pas manquer.</p>
+
+      <h2>Matchs de Phase de Groupes du Maroc</h2>
+      <p>Le Maroc, en tant que pays hôte, est tête de série dans le Groupe A.</p>
+      <ul>
+        <li><strong>Match 1 :</strong> Maroc vs TBD - Match d'ouverture à Rabat</li>
+        <li><strong>Match 2 :</strong> Maroc vs TBD - Casablanca</li>
+        <li><strong>Match 3 :</strong> Maroc vs TBD - Rabat</li>
+      </ul>
+
+      <h2>Stades et Villes Hôtes</h2>
+      <ul>
+        <li><strong>Rabat :</strong> Stade Moulay Abdellah - Match d'ouverture et Finale</li>
+        <li><strong>Casablanca :</strong> Complexe Mohammed V</li>
+        <li><strong>Marrakech :</strong> Stade de Marrakech</li>
+        <li><strong>Fès :</strong> Complexe sportif de Fès</li>
+        <li><strong>Agadir :</strong> Stade Adrar</li>
+        <li><strong>Tanger :</strong> Stade Ibn Batouta</li>
+      </ul>
+
+      <h2>Phase Éliminatoire</h2>
+      <ul>
+        <li><strong>Huitièmes de finale :</strong> Début janvier 2026</li>
+        <li><strong>Quarts de finale :</strong> Mi-janvier 2026</li>
+        <li><strong>Demi-finales :</strong> 15-16 janvier 2026</li>
+        <li><strong>Finale :</strong> 18 janvier 2026 à Rabat</li>
+      </ul>
+
+      <h2>Où Regarder les Matchs ?</h2>
+      <p>Les matchs seront diffusés sur :</p>
+      <ul>
+        <li>BeIN Sports (MENA)</li>
+        <li>SNRT (Maroc)</li>
+        <li>SuperSport (Afrique)</li>
+        <li>Chaînes locales selon les pays</li>
+      </ul>
+
+      <h2>Planifiez Votre Voyage</h2>
+      <p>Pour vivre les matchs en direct, réservez dès maintenant votre voyage au Maroc. Nos agences de voyage partenaires peuvent organiser des forfaits incluant billets, hébergement et transport.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1200&h=600&fit=crop",
+    date: "2025-01-12",
+    author: "Expert CAN",
+    category: "CAN 2025",
+    readTime: "6 min read",
+  },
+  "can-2025-voyage-maroc-supporters": {
+    title: "CAN 2025 : Guide de Voyage au Maroc pour les Supporters",
+    excerpt: "Guide complet pour les supporters voyageant au Maroc pour la CAN 2025.",
+    content: `
+      <p>Vous prévoyez de voyager au Maroc pour la CAN 2025 ? Ce guide complet vous aidera à préparer votre séjour et vivre une expérience inoubliable.</p>
+
+      <h2>Visa et Documents de Voyage</h2>
+      <p>De nombreux pays africains et européens bénéficient d'une exemption de visa pour le Maroc. Vérifiez les exigences spécifiques à votre pays. Un passeport valide pendant au moins 6 mois est nécessaire.</p>
+
+      <h2>Où Loger ?</h2>
+      <h3>Rabat</h3>
+      <p>Capitale du Maroc, idéale pour les matchs d'ouverture et la finale. Options d'hébergement variées du riad traditionnel aux hôtels modernes.</p>
+
+      <h3>Casablanca</h3>
+      <p>Plus grande ville du Maroc avec de nombreuses options d'hébergement. Proche du stade Mohammed V.</p>
+
+      <h3>Marrakech</h3>
+      <p>Destination touristique par excellence, parfaite pour combiner football et tourisme.</p>
+
+      <h2>Transport</h2>
+      <ul>
+        <li><strong>Vols :</strong> Aéroports internationaux à Casablanca (CMN), Marrakech (RAK), Rabat (RBA)</li>
+        <li><strong>Train :</strong> Réseau ONCF connectant toutes les grandes villes, incluant le TGV Al Boraq</li>
+        <li><strong>Bus :</strong> CTM et Supratours pour les liaisons interurbaines</li>
+        <li><strong>Taxi :</strong> Disponibles partout, négociez le prix avant le trajet</li>
+      </ul>
+
+      <h2>Billets de Match</h2>
+      <p>Les billets seront disponibles sur le site officiel de la CAF. Réservez tôt car la demande sera forte, surtout pour les matchs du Maroc.</p>
+
+      <h2>Budget Estimé</h2>
+      <ul>
+        <li><strong>Hébergement :</strong> 30-150€/nuit selon le standing</li>
+        <li><strong>Repas :</strong> 5-20€/repas</li>
+        <li><strong>Transport local :</strong> 1-10€/trajet</li>
+        <li><strong>Billets de match :</strong> 10-100€ selon la catégorie</li>
+      </ul>
+
+      <h2>Conseils Pratiques</h2>
+      <ul>
+        <li>Apprenez quelques mots en arabe ou français</li>
+        <li>Respectez les coutumes locales</li>
+        <li>Négociez dans les souks</li>
+        <li>Goûtez à la cuisine marocaine : tagine, couscous, pastilla</li>
+        <li>Portez des vêtements appropriés</li>
+      </ul>
+
+      <h2>Trouvez Votre Agence de Voyage</h2>
+      <p>Pour un voyage sans stress, faites appel à nos agences de voyage partenaires au Maroc. Elles peuvent organiser des forfaits tout compris pour la CAN 2025.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=1200&h=600&fit=crop",
+    date: "2025-01-11",
+    author: "Guide Voyage",
+    category: "CAN 2025",
+    readTime: "12 min read",
+  },
+  "can-2025-stades-maroc-villes-hotes": {
+    title: "CAN 2025 : Les Stades du Maroc et Villes Hôtes du Tournoi",
+    excerpt: "Découvrez les stades marocains qui accueilleront la CAN 2025.",
+    content: `
+      <p>Le Maroc a préparé des infrastructures de classe mondiale pour accueillir la CAN 2025. Découvrez les stades et les villes qui feront vibrer le continent africain.</p>
+
+      <h2>Rabat - La Capitale</h2>
+      <h3>Stade Moulay Abdellah (Capacité : 65 000)</h3>
+      <p>Rénové et agrandi pour l'occasion, ce stade accueillera le match d'ouverture et la finale. Situé au cœur de la capitale, il offrira une atmosphère unique.</p>
+      <p><strong>Matchs prévus :</strong> Match d'ouverture, demi-finale, finale</p>
+
+      <h2>Casablanca - La Métropole</h2>
+      <h3>Complexe Sportif Mohammed V (Capacité : 45 000)</h3>
+      <p>Le stade le plus emblématique du football marocain. Il a accueilli des finales de coupes africaines et sera au cœur de la CAN 2025.</p>
+      <p><strong>Matchs prévus :</strong> Phase de groupes, huitièmes de finale, quarts de finale</p>
+
+      <h2>Marrakech - La Ville Rouge</h2>
+      <h3>Stade de Marrakech (Capacité : 45 000)</h3>
+      <p>Stade moderne au pied de l'Atlas, dans un cadre spectaculaire. Marrakech combine football et tourisme pour une expérience unique.</p>
+      <p><strong>À voir :</strong> Place Jemaa el-Fna, Jardins Majorelle, Médina</p>
+
+      <h2>Fès - La Ville Impériale</h2>
+      <h3>Complexe Sportif de Fès (Capacité : 45 000)</h3>
+      <p>La plus ancienne ville impériale du Maroc offre un cadre historique unique. Son stade moderne accueillera plusieurs matchs de groupes.</p>
+      <p><strong>À voir :</strong> Médina de Fès (UNESCO), Tanneries, Université Al Quaraouiyine</p>
+
+      <h2>Agadir - La Station Balnéaire</h2>
+      <h3>Stade Adrar (Capacité : 45 000)</h3>
+      <p>Située sur la côte atlantique, Agadir offre plages et football. Idéal pour combiner supporter et vacances.</p>
+      <p><strong>À voir :</strong> Plages, Kasbah, Souk El Had</p>
+
+      <h2>Tanger - La Porte de l'Afrique</h2>
+      <h3>Stade Ibn Batouta (Capacité : 45 000)</h3>
+      <p>Stade ultramoderne qui a accueilli la finale de la Coupe du Monde des Clubs 2022. Tanger offre un mélange unique de cultures européenne et africaine.</p>
+      <p><strong>À voir :</strong> Médina, Grottes d'Hercule, Cap Spartel</p>
+
+      <h2>Réservez Votre Séjour</h2>
+      <p>Chaque ville hôte offre une expérience unique. Contactez nos agences de voyage partenaires pour organiser un circuit qui combine les matchs de la CAN et la découverte du Maroc.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=1200&h=600&fit=crop",
+    date: "2025-01-10",
+    author: "Expert Infrastructure",
+    category: "CAN 2025",
+    readTime: "9 min read",
+  },
+  // Original blog posts
   "how-to-choose-travel-agency": {
     title: "How to Choose the Right Travel Agency for Your Next Trip",
     excerpt: "Discover the key factors to consider when selecting a travel agency.",

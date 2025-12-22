@@ -8,6 +8,78 @@ import { Calendar, User, ArrowRight, Clock } from "lucide-react";
 const blogPosts = [
   {
     id: "1",
+    slug: "can-2025-predictions-maroc-favori",
+    title: "CAN 2025 : Le Maroc Favori pour Remporter la Coupe - Analyse Complète",
+    excerpt:
+      "Découvrez pourquoi le Maroc est considéré comme le grand favori de la CAN 2025. Analyse des forces de l'équipe nationale, des joueurs clés et des chances de victoire.",
+    image: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&h=500&fit=crop",
+    date: "2025-01-15",
+    author: "Expert Football",
+    category: "CAN 2025",
+    readTime: "8 min read",
+  },
+  {
+    id: "2",
+    slug: "can-2025-qui-va-gagner-pronostics",
+    title: "CAN 2025 : Qui Va Gagner ? Pronostics et Favoris du Tournoi",
+    excerpt:
+      "Nos pronostics pour la Coupe d'Afrique des Nations 2025 au Maroc. Analyse des équipes favorites, outsiders et prédictions pour le vainqueur final.",
+    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=500&fit=crop",
+    date: "2025-01-14",
+    author: "Analyste Sportif",
+    category: "CAN 2025",
+    readTime: "10 min read",
+  },
+  {
+    id: "3",
+    slug: "can-2025-maroc-parcours-mondial",
+    title: "Le Maroc en Route vers la Gloire : Du Mondial 2022 à la CAN 2025",
+    excerpt:
+      "Retour sur le parcours exceptionnel des Lions de l'Atlas depuis la Coupe du Monde 2022 et leurs ambitions pour la CAN 2025 à domicile.",
+    image: "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&h=500&fit=crop",
+    date: "2025-01-13",
+    author: "Chroniqueur Sportif",
+    category: "CAN 2025",
+    readTime: "7 min read",
+  },
+  {
+    id: "4",
+    slug: "can-2025-calendrier-matchs-maroc",
+    title: "CAN 2025 Calendrier : Tous les Matchs du Maroc et Programme Complet",
+    excerpt:
+      "Calendrier complet de la CAN 2025 avec tous les matchs de l'équipe du Maroc, horaires, stades et où regarder les matchs en direct.",
+    image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&h=500&fit=crop",
+    date: "2025-01-12",
+    author: "Expert CAN",
+    category: "CAN 2025",
+    readTime: "6 min read",
+  },
+  {
+    id: "5",
+    slug: "can-2025-voyage-maroc-supporters",
+    title: "CAN 2025 : Guide de Voyage au Maroc pour les Supporters",
+    excerpt:
+      "Guide complet pour les supporters voyageant au Maroc pour la CAN 2025. Hébergement, transport, billets et conseils pratiques.",
+    image: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=800&h=500&fit=crop",
+    date: "2025-01-11",
+    author: "Guide Voyage",
+    category: "CAN 2025",
+    readTime: "12 min read",
+  },
+  {
+    id: "6",
+    slug: "can-2025-stades-maroc-villes-hotes",
+    title: "CAN 2025 : Les Stades du Maroc et Villes Hôtes du Tournoi",
+    excerpt:
+      "Découvrez les stades marocains qui accueilleront la CAN 2025 : Casablanca, Rabat, Marrakech, Fès, Agadir et Tanger.",
+    image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&h=500&fit=crop",
+    date: "2025-01-10",
+    author: "Expert Infrastructure",
+    category: "CAN 2025",
+    readTime: "9 min read",
+  },
+  {
+    id: "7",
     slug: "how-to-choose-travel-agency",
     title: "How to Choose the Right Travel Agency for Your Next Trip",
     excerpt:
@@ -19,7 +91,7 @@ const blogPosts = [
     readTime: "5 min read",
   },
   {
-    id: "2",
+    id: "8",
     slug: "top-destinations-2025",
     title: "Top 10 Travel Destinations for 2025",
     excerpt:
@@ -31,7 +103,7 @@ const blogPosts = [
     readTime: "8 min read",
   },
   {
-    id: "3",
+    id: "9",
     slug: "morocco-travel-guide",
     title: "Complete Morocco Travel Guide: What You Need to Know",
     excerpt:
@@ -43,7 +115,7 @@ const blogPosts = [
     readTime: "10 min read",
   },
   {
-    id: "4",
+    id: "10",
     slug: "budget-travel-tips",
     title: "Budget Travel Tips: How to Explore More for Less",
     excerpt:
@@ -55,7 +127,7 @@ const blogPosts = [
     readTime: "6 min read",
   },
   {
-    id: "5",
+    id: "11",
     slug: "group-travel-benefits",
     title: "The Benefits of Group Travel with a Professional Agency",
     excerpt:
@@ -67,7 +139,7 @@ const blogPosts = [
     readTime: "5 min read",
   },
   {
-    id: "6",
+    id: "12",
     slug: "travel-insurance-guide",
     title: "Travel Insurance: Why You Need It and How to Choose",
     excerpt:
@@ -80,7 +152,7 @@ const blogPosts = [
   },
 ];
 
-const categories = ["All", "Travel Tips", "Destinations", "News"];
+const categories = ["All", "CAN 2025", "Travel Tips", "Destinations", "News"];
 
 export default function BlogContent() {
   const [selectedCategory, setSelectedCategory] = useState("All");

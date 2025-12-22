@@ -8,6 +8,14 @@ function escapeXmlUrl(url: string): string {
 
 // Blog posts data for sitemap
 const blogPosts = [
+  // CAN 2025 Blog Posts - High Priority for Moroccan SEO
+  { slug: "can-2025-predictions-maroc-favori", date: "2025-01-15" },
+  { slug: "can-2025-qui-va-gagner-pronostics", date: "2025-01-14" },
+  { slug: "can-2025-maroc-parcours-mondial", date: "2025-01-13" },
+  { slug: "can-2025-calendrier-matchs-maroc", date: "2025-01-12" },
+  { slug: "can-2025-voyage-maroc-supporters", date: "2025-01-11" },
+  { slug: "can-2025-stades-maroc-villes-hotes", date: "2025-01-10" },
+  // Original Blog Posts
   { slug: "how-to-choose-travel-agency", date: "2024-12-15" },
   { slug: "top-destinations-2025", date: "2024-12-10" },
   { slug: "morocco-travel-guide", date: "2024-12-05" },
@@ -84,8 +92,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
+    changeFrequency: post.slug.includes("can-2025") ? "weekly" as const : "monthly" as const,
+    priority: post.slug.includes("can-2025") ? 0.85 : 0.7,
   }));
 
   // ========================================

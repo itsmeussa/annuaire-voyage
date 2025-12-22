@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Using Google Gemini (FREE - 1500 requests/day)
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
+// Using OpenAI GPT-3.5 Turbo
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
 
 const SYSTEM_PROMPT = `You are a helpful travel assistant for TravelAgencies.World - the world's largest directory of travel agencies with 2670+ verified agencies worldwide.
 
@@ -38,55 +38,42 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!GEMINI_API_KEY) {
-      console.error("GEMINI_API_KEY is not set");
+    if (!OPENAI_API_KEY) {
+      console.error("OPENAI_API_KEY is not set");
       return NextResponse.json(
-        { error: "Chat service is not configured. Please add GEMINI_API_KEY to environment variables." },
+        { error: "Chat service is not configured. Please add OPENAI_API_KEY to environment variables." },
         { status: 500 }
       );
     }
 
-    // Convert messages to Gemini format
-    const geminiMessages = messages.slice(-10).map((msg: any) => ({
-      role: msg.role === "assistant" ? "model" : "user",
-      parts: [{ text: msg.content }],
-    }));
-
-    // Add system prompt as first user message if needed
-    const contents = [
-      { role: "user", parts: [{ text: SYSTEM_PROMPT }] },
-      { role: "model", parts: [{ text: "Understood! I'm ready to help users find travel agencies and answer questions about travel. How can I assist you today?" }] },
-      ...geminiMessages,
-    ];
-
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contents,
-          generationConfig: {
-            maxOutputTokens: 300,
-            temperature: 0.7,
-          },
-        }),
-      }
-    );
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          ...messages.slice(-10),
+        ],
+        max_tokens: 300,
+        temperature: 0.7,
+      }),
+    });
 
     const responseData = await response.json().catch(() => null);
 
     if (!response.ok) {
-      console.error("Gemini API error:", response.status, responseData);
+      console.error("OpenAI API error:", response.status, responseData);
       return NextResponse.json(
-        { error: responseData?.error?.message || `Gemini API error: ${response.status}` },
+        { error: responseData?.error?.message || `OpenAI API error: ${response.status}` },
         { status: 500 }
       );
     }
 
-    const assistantMessage = responseData?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that.";
+    const assistantMessage = responseData?.choices?.[0]?.message?.content || "Sorry, I couldn't process that.";
 
     return NextResponse.json({ message: assistantMessage });
   } catch (error: any) {

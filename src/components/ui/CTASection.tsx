@@ -8,7 +8,7 @@ interface CTASectionProps {
 
 export default function CTASection({ variant = "primary", country }: CTASectionProps) {
   const benefits = [
-    "Access to 3800+ verified travel agencies",
+    "Access to 2650+ verified travel agencies",
     "Compare ratings and reviews instantly",
     "Direct contact with travel professionals",
     "Free to use, no registration required",
@@ -148,7 +148,7 @@ export default function CTASection({ variant = "primary", country }: CTASectionP
               <h3 className="text-2xl font-bold mb-4">Quick Stats</h3>
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <div className="text-4xl font-bold">3800+</div>
+                  <div className="text-4xl font-bold">2650+</div>
                   <div className="text-white/80">Travel Agencies</div>
                 </div>
                 <div>

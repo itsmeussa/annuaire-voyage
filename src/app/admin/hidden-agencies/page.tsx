@@ -1,14 +1,21 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { Agency } from "@/types";
 import { slugify, getCountryName, getCityName } from "@/lib/utils";
 import data1 from "@/data/agencies-processed.json";
-import { ExternalLink, MapPin, Star, Phone, Globe, Eye, EyeOff, ArrowUpDown, Search, X, User } from "lucide-react";
+import { ExternalLink, MapPin, Star, Phone, Globe, Eye, EyeOff, ArrowUpDown, Search, X, User, Check } from "lucide-react";
 
-type SortField = "name" | "city" | "score" | "reviews" | "assignedTo";
+type SortField = "name" | "city" | "score" | "reviews" | "assignedTo" | "contacted";
 type SortOrder = "asc" | "desc";
 type AssignedTo = "Aya" | "Zaki" | "Ussa";
+
+interface ContactedAgency {
+  id: string;
+  contacted: boolean;
+  contactedBy: string;
+  contactedAt: string;
+}
 
 // Get ALL Moroccan agencies (hidden ones)
 function getAllMoroccanAgencies(): Agency[] {
@@ -83,10 +90,50 @@ export default function HiddenAgenciesPage() {
   const [minScore, setMinScore] = useState<string>("");
   const [minReviews, setMinReviews] = useState<string>("");
   const [assignedFilter, setAssignedFilter] = useState<"all" | "Aya" | "Zaki" | "Ussa">("all");
+  const [contactedAgencies, setContactedAgencies] = useState<Record<string, ContactedAgency>>({});
+  const [contactedFilter, setContactedFilter] = useState<"all" | "contacted" | "not-contacted">("all");
+  const [loadingContacted, setLoadingContacted] = useState<string | null>(null);
+
+  // Fetch contacted agencies from API
+  const fetchContactedAgencies = useCallback(async () => {
+    try {
+      const response = await fetch("/api/contacted-agencies");
+      const data = await response.json();
+      setContactedAgencies(data);
+    } catch (error) {
+      console.error("Error fetching contacted agencies:", error);
+    }
+  }, []);
 
   useEffect(() => {
     setAgencies(getAllMoroccanAgencies());
-  }, []);
+    fetchContactedAgencies();
+  }, [fetchContactedAgencies]);
+
+  // Toggle contacted status
+  const toggleContacted = async (agencyId: string, assignedTo: AssignedTo) => {
+    setLoadingContacted(agencyId);
+    try {
+      const isCurrentlyContacted = !!contactedAgencies[agencyId]?.contacted;
+      const response = await fetch("/api/contacted-agencies", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: agencyId,
+          contacted: !isCurrentlyContacted,
+          contactedBy: assignedTo,
+        }),
+      });
+
+      if (response.ok) {
+        await fetchContactedAgencies();
+      }
+    } catch (error) {
+      console.error("Error toggling contacted status:", error);
+    } finally {
+      setLoadingContacted(null);
+    }
+  };
 
   // Get unique cities for filter
   const uniqueCities = useMemo(() => {
@@ -166,6 +213,13 @@ export default function HiddenAgenciesPage() {
       result = result.filter((a) => getAssignedTo(a.id) === assignedFilter);
     }
 
+    // Contacted filter
+    if (contactedFilter === "contacted") {
+      result = result.filter((a) => contactedAgencies[a.id]?.contacted);
+    } else if (contactedFilter === "not-contacted") {
+      result = result.filter((a) => !contactedAgencies[a.id]?.contacted);
+    }
+
     // Sort
     result.sort((a, b) => {
       let comparison = 0;
@@ -185,12 +239,17 @@ export default function HiddenAgenciesPage() {
         case "assignedTo":
           comparison = getAssignedTo(a.id).localeCompare(getAssignedTo(b.id));
           break;
+        case "contacted":
+          const aContacted = contactedAgencies[a.id]?.contacted ? 1 : 0;
+          const bContacted = contactedAgencies[b.id]?.contacted ? 1 : 0;
+          comparison = aContacted - bContacted;
+          break;
       }
       return sortOrder === "asc" ? comparison : -comparison;
     });
 
     return result;
-  }, [agencies, filter, searchTerm, cityFilter, minScore, minReviews, assignedFilter, sortField, sortOrder, visibleIds, hiddenAgencies]);
+  }, [agencies, filter, searchTerm, cityFilter, minScore, minReviews, assignedFilter, contactedFilter, sortField, sortOrder, visibleIds, hiddenAgencies, contactedAgencies]);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -208,6 +267,7 @@ export default function HiddenAgenciesPage() {
     setMinReviews("");
     setFilter("all");
     setAssignedFilter("all");
+    setContactedFilter("all");
   };
 
   const visibleCount = 5;
@@ -217,6 +277,8 @@ export default function HiddenAgenciesPage() {
   const ayaCount = quarterPoint;
   const zakiCount = halfPoint - quarterPoint;
   const ussaCount = hiddenAgencies.length - halfPoint;
+  const contactedCount = Object.values(contactedAgencies).filter(c => c.contacted).length;
+  const notContactedCount = agencies.length - contactedCount;
 
   const SortButton = ({ field, label }: { field: SortField; label: string }) => (
     <button
@@ -376,7 +438,41 @@ export default function HiddenAgenciesPage() {
               Ussa ({ussaCount})
             </button>
 
-            {(searchTerm || cityFilter || minScore || minReviews || filter !== "all" || assignedFilter !== "all") && (
+            <div className="w-px h-6 bg-slate-300 mx-2"></div>
+
+            <button
+              onClick={() => setContactedFilter("all")}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                contactedFilter === "all"
+                  ? "bg-slate-700 text-white"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              Tous contacts
+            </button>
+            <button
+              onClick={() => setContactedFilter("contacted")}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1 ${
+                contactedFilter === "contacted"
+                  ? "bg-green-600 text-white"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              <Check className="w-3 h-3" />
+              Contactés ({contactedCount})
+            </button>
+            <button
+              onClick={() => setContactedFilter("not-contacted")}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                contactedFilter === "not-contacted"
+                  ? "bg-gray-600 text-white"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              Non contactés ({notContactedCount})
+            </button>
+
+            {(searchTerm || cityFilter || minScore || minReviews || filter !== "all" || assignedFilter !== "all" || contactedFilter !== "all") && (
               <button
                 onClick={clearFilters}
                 className="ml-auto px-3 py-1.5 text-sm text-slate-500 hover:text-slate-700 flex items-center gap-1"
@@ -400,6 +496,9 @@ export default function HiddenAgenciesPage() {
               <thead className="bg-slate-100">
                 <tr>
                   <th className="px-4 py-3 text-left text-sm font-medium text-slate-600">#</th>
+                  <th className="px-4 py-3 text-left">
+                    <SortButton field="contacted" label="Contacté" />
+                  </th>
                   <th className="px-4 py-3 text-left text-sm font-medium text-slate-600">Statut</th>
                   <th className="px-4 py-3 text-left">
                     <SortButton field="assignedTo" label="Assigné" />
@@ -433,6 +532,37 @@ export default function HiddenAgenciesPage() {
                       className={`hover:bg-slate-50 ${!isVisible ? "bg-red-50/30" : ""}`}
                     >
                       <td className="px-4 py-3 text-sm text-slate-500">{originalRank}</td>
+                      <td className="px-4 py-3">
+                        <button
+                          onClick={() => toggleContacted(agency.id, assignedTo)}
+                          disabled={loadingContacted === agency.id}
+                          className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all ${
+                            loadingContacted === agency.id
+                              ? "opacity-50 cursor-wait"
+                              : "cursor-pointer hover:scale-110"
+                          } ${
+                            contactedAgencies[agency.id]?.contacted
+                              ? assignedTo === "Aya"
+                                ? "bg-pink-500 border-pink-500 text-white"
+                                : assignedTo === "Zaki"
+                                ? "bg-blue-500 border-blue-500 text-white"
+                                : "bg-orange-500 border-orange-500 text-white"
+                              : assignedTo === "Aya"
+                              ? "border-pink-300 hover:border-pink-500"
+                              : assignedTo === "Zaki"
+                              ? "border-blue-300 hover:border-blue-500"
+                              : "border-orange-300 hover:border-orange-500"
+                          }`}
+                          title={contactedAgencies[agency.id]?.contacted 
+                            ? `Contacté par ${contactedAgencies[agency.id]?.contactedBy} le ${new Date(contactedAgencies[agency.id]?.contactedAt).toLocaleDateString()}`
+                            : "Marquer comme contacté"
+                          }
+                        >
+                          {contactedAgencies[agency.id]?.contacted && (
+                            <Check className="w-4 h-4" />
+                          )}
+                        </button>
+                      </td>
                       <td className="px-4 py-3">
                         {isVisible ? (
                           <span className="inline-flex items-center gap-1 px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium">
@@ -533,7 +663,7 @@ export default function HiddenAgenciesPage() {
         {/* Summary */}
         <div className="mt-8 p-6 bg-white rounded-xl">
           <h2 className="font-semibold text-slate-900 mb-4">Résumé</h2>
-          <div className="grid md:grid-cols-6 gap-4">
+          <div className="grid md:grid-cols-4 gap-4 mb-4">
             <div className="p-4 bg-slate-50 rounded-lg">
               <div className="text-2xl font-bold text-slate-900">{agencies.length}</div>
               <div className="text-sm text-slate-500">Total agences marocaines</div>
@@ -546,6 +676,12 @@ export default function HiddenAgenciesPage() {
               <div className="text-2xl font-bold text-red-600">{hiddenCount}</div>
               <div className="text-sm text-red-700">Actuellement cachées</div>
             </div>
+            <div className="p-4 bg-green-50 rounded-lg border-2 border-green-200">
+              <div className="text-2xl font-bold text-green-600">{contactedCount}</div>
+              <div className="text-sm text-green-700">Déjà contactées</div>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
             <div className="p-4 bg-pink-50 rounded-lg">
               <div className="text-2xl font-bold text-pink-600">{ayaCount}</div>
               <div className="text-sm text-pink-700">Assignées à Aya</div>

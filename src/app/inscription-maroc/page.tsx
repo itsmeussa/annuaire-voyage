@@ -38,7 +38,7 @@ const content = {
     
     // Trust Stats
     stats: [
-      { value: "3800+", label: "Agences référencées" },
+      { value: "2650+", label: "Agences référencées" },
       { value: "45+", label: "Pays couverts" },
       { value: "50K+", label: "Visiteurs mensuels" },
     ],
@@ -49,7 +49,7 @@ const content = {
     whoWeAreText: "TravelAgencies.World est un annuaire international d'agences de voyage, fondé en France et développé aux États-Unis. Notre mission : connecter les voyageurs avec des agences fiables partout dans le monde. Aujourd'hui, nous ouvrons nos portes au Maroc pour offrir aux agences locales une visibilité internationale sans précédent.",
     whoWeArePoints: [
       "Présence dans plus de 45 pays",
-      "Plus de 3800 agences de voyage référencées",
+      "Plus de 2650 agences de voyage référencées",
       "Milliers de voyageurs internationaux chaque mois",
       "Référencement optimisé sur Google",
     ],
@@ -176,7 +176,7 @@ const content = {
 
     // Trust Stats
     stats: [
-      { value: "3800+", label: "Listed Agencies" },
+      { value: "2650+", label: "Listed Agencies" },
       { value: "45+", label: "Countries Covered" },
       { value: "50K+", label: "Monthly Visitors" },
     ],
@@ -187,7 +187,7 @@ const content = {
     whoWeAreText: "TravelAgencies.World is an international travel agency directory, founded in France and developed in the United States. Our mission: connect travelers with reliable agencies worldwide. Today, we're opening our doors to Morocco to offer local agencies unprecedented international visibility.",
     whoWeArePoints: [
       "Presence in over 45 countries",
-      "More than 3800 travel agencies listed",
+      "More than 2650 travel agencies listed",
       "Thousands of international travelers every month",
       "Google-optimized SEO",
     ],
@@ -314,7 +314,7 @@ const content = {
 
     // Trust Stats
     stats: [
-      { value: "+3800", label: "وكالة مسجلة" },
+      { value: "+2650", label: "وكالة مسجلة" },
       { value: "+45", label: "دولة" },
       { value: "+50 ألف", label: "زائر شهرياً" },
     ],
@@ -325,7 +325,7 @@ const content = {
     whoWeAreText: "TravelAgencies.World هو دليل دولي لوكالات السفر، تأسس في فرنسا وتطور في الولايات المتحدة. مهمتنا: ربط المسافرين بوكالات موثوقة في جميع أنحاء العالم. اليوم، نفتح أبوابنا للمغرب لنقدم للوكالات المحلية ظهوراً دولياً غير مسبوق.",
     whoWeArePoints: [
       "تواجد في أكثر من 45 دولة",
-      "أكثر من 3800 وكالة سفر مسجلة",
+      "أكثر من 2650 وكالة سفر مسجلة",
       "آلاف المسافرين الدوليين كل شهر",
       "تحسين محركات البحث على Google",
     ],
@@ -564,7 +564,7 @@ export default function InscriptionMaroc() {
                   {lang === "ar" ? "انضم إلى شبكتنا الدولية" : lang === "en" ? "Join Our Global Network" : "Rejoignez notre réseau international"}
                 </h3>
                 <p className="text-slate-500 text-sm">
-                  {lang === "ar" ? "أكثر من 3800 وكالة في 45+ دولة" : lang === "en" ? "3800+ agencies in 45+ countries" : "Plus de 3800 agences dans 45+ pays"}
+                  {lang === "ar" ? "أكثر من 2650 وكالة في 45+ دولة" : lang === "en" ? "2650+ agencies in 45+ countries" : "Plus de 2650 agences dans 45+ pays"}
                 </p>
               </div>
 

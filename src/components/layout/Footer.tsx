@@ -45,7 +45,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-slate-400 mb-6 max-w-md">
-              Your trusted free global directory with 3800+ verified travel agencies
+              Your trusted free global directory with 2650+ verified travel agencies
               worldwide. Compare ratings, read real Google reviews, and connect directly with
               travel professionals in France, USA, Canada & more.
             </p>

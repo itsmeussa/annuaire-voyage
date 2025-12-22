@@ -13,6 +13,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check if API key is configured
+    if (!BREVO_API_KEY) {
+      console.error("BREVO_API_KEY is not configured");
+      return NextResponse.json(
+        { error: "Newsletter service is not configured. Please contact support." },
+        { status: 500 }
+      );
+    }
+
     // Add contact to Brevo
     const response = await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",
@@ -24,29 +33,28 @@ export async function POST(request: NextRequest) {
         email: email,
         listIds: [3], // TravelAgencies Newsletter list
         updateEnabled: true,
-        attributes: {
-          SOURCE: "TravelAgencies.World Newsletter",
-          SIGNUP_DATE: new Date().toISOString(),
-        },
       }),
     });
 
+    const responseData = await response.json().catch(() => ({}));
+
     if (response.ok) {
-      return NextResponse.json({ success: true, message: "Successfully subscribed!" });
+      return NextResponse.json({ success: true, message: "Successfully subscribed! 🎉" });
     }
 
     // Handle duplicate email (already subscribed)
     if (response.status === 400) {
-      const errorData = await response.json();
-      if (errorData.code === "duplicate_parameter") {
-        return NextResponse.json({ success: true, message: "You're already subscribed!" });
+      if (responseData.code === "duplicate_parameter") {
+        return NextResponse.json({ success: true, message: "You're already subscribed! 🎉" });
       }
+      console.error("Brevo API error:", responseData);
       return NextResponse.json(
-        { error: errorData.message || "Failed to subscribe" },
+        { error: responseData.message || "Failed to subscribe" },
         { status: 400 }
       );
     }
 
+    console.error("Brevo API error:", response.status, responseData);
     return NextResponse.json(
       { error: "Failed to subscribe. Please try again." },
       { status: 500 }
@@ -58,4 +66,5 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
+}
 }

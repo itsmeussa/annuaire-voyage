@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         email: email,
-        listIds: [2], // Default list ID, you can change this in Brevo dashboard
+        listIds: [3], // TravelAgencies Newsletter list
         updateEnabled: true,
         attributes: {
           SOURCE: "TravelAgencies.World Newsletter",

@@ -47,14 +47,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Azure AI Foundry endpoint
-    const apiUrl = `${AZURE_OPENAI_ENDPOINT}/models/chat/completions?api-version=2024-05-01-preview`;
+    // Azure AI Foundry inference endpoint
+    const apiUrl = `${AZURE_OPENAI_ENDPOINT}/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-08-01-preview`;
 
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "api-key": AZURE_OPENAI_KEY,
+        "Authorization": `Bearer ${AZURE_OPENAI_KEY}`,
       },
       body: JSON.stringify({
         messages: [

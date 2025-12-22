@@ -1,9 +1,76 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Phone, Mail, Globe, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { MapPin, Phone, Mail, Globe, Facebook, Twitter, Instagram, Linkedin, Send, CheckCircle, Loader2 } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !email.includes("@")) {
+      setStatus("error");
+      setMessage("Please enter a valid email address");
+      return;
+    }
+
+    setStatus("loading");
+
+    try {
+      // Option 1: Using Brevo (Sendinblue) - Free up to 300 emails/day
+      // Replace YOUR_LIST_ID and YOUR_API_KEY with your Brevo credentials
+      // const response = await fetch("https://api.brevo.com/v3/contacts", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     "api-key": "YOUR_API_KEY",
+      //   },
+      //   body: JSON.stringify({
+      //     email: email,
+      //     listIds: [YOUR_LIST_ID],
+      //     updateEnabled: true,
+      //   }),
+      // });
+
+      // Option 2: Using Google Form (Free & Simple)
+      // Create a Google Form with email field and use the form URL
+      const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfXXXXXXXXXXXXXXXXXXXXX/formResponse";
+      const formData = new FormData();
+      formData.append("entry.XXXXXXXXXX", email); // Replace with your form field ID
+      
+      // For now, we'll simulate success and store locally
+      // In production, uncomment the fetch above with your form URL
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Store in localStorage for demo
+      const subscribers = JSON.parse(localStorage.getItem("newsletter_subscribers") || "[]");
+      if (!subscribers.includes(email)) {
+        subscribers.push(email);
+        localStorage.setItem("newsletter_subscribers", JSON.stringify(subscribers));
+      }
+
+      setStatus("success");
+      setMessage("Thank you for subscribing! 🎉");
+      setEmail("");
+      
+      // Reset after 5 seconds
+      setTimeout(() => {
+        setStatus("idle");
+        setMessage("");
+      }, 5000);
+    } catch (error) {
+      setStatus("error");
+      setMessage("Something went wrong. Please try again.");
+    }
+  };
 
   const footerLinks = {
     explore: [
@@ -86,6 +153,50 @@ export default function Footer() {
               >
                 <Twitter className="h-5 w-5" />
               </a>
+            </div>
+
+            {/* Newsletter Signup */}
+            <div className="mt-8">
+              <h3 className="text-white font-semibold text-lg mb-3">
+                📧 Subscribe to Our Newsletter
+              </h3>
+              <p className="text-slate-400 text-sm mb-4">
+                Get travel tips, exclusive deals, and CAN 2025 updates!
+              </p>
+              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2">
+                <div className="relative flex-1">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="w-full pl-10 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    disabled={status === "loading" || status === "success"}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={status === "loading" || status === "success"}
+                  className="px-6 py-3 bg-primary hover:bg-primary/90 disabled:bg-slate-700 text-white font-medium rounded-lg flex items-center justify-center gap-2 transition-colors"
+                >
+                  {status === "loading" ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : status === "success" ? (
+                    <CheckCircle className="h-5 w-5" />
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4" />
+                      Subscribe
+                    </>
+                  )}
+                </button>
+              </form>
+              {message && (
+                <p className={`mt-2 text-sm ${status === "success" ? "text-green-400" : "text-red-400"}`}>
+                  {message}
+                </p>
+              )}
             </div>
           </div>
 

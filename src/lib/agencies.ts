@@ -97,25 +97,8 @@ export function getAllAgencies(): Agency[] {
       } as Agency;
     });
 
-  // Filter Moroccan agencies: keep random 20 agencies (shuffled for variety)
-  const allMoroccanAgencies = agencies.filter((a) => a.countryCode === "MA");
-  
-  // Shuffle Moroccan agencies using a seeded random (based on date for daily variety)
-  const today = new Date().toDateString();
-  const seed = today.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const shuffled = [...allMoroccanAgencies].sort((a, b) => {
-    const hashA = (seed + a.id.charCodeAt(a.id.length - 1)) % 100;
-    const hashB = (seed + b.id.charCodeAt(b.id.length - 1)) % 100;
-    return hashA - hashB;
-  });
-  
-  const moroccanAgencies = shuffled.slice(0, 20);
-  const moroccanAgencyIds = new Set(moroccanAgencies.map((a) => a.id));
-
-  // Keep non-Moroccan agencies + random 20 Moroccan agencies
-  const filteredAgencies = agencies.filter(
-    (a) => a.countryCode !== "MA" || moroccanAgencyIds.has(a.id)
-  );
+  // Hide ALL agencies from the platform
+  const filteredAgencies: Agency[] = [];
 
   // Cache the result
   cachedAgencies = filteredAgencies;

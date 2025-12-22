@@ -15,30 +15,41 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    default: "TravelAgencies.World - 2650+ Verified Travel Agencies Worldwide | Find & Compare",
+    default: "TravelAgencies.World - 2670+ Verified Travel Agencies Worldwide | CAN 2025 Morocco",
     template: "%s | TravelAgencies.World",
   },
   description:
-    "Find and compare 2650+ verified travel agencies worldwide. Browse top-rated agencies in France, USA, Canada, UK, Spain & more. Real Google reviews, ratings & direct contact info. Free directory.",
+    "Find and compare 2670+ verified travel agencies worldwide. Best Morocco travel agencies for CAN 2025 Africa Cup of Nations. Top-rated agencies in Casablanca, Marrakech, Rabat, France, USA, Canada & UK. Real Google reviews & direct contact.",
   keywords: [
     "travel agencies",
     "tour operators",
     "travel directory",
-    "vacation planning",
-    "tour packages",
-    "travel agents",
+    "CAN 2025",
+    "Africa Cup of Nations 2025",
     "Morocco travel agencies",
+    "AFCON 2025 travel",
+    "Casablanca travel agency",
+    "Marrakech travel agency",
+    "Rabat travel agency",
+    "agence de voyage Maroc",
+    "agence voyage Casablanca",
+    "voyage CAN 2025",
+    "Morocco tour operators",
+    "best travel agencies 2025",
     "USA travel agents",
     "Canada tour operators",
+    "France travel agencies",
     "worldwide travel agencies",
-    "best travel agencies",
     "travel agency reviews",
     "New York travel agency",
     "Toronto travel agency",
-    "Casablanca travel agency",
     "travel agency near me",
     "book travel agent",
     "top rated travel agencies",
+    "vacation planning 2025",
+    "tour packages Morocco",
+    "football travel packages",
+    "sports travel agency",
   ],
   authors: [{ name: "Orious Strategy", url: "https://orioustrategy.com" }],
   creator: "Orious Strategy",
@@ -58,9 +69,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "TravelAgencies.World - 2650+ Verified Travel Agencies Worldwide",
+    title: "TravelAgencies.World - 2670+ Travel Agencies | CAN 2025 Morocco Travel",
     description:
-      "Find and compare 2650+ verified travel agencies in France, USA, Canada, UK & more. Real reviews, ratings & direct contact info. Free directory.",
+      "Find verified travel agencies for CAN 2025 Africa Cup of Nations in Morocco. Compare 2670+ agencies in Casablanca, Marrakech, Rabat, France, USA & worldwide. Real reviews & direct contact.",
     url: "https://www.travelagencies.world",
     siteName: "TravelAgencies.World",
     images: [
@@ -68,7 +79,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "TravelAgencies.World - World Travel Agency Directory",
+        alt: "TravelAgencies.World - Best Travel Agencies for CAN 2025 Morocco",
       },
     ],
     locale: "en_US",
@@ -76,9 +87,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TravelAgencies.World - 2650+ Verified Travel Agencies",
+    title: "TravelAgencies.World - CAN 2025 Morocco Travel Agencies",
     description:
-      "Find verified travel agencies in France, USA, Canada & worldwide. Compare reviews, ratings & contact directly. Free to use.",
+      "Find the best travel agencies for Africa Cup of Nations 2025 in Morocco. 2670+ verified agencies in Casablanca, Marrakech & worldwide. Book now!",
     images: ["/og-image.jpg"],
     creator: "@orioustrategy",
   },
@@ -105,7 +116,7 @@ const organizationSchema = {
   name: "TravelAgencies.World",
   url: "https://www.travelagencies.world",
   logo: "https://www.travelagencies.world/travellogos/travelagencies-text-blue-white-nbackground.png",
-  description: "Free directory of 2650+ verified travel agencies worldwide with Google reviews and ratings",
+  description: "Free directory of 2670+ verified travel agencies worldwide. Best agencies for CAN 2025 Africa Cup of Nations in Morocco.",
   foundingDate: "2024",
   sameAs: [
     "https://www.instagram.com/travelagenciesworld",
@@ -124,7 +135,7 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "TravelAgencies.World",
   url: "https://www.travelagencies.world",
-  description: "Find and compare the best travel agencies worldwide",
+  description: "Find and compare the best travel agencies worldwide for CAN 2025 Africa Cup of Nations in Morocco",
   potentialAction: {
     "@type": "SearchAction",
     target: {
@@ -132,6 +143,33 @@ const websiteSchema = {
       urlTemplate: "https://www.travelagencies.world/agencies?q={search_term_string}"
     },
     "query-input": "required name=search_term_string"
+  }
+};
+
+// CAN 2025 Event Schema for trending SEO
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  name: "Africa Cup of Nations 2025 (CAN 2025)",
+  description: "The 35th edition of the Africa Cup of Nations hosted by Morocco. Find the best travel agencies to plan your trip.",
+  startDate: "2025-12-21",
+  endDate: "2026-01-18",
+  location: {
+    "@type": "Country",
+    name: "Morocco",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "MA"
+    }
+  },
+  organizer: {
+    "@type": "Organization",
+    name: "Confederation of African Football (CAF)"
+  },
+  offers: {
+    "@type": "AggregateOffer",
+    description: "Travel packages and agency services for CAN 2025",
+    url: "https://www.travelagencies.world/agencies/country/Morocco"
   }
 };
 
@@ -153,6 +191,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
         />
       </head>
       <body className={poppins.className}>

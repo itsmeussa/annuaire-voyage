@@ -97,20 +97,22 @@ export function getAllAgencies(): Agency[] {
       } as Agency;
     });
 
-  // Filter Moroccan agencies: keep only top 5 by rating and reviews
-  const moroccanAgencies = agencies
-    .filter((a) => a.countryCode === "MA")
-    .sort((a, b) => {
-      // Sort by score first, then by reviews count
-      const scoreDiff = (b.totalScore || 0) - (a.totalScore || 0);
-      if (scoreDiff !== 0) return scoreDiff;
-      return (b.reviewsCount || 0) - (a.reviewsCount || 0);
-    })
-    .slice(0, 5);
-
+  // Filter Moroccan agencies: keep random 20 agencies (shuffled for variety)
+  const allMoroccanAgencies = agencies.filter((a) => a.countryCode === "MA");
+  
+  // Shuffle Moroccan agencies using a seeded random (based on date for daily variety)
+  const today = new Date().toDateString();
+  const seed = today.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const shuffled = [...allMoroccanAgencies].sort((a, b) => {
+    const hashA = (seed + a.id.charCodeAt(a.id.length - 1)) % 100;
+    const hashB = (seed + b.id.charCodeAt(b.id.length - 1)) % 100;
+    return hashA - hashB;
+  });
+  
+  const moroccanAgencies = shuffled.slice(0, 20);
   const moroccanAgencyIds = new Set(moroccanAgencies.map((a) => a.id));
 
-  // Keep non-Moroccan agencies + top 5 Moroccan agencies
+  // Keep non-Moroccan agencies + random 20 Moroccan agencies
   const filteredAgencies = agencies.filter(
     (a) => a.countryCode !== "MA" || moroccanAgencyIds.has(a.id)
   );

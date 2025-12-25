@@ -4,9 +4,21 @@ import { ArrowRight, CheckCircle, Sparkles, Rocket, Trophy } from "lucide-react"
 interface CTASectionProps {
   variant?: "primary" | "secondary";
   country?: string;
+  title?: string;
+  subtitle?: string;
+  primaryAction?: {
+    label: string;
+    href: string;
+  };
 }
 
-export default function CTASection({ variant = "primary", country }: CTASectionProps) {
+export default function CTASection({
+  variant = "primary",
+  country,
+  title,
+  subtitle,
+  primaryAction
+}: CTASectionProps) {
   const benefits = [
     "Access to 2670+ verified travel agencies",
     "Compare ratings and reviews instantly",
@@ -61,7 +73,7 @@ export default function CTASection({ variant = "primary", country }: CTASectionP
                     Agence de Voyage? Obtenez Votre Site Web!
                   </h3>
                   <p className="text-white/90 mb-6 max-w-2xl mx-auto">
-                    Site web professionnel pour votre agence de voyage au Maroc. 
+                    Site web professionnel pour votre agence de voyage au Maroc.
                     <span className="text-yellow-300 font-bold"> 3500 DH seulement</span> - Offre spéciale CAN 2025!
                   </p>
                   <Link
@@ -93,7 +105,7 @@ export default function CTASection({ variant = "primary", country }: CTASectionP
                     Own a Travel Agency? Get Your Website!
                   </h3>
                   <p className="text-white/90 mb-6 max-w-2xl mx-auto">
-                    Launch a stunning, professional website for your travel agency. 
+                    Launch a stunning, professional website for your travel agency.
                     <span className="text-yellow-300 font-bold"> 50% OFF</span> on all website packages until January 31st!
                   </p>
                   <Link
@@ -120,26 +132,26 @@ export default function CTASection({ variant = "primary", country }: CTASectionP
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Your Journey Starts Here
+              {title || "Your Journey Starts Here"}
             </h2>
             <p className="text-xl text-white/80 mb-8">
-              Whether you're planning a romantic getaway, family vacation, or
-              business trip, our directory connects you with trusted travel
-              professionals who can make it happen.
+              {subtitle || "Whether you're planning a romantic getaway, family vacation, or business trip, our directory connects you with trusted travel professionals who can make it happen."}
             </p>
-            <ul className="space-y-3 mb-8">
-              {benefits.map((benefit) => (
-                <li key={benefit} className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
-                  <span>{benefit}</span>
-                </li>
-              ))}
-            </ul>
+            {!title && (
+              <ul className="space-y-3 mb-8">
+                {benefits.map((benefit) => (
+                  <li key={benefit} className="flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-400 flex-shrink-0" />
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
             <Link
-              href="/agencies"
+              href={primaryAction?.href || "/agencies"}
               className="inline-flex items-center gap-2 bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition-colors shadow-lg"
             >
-              Browse All Agencies
+              {primaryAction?.label || "Browse All Agencies"}
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>

@@ -64,7 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     })),
-    ...cities.slice(0, 100).map(city => ({ // Limit to top 100 cities to avoid huge sitemap
+    ...cities.slice(0, 2000).map(city => ({ // Limit increased to 2000 for max SEO coverage
       url: `${baseUrl}/agencies/country/${city.split(',')[1]?.trim() || 'city'}/city/${city}`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,

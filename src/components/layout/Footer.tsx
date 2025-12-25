@@ -13,7 +13,7 @@ export default function Footer() {
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email || !email.includes("@")) {
       setStatus("error");
       setMessage("Please enter a valid email address");
@@ -42,7 +42,7 @@ export default function Footer() {
         setStatus("error");
         setMessage(data.error || "Something went wrong. Please try again.");
       }
-      
+
       // Reset after 5 seconds
       setTimeout(() => {
         setStatus("idle");
@@ -70,6 +70,7 @@ export default function Footer() {
       { href: "/agencies?country=AE", label: "UAE" },
     ],
     company: [
+      { href: "/for-agencies", label: "Partner with Us" },
       { href: "/about", label: "About Us" },
       { href: "/contact", label: "Contact" },
       { href: "/privacy", label: "Privacy Policy" },

@@ -97,6 +97,13 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            {/* Highlighted B2B Link */}
+            <Link
+              href="/for-agencies"
+              className="text-sm font-bold text-primary hover:text-primary/80 transition-colors border border-primary/20 bg-primary/5 px-3 py-1 rounded-full"
+            >
+              List Agency
+            </Link>
           </div>
 
           {/* CTA Buttons / User Menu */}
@@ -104,6 +111,14 @@ export default function Header() {
             {!loading && (
               user ? (
                 <div className="flex items-center gap-4">
+                  {/* B2B Link */}
+                  <Link
+                    href="/for-agencies"
+                    className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors hidden md:block"
+                  >
+                    List your agency
+                  </Link>
+
                   <Link href="/account" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
                     {user.user_metadata?.full_name || user.email}
                   </Link>

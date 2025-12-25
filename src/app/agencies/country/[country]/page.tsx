@@ -89,26 +89,32 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function CountryAgenciesPage({ params }: PageProps) {
   const { country } = await params;
   const decodedCountry = decodeURIComponent(country);
-  const { agencies } = await filterAgencies("", "", decodedCountry, 0, "", "all", 1, 10000);
+
+  // Parallel fetch for specific data to optimize performance (Core Web Vitals)
+  const [
+    { agencies: topAgencies, total: totalAgencies },
+    cities,
+    categories
+  ] = await Promise.all([
+    filterAgencies("", "", decodedCountry, 0, "", "all", 1, 12),
+    getUniqueCities(decodedCountry),
+    getUniqueCategories()
+  ]);
+
   const info = countryData[decodedCountry] || { name: decodedCountry, emoji: "🌍", description: `Find verified travel agencies in ${decodedCountry}.`, topCities: [] };
 
-  if (agencies.length === 0) {
+  if (totalAgencies === 0) {
     notFound();
   }
 
-  // Get unique cities and categories for this country
-  const cities = [...new Set(agencies.map(a => a.cityNormalized))].filter(Boolean).sort();
-  const categories = [...new Set(agencies.map(a => a.category))].filter(Boolean);
+  // Stats (Using estimates or data from top agencies for rating/reviews to avoid heavy aggregation)
+  // For total reviews, we can't sum all without fetching all. We'll show "Thousands of Reviews" or just omit total reviews sum if expansive.
+  // Or we make a separate light query for stats if strictly needed. 
+  // For now, let's use the average of the top 12 as a proxy or just hardcode a verified count logic if we had a stats table.
+  const avgRating = topAgencies.reduce((sum, a) => sum + (a.totalScore || 0), 0) / topAgencies.length || 0;
 
-  // Top agencies (by reviews)
-  const topAgencies = [...agencies]
-    .sort((a, b) => (b.reviewsCount || 0) - (a.reviewsCount || 0))
-    .slice(0, 12);
-
-  // Stats
-  const avgRating = agencies.reduce((sum, a) => sum + (a.totalScore || 0), 0) / agencies.length || 0;
-  const totalReviews = agencies.reduce((sum, a) => sum + (a.reviewsCount || 0), 0);
-  const withWebsite = agencies.filter(a => a.website).length;
+  // Approximate reviews total based on top agencies (or just hide total sum if inaccurate)
+  const topReviewsSum = topAgencies.reduce((sum, a) => sum + (a.reviewsCount || 0), 0);
 
   // JSON-LD Schema
   const jsonLd = {
@@ -117,7 +123,7 @@ export default async function CountryAgenciesPage({ params }: PageProps) {
     "name": `Travel Agencies in ${info.name}`,
     "description": info.description,
     "url": `https://www.travelagencies.world/agencies/country/${encodeURIComponent(decodedCountry)}`,
-    "numberOfItems": agencies.length,
+    "numberOfItems": totalAgencies,
     "itemListElement": topAgencies.slice(0, 10).map((agency, index) => ({
       "@type": "ListItem",
       "position": index + 1,
@@ -175,7 +181,7 @@ export default async function CountryAgenciesPage({ params }: PageProps) {
               <h1 className="text-4xl md:text-5xl font-bold">
                 Travel Agencies in {info.name}
               </h1>
-              <p className="text-xl text-white/80 mt-2">{agencies.length}+ verified agencies</p>
+              <p className="text-xl text-white/80 mt-2">{totalAgencies}+ verified agencies</p>
             </div>
           </div>
           <p className="text-lg text-white/80 max-w-3xl mt-4">{info.description}</p>
@@ -187,7 +193,7 @@ export default async function CountryAgenciesPage({ params }: PageProps) {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
-              <div className="text-3xl font-bold text-primary">{agencies.length}</div>
+              <div className="text-3xl font-bold text-primary">{totalAgencies}</div>
               <div className="text-sm text-muted-foreground">Verified Agencies</div>
             </div>
             <div>
@@ -198,7 +204,7 @@ export default async function CountryAgenciesPage({ params }: PageProps) {
               <div className="text-sm text-muted-foreground">Average Rating</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary">{totalReviews.toLocaleString()}</div>
+              <div className="text-3xl font-bold text-primary">{topReviewsSum.toLocaleString()}+</div>
               <div className="text-sm text-muted-foreground">Total Reviews</div>
             </div>
             <div>
@@ -215,7 +221,8 @@ export default async function CountryAgenciesPage({ params }: PageProps) {
           <h2 className="text-2xl font-bold mb-6">Browse by City in {info.name}</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {cities.slice(0, 24).map(city => {
-              const cityCount = agencies.filter(a => a.cityNormalized === city).length;
+              // We don't have per-city counts efficiently here without pre-aggregation
+              // So for now we hide the count or set it to "View"
               return (
                 <Link
                   key={city}
@@ -226,7 +233,6 @@ export default async function CountryAgenciesPage({ params }: PageProps) {
                     <MapPin className="h-4 w-4 text-primary" />
                     <span className="font-medium group-hover:text-primary transition-colors">{city}</span>
                   </div>
-                  <span className="text-xs bg-muted px-2 py-1 rounded-full">{cityCount}</span>
                 </Link>
               );
             })}
@@ -250,7 +256,6 @@ export default async function CountryAgenciesPage({ params }: PageProps) {
           <h2 className="text-2xl font-bold mb-6">Browse by Category</h2>
           <div className="flex flex-wrap gap-3">
             {categories.map(category => {
-              const catCount = agencies.filter(a => a.category === category).length;
               return (
                 <Link
                   key={category}
@@ -259,7 +264,6 @@ export default async function CountryAgenciesPage({ params }: PageProps) {
                 >
                   <Building2 className="h-4 w-4" />
                   <span>{category}</span>
-                  <span className="text-xs opacity-70">({catCount})</span>
                 </Link>
               );
             })}

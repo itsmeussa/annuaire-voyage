@@ -18,7 +18,7 @@ function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: numbe
   const R = 6371;
   const dLat = (lat2 - lat1) * Math.PI / 180;
   const dLng = (lng2 - lng1) * Math.PI / 180;
-  const a = 
+  const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
     Math.sin(dLng / 2) * Math.sin(dLng / 2);
@@ -38,9 +38,10 @@ export default function FastAgencyMap({
   const mapInstanceRef = useRef<any>(null);
   const markersLayerRef = useRef<any>(null);
   const userMarkerRef = useRef<any>(null);
-  
+
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isLocating, setIsLocating] = useState(true); // Start with auto-locate
+  // Auto-locate only if we are browsing (more than 1 agency or empty)
+  const [isLocating, setIsLocating] = useState(agencies.length !== 1);
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
   const [mapStyle, setMapStyle] = useState<'streets' | 'satellite'>('streets');
@@ -49,7 +50,7 @@ export default function FastAgencyMap({
   const [visibleCount, setVisibleCount] = useState(0);
 
   // Filter agencies with valid coordinates
-  const validAgencies = useMemo(() => 
+  const validAgencies = useMemo(() =>
     agencies.filter(
       (agency) =>
         agency.location?.lat &&
@@ -74,7 +75,7 @@ export default function FastAgencyMap({
   const searchAgencies = useCallback((query: string) => {
     if (!query.trim()) return [];
     const q = query.toLowerCase();
-    return validAgencies.filter(a => 
+    return validAgencies.filter(a =>
       a.title.toLowerCase().includes(q) ||
       a.city?.toLowerCase().includes(q) ||
       a.country?.toLowerCase().includes(q) ||
@@ -85,9 +86,9 @@ export default function FastAgencyMap({
   // Update markers on map
   const updateMarkers = useCallback(async (agenciesToShow: Agency[], centerLat?: number, centerLng?: number) => {
     if (!mapInstanceRef.current) return;
-    
+
     const L = (await import('leaflet')).default;
-    
+
     // Clear existing markers
     if (markersLayerRef.current) {
       markersLayerRef.current.clearLayers();
@@ -122,8 +123,8 @@ export default function FastAgencyMap({
     // Add markers
     agenciesToShow.forEach((agency) => {
       const marker = L.marker([agency.location!.lat, agency.location!.lng], { icon: customIcon });
-      
-      const distanceText = (agency as any).distance 
+
+      const distanceText = (agency as any).distance
         ? `<p style="font-size: 11px; color: #059669; margin: 4px 0;">📍 ${((agency as any).distance).toFixed(1)} km</p>`
         : '';
 
@@ -164,7 +165,7 @@ export default function FastAgencyMap({
       `;
 
       marker.bindPopup(popupContent, { maxWidth: 250 });
-      
+
       if (onAgencyClick) {
         marker.on('click', () => onAgencyClick(agency));
       }
@@ -193,7 +194,7 @@ export default function FastAgencyMap({
         setUserLocation(loc);
         setIsLocating(false);
         return;
-      } catch (e) {}
+      } catch (e) { }
     }
 
     // Auto-detect location
@@ -236,8 +237,8 @@ export default function FastAgencyMap({
         mapInstanceRef.current.remove();
       }
 
-      const defaultCenter: [number, number] = userLocation 
-        ? [userLocation.lat, userLocation.lng] 
+      const defaultCenter: [number, number] = userLocation
+        ? [userLocation.lat, userLocation.lng]
         : [31.7917, -7.0926]; // Morocco
 
       const map = L.map(mapRef.current!, {
@@ -325,7 +326,7 @@ export default function FastAgencyMap({
   // Handle search
   useEffect(() => {
     if (!isLoaded || !mapInstanceRef.current) return;
-    
+
     if (searchQuery.trim()) {
       const results = searchAgencies(searchQuery);
       updateMarkers(results);
@@ -371,7 +372,7 @@ export default function FastAgencyMap({
   // Relocate user
   const relocateUser = async () => {
     if (!navigator.geolocation || !mapInstanceRef.current) return;
-    
+
     setIsLocating(true);
     navigator.geolocation.getCurrentPosition(
       async (position) => {
@@ -379,9 +380,9 @@ export default function FastAgencyMap({
         setUserLocation(loc);
         sessionStorage.setItem('userLocation', JSON.stringify(loc));
         setIsLocating(false);
-        
+
         const L = (await import('leaflet')).default;
-        
+
         if (userMarkerRef.current) {
           mapInstanceRef.current.removeLayer(userMarkerRef.current);
         }
@@ -398,7 +399,7 @@ export default function FastAgencyMap({
           .bindPopup('<b>Your location</b>');
 
         mapInstanceRef.current.flyTo([loc.lat, loc.lng], 10, { duration: 1 });
-        
+
         const nearby = getNearbyAgencies(loc.lat, loc.lng);
         updateMarkers(nearby, loc.lat, loc.lng);
         setSearchQuery('');
@@ -479,9 +480,8 @@ export default function FastAgencyMap({
           <button
             onClick={relocateUser}
             disabled={isLocating}
-            className={`bg-white/95 backdrop-blur-sm p-2.5 rounded-lg shadow-md hover:bg-white transition-colors ${
-              userLocation ? 'ring-2 ring-blue-500' : ''
-            }`}
+            className={`bg-white/95 backdrop-blur-sm p-2.5 rounded-lg shadow-md hover:bg-white transition-colors ${userLocation ? 'ring-2 ring-blue-500' : ''
+              }`}
             title="Find my location"
           >
             {isLocating ? (

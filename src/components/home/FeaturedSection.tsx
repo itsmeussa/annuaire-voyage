@@ -78,9 +78,16 @@ export default function FeaturedSection({ initialAgencies }: FeaturedSectionProp
 
                 // Sort: Distance priority if location active, otherwise Featured First
                 const sorted = agenciesWithDist.sort((a, b) => {
-                    // 1. If we have location, distance is paramount (but keep non-distanced featured at bottom?)
-                    // The user explicitly asked for Nearest.
-                    if (a.distance !== b.distance) return a.distance - b.distance;
+                    // 1. If we have location, distance is paramount
+                    const distA = a.distance ?? Infinity;
+                    const distB = b.distance ?? Infinity;
+
+                    // If both have distance, sort by distance
+                    if (distA !== Infinity || distB !== Infinity) {
+                        return distA - distB;
+                    }
+
+                    // Fallback to featured score sorting
                     if (a.featured !== b.featured) return a.featured ? -1 : 1;
                     return (b.totalScore || 0) - (a.totalScore || 0);
                 });

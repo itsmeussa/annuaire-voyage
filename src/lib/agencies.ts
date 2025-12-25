@@ -1,8 +1,55 @@
 import { Agency } from "@/types";
 import { supabase } from "@/lib/supabase";
 import { COUNTRIES } from "@/lib/countries";
+import { getCityCoordinates } from "@/lib/cityCoordinates";
+
+// Helper to extract coordinates from Google Maps URLs
+function extractCoordsFromUrl(url: string | null): { lat: number, lng: number } | null {
+  if (!url) return null;
+
+  try {
+    // Pattern 1: @lat,lng (e.g. google.com/maps/.../@34.05,-118.24,15z)
+    const atMatch = url.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+    if (atMatch) {
+      return { lat: parseFloat(atMatch[1]), lng: parseFloat(atMatch[2]) };
+    }
+
+    // Pattern 2: q=lat,lng or query=lat,lng or ll=lat,lng
+    const queryMatch = url.match(/[?&](?:q|query|ll)=(-?\d+\.\d+),(-?\d+\.\d+)/);
+    if (queryMatch) {
+      return { lat: parseFloat(queryMatch[1]), lng: parseFloat(queryMatch[2]) };
+    }
+
+    // Pattern 3: !3dlat!4dlng (data parameters)
+    const dataMatch = url.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/);
+    if (dataMatch) {
+      return { lat: parseFloat(dataMatch[1]), lng: parseFloat(dataMatch[2]) };
+    }
+  } catch (e) {
+    console.error("Error extracting coords from URL:", url, e);
+  }
+
+  return null;
+}
 
 function mapDbToAgency(dbRecord: any): Agency {
+  // Try to use explicit columns first, then fall back to URL extraction, then City fallback
+  let location = null;
+
+  if (dbRecord.latitude && dbRecord.longitude) {
+    location = { lat: dbRecord.latitude, lng: dbRecord.longitude };
+  } else {
+    location = extractCoordsFromUrl(dbRecord.url);
+  }
+
+  // Fallback to City Coordinates if verified location is missing
+  if (!location && (dbRecord.city || dbRecord.city_normalized)) {
+    const cityCoords = getCityCoordinates(dbRecord.city_normalized || dbRecord.city, dbRecord.country_code);
+    if (cityCoords) {
+      location = { lat: cityCoords[0], lng: cityCoords[1] };
+    }
+  }
+
   return {
     id: dbRecord.id,
     title: dbRecord.title,
@@ -19,13 +66,10 @@ function mapDbToAgency(dbRecord: any): Agency {
     phone: dbRecord.phone,
     categoryName: dbRecord.category_name,
     category: dbRecord.category_normalized || "Travel Agency",
-    url: dbRecord.url,
+    url: dbRecord.url || "",
     description: dbRecord.description || "",
     featured: dbRecord.featured || false,
-    location: (dbRecord.latitude && dbRecord.longitude) ? {
-      lat: dbRecord.latitude,
-      lng: dbRecord.longitude
-    } : null
+    location: location
   };
 }
 

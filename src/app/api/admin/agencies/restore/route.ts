@@ -3,11 +3,11 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isAdminServer } from "@/lib/auth/admin";
 
-export async function DELETE(request: NextRequest) {
+export async function POST(request: NextRequest) {
     try {
         const supabase = createServerSupabaseClient();
 
-        // Check authentication using regular client
+        // Check authentication
         const { data: { session } } = await supabase.auth.getSession();
 
         if (!(await isAdminServer(supabase, session))) {
@@ -27,24 +27,24 @@ export async function DELETE(request: NextRequest) {
             );
         }
 
-        // Use ADMIN client to SOFT DELETE (set deleted_at)
+        // Use ADMIN client to RESTORE (set deleted_at to NULL)
         const adminSupabase = createAdminClient();
         const { error } = await adminSupabase
             .from("agencies")
-            .update({ deleted_at: new Date().toISOString() })
+            .update({ deleted_at: null })
             .eq("id", agencyId);
 
         if (error) {
-            console.error("FULL SOFT DELETE ERROR:", JSON.stringify(error, null, 2));
+            console.error("RESTORE ERROR:", error);
             return NextResponse.json(
-                { error: `Soft delete failed: ${error.message}` },
+                { error: `Restore failed: ${error.message}` },
                 { status: 500 }
             );
         }
 
         return NextResponse.json({ success: true });
     } catch (error) {
-        console.error("Delete agency error:", error);
+        console.error("Restore agency error:", error);
         return NextResponse.json(
             { error: "Internal server error" },
             { status: 500 }

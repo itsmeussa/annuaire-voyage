@@ -1,6 +1,6 @@
-
 import { Agency } from "@/types";
 import { supabase } from "@/lib/supabase";
+import { COUNTRIES } from "@/lib/countries";
 
 function mapDbToAgency(dbRecord: any): Agency {
   return {
@@ -78,12 +78,23 @@ export async function getAgencyBySlug(slug: string, supabaseClient?: any): Promi
   return mapDbToAgency(data);
 }
 
-export async function getUniqueCities(): Promise<string[]> {
-  const { data, error } = await supabase
+export async function getUniqueCities(country?: string): Promise<string[]> {
+  let query = supabase
     .from('agencies')
     .select('city_normalized')
     .not('city_normalized', 'is', null)
     .neq('city_normalized', 'Unknown');
+
+  if (country) {
+    const countryMapping = COUNTRIES.find(c => c.name === country || c.code === country);
+    if (countryMapping) {
+      query = query.or(`country_normalized.eq."${countryMapping.name}",country_normalized.eq."${countryMapping.code}",country_code.eq."${countryMapping.code}"`);
+    } else {
+      query = query.eq('country_normalized', country);
+    }
+  }
+
+  const { data, error } = await query;
 
   if (error) {
     console.error('Error fetching cities:', error);
@@ -97,16 +108,22 @@ export async function getUniqueCities(): Promise<string[]> {
 export async function getUniqueCountries(): Promise<string[]> {
   const { data, error } = await supabase
     .from('agencies')
-    .select('country_normalized')
-    .not('country_normalized', 'is', null)
-    .neq('country_normalized', 'Unknown');
+    .select('country_normalized, country_code');
 
   if (error) {
     return [];
   }
 
-  const countries = (data || []).map((a: any) => a.country_normalized).filter(Boolean);
-  return Array.from(new Set(countries)).sort();
+  const countries = (data || []).map((a: any) => {
+    const rawValue = a.country_normalized || a.country_code;
+    if (!rawValue || rawValue === "Unknown") return null;
+
+    // Map code to name if possible
+    const found = COUNTRIES.find(c => c.code === rawValue || c.name === rawValue);
+    return found ? found.name : rawValue;
+  }).filter(Boolean);
+
+  return Array.from(new Set(countries)).sort() as string[];
 }
 
 export async function getUniqueCategories(): Promise<string[]> {
@@ -149,7 +166,13 @@ export async function filterAgencies(
   }
 
   if (country) {
-    dbQuery = dbQuery.eq('country_normalized', country);
+    // If we have a full name, we might need to search by code too
+    const countryMapping = COUNTRIES.find(c => c.name === country || c.code === country);
+    if (countryMapping) {
+      dbQuery = dbQuery.or(`country_normalized.eq."${countryMapping.name}",country_normalized.eq."${countryMapping.code}",country_code.eq."${countryMapping.code}"`);
+    } else {
+      dbQuery = dbQuery.eq('country_normalized', country);
+    }
   }
 
   if (rating > 0) {

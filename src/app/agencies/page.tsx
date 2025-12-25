@@ -12,6 +12,7 @@ import {
   getUniqueCountries,
   getUniqueCategories,
 } from "@/lib/agencies";
+import { COUNTRIES } from "@/lib/countries";
 import { Agency } from "@/types";
 
 // Dynamic import for map component (no SSR)
@@ -61,18 +62,26 @@ function AgenciesContent() {
   const [categories, setCategories] = useState<string[]>([]);
   const [totalItems, setTotalItems] = useState(0);
 
-  // Fetch filter options on mount
+  // Fetch countries and categories on mount
   useEffect(() => {
     Promise.all([
-      getUniqueCities(),
       getUniqueCountries(),
       getUniqueCategories()
-    ]).then(([c, co, ca]) => {
-      setCities(c);
-      setCountries(co);
+    ]).then(([co, ca]) => {
+      // Map codes to names if they are codes
+      const mappedCountries = co.map(c => {
+        const found = COUNTRIES.find(country => country.code === c || country.name === c);
+        return found ? found.name : c;
+      });
+      setCountries(Array.from(new Set(mappedCountries)).sort());
       setCategories(ca);
     });
   }, []);
+
+  // Fetch cities whenever selectedCountry changes
+  useEffect(() => {
+    getUniqueCities(selectedCountry).then(setCities);
+  }, [selectedCountry]);
 
   // Update URL ... (same as before)
 
@@ -207,7 +216,11 @@ function AgenciesContent() {
               selectedCategory={selectedCategory}
               websiteFilter={websiteFilter}
               onCityChange={setSelectedCity}
-              onCountryChange={setSelectedCountry}
+              onCountryChange={(country) => {
+                setSelectedCountry(country);
+                setSelectedCity(""); // Reset city when country changes
+                setCurrentPage(1);
+              }}
               onRatingChange={setSelectedRating}
               onCategoryChange={setSelectedCategory}
               onWebsiteFilterChange={setWebsiteFilter}
@@ -236,7 +249,12 @@ function AgenciesContent() {
                     selectedCategory={selectedCategory}
                     websiteFilter={websiteFilter}
                     onCityChange={setSelectedCity}
-                    onCountryChange={setSelectedCountry}
+                    onCountryChange={(country) => {
+                      setSelectedCountry(country);
+                      setSelectedCity(""); // Reset city when country changes
+                      setCurrentPage(1);
+                      setShowFilters(false);
+                    }}
                     onRatingChange={setSelectedRating}
                     onCategoryChange={setSelectedCategory}
                     onWebsiteFilterChange={setWebsiteFilter}

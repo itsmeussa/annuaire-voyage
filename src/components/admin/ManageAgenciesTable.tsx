@@ -28,6 +28,8 @@ export default function ManageAgenciesTable() {
     const pageSize = 50;
     const supabase = createClient();
 
+    const [showTrash, setShowTrash] = useState(false);
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedSearch(searchQuery);
@@ -38,34 +40,35 @@ export default function ManageAgenciesTable() {
 
     useEffect(() => {
         fetchAgencies();
-    }, [currentPage, debouncedSearch]);
+    }, [currentPage, debouncedSearch, showTrash]); // Re-fetch when trash mode toggles
 
     const fetchAgencies = async () => {
         setLoading(true);
         try {
             let query = supabase
                 .from("agencies")
-                .select("id, title, slug, city, country_code, owner_id, status, created_at", { count: "exact" });
+                .select("id, title, slug, city, country_code, owner_id, status, created_at, deleted_at", { count: "exact" });
+
+            // Filter based on Trash mode
+            if (showTrash) {
+                query = query.not("deleted_at", "is", null);
+            } else {
+                query = query.is("deleted_at", null);
+            }
 
             if (debouncedSearch) {
                 query = query.or(`title.ilike.%${debouncedSearch}%,city.ilike.%${debouncedSearch}%,country_code.ilike.%${debouncedSearch}%`);
             }
 
             const { data, error, count } = await query
-                .order("created_at", { ascending: false })
+                .order(showTrash ? "deleted_at" : "created_at", { ascending: false })
                 .range((currentPage - 1) * pageSize, currentPage * pageSize - 1);
 
             if (error) throw error;
             setAgencies(data || []);
             setTotalCount(count || 0);
 
-            // Fetch overall stats (separate query to get accurate total claimed/unclaimed)
-            const { data: statsData } = await supabase
-                .from("agencies")
-                .select("owner_id", { count: "exact" });
-
-            // Note: For real stats on huge data, better to use a dedicated stats table or specific count queries
-            // But for ~3000 rows, we can still fetch briefly or use multiple count queries
+            // Fetch overall stats
             const { count: totalClaimed } = await supabase
                 .from("agencies")
                 .select("*", { count: "exact", head: true })
@@ -86,28 +89,71 @@ export default function ManageAgenciesTable() {
         }
     };
 
+    const handleRestore = async (id: string) => {
+        console.log("Restore clicked for:", id);
+        // Removed confirm to prevent browser blocking
+        // if (!confirm("Restore this agency?")) return;
+
+        try {
+            const response = await fetch(`/api/admin/agencies/restore?id=${id}`, { method: "POST" });
+            console.log("Restore response:", response.status);
+
+            if (response.ok) {
+                // Remove from trash list immediately
+                setAgencies(prev => prev.filter(a => a.id !== id));
+                setTotalCount(prev => prev - 1);
+            } else {
+                const data = await response.json();
+                console.error("Restore failed:", data);
+                alert(`Error: ${data.error}`);
+            }
+        } catch (error) {
+            console.error("Error restoring:", error);
+            alert("Failed to restore agency");
+        }
+    };
+
     const handleDelete = async (id: string, title: string) => {
+        // If in trash, maybe Permanent Delete? For now, stick to soft delete or add permanent logic later.
+        // Assuming this function is for soft delete from main list.
+
+        console.log("Delete clicked for:", id, title);
+
+        // TEMPORARY: Removed confirm to debug potential blocking issue
+        /* 
         if (!confirm(`Are you sure you want to delete "${title}"? This action cannot be undone.`)) {
+            console.log("Delete cancelled by user");
             return;
         }
+        */
 
+        console.log("Delete confirmed (auto). Sending request...");
         setDeletingId(id);
+
         try {
             const response = await fetch(`/api/admin/agencies/delete?id=${id}`, {
                 method: "DELETE",
             });
+            console.log("Response received:", response.status, response.statusText);
+
+            const data = await response.json();
+            console.log("Response data:", data);
 
             if (response.ok) {
-                await fetchAgencies();
+                // Remove from local state immediately to avoid refetch delay check
+                setAgencies(prev => prev.filter(a => a.id !== id));
+                setTotalCount(prev => prev - 1);
+                console.log("Agency deleted from state");
             } else {
-                const data = await response.json();
-                alert(`Error: ${data.error}`);
+                console.error("Delete failed:", data.error);
+                alert(`Failed to delete agency: ${data.error}`);
             }
         } catch (error) {
             console.error("Error deleting agency:", error);
-            alert("Failed to delete agency");
+            alert("An unexpected error occurred while deleting the agency.");
+        } finally {
+            setDeletingId(null);
         }
-        setDeletingId(null);
     };
 
     const totalPages = Math.ceil(totalCount / pageSize);
@@ -122,9 +168,10 @@ export default function ManageAgenciesTable() {
 
     return (
         <div>
-            {/* Search Bar */}
-            <div className="mb-6">
-                <div className="relative">
+            {/* Header Actions */}
+            <div className="flex justify-between items-center mb-6">
+                {/* Search Bar */}
+                <div className="relative flex-1 max-w-lg">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                     <input
                         type="text"
@@ -134,27 +181,52 @@ export default function ManageAgenciesTable() {
                         className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                 </div>
+
+                {/* Trash Toggle */}
+                <div className="flex bg-gray-100 p-1 rounded-lg ml-4">
+                    <button
+                        onClick={() => setShowTrash(false)}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${!showTrash ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
+                            }`}
+                    >
+                        Active
+                    </button>
+                    <button
+                        onClick={() => setShowTrash(true)}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${showTrash ? "bg-white text-red-600 shadow-sm" : "text-gray-500 hover:text-gray-700"
+                            }`}
+                    >
+                        Trash
+                    </button>
+                </div>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 mb-6">
-                <div className="bg-white p-4 rounded-xl shadow">
-                    <div className="text-2xl font-bold text-gray-900">{totalCount.toLocaleString()}</div>
-                    <div className="text-sm text-gray-600">Total Agencies</div>
-                </div>
-                <div className="bg-white p-4 rounded-xl shadow">
-                    <div className="text-2xl font-bold text-green-600">
-                        {claimedCount.toLocaleString()}
+            {!showTrash && (
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                    <div className="bg-white p-4 rounded-xl shadow">
+                        <div className="text-2xl font-bold text-gray-900">{totalCount.toLocaleString()}</div>
+                        <div className="text-sm text-gray-600">Total Agencies</div>
                     </div>
-                    <div className="text-sm text-gray-600">Claimed</div>
-                </div>
-                <div className="bg-white p-4 rounded-xl shadow">
-                    <div className="text-2xl font-bold text-gray-600">
-                        {unclaimedCount.toLocaleString()}
+                    <div className="bg-white p-4 rounded-xl shadow">
+                        <div className="text-2xl font-bold text-green-600">
+                            {claimedCount.toLocaleString()}
+                        </div>
+                        <div className="text-sm text-gray-600">Claimed</div>
                     </div>
-                    <div className="text-sm text-gray-600">Unclaimed</div>
+                    <div className="bg-white p-4 rounded-xl shadow">
+                        <div className="text-2xl font-bold text-gray-600">
+                            {unclaimedCount.toLocaleString()}
+                        </div>
+                        <div className="text-sm text-gray-600">Unclaimed</div>
+                    </div>
                 </div>
-            </div>
+            )}
+            {showTrash && (
+                <div className="bg-red-50 border border-red-100 p-4 rounded-xl mb-6 text-red-800 text-sm">
+                    <strong>Trash Bin:</strong> Items here are permanently deleted after 24 hours.
+                </div>
+            )}
 
             {/* Table */}
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -173,7 +245,7 @@ export default function ManageAgenciesTable() {
                             {agencies.length === 0 ? (
                                 <tr>
                                     <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
-                                        No agencies found
+                                        {showTrash ? "No deleted agencies found" : "No agencies found"}
                                     </td>
                                 </tr>
                             ) : (
@@ -203,34 +275,45 @@ export default function ManageAgenciesTable() {
                                         </td>
                                         <td className="px-6 py-4">
                                             <div className="flex items-center justify-center gap-2">
-                                                <a
-                                                    href={`/agencies/${agency.slug}`}
-                                                    target="_blank"
-                                                    className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
-                                                    title="Edit agency"
-                                                >
-                                                    <Edit className="w-4 h-4" />
-                                                </a>
-                                                <a
-                                                    href={`/agencies/${agency.slug}`}
-                                                    target="_blank"
-                                                    className="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors"
-                                                    title="View agency"
-                                                >
-                                                    <Eye className="w-4 h-4" />
-                                                </a>
-                                                <button
-                                                    onClick={() => handleDelete(agency.id, agency.title)}
-                                                    disabled={deletingId === agency.id}
-                                                    className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50"
-                                                    title="Delete agency"
-                                                >
-                                                    {deletingId === agency.id ? (
-                                                        <Loader2 className="w-4 h-4 animate-spin" />
-                                                    ) : (
-                                                        <Trash2 className="w-4 h-4" />
-                                                    )}
-                                                </button>
+                                                {showTrash ? (
+                                                    <button
+                                                        onClick={() => handleRestore(agency.id)}
+                                                        className="px-3 py-1 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 text-sm font-medium transition-colors"
+                                                    >
+                                                        Restore
+                                                    </button>
+                                                ) : (
+                                                    <>
+                                                        <a
+                                                            href={`/agencies/${agency.slug}`}
+                                                            target="_blank"
+                                                            className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                                                            title="Edit agency"
+                                                        >
+                                                            <Edit className="w-4 h-4" />
+                                                        </a>
+                                                        <a
+                                                            href={`/agencies/${agency.slug}`}
+                                                            target="_blank"
+                                                            className="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                                                            title="View agency"
+                                                        >
+                                                            <Eye className="w-4 h-4" />
+                                                        </a>
+                                                        <button
+                                                            onClick={() => handleDelete(agency.id, agency.title)}
+                                                            disabled={deletingId === agency.id}
+                                                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50"
+                                                            title="Delete agency"
+                                                        >
+                                                            {deletingId === agency.id ? (
+                                                                <Loader2 className="w-4 h-4 animate-spin" />
+                                                            ) : (
+                                                                <Trash2 className="w-4 h-4" />
+                                                            )}
+                                                        </button>
+                                                    </>
+                                                )}
                                             </div>
                                         </td>
                                     </tr>

@@ -19,7 +19,7 @@ function getAgencyImage(agency: Agency): string {
 export default function AgencyCard({ agency, featured = false }: AgencyCardProps) {
   return (
     <div
-      className={`bg-white rounded-2xl border ${featured ? "border-primary/30 shadow-xl shadow-primary/10 ring-1 ring-primary/20" : "border-gray-100 shadow-lg shadow-gray-200/50"
+      className={`relative bg-white rounded-2xl border ${featured ? "border-primary/30 shadow-xl shadow-primary/10 ring-1 ring-primary/20" : "border-gray-100 shadow-lg shadow-gray-200/50"
         } overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group`}
     >
       {featured && (

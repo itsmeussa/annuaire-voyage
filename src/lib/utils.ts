@@ -39,7 +39,7 @@ export function getCountryName(code: string | null): string {
     NG: "Nigeria",
     GH: "Ghana",
     EH: "Morocco", // Western Sahara
-    
+
     // Europe
     FR: "France",
     ES: "Spain",
@@ -72,12 +72,12 @@ export function getCountryName(code: string | null): string {
     LU: "Luxembourg",
     MT: "Malta",
     CY: "Cyprus",
-    
+
     // North America
     US: "United States",
     CA: "Canada",
     MX: "Mexico",
-    
+
     // South America
     BR: "Brazil",
     AR: "Argentina",
@@ -87,7 +87,7 @@ export function getCountryName(code: string | null): string {
     VE: "Venezuela",
     EC: "Ecuador",
     UY: "Uruguay",
-    
+
     // Asia
     AE: "United Arab Emirates",
     SA: "Saudi Arabia",
@@ -117,12 +117,12 @@ export function getCountryName(code: string | null): string {
     MM: "Myanmar",
     KH: "Cambodia",
     LA: "Laos",
-    
+
     // Oceania
     AU: "Australia",
     NZ: "New Zealand",
     FJ: "Fiji",
-    
+
     // Caribbean
     JM: "Jamaica",
     CU: "Cuba",

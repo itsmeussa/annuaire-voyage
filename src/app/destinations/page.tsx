@@ -45,8 +45,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function DestinationsPage() {
-  const agencies = getAllAgencies();
+export default async function DestinationsPage() {
+  const agencies = await getAllAgencies();
   const totalAgencies = agencies.length;
 
   // Efficiently count agencies per country and city in a single pass
@@ -222,14 +222,14 @@ export default function DestinationsPage() {
                 Find the Best Travel Agencies Worldwide
               </h2>
               <p className="text-muted-foreground mb-4">
-                TravelAgencies.World is your comprehensive directory for finding verified travel agencies 
-                across the globe. Whether you&apos;re planning a trip to Morocco, exploring destinations in 
-                France, or searching for tour operators in any corner of the world, our directory helps 
+                TravelAgencies.World is your comprehensive directory for finding verified travel agencies
+                across the globe. Whether you&apos;re planning a trip to Morocco, exploring destinations in
+                France, or searching for tour operators in any corner of the world, our directory helps
                 you connect with trusted professionals.
               </p>
               <p className="text-muted-foreground mb-4">
-                Each listing includes real Google reviews, ratings, contact information, and detailed 
-                descriptions to help you make an informed decision. Compare agencies by location, 
+                Each listing includes real Google reviews, ratings, contact information, and detailed
+                descriptions to help you make an informed decision. Compare agencies by location,
                 specialty, and customer satisfaction to find your perfect travel partner.
               </p>
             </div>

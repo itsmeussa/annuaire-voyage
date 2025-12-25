@@ -18,7 +18,8 @@ import {
 import StarRating from "@/components/ui/StarRating";
 import CTASection from "@/components/ui/CTASection";
 import AgencyCard from "@/components/ui/AgencyCard";
-import { getAgencyBySlug, getAllAgencies, filterAgencies } from "@/lib/agencies";
+import { getAgencyBySlug, filterAgencies } from "@/lib/agencies";
+import ManageAgency from "@/components/agency/ManageAgency";
 
 // Dynamic import for map component (no SSR)
 const FastAgencyMap = dynamic(() => import("@/components/ui/FastAgencyMap"), {
@@ -37,16 +38,16 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateStaticParams() {
-  const agencies = getAllAgencies();
-  return agencies.map((agency) => ({
-    slug: agency.slug,
-  }));
-}
+// export async function generateStaticParams() {
+//   // With DB, we stop static generation of all pages to improve build time
+//   // const agencies = await getAgencies(); 
+//   // return agencies.map((agency) => ({ slug: agency.slug }));
+//   return [];
+// }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const agency = getAgencyBySlug(slug);
+  const agency = await getAgencyBySlug(slug);
 
   if (!agency) {
     return {
@@ -54,13 +55,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  // ... rest of metadata logic uses agency object which is fully awaited now
   const ratingText = agency.totalScore ? ` ⭐ ${agency.totalScore}/5` : "";
   const reviewText = agency.reviewsCount ? ` (${agency.reviewsCount.toLocaleString()} reviews)` : "";
   const locationText = `${agency.cityNormalized}, ${agency.country}`;
-  
+
   // Create a rich, SEO-optimized description
   const metaDescription = `${agency.title} - Verified ${agency.category} in ${locationText}.${ratingText}${reviewText} Book tours, flights, hotels & travel packages. Contact: ${agency.phone || "Available on request"}. ${agency.website ? "Official website available." : ""}`;
-  
+
   // Create comprehensive title
   const metaTitle = `${agency.title} | ${agency.category} in ${locationText} - Reviews & Contact`;
 
@@ -130,14 +132,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function AgencyPage({ params }: PageProps) {
   const { slug } = await params;
-  const agency = getAgencyBySlug(slug);
+  const agency = await getAgencyBySlug(slug);
 
   if (!agency) {
     notFound();
   }
 
   // Get similar agencies from the same city
-  const similarAgencies = filterAgencies("", agency.cityNormalized, "", 0, "")
+  const { agencies: similarList } = await filterAgencies("", agency.cityNormalized, "", 0, "");
+  const similarAgencies = similarList
     .filter((a) => a.id !== agency.id)
     .slice(0, 3);
 
@@ -189,12 +192,12 @@ export default async function AgencyPage({ params }: PageProps) {
     ],
     aggregateRating: agency.totalScore
       ? {
-          "@type": "AggregateRating",
-          ratingValue: agency.totalScore,
-          reviewCount: agency.reviewsCount || 1,
-          bestRating: 5,
-          worstRating: 1,
-        }
+        "@type": "AggregateRating",
+        ratingValue: agency.totalScore,
+        reviewCount: agency.reviewsCount || 1,
+        bestRating: 5,
+        worstRating: 1,
+      }
       : undefined,
     areaServed: [
       {
@@ -311,7 +314,7 @@ export default async function AgencyPage({ params }: PageProps) {
         name: `How can I contact ${agency.title}?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: agency.phone 
+          text: agency.phone
             ? `You can contact ${agency.title} by calling ${agency.phone}${agency.website ? ` or visiting their website at ${agency.website}` : ""}.`
             : `You can find ${agency.title} on Google Maps or visit their location at ${agency.street || agency.cityNormalized}, ${agency.country}.`,
         },
@@ -337,7 +340,7 @@ export default async function AgencyPage({ params }: PageProps) {
         name: `What is the rating of ${agency.title}?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: agency.totalScore 
+          text: agency.totalScore
             ? `${agency.title} has a rating of ${agency.totalScore}/5 based on ${agency.reviewsCount?.toLocaleString() || "multiple"} customer reviews.`
             : `${agency.title} is a verified travel agency in ${agency.cityNormalized}. Check their Google listing for the latest reviews.`,
         },
@@ -363,10 +366,10 @@ export default async function AgencyPage({ params }: PageProps) {
       {/* Hero Header */}
       <section className="relative text-white overflow-hidden">
         {/* Background Image */}
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ 
-            backgroundImage: `url(https://picsum.photos/seed/${agency.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 1000}/1920/600)` 
+          style={{
+            backgroundImage: `url(https://picsum.photos/seed/${agency.id}/1920/600)`
           }}
         />
         {/* Dark overlay for text readability */}
@@ -376,7 +379,7 @@ export default async function AgencyPage({ params }: PageProps) {
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
         </div>
-        
+
         <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-white/70 mb-6">
@@ -655,6 +658,13 @@ export default async function AgencyPage({ params }: PageProps) {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Agency Management & Experiences */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <ManageAgency agencyId={agency.id} agencySlug={agency.slug} />
         </div>
       </section>
 

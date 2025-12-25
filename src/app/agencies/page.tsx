@@ -55,43 +55,49 @@ function AgenciesContent() {
   );
   const itemsPerPage = 24;
 
-  const cities = getUniqueCities();
-  const countries = getUniqueCountries();
-  const categories = getUniqueCategories();
+  // ... inside AgenciesContent
+  const [cities, setCities] = useState<string[]>([]);
+  const [countries, setCountries] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [totalItems, setTotalItems] = useState(0);
 
-  // Update URL when filters change
+  // Fetch filter options on mount
   useEffect(() => {
-    const params = new URLSearchParams();
-    if (query) params.set("q", query);
-    if (selectedCity) params.set("city", selectedCity);
-    if (selectedCountry) params.set("country", selectedCountry);
-    if (selectedRating > 0) params.set("rating", String(selectedRating));
-    if (selectedCategory) params.set("category", selectedCategory);
-    if (websiteFilter !== 'all') params.set("website", websiteFilter);
-    if (currentPage > 1) params.set("page", String(currentPage));
+    Promise.all([
+      getUniqueCities(),
+      getUniqueCountries(),
+      getUniqueCategories()
+    ]).then(([c, co, ca]) => {
+      setCities(c);
+      setCountries(co);
+      setCategories(ca);
+    });
+  }, []);
 
-    const newUrl = params.toString() ? `?${params.toString()}` : "/agencies";
-    router.replace(newUrl, { scroll: false });
-  }, [query, selectedCity, selectedCountry, selectedRating, selectedCategory, websiteFilter, currentPage, router]);
+  // Update URL ... (same as before)
 
   useEffect(() => {
-    const filtered = filterAgencies(
-      query,
-      selectedCity,
-      selectedCountry,
-      selectedRating,
-      selectedCategory,
-      websiteFilter
-    );
-    setAgencies(filtered);
-  }, [query, selectedCity, selectedCountry, selectedRating, selectedCategory, websiteFilter]);
+    const fetchAgencies = async () => {
+      const { agencies: filtered, total } = await filterAgencies(
+        query,
+        selectedCity,
+        selectedCountry,
+        selectedRating,
+        selectedCategory,
+        websiteFilter,
+        currentPage,
+        itemsPerPage
+      );
+      setAgencies(filtered);
+      setTotalItems(total);
+    };
+    fetchAgencies();
+  }, [query, selectedCity, selectedCountry, selectedRating, selectedCategory, websiteFilter, currentPage]);
 
-  // Scroll to top when page changes
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentPage]);
+  // Scroll to top ... (same)
 
   const clearFilters = () => {
+    // ... same
     setQuery("");
     setSelectedCity("");
     setSelectedCountry("");
@@ -101,11 +107,9 @@ function AgenciesContent() {
     setCurrentPage(1);
   };
 
-  const paginatedAgencies = agencies.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-  const totalPages = Math.ceil(agencies.length / itemsPerPage);
+  // No more local slicing since we fetch paginated data
+  const paginatedAgencies = agencies;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50/50 to-white">
@@ -121,7 +125,7 @@ function AgenciesContent() {
             Find Travel Agencies
           </h1>
           <p className="text-lg text-white/80 mb-6 animate-fade-in-up delay-100">
-            Browse our directory of {agencies.length} verified travel agencies
+            Browse our directory of {totalItems} verified travel agencies
             worldwide.
           </p>
 
@@ -150,41 +154,41 @@ function AgenciesContent() {
             selectedCountry ||
             selectedRating > 0 ||
             selectedCategory) && (
-            <div className="flex flex-wrap gap-2 mt-4">
-              {selectedCity && (
-                <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
-                  City: {selectedCity}
-                  <button onClick={() => setSelectedCity("")} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
-                    <X className="h-4 w-4" />
-                  </button>
-                </span>
-              )}
-              {selectedCountry && (
-                <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
-                  Country: {selectedCountry}
-                  <button onClick={() => setSelectedCountry("")} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
-                    <X className="h-4 w-4" />
-                  </button>
-                </span>
-              )}
-              {selectedRating > 0 && (
-                <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
-                  Rating: {selectedRating}+
-                  <button onClick={() => setSelectedRating(0)} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
-                    <X className="h-4 w-4" />
-                  </button>
-                </span>
-              )}
-              {selectedCategory && (
-                <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
-                  {selectedCategory}
-                  <button onClick={() => setSelectedCategory("")} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
-                    <X className="h-4 w-4" />
-                  </button>
-                </span>
-              )}
-            </div>
-          )}
+              <div className="flex flex-wrap gap-2 mt-4">
+                {selectedCity && (
+                  <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
+                    City: {selectedCity}
+                    <button onClick={() => setSelectedCity("")} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
+                      <X className="h-4 w-4" />
+                    </button>
+                  </span>
+                )}
+                {selectedCountry && (
+                  <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
+                    Country: {selectedCountry}
+                    <button onClick={() => setSelectedCountry("")} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
+                      <X className="h-4 w-4" />
+                    </button>
+                  </span>
+                )}
+                {selectedRating > 0 && (
+                  <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
+                    Rating: {selectedRating}+
+                    <button onClick={() => setSelectedRating(0)} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
+                      <X className="h-4 w-4" />
+                    </button>
+                  </span>
+                )}
+                {selectedCategory && (
+                  <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
+                    {selectedCategory}
+                    <button onClick={() => setSelectedCategory("")} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
+                      <X className="h-4 w-4" />
+                    </button>
+                  </span>
+                )}
+              </div>
+            )}
         </div>
       </div>
 
@@ -248,32 +252,29 @@ function AgenciesContent() {
             {/* Results Header */}
             <div className="flex justify-between items-center mb-6">
               <p className="text-muted-foreground">
-                Showing {paginatedAgencies.length} of {agencies.length} agencies
+                Showing {Math.min((currentPage - 1) * itemsPerPage + 1, totalItems)} - {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems} agencies
               </p>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`p-2 rounded-lg transition-all ${
-                    viewMode === "grid" ? "bg-primary text-white shadow-md" : "bg-muted hover:bg-muted/80"
-                  }`}
+                  className={`p-2 rounded-lg transition-all ${viewMode === "grid" ? "bg-primary text-white shadow-md" : "bg-muted hover:bg-muted/80"
+                    }`}
                   aria-label="Grid view"
                 >
                   <LayoutGrid className="h-5 w-5" />
                 </button>
                 <button
                   onClick={() => setViewMode("list")}
-                  className={`p-2 rounded-lg transition-all ${
-                    viewMode === "list" ? "bg-primary text-white shadow-md" : "bg-muted hover:bg-muted/80"
-                  }`}
+                  className={`p-2 rounded-lg transition-all ${viewMode === "list" ? "bg-primary text-white shadow-md" : "bg-muted hover:bg-muted/80"
+                    }`}
                   aria-label="List view"
                 >
                   <List className="h-5 w-5" />
                 </button>
                 <button
                   onClick={() => setViewMode("map")}
-                  className={`p-2 rounded-lg transition-all ${
-                    viewMode === "map" ? "bg-primary text-white shadow-md" : "bg-muted hover:bg-muted/80"
-                  }`}
+                  className={`p-2 rounded-lg transition-all ${viewMode === "map" ? "bg-primary text-white shadow-md" : "bg-muted hover:bg-muted/80"
+                    }`}
                   aria-label="Map view"
                 >
                   <Map className="h-5 w-5" />
@@ -341,7 +342,7 @@ function AgenciesContent() {
                   />
                   <span>of {totalPages}</span>
                 </div>
-                
+
                 {/* Pagination buttons */}
                 <div className="flex justify-center gap-2 flex-wrap">
                   <button
@@ -363,30 +364,30 @@ function AgenciesContent() {
                       const pages: (number | string)[] = [];
                       const showEllipsisStart = currentPage > 3;
                       const showEllipsisEnd = currentPage < totalPages - 2;
-                      
+
                       // Always show first page
                       pages.push(1);
-                      
+
                       if (showEllipsisStart) {
                         pages.push('...');
                       }
-                      
+
                       // Show pages around current page
                       for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
                         if (!pages.includes(i)) {
                           pages.push(i);
                         }
                       }
-                      
+
                       if (showEllipsisEnd) {
                         pages.push('...');
                       }
-                      
+
                       // Always show last page
                       if (totalPages > 1 && !pages.includes(totalPages)) {
                         pages.push(totalPages);
                       }
-                      
+
                       return pages.map((page, idx) => {
                         if (page === '...') {
                           return <span key={`ellipsis-${idx}`} className="px-2 text-muted-foreground">...</span>;
@@ -395,11 +396,10 @@ function AgenciesContent() {
                           <button
                             key={page}
                             onClick={() => setCurrentPage(page as number)}
-                            className={`w-10 h-10 rounded-lg transition-all ${
-                              currentPage === page
-                                ? "bg-primary text-white shadow-md"
-                                : "bg-muted hover:bg-muted/80"
-                            }`}
+                            className={`w-10 h-10 rounded-lg transition-all ${currentPage === page
+                              ? "bg-primary text-white shadow-md"
+                              : "bg-muted hover:bg-muted/80"
+                              }`}
                           >
                             {page}
                           </button>

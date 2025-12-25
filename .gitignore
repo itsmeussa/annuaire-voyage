@@ -48,3 +48,10 @@ scripts/service_account.json
 service_account.json
 *.pem
 *.key
+
+# Additional Security
+*.secret
+*secret*.js
+*secret*.json
+.env*
+!.env.example

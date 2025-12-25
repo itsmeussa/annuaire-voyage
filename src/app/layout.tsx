@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import "leaflet/dist/leaflet.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/ui/ScrollToTop";
@@ -8,7 +9,7 @@ import PromoBanner from "@/components/ui/PromoBanner";
 import PromoPopup from "@/components/ui/PromoPopup";
 import ChatBot from "@/components/ui/ChatBot";
 
-const poppins = Poppins({ 
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
@@ -153,7 +154,7 @@ const organizationSchema = {
   ],
   knowsAbout: [
     "Travel Agencies",
-    "Tour Operators", 
+    "Tour Operators",
     "CAN 2025",
     "Africa Cup of Nations",
     "Morocco Tourism",

@@ -8,12 +8,35 @@ interface Message {
   content: string;
 }
 
-export default function ChatBot() {
+interface AgencyContext {
+  agencyName: string;
+  location: string;
+  services?: string[];
+  experiences?: Array<{
+    title: string;
+    description?: string;
+    location?: string;
+    price?: number;
+    currency?: string;
+  }>;
+  contact?: {
+    phone?: string;
+    website?: string;
+  };
+}
+
+interface ChatBotProps {
+  context?: AgencyContext;
+}
+
+export default function ChatBot({ context }: ChatBotProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "👋 Hello! I'm your travel assistant. How can I help you find the perfect travel agency today?",
+      content: context
+        ? `👋 Hello! I'm your assistant for ${context.agencyName}. How can I help you learn more about our services and experiences?`
+        : "👋 Hello! I'm your travel assistant. How can I help you find the perfect travel agency today?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -50,6 +73,7 @@ export default function ChatBot() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: [...messages, { role: "user", content: userMessage }],
+          context,
         }),
       });
 
@@ -93,11 +117,10 @@ export default function ChatBot() {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-lg flex items-center justify-center transition-transform duration-200 hover:scale-110 ${
-          isOpen
-            ? "bg-slate-700 hover:bg-slate-800"
-            : "bg-primary hover:bg-primary/90"
-        }`}
+        className={`fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-lg flex items-center justify-center transition-transform duration-200 hover:scale-110 ${isOpen
+          ? "bg-slate-700 hover:bg-slate-800"
+          : "bg-primary hover:bg-primary/90"
+          }`}
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
         {isOpen ? (
@@ -135,9 +158,8 @@ export default function ChatBot() {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`flex gap-2 ${
-                  message.role === "user" ? "justify-end" : "justify-start"
-                }`}
+                className={`flex gap-2 ${message.role === "user" ? "justify-end" : "justify-start"
+                  }`}
               >
                 {message.role === "assistant" && (
                   <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -145,11 +167,10 @@ export default function ChatBot() {
                   </div>
                 )}
                 <div
-                  className={`max-w-[75%] rounded-2xl px-4 py-2.5 ${
-                    message.role === "user"
-                      ? "bg-primary text-white rounded-br-md"
-                      : "bg-white border border-slate-200 text-slate-700 rounded-bl-md shadow-sm"
-                  }`}
+                  className={`max-w-[75%] rounded-2xl px-4 py-2.5 ${message.role === "user"
+                    ? "bg-primary text-white rounded-br-md"
+                    : "bg-white border border-slate-200 text-slate-700 rounded-bl-md shadow-sm"
+                    }`}
                 >
                   <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                 </div>

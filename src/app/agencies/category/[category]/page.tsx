@@ -12,50 +12,50 @@ interface PageProps {
 
 // Category descriptions for SEO
 const categoryDescriptions: Record<string, { title: string; description: string; icon: string }> = {
-  "Travel agency": { 
-    title: "Travel Agencies", 
+  "Travel agency": {
+    title: "Travel Agencies",
     description: "Full-service travel agencies offering comprehensive travel planning, booking, and consultation services for all destinations.",
     icon: "✈️"
   },
-  "Tour operator": { 
-    title: "Tour Operators", 
+  "Tour operator": {
+    title: "Tour Operators",
     description: "Specialized tour operators creating and managing organized tours, packages, and group travel experiences.",
     icon: "🗺️"
   },
-  "Tourist attraction": { 
-    title: "Tourist Attractions", 
+  "Tourist attraction": {
+    title: "Tourist Attractions",
     description: "Popular tourist destinations, landmarks, and attractions with booking and visitor services.",
     icon: "🏛️"
   },
-  "Travel Agent": { 
-    title: "Travel Agents", 
+  "Travel Agent": {
+    title: "Travel Agents",
     description: "Professional travel agents providing personalized travel advice, booking assistance, and trip planning.",
     icon: "👤"
   },
-  "Tourism": { 
-    title: "Tourism Services", 
+  "Tourism": {
+    title: "Tourism Services",
     description: "General tourism service providers including guides, transportation, and local experience operators.",
     icon: "🌍"
   },
-  "Corporate travel agency": { 
-    title: "Corporate Travel Agencies", 
+  "Corporate travel agency": {
+    title: "Corporate Travel Agencies",
     description: "Business travel specialists handling corporate accounts, meetings, incentives, and conferences.",
     icon: "💼"
   },
-  "Destination management company": { 
-    title: "DMCs", 
+  "Destination management company": {
+    title: "DMCs",
     description: "Destination management companies providing local expertise, event planning, and ground handling services.",
     icon: "🎯"
   },
-  "Adventure travel agency": { 
-    title: "Adventure Travel Agencies", 
+  "Adventure travel agency": {
+    title: "Adventure Travel Agencies",
     description: "Adventure travel specialists organizing trekking, safaris, extreme sports, and outdoor expeditions.",
     icon: "🏔️"
   },
 };
 
 export async function generateStaticParams() {
-  const categories = getUniqueCategories();
+  const categories = await getUniqueCategories();
   return categories.map((category) => ({
     category: encodeURIComponent(category),
   }));
@@ -64,9 +64,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category } = await params;
   const decodedCategory = decodeURIComponent(category);
-  const agencies = getAllAgencies().filter(a => a.category === decodedCategory);
-  const info = categoryDescriptions[decodedCategory] || { 
-    title: decodedCategory, 
+  const { agencies } = await filterAgencies("", "", "", 0, decodedCategory, "all", 1, 10000);
+  const info = categoryDescriptions[decodedCategory] || {
+    title: decodedCategory,
     description: `Find verified ${decodedCategory.toLowerCase()} worldwide.`,
     icon: "🌐"
   };
@@ -109,9 +109,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function CategoryAgenciesPage({ params }: PageProps) {
   const { category } = await params;
   const decodedCategory = decodeURIComponent(category);
-  const agencies = getAllAgencies().filter(a => a.category === decodedCategory);
-  const info = categoryDescriptions[decodedCategory] || { 
-    title: decodedCategory, 
+  const { agencies } = await filterAgencies("", "", "", 0, decodedCategory, "all", 1, 10000);
+  const info = categoryDescriptions[decodedCategory] || {
+    title: decodedCategory,
     description: `Find verified ${decodedCategory.toLowerCase()} worldwide.`,
     icon: "🌐"
   };

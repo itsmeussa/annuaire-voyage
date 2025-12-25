@@ -29,7 +29,7 @@ Respond in the same language the user writes in (French, English, Arabic, etc.).
 
 export async function POST(request: NextRequest) {
   try {
-    const { messages } = await request.json();
+    const { messages, context } = await request.json();
 
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json(
@@ -46,6 +46,38 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Build context-aware system prompt
+    let systemPrompt = SYSTEM_PROMPT;
+
+    if (context) {
+      const servicesText = context.services?.length
+        ? `\nServices offered: ${context.services.join(", ")}`
+        : "";
+
+      const experiencesText = context.experiences?.length
+        ? `\nExperiences available:\n${context.experiences.map((exp: any) =>
+          `  - ${exp.title}${exp.description ? `: ${exp.description}` : ""}${exp.price ? ` (${exp.price} ${exp.currency || "USD"})` : ""}`
+        ).join("\n")}`
+        : "";
+
+      const contactText = context.contact
+        ? `\nContact: ${context.contact.phone || ""} ${context.contact.website || ""}`.trim()
+        : "";
+
+      systemPrompt = `You are a dedicated assistant for ${context.agencyName}, a travel agency located in ${context.location}.
+
+Your role is to:
+- Answer questions about ${context.agencyName}'s services and offerings
+- Provide information about available tours and experiences
+- Help potential customers understand what this agency offers
+- Be friendly, professional, and helpful
+${servicesText}${experiencesText}${contactText}
+
+Keep responses concise (2-3 sentences) unless detailed information is requested.
+Always stay in character as an assistant specifically for ${context.agencyName}.
+Respond in the same language the user writes in.`;
+    }
+
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -55,7 +87,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
         messages: [
-          { role: "system", content: SYSTEM_PROMPT },
+          { role: "system", content: systemPrompt },
           ...messages.slice(-10),
         ],
         max_tokens: 300,

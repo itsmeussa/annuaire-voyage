@@ -1,200 +1,179 @@
+
 import { Agency } from "@/types";
-import { slugify, getCountryName, getCityName } from "@/lib/utils";
-import { getCityCoordinates } from "@/lib/cityCoordinates";
+import { supabase } from "@/lib/supabase";
 
-// Import all agency data files
-import data1 from "@/data/agencies-processed.json";
-
-// Cache for agencies to avoid reprocessing
-let cachedAgencies: Agency[] | null = null;
-
-// Category mapping from Arabic to English
-const categoryMap: Record<string, string> = {
-  "مكتب سفريات": "Travel Agency",
-  "وكالة سياحية": "Tourism Agency",
-  "وكالة عمل جولات في المعالم السياحية": "Tour Operator",
-  "شركة سياحية لتنظيم رحلات غوص السكوبا": "Adventure Tours",
-  "وكالة تسويق": "Marketing Agency",
-  "Agence de voyages": "Travel Agency",
-  "Agence de visites touristiques": "Tour Operator",
-};
-
-function normalizeCategory(category: string | null): string {
-  if (!category) return "Travel Agency";
-  return categoryMap[category] || category;
+function mapDbToAgency(dbRecord: any): Agency {
+  return {
+    id: dbRecord.id,
+    title: dbRecord.title,
+    slug: dbRecord.slug,
+    totalScore: dbRecord.total_score,
+    reviewsCount: dbRecord.reviews_count,
+    street: dbRecord.street,
+    city: dbRecord.city,
+    cityNormalized: dbRecord.city_normalized || "Unknown",
+    state: dbRecord.state,
+    countryCode: dbRecord.country_code,
+    country: dbRecord.country_normalized || "Unknown",
+    website: dbRecord.website,
+    phone: dbRecord.phone,
+    categoryName: dbRecord.category_name,
+    category: dbRecord.category_normalized || "Travel Agency",
+    url: dbRecord.url,
+    description: dbRecord.description || "",
+    featured: dbRecord.featured || false,
+    location: (dbRecord.latitude && dbRecord.longitude) ? {
+      lat: dbRecord.latitude,
+      lng: dbRecord.longitude
+    } : null
+  };
 }
 
-// Generate descriptions based on agency data
-function generateDescription(agency: Partial<Agency>): string {
-  const descriptions = [
-    `${agency.title} is a ${agency.category?.toLowerCase() || "travel agency"} located in ${agency.cityNormalized}, ${agency.country}. With ${agency.reviewsCount || "many"} reviews and ${agency.totalScore ? `a rating of ${agency.totalScore}/5` : "excellent service"}, we specialize in creating unforgettable travel experiences.`,
-    `Discover the world with ${agency.title}, your trusted ${agency.category?.toLowerCase() || "travel partner"} in ${agency.cityNormalized}. We offer personalized travel planning, tour packages, and exceptional customer service.`,
-    `Welcome to ${agency.title}! As a leading ${agency.category?.toLowerCase() || "travel agency"} in ${agency.country}, we're dedicated to making your travel dreams come true. ${agency.reviewsCount ? `Trusted by ${agency.reviewsCount}+ satisfied customers.` : ""}`,
-  ];
-  return descriptions[Math.floor(Math.random() * descriptions.length)];
-}
+export async function getAgencies(): Promise<Agency[]> {
+  const { data, error } = await supabase
+    .from('agencies')
+    .select('*');
 
-export function getAllAgencies(): Agency[] {
-  // Return cached agencies if available
-  if (cachedAgencies) {
-    return cachedAgencies;
+  if (error) {
+    console.error('Error fetching agencies:', error);
+    return [];
   }
 
-  const rawData = data1 as Array<{
-    title: string;
-    totalScore: number | null;
-    reviewsCount: number | null;
-    street: string | null;
-    city: string | null;
-    state: string | null;
-    countryCode: string | null;
-    website?: string | null;
-    phone: string | null;
-    categoryName: string | null;
-    url: string;
-  }>;
-
-  const agencies: Agency[] = rawData
-    .filter((item) => item.title && item.title.length > 0)
-    .map((item, index) => {
-      const cityNormalized = getCityName(item.city);
-      const country = getCountryName(item.countryCode);
-      const category = normalizeCategory(item.categoryName);
-      const slug = slugify(item.title) || `agency-${index}`;
-      
-      const agency: Partial<Agency> = {
-        id: `agency-${index}`,
-        title: item.title,
-        slug,
-        totalScore: item.totalScore,
-        reviewsCount: item.reviewsCount,
-        street: item.street,
-        city: item.city,
-        cityNormalized,
-        state: item.state,
-        countryCode: item.countryCode,
-        country,
-        website: item.website || null,
-        phone: item.phone,
-        categoryName: item.categoryName,
-        category,
-        url: item.url,
-        featured: (item.totalScore || 0) >= 4.8 && (item.reviewsCount || 0) >= 50,
-        location: (() => {
-          const coords = getCityCoordinates(cityNormalized, item.countryCode);
-          if (coords) {
-            // Add small random offset to prevent markers stacking
-            const offset = () => (Math.random() - 0.5) * 0.02;
-            return { lat: coords[0] + offset(), lng: coords[1] + offset() };
-          }
-          return null;
-        })(),
-      };
-
-      return {
-        ...agency,
-        description: generateDescription(agency),
-      } as Agency;
-    });
-
-  // Hide Moroccan agencies only, show all others
-  const filteredAgencies = agencies.filter((a) => a.countryCode !== "MA");
-
-  // Cache the result
-  cachedAgencies = filteredAgencies;
-  return filteredAgencies;
+  return (data || []).map(mapDbToAgency);
 }
 
-// Helper function to check if text contains Arabic characters
-function containsArabic(text: string): boolean {
-  const arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
-  return arabicPattern.test(text);
+export const getAllAgencies = getAgencies;
+
+export async function getFeaturedAgencies(limit: number = 6): Promise<Agency[]> {
+  const { data, error } = await supabase
+    .from('agencies')
+    .select('*')
+    .order('featured', { ascending: false })
+    .order('reviews_count', { ascending: false, nullsFirst: false })
+    .order('total_score', { ascending: false, nullsFirst: false })
+    .limit(limit);
+
+  if (error) {
+    console.error('Error fetching featured agencies:', error);
+    return [];
+  }
+
+  return (data || []).map(mapDbToAgency);
 }
 
-export function getFeaturedAgencies(limit: number = 6): Agency[] {
-  return getAllAgencies()
-    .filter((a) => a.featured && !containsArabic(a.title) && (a.reviewsCount || 0) >= 1000)
-    .sort((a, b) => {
-      // Sort by reviews count first (most famous), then by score
-      const reviewsDiff = (b.reviewsCount || 0) - (a.reviewsCount || 0);
-      if (reviewsDiff !== 0) return reviewsDiff;
-      return (b.totalScore || 0) - (a.totalScore || 0);
-    })
-    .slice(0, limit);
+export async function getAgencyBySlug(slug: string): Promise<Agency | undefined> {
+  const { data, error } = await supabase
+    .from('agencies')
+    .select('*')
+    .eq('slug', slug)
+    .single();
+
+  if (error) {
+    return undefined;
+  }
+
+  return mapDbToAgency(data);
 }
 
-export function getAgencyBySlug(slug: string): Agency | undefined {
-  return getAllAgencies().find((a) => a.slug === slug);
-}
+export async function getUniqueCities(): Promise<string[]> {
+  const { data, error } = await supabase
+    .from('agencies')
+    .select('city_normalized')
+    .not('city_normalized', 'is', null)
+    .neq('city_normalized', 'Unknown');
 
-export function getUniqueCities(): string[] {
-  const cities = getAllAgencies()
-    .map((a) => a.cityNormalized)
-    .filter((city) => city && city !== "Unknown");
+  if (error) {
+    console.error('Error fetching cities:', error);
+    return [];
+  }
+
+  const cities = (data || []).map((a: any) => a.city_normalized).filter(Boolean);
   return Array.from(new Set(cities)).sort();
 }
 
-export function getUniqueCountries(): string[] {
-  const countries = getAllAgencies()
-    .map((a) => a.country)
-    .filter((country) => country && country !== "Unknown");
+export async function getUniqueCountries(): Promise<string[]> {
+  const { data, error } = await supabase
+    .from('agencies')
+    .select('country_normalized')
+    .not('country_normalized', 'is', null)
+    .neq('country_normalized', 'Unknown');
+
+  if (error) {
+    return [];
+  }
+
+  const countries = (data || []).map((a: any) => a.country_normalized).filter(Boolean);
   return Array.from(new Set(countries)).sort();
 }
 
-export function getUniqueCategories(): string[] {
-  const categories = getAllAgencies().map((a) => a.category);
+export async function getUniqueCategories(): Promise<string[]> {
+  const { data, error } = await supabase
+    .from('agencies')
+    .select('category_normalized')
+    .not('category_normalized', 'is', null)
+    .neq('category_normalized', 'Unknown');
+
+  if (error) {
+    return [];
+  }
+
+  const categories = (data || []).map((a: any) => a.category_normalized).filter(Boolean);
   return Array.from(new Set(categories)).sort();
 }
 
-export function filterAgencies(
+export async function filterAgencies(
   query: string = "",
   city: string = "",
   country: string = "",
   rating: number = 0,
   category: string = "",
-  websiteFilter: 'all' | 'with' | 'without' = 'all'
-): Agency[] {
-  let agencies = getAllAgencies();
+  websiteFilter: 'all' | 'with' | 'without' = 'all',
+  page: number = 1,
+  limit: number = 20
+): Promise<{ agencies: Agency[], total: number }> {
+  // Converted to separate params, added pagination to avoid fetching all
+
+  let dbQuery = supabase.from('agencies').select('*', { count: 'exact' });
 
   if (query) {
-    const searchTerm = query.toLowerCase();
-    agencies = agencies.filter(
-      (a) =>
-        a.title.toLowerCase().includes(searchTerm) ||
-        a.cityNormalized.toLowerCase().includes(searchTerm) ||
-        a.category.toLowerCase().includes(searchTerm)
-    );
+    dbQuery = dbQuery.or(`title.ilike.%${query}%,city_normalized.ilike.%${query}%,category_normalized.ilike.%${query}%`);
   }
 
   if (city) {
-    agencies = agencies.filter((a) => a.cityNormalized === city);
+    dbQuery = dbQuery.eq('city_normalized', city);
   }
 
   if (country) {
-    agencies = agencies.filter((a) => a.country === country);
+    dbQuery = dbQuery.eq('country_normalized', country);
   }
 
   if (rating > 0) {
-    agencies = agencies.filter((a) => (a.totalScore || 0) >= rating);
+    dbQuery = dbQuery.gte('total_score', rating);
   }
 
   if (category) {
-    agencies = agencies.filter((a) => a.category === category);
+    dbQuery = dbQuery.eq('category_normalized', category);
   }
 
   if (websiteFilter === 'with') {
-    agencies = agencies.filter((a) => a.website && a.website.length > 0);
+    dbQuery = dbQuery.not('website', 'is', null).neq('website', '');
   } else if (websiteFilter === 'without') {
-    agencies = agencies.filter((a) => !a.website || a.website.length === 0);
+    dbQuery = dbQuery.or('website.is.null,website.eq.""');
   }
 
-  return agencies.sort((a, b) => {
-    // Sort by featured first, then by rating, then by reviews
-    if (a.featured && !b.featured) return -1;
-    if (!a.featured && b.featured) return 1;
-    if ((b.totalScore || 0) !== (a.totalScore || 0)) {
-      return (b.totalScore || 0) - (a.totalScore || 0);
-    }
-    return (b.reviewsCount || 0) - (a.reviewsCount || 0);
-  });
+  // Sort
+  dbQuery = dbQuery
+    .order('featured', { ascending: false })
+    .order('total_score', { ascending: false, nullsFirst: false })
+    .order('reviews_count', { ascending: false, nullsFirst: false })
+    .range((page - 1) * limit, page * limit - 1);
+
+  const { data, error, count } = await dbQuery;
+
+  if (error) {
+    console.error('Error filtering agencies:', error);
+    return { agencies: [], total: 0 };
+  }
+
+  return { agencies: (data || []).map(mapDbToAgency), total: count || 0 };
 }

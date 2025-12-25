@@ -20,9 +20,10 @@ import CTASection from "@/components/ui/CTASection";
 import {
   getFeaturedAgencies,
   getUniqueCities,
-  getAllAgencies,
+  getAgencies,
   getUniqueCountries,
 } from "@/lib/agencies";
+import FeaturedSection from "@/components/home/FeaturedSection";
 
 // Lazy load video background for performance
 const VideoBackground = dynamic(() => import("@/components/ui/VideoBackground"), {
@@ -66,11 +67,18 @@ const faqData = [
   }
 ];
 
-export default function Home() {
-  const featuredAgencies = getFeaturedAgencies(6);
-  const cities = getUniqueCities().slice(0, 8);
-  const countries = getUniqueCountries();
-  const totalAgencies = getAllAgencies().length;
+export default async function Home() {
+  const allAgencies = await getAgencies(); // Fetch all for geolocation sorting (or limit if too big)
+  // Optimization: Maybe fetch top 100? For now all is fine (~4k records)
+
+  const cities = (await getUniqueCities()).slice(0, 8);
+  // countries unused in render but used in logic? No only passed to nothing here.
+  // const countries = await getUniqueCountries(); 
+
+  const totalAgencies = allAgencies.length;
+  // Fallback for featured logic in schema if needed, but we use client side for display.
+  // We can pick top 6 for schema.
+  const schemaAgencies = allAgencies.slice(0, 6);
 
   // JSON-LD for homepage
   const homePageSchema = {
@@ -82,7 +90,7 @@ export default function Home() {
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: totalAgencies,
-      itemListElement: featuredAgencies.slice(0, 6).map((agency, index) => ({
+      itemListElement: schemaAgencies.map((agency, index) => ({
         "@type": "ListItem",
         position: index + 1,
         item: {
@@ -196,13 +204,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="text-white py-20 md:py-32 relative overflow-hidden min-h-[600px]">
         {/* Video Background - lazy loaded */}
-        <VideoBackground 
+        <VideoBackground
           posterImage="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1920&auto=format&fit=crop"
           videoUrl="https://videos.pexels.com/video-files/3015510/3015510-hd_1920_1080_24fps.mp4"
         />
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 z-[1]" />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 animate-fade-in-down">
@@ -305,36 +313,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Agencies */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-                Featured Travel Agencies
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Top-rated agencies with excellent reviews and proven track
-                records.
-              </p>
-            </div>
-            <Link
-              href="/agencies"
-              className="inline-flex items-center gap-2 text-primary font-semibold hover:underline group"
-            >
-              View All Agencies
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
-            {featuredAgencies.map((agency, index) => (
-              <div key={agency.id} className="hover-lift" style={{ animationDelay: `${index * 0.1}s` }}>
-                <AgencyCard agency={agency} featured />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Featured Agencies with Geolocation */}
+      <FeaturedSection initialAgencies={allAgencies} />
 
       {/* Services Section */}
       <section className="py-20 bg-white">

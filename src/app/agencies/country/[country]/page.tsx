@@ -4,7 +4,7 @@ import Link from "next/link";
 import { MapPin, Star, Building2, ArrowRight, ChevronRight } from "lucide-react";
 import AgencyCard from "@/components/ui/AgencyCard";
 import CTASection from "@/components/ui/CTASection";
-import { filterAgencies, getAllAgencies, getUniqueCities, getUniqueCategories } from "@/lib/agencies";
+import { filterAgencies, getAllAgencies, getUniqueCities, getUniqueCategories, getUniqueCountries } from "@/lib/agencies";
 
 interface PageProps {
   params: Promise<{ country: string }>;
@@ -36,7 +36,7 @@ const countryData: Record<string, { name: string; emoji: string; description: st
 };
 
 export async function generateStaticParams() {
-  const countries = [...new Set(getAllAgencies().map(a => a.country))].filter(Boolean);
+  const countries = await getUniqueCountries();
   return countries.map((country) => ({
     country: encodeURIComponent(country),
   }));
@@ -45,9 +45,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { country } = await params;
   const decodedCountry = decodeURIComponent(country);
-  const agencies = filterAgencies("", "", decodedCountry, 0, "");
+  const { agencies } = await filterAgencies("", "", decodedCountry, 0, "", "all", 1, 10000);
   const info = countryData[decodedCountry] || { name: decodedCountry, emoji: "🌍", description: `Find verified travel agencies in ${decodedCountry}.`, topCities: [] };
-  
+
   const agencyCount = agencies.length;
   const avgRating = agencies.reduce((sum, a) => sum + (a.totalScore || 0), 0) / agencies.length || 0;
   const topCities = [...new Set(agencies.map(a => a.cityNormalized))].slice(0, 5);
@@ -89,7 +89,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function CountryAgenciesPage({ params }: PageProps) {
   const { country } = await params;
   const decodedCountry = decodeURIComponent(country);
-  const agencies = filterAgencies("", "", decodedCountry, 0, "");
+  const { agencies } = await filterAgencies("", "", decodedCountry, 0, "", "all", 1, 10000);
   const info = countryData[decodedCountry] || { name: decodedCountry, emoji: "🌍", description: `Find verified travel agencies in ${decodedCountry}.`, topCities: [] };
 
   if (agencies.length === 0) {
@@ -99,7 +99,7 @@ export default async function CountryAgenciesPage({ params }: PageProps) {
   // Get unique cities and categories for this country
   const cities = [...new Set(agencies.map(a => a.cityNormalized))].filter(Boolean).sort();
   const categories = [...new Set(agencies.map(a => a.category))].filter(Boolean);
-  
+
   // Top agencies (by reviews)
   const topAgencies = [...agencies]
     .sort((a, b) => (b.reviewsCount || 0) - (a.reviewsCount || 0))

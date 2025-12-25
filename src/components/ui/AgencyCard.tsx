@@ -12,16 +12,15 @@ interface AgencyCardProps {
 // Generate a consistent image ID based on the agency
 function getAgencyImage(agency: Agency): string {
   // Use a hash of the agency id to get consistent but varied images
-  const seed = agency.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 1000;
-  return `https://picsum.photos/seed/${seed}/400/200`;
+  // Use the agency id (or slug) directly as seed to ensure uniqueness
+  return `https://picsum.photos/seed/${agency.id}/400/200`;
 }
 
 export default function AgencyCard({ agency, featured = false }: AgencyCardProps) {
   return (
     <div
-      className={`bg-white rounded-2xl border ${
-        featured ? "border-primary/30 shadow-xl shadow-primary/10 ring-1 ring-primary/20" : "border-gray-100 shadow-lg shadow-gray-200/50"
-      } overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group`}
+      className={`bg-white rounded-2xl border ${featured ? "border-primary/30 shadow-xl shadow-primary/10 ring-1 ring-primary/20" : "border-gray-100 shadow-lg shadow-gray-200/50"
+        } overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group`}
     >
       {featured && (
         <div className="bg-gradient-to-r from-primary via-blue-500 to-primary text-white text-xs font-semibold px-3 py-2 text-center flex items-center justify-center gap-1.5">

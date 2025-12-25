@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Loader2, Bot, User, Plane } from "lucide-react";
+import { useChatBot } from "./ChatBotContext";
 
 interface Message {
   role: "user" | "assistant";
@@ -29,20 +30,24 @@ interface ChatBotProps {
   context?: AgencyContext;
 }
 
-export default function ChatBot({ context }: ChatBotProps = {}) {
+export default function ChatBot() {
+  const { context: globalContext, messages, setMessages } = useChatBot();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content: context
-        ? `👋 Hello! I'm your assistant for ${context.agencyName}. How can I help you learn more about our services and experiences?`
-        : "👋 Hello! I'm your travel assistant. How can I help you find the perfect travel agency today?",
-    },
-  ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const lastContextNameRef = useRef<string | null>(null);
+
+  // Handle context changes silently
+  useEffect(() => {
+    if (!globalContext) return;
+
+    // Just update the last context name ref, no automatic messages
+    if (globalContext.agencyName !== lastContextNameRef.current) {
+      lastContextNameRef.current = globalContext.agencyName;
+    }
+  }, [globalContext]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -73,7 +78,7 @@ export default function ChatBot({ context }: ChatBotProps = {}) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: [...messages, { role: "user", content: userMessage }],
-          context,
+          context: globalContext,
         }),
       });
 
@@ -106,11 +111,18 @@ export default function ChatBot({ context }: ChatBotProps = {}) {
     }
   };
 
-  const quickQuestions = [
-    "Find agencies in Morocco",
-    "CAN 2025 travel tips",
-    "Best rated agencies",
-  ];
+  const quickQuestions = globalContext
+    ? [
+      `Tell me about ${globalContext.agencyName}`,
+      "What services do you offer?",
+      "Show me available tours",
+      "How can I contact you?"
+    ]
+    : [
+      "Find agencies in Morocco",
+      "CAN 2025 travel tips",
+      "Best rated agencies",
+    ];
 
   return (
     <>

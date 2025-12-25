@@ -29,8 +29,9 @@ function mapDbToAgency(dbRecord: any): Agency {
   };
 }
 
-export async function getAgencies(): Promise<Agency[]> {
-  const { data, error } = await supabase
+export async function getAgencies(supabaseClient?: any): Promise<Agency[]> {
+  const client = supabaseClient || supabase;
+  const { data, error } = await client
     .from('agencies')
     .select('*');
 
@@ -44,8 +45,9 @@ export async function getAgencies(): Promise<Agency[]> {
 
 export const getAllAgencies = getAgencies;
 
-export async function getFeaturedAgencies(limit: number = 6): Promise<Agency[]> {
-  const { data, error } = await supabase
+export async function getFeaturedAgencies(limit: number = 6, supabaseClient?: any): Promise<Agency[]> {
+  const client = supabaseClient || supabase;
+  const { data, error } = await client
     .from('agencies')
     .select('*')
     .order('featured', { ascending: false })
@@ -61,8 +63,9 @@ export async function getFeaturedAgencies(limit: number = 6): Promise<Agency[]> 
   return (data || []).map(mapDbToAgency);
 }
 
-export async function getAgencyBySlug(slug: string): Promise<Agency | undefined> {
-  const { data, error } = await supabase
+export async function getAgencyBySlug(slug: string, supabaseClient?: any): Promise<Agency | undefined> {
+  const client = supabaseClient || supabase;
+  const { data, error } = await client
     .from('agencies')
     .select('*')
     .eq('slug', slug)
@@ -129,11 +132,13 @@ export async function filterAgencies(
   category: string = "",
   websiteFilter: 'all' | 'with' | 'without' = 'all',
   page: number = 1,
-  limit: number = 20
+  limit: number = 20,
+  supabaseClient?: any
 ): Promise<{ agencies: Agency[], total: number }> {
   // Converted to separate params, added pagination to avoid fetching all
 
-  let dbQuery = supabase.from('agencies').select('*', { count: 'exact' });
+  const client = supabaseClient || supabase;
+  let dbQuery = client.from('agencies').select('*', { count: 'exact' });
 
   if (query) {
     dbQuery = dbQuery.or(`title.ilike.%${query}%,city_normalized.ilike.%${query}%,category_normalized.ilike.%${query}%`);

@@ -20,6 +20,8 @@ import CTASection from "@/components/ui/CTASection";
 import AgencyCard from "@/components/ui/AgencyCard";
 import { getAgencyBySlug, filterAgencies } from "@/lib/agencies";
 import ManageAgency from "@/components/agency/ManageAgency";
+import AgencyChatContextSetter from "@/components/ui/AgencyChatContextSetter";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 // Dynamic import for map component (no SSR)
 const FastAgencyMap = dynamic(() => import("@/components/ui/FastAgencyMap"), {
@@ -47,7 +49,8 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const agency = await getAgencyBySlug(slug);
+  const supabaseMetadata = createServerSupabaseClient();
+  const agency = await getAgencyBySlug(slug, supabaseMetadata);
 
   if (!agency) {
     return {
@@ -132,14 +135,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function AgencyPage({ params }: PageProps) {
   const { slug } = await params;
-  const agency = await getAgencyBySlug(slug);
+  const supabase = createServerSupabaseClient();
+  const agency = await getAgencyBySlug(slug, supabase);
 
   if (!agency) {
     notFound();
   }
 
   // Get similar agencies from the same city
-  const { agencies: similarList } = await filterAgencies("", agency.cityNormalized, "", 0, "");
+  const { agencies: similarList } = await filterAgencies("", agency.cityNormalized, "", 0, "", "all", 1, 20, supabase);
   const similarAgencies = similarList
     .filter((a) => a.id !== agency.id)
     .slice(0, 3);
@@ -348,8 +352,39 @@ export default async function AgencyPage({ params }: PageProps) {
     ],
   };
 
+  // Fetch services and experiences for the chatbot context
+  const supabaseServer = createServerSupabaseClient();
+  const [{ data: dbServices }, { data: dbExperiences }] = await Promise.all([
+    supabaseServer
+      .from("services")
+      .select("*")
+      .eq("agency_id", agency.id)
+      .order("created_at", { ascending: true }),
+    supabaseServer
+      .from("experiences")
+      .select("*")
+      .eq("agency_id", agency.id)
+      .order("created_at", { ascending: false }),
+  ]);
+
   return (
     <>
+      <AgencyChatContextSetter
+        agencyName={agency.title}
+        location={`${agency.cityNormalized}, ${agency.country}`}
+        services={dbServices?.map((s) => s.name) || []}
+        experiences={dbExperiences?.map((e: any) => ({
+          title: e.title,
+          description: e.description,
+          location: e.location,
+          price: e.price,
+          currency: e.currency,
+        })) || []}
+        contact={{
+          phone: agency.phone || undefined,
+          website: agency.website || undefined,
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -369,7 +404,9 @@ export default async function AgencyPage({ params }: PageProps) {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url(https://picsum.photos/seed/${agency.id}/1920/600)`
+            backgroundImage: agency.imageUrl
+              ? `url(${agency.imageUrl})`
+              : `url(https://picsum.photos/seed/${agency.id}/1920/600)`
           }}
         />
         {/* Dark overlay for text readability */}
@@ -510,34 +547,6 @@ export default async function AgencyPage({ params }: PageProps) {
                 </div>
               )}
 
-              {/* Services */}
-              <div className="bg-white rounded-2xl border border-gray-100 shadow-lg shadow-gray-200/50 p-8 animate-fade-in-up delay-200 hover:shadow-xl transition-all">
-                <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                  <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center">
-                    <CheckCircle className="h-5 w-5 text-white" />
-                  </div>
-                  Our Services
-                </h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {[
-                    { name: "Flight Bookings", icon: "✈️" },
-                    { name: "Hotel Reservations", icon: "🏨" },
-                    { name: "Tour Packages", icon: "🗺️" },
-                    { name: "Visa Assistance", icon: "📋" },
-                    { name: "Travel Insurance", icon: "🛡️" },
-                    { name: "Airport Transfers", icon: "🚗" },
-                  ].map((service, index) => (
-                    <div
-                      key={service.name}
-                      className="flex items-center gap-3 p-4 bg-gradient-to-r from-blue-50 to-transparent rounded-xl border border-blue-100/50 hover:border-primary/30 hover:shadow-md transition-all animate-fade-in"
-                      style={{ animationDelay: `${index * 0.1}s` }}
-                    >
-                      <span className="text-2xl">{service.icon}</span>
-                      <span className="font-medium text-foreground">{service.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
               {/* Why Choose Us */}
               <div className="bg-gradient-to-r from-primary via-blue-600 to-primary text-white rounded-2xl p-8 animate-fade-in-up delay-300">

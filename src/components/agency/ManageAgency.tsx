@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Edit, Plus, Loader2, Sparkles } from "lucide-react";
-import EditAgencyModal from "./EditAgencyModal";
-import AddExperienceModal from "./AddExperienceModal";
-import AddServiceModal from "./AddServiceModal";
-import ExperiencesSection from "./ExperiencesSection";
-import ServicesSection from "./ServicesSection";
+import EditAgencyModal from "@/components/agency/EditAgencyModal";
+import AddExperienceModal from "@/components/agency/AddExperienceModal";
+import AddServiceModal from "@/components/agency/AddServiceModal";
+import ExperiencesSection from "@/components/agency/ExperiencesSection";
+import ServicesSection from "@/components/agency/ServicesSection";
+import UnclaimedAgencyCheck from "@/components/agency/UnclaimedAgencyCheck";
+import AgencyImageUpload from "@/components/agency/AgencyImageUpload";
 
 interface ManageAgencyProps {
     agencyId: string;
@@ -20,6 +22,7 @@ export default function ManageAgency({ agencyId, agencySlug }: ManageAgencyProps
     const [showEditModal, setShowEditModal] = useState(false);
     const [showAddExperienceModal, setShowAddExperienceModal] = useState(false);
     const [showAddServiceModal, setShowAddServiceModal] = useState(false);
+    const [agency, setAgency] = useState<any>(null);
     const supabase = createClient();
 
     useEffect(() => {
@@ -36,24 +39,31 @@ export default function ManageAgency({ agencyId, agencySlug }: ManageAgencyProps
             return;
         }
 
-        // Check if user is admin
-        const isAdmin = session.user.email === "admin@example.com";
-
-        if (isAdmin) {
-            setIsOwner(true);
-            setLoading(false);
-            return;
-        }
-
-        // Check if user owns this agency
-        const { data: agency } = await supabase
+        // Check if user owns this agency and get agency data
+        const { data: agencyData } = await supabase
             .from("agencies")
-            .select("owner_id")
+            .select("*")
             .eq("id", agencyId)
             .single();
 
-        if (agency && agency.owner_id === session.user.id) {
-            setIsOwner(true);
+        if (agencyData) {
+            setAgency(agencyData);
+
+            // Check if user is the owner
+            if (agencyData.owner_id === session.user.id) {
+                setIsOwner(true);
+            } else {
+                // Check if user is admin
+                const { data: profile } = await supabase
+                    .from("profiles")
+                    .select("is_admin")
+                    .eq("id", session.user.id)
+                    .single();
+
+                if (profile?.is_admin) {
+                    setIsOwner(true); // Admins have owner-level access
+                }
+            }
         }
 
         setLoading(false);
@@ -68,7 +78,13 @@ export default function ManageAgency({ agencyId, agencySlug }: ManageAgencyProps
     }
 
     if (!isOwner) {
-        return <ExperiencesSection agencyId={agencyId} isOwner={false} />;
+        return (
+            <div className="space-y-6">
+                <UnclaimedAgencyCheck agencyId={agencyId} />
+                <ServicesSection agencyId={agencyId} isOwner={false} />
+                <ExperiencesSection agencyId={agencyId} isOwner={false} />
+            </div>
+        );
     }
 
     return (
@@ -107,6 +123,15 @@ export default function ManageAgency({ agencyId, agencySlug }: ManageAgencyProps
                     </div>
                 </div>
             </div>
+
+            {/* Image Upload */}
+            {agency && (
+                <AgencyImageUpload
+                    agencyId={agencyId}
+                    currentImageUrl={agency.image_url}
+                    onImageUpdated={(newUrl) => setAgency({ ...agency, image_url: newUrl })}
+                />
+            )}
 
             {/* Services Section */}
             <ServicesSection agencyId={agencyId} isOwner={true} />

@@ -8,6 +8,7 @@ import ScrollToTop from "@/components/ui/ScrollToTop";
 import PromoBanner from "@/components/ui/PromoBanner";
 import PromoPopup from "@/components/ui/PromoPopup";
 import ChatBot from "@/components/ui/ChatBot";
+import { ChatBotProvider } from "@/components/ui/ChatBotContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -64,11 +65,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.travelagencies.world"),
   icons: {
     icon: [
+      { url: "/travellogos/144x144.png", sizes: "144x144", type: "image/png" },
       { url: "/favicon.png", sizes: "32x32", type: "image/png" },
       { url: "/travellogos/square-blue-white-background.png", sizes: "192x192", type: "image/png" },
       { url: "/travellogos/square-blue-white-background.png", sizes: "512x512", type: "image/png" },
     ],
-    shortcut: "/favicon.png",
+    shortcut: "/travellogos/144x144.png",
     apple: "/travellogos/square-blue-white-background.png",
   },
   alternates: {
@@ -213,7 +215,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/travellogos/square-blue-no-background.png" type="image/png" />
+        <link rel="icon" href="/travellogos/144x144.png" type="image/png" />
         <link rel="apple-touch-icon" href="/travellogos/square-blue-white-background.png" />
         <link rel="manifest" href="/manifest.json" />
         {/* Preconnect for performance */}
@@ -242,15 +244,17 @@ export default function RootLayout({
         />
       </head>
       <body className={poppins.className}>
-        <div className="flex flex-col min-h-screen">
-          <PromoBanner />
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-        <ScrollToTop />
-        <ChatBot />
-        {/* <PromoPopup /> */}
+        <ChatBotProvider>
+          <div className="flex flex-col min-h-screen">
+            <PromoBanner />
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          <ScrollToTop />
+          <ChatBot />
+          {/* <PromoPopup /> */}
+        </ChatBotProvider>
       </body>
     </html>
   );

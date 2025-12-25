@@ -17,6 +17,7 @@ export interface Agency {
   url: string;
   description: string;
   featured: boolean;
+  imageUrl?: string | null;
   location?: {
     lat: number;
     lng: number;

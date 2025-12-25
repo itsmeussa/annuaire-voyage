@@ -1,31 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Using OpenAI GPT-3.5 Turbo
+// Using OpenAI
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
 
-const SYSTEM_PROMPT = `You are a helpful travel assistant for TravelAgencies.World - the world's largest directory of travel agencies with 2670+ verified agencies worldwide.
+const SYSTEM_PROMPT = `You are "TravelBot", a premium and sophisticated travel concierge for TravelAgencies.World. 
+Your tone is professional, welcoming, and knowledgeable.
 
-Your role is to:
-- Help users find travel agencies for their trips
-- Answer questions about travel destinations
-- Provide tips about Morocco, CAN 2025, and popular travel destinations
-- Guide users to use the website features (search, filter by country, ratings)
-- Be friendly, concise, and helpful
+CORE KNOWLEDGE:
+- Platform: TravelAgencies.World (2670+ verified agencies).
+- Key Regions: Morocco, France, Spain, USA, Canada, UK, UAE.
+- Event: CAN 2025 (Africa Cup of Nations) is a major focus in Morocco.
 
-Key information:
-- Website: TravelAgencies.World
-- We have agencies in Morocco, France, USA, Canada, UK, UAE and more
-- Users can filter by country, city, category, and rating
-- CAN 2025 (Africa Cup of Nations) is happening in Morocco - great time to visit!
-- We offer free agency listings and promotion packages for agencies
-
-IMPORTANT - To add an agency to the platform:
-- Contact us on WhatsApp: +33 7 45 07 56 68
-- Or email: contact@travelagencies.world
-- Always provide these contact details when someone asks about adding their agency or listing their business
-
-Keep responses short (2-3 sentences max) unless the user asks for detailed information.
-Respond in the same language the user writes in (French, English, Arabic, etc.).`;
+STYLE GUIDELINES:
+- **STRICTLY REACTIVE:** Never introduce yourself or an agency unprompted. 
+- **NO SALES PITCH:** Only provide details about an agency if specifically asked (e.g., "What tours do they have?").
+- **CONCISE:** Keep responses to 1-2 sentences unless the user asks for more detail.
+- **NO REPETITION:** Do not repeat the agency name or location unless necessary for the answer.
+- **LANGUAGE:** Stick to English unless the user writes in another language.`;
 
 export async function POST(request: NextRequest) {
   try {
@@ -51,31 +42,34 @@ export async function POST(request: NextRequest) {
 
     if (context) {
       const servicesText = context.services?.length
-        ? `\nServices offered: ${context.services.join(", ")}`
-        : "";
+        ? `\nAUTHENTIC SERVICES (Use ONLY these): ${context.services.join(", ")}`
+        : "\nSERVICES: No specific services listed in our database yet for this agency.";
 
       const experiencesText = context.experiences?.length
-        ? `\nExperiences available:\n${context.experiences.map((exp: any) =>
+        ? `\nAUTHENTIC EXPERIENCES (Use ONLY these):\n${context.experiences.map((exp: any) =>
           `  - ${exp.title}${exp.description ? `: ${exp.description}` : ""}${exp.price ? ` (${exp.price} ${exp.currency || "USD"})` : ""}`
         ).join("\n")}`
-        : "";
+        : "\nEXPERIENCES: No specific tour experiences listed in our database yet.";
 
       const contactText = context.contact
-        ? `\nContact: ${context.contact.phone || ""} ${context.contact.website || ""}`.trim()
+        ? `\nOFFICIAL CONTACT: ${context.contact.phone || "Not listed"} | ${context.contact.website || "No website listed"}`
         : "";
 
-      systemPrompt = `You are a dedicated assistant for ${context.agencyName}, a travel agency located in ${context.location}.
+      systemPrompt = `You are a dedicated Premium Concierge for "${context.agencyName}", located in ${context.location}.
+      
+RULES FOR THIS AGENCY:
+1. SHARE information about services and experiences ONLY when asked.
+2. IF the user asks "what do you do?" or "tell me about this agency", give a brief 1-sentence overview and wait for further questions.
+3. IF the list is empty (None listed), do NOT invent tours.
+4. If asked about contact details, use ONLY the OFFICIAL CONTACT listed below.
+5. Maintain a high-end, assistive tone.
 
-Your role is to:
-- Answer questions about ${context.agencyName}'s services and offerings
-- Provide information about available tours and experiences
-- Help potential customers understand what this agency offers
-- Be friendly, professional, and helpful
-${servicesText}${experiencesText}${contactText}
+CONTEXT DATA FOR ${context.agencyName}:
+${servicesText}
+${experiencesText}
+${contactText}
 
-Keep responses concise (2-3 sentences) unless detailed information is requested.
-Always stay in character as an assistant specifically for ${context.agencyName}.
-Respond in the same language the user writes in.`;
+IMPORTANT: Stick to the user's language. Stay concise.`;
     }
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -85,13 +79,13 @@ Respond in the same language the user writes in.`;
         "Authorization": `Bearer ${OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4o-mini",
         messages: [
           { role: "system", content: systemPrompt },
           ...messages.slice(-10),
         ],
-        max_tokens: 300,
-        temperature: 0.7,
+        max_tokens: 400,
+        temperature: 0.5,
       }),
     });
 

@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
-import { Loader2, ArrowLeft, MapPin, Phone, Globe, Building } from "lucide-react";
+import { Loader2, ArrowLeft, MapPin, Phone, Globe, Building, FileText, Map } from "lucide-react";
 import Link from "next/link";
+import { COUNTRIES } from "@/lib/countries";
 
 export default function AddAgencyPage() {
     const [loading, setLoading] = useState(false);
@@ -15,6 +16,7 @@ export default function AddAgencyPage() {
 
     const [formData, setFormData] = useState({
         title: "",
+        description: "",
         street: "",
         city: "",
         state: "",
@@ -22,9 +24,49 @@ export default function AddAgencyPage() {
         phone: "",
         website: "",
         category_name: "",
+        google_maps_url: "",
         latitude: "",
         longitude: "",
     });
+
+    const extractCoordsFromMapsUrl = (url: string) => {
+        // Try to extract coordinates from Google Maps URL
+        try {
+            const patterns = [
+                /@(-?\d+\.\d+),(-?\d+\.\d+)/,  // @lat,lng
+                /q=(-?\d+\.\d+),(-?\d+\.\d+)/,  // q=lat,lng
+                /!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/, // !3dlat!4dlng
+            ];
+
+            for (const pattern of patterns) {
+                const match = url.match(pattern);
+                if (match) {
+                    return {
+                        latitude: match[1],
+                        longitude: match[2],
+                    };
+                }
+            }
+        } catch (e) {
+            console.error("Error extracting coords:", e);
+        }
+        return null;
+    };
+
+    const handleMapsUrlChange = (url: string) => {
+        setFormData({ ...formData, google_maps_url: url });
+
+        // Auto-extract coordinates
+        const coords = extractCoordsFromMapsUrl(url);
+        if (coords) {
+            setFormData(prev => ({
+                ...prev,
+                google_maps_url: url,
+                latitude: coords.latitude,
+                longitude: coords.longitude,
+            }));
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -48,7 +90,7 @@ export default function AddAgencyPage() {
 
             // Normalize fields
             const cityNormalized = formData.city.toLowerCase().trim();
-            const countryNormalized = formData.country_code.toLowerCase().trim();
+            const countryNormalized = COUNTRIES.find(c => c.code === formData.country_code)?.name.toLowerCase() || formData.country_code.toLowerCase();
             const categoryNormalized = formData.category_name.toLowerCase().trim();
 
             // Insert agency
@@ -56,6 +98,7 @@ export default function AddAgencyPage() {
                 .from("agencies")
                 .insert({
                     title: formData.title,
+                    description: formData.description,
                     slug,
                     street: formData.street,
                     city: formData.city,
@@ -64,6 +107,7 @@ export default function AddAgencyPage() {
                     phone: formData.phone,
                     website: formData.website,
                     category_name: formData.category_name,
+                    url: formData.google_maps_url,
                     latitude: formData.latitude ? parseFloat(formData.latitude) : null,
                     longitude: formData.longitude ? parseFloat(formData.longitude) : null,
                     city_normalized: cityNormalized,
@@ -163,8 +207,22 @@ export default function AddAgencyPage() {
                                     required
                                     value={formData.category_name}
                                     onChange={(e) => setFormData({ ...formData, category_name: e.target.value })}
-                                    placeholder="Travel agency"
+                                    placeholder="e.g., Tour operator, Travel agency, Sightseeing tour agency"
                                     className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                                    <FileText className="w-4 h-4" />
+                                    Description
+                                </label>
+                                <textarea
+                                    value={formData.description}
+                                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                                    rows={4}
+                                    placeholder="Tell us about your agency, the services you offer, and what makes you special..."
+                                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"
                                 />
                             </div>
                         </div>
@@ -220,18 +278,38 @@ export default function AddAgencyPage() {
 
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                                    Country Code <span className="text-red-500">*</span>
+                                    Country <span className="text-red-500">*</span>
                                 </label>
-                                <input
-                                    type="text"
+                                <select
                                     required
                                     value={formData.country_code}
                                     onChange={(e) => setFormData({ ...formData, country_code: e.target.value })}
-                                    placeholder="FR"
-                                    maxLength={2}
+                                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                                >
+                                    <option value="">Select a country</option>
+                                    {COUNTRIES.map((country) => (
+                                        <option key={country.code} value={country.code}>
+                                            {country.flag} {country.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                                    <Map className="w-4 h-4" />
+                                    Google Maps Link
+                                </label>
+                                <input
+                                    type="url"
+                                    value={formData.google_maps_url}
+                                    onChange={(e) => handleMapsUrlChange(e.target.value)}
+                                    placeholder="https://maps.google.com/?q=..."
                                     className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
                                 />
-                                <p className="text-xs text-gray-500 mt-1">2-letter country code (e.g., FR, US, UK)</p>
+                                <p className="text-xs text-gray-500 mt-1">
+                                    Paste your Google Maps link here - coordinates will be extracted automatically
+                                </p>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">

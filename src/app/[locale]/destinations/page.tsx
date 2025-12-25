@@ -1,53 +1,38 @@
-import { Metadata } from "next";
-import Link from "next/link";
+import { getTranslations } from 'next-intl/server';
+import { Link } from '@/navigation';
 import { MapPin, Globe, ArrowRight } from "lucide-react";
 import { getAllAgencies } from "@/lib/agencies";
 
 // Force dynamic rendering to avoid build timeout
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: "Travel Agencies by Destination | 50+ Countries & 500+ Cities Worldwide",
-  description:
-    "Find travel agencies by country & city. 2670+ verified agencies in Morocco (CAN 2025), France, USA, Canada, UK, Spain, UAE & 50+ countries. Compare ratings, read reviews, book directly.",
-  keywords: [
-    "travel agencies by country",
-    "travel agencies by city",
-    "find travel agency near me",
-    "tour operators worldwide",
-    "Morocco travel agencies CAN 2025",
-    "Casablanca travel agency",
-    "Marrakech travel agency",
-    "Rabat travel agency",
-    "France travel agencies",
-    "Paris travel agency",
-    "USA travel agencies",
-    "New York travel agency",
-    "Canada travel agencies",
-    "Toronto travel agency",
-    "UK travel agencies",
-    "international travel agencies",
-    "agence de voyage",
-  ],
-  openGraph: {
-    title: "Travel Agencies by Destination | 50+ Countries Covered",
-    description: "Browse 2670+ verified travel agencies by country & city. Morocco CAN 2025, France, USA, Canada & more.",
-    url: "https://www.travelagencies.world/destinations",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Find Travel Agencies by Destination",
-    description: "2670+ verified agencies in 50+ countries. Morocco, France, USA, Canada & more.",
-  },
-  alternates: {
-    canonical: "/destinations",
-  },
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale, namespace: 'Destinations.meta' });
 
-export default async function DestinationsPage() {
+  return {
+    title: t('title'),
+    description: t('description'),
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      url: "https://www.travelagencies.world/destinations",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t('title'),
+      description: t('description'),
+    },
+    alternates: {
+      canonical: "/destinations",
+    },
+  };
+}
+
+export default async function DestinationsPage({ params: { locale } }: { params: { locale: string } }) {
   const agencies = await getAllAgencies();
   const totalAgencies = agencies.length;
+  const t = await getTranslations({ locale, namespace: 'Destinations' });
 
   // Efficiently count agencies per country and city in a single pass
   const countryCount = new Map<string, number>();
@@ -131,11 +116,10 @@ export default async function DestinationsPage() {
         <section className="hero-gradient text-white py-16">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Find Travel Agencies by Destination
+              {t('hero.title')}
             </h1>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              Browse {totalAgencies}+ verified travel agencies across {countries.length} countries.
-              Find trusted local experts in your desired destination.
+              {t('hero.subtitle', { count: totalAgencies, countries: countries.length })}
             </p>
           </div>
         </section>
@@ -144,7 +128,7 @@ export default async function DestinationsPage() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-foreground mb-8">
-              Browse Travel Agencies by Country
+              {t('countries.title')}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {countryData.map((country) => (
@@ -152,7 +136,7 @@ export default async function DestinationsPage() {
                   key={country.name}
                   href={`/agencies?country=${encodeURIComponent(country.name)}`}
                   className="bg-muted/50 rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 group"
-                  title={`Find travel agencies in ${country.name}`}
+                  title={`${t('countries.count', { count: country.count })} in ${country.name}`}
                 >
                   <div className="flex items-center gap-3">
                     <Globe className="h-8 w-8 text-primary" />
@@ -161,7 +145,7 @@ export default async function DestinationsPage() {
                         {country.name}
                       </h3>
                       <p className="text-sm text-muted-foreground">
-                        {country.count} travel agencies
+                        {t('countries.count', { count: country.count })}
                       </p>
                     </div>
                   </div>
@@ -175,7 +159,7 @@ export default async function DestinationsPage() {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-foreground mb-8">
-              Popular Cities for Travel Agencies
+              {t('cities.title')}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {cityData.slice(0, 16).map((city) => (
@@ -183,7 +167,7 @@ export default async function DestinationsPage() {
                   key={city.name}
                   href={`/agencies?city=${encodeURIComponent(city.name)}`}
                   className="bg-white rounded-xl p-6 hover:shadow-lg transition-all hover:-translate-y-1 border border-border group"
-                  title={`Find travel agencies in ${city.name}`}
+                  title={`${t('cities.count', { count: city.count })} in ${city.name}`}
                 >
                   <div className="flex items-center gap-3">
                     <MapPin className="h-6 w-6 text-primary" />
@@ -192,7 +176,7 @@ export default async function DestinationsPage() {
                         {city.name}
                       </h3>
                       <p className="text-sm text-muted-foreground">
-                        {city.count} travel agencies
+                        {t('cities.count', { count: city.count })}
                       </p>
                     </div>
                   </div>
@@ -206,7 +190,7 @@ export default async function DestinationsPage() {
                   href="/agencies"
                   className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
                 >
-                  View All {cities.length} Cities
+                  {t('cities.viewAll', { count: cities.length })}
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </div>
@@ -219,18 +203,13 @@ export default async function DestinationsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto prose prose-lg">
               <h2 className="text-2xl font-bold text-foreground mb-4">
-                Find the Best Travel Agencies Worldwide
+                {t('seo.title')}
               </h2>
               <p className="text-muted-foreground mb-4">
-                TravelAgencies.World is your comprehensive directory for finding verified travel agencies
-                across the globe. Whether you&apos;re planning a trip to Morocco, exploring destinations in
-                France, or searching for tour operators in any corner of the world, our directory helps
-                you connect with trusted professionals.
+                {t('seo.p1')}
               </p>
               <p className="text-muted-foreground mb-4">
-                Each listing includes real Google reviews, ratings, contact information, and detailed
-                descriptions to help you make an informed decision. Compare agencies by location,
-                specialty, and customer satisfaction to find your perfect travel partner.
+                {t('seo.p2')}
               </p>
             </div>
           </div>
@@ -240,16 +219,16 @@ export default async function DestinationsPage() {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              Can&apos;t Find Your Destination?
+              {t('cta.title')}
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Use our advanced search to find travel agencies anywhere in the world.
+              {t('cta.subtitle')}
             </p>
             <Link
               href="/agencies"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold hover:bg-primary/90 transition-colors"
             >
-              Search All {totalAgencies}+ Agencies
+              {t('cta.button', { count: totalAgencies })}
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>

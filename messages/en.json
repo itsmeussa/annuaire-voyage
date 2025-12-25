@@ -1,0 +1,454 @@
+{
+    "Common": {
+        "title": "TravelAgencies.World",
+        "description": "The #1 Global Travel Agency Directory"
+    },
+    "Navigation": {
+        "home": "Home",
+        "agencies": "Agencies",
+        "map": "Map",
+        "about": "About",
+        "blog": "Blogs",
+        "contact": "Contact",
+        "forAgencies": "For Agencies",
+        "listAgency": "List Agency",
+        "login": "Login",
+        "dashboard": "Dashboard"
+    },
+    "Footer": {
+        "rights": "All rights reserved.",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "partner": "Partner with Us"
+    },
+    "Hero": {
+        "title": "Find the Perfect",
+        "titleHighlight": "Travel Agency",
+        "titleSuffix": "for Your Adventure",
+        "subtitle": "Browse our comprehensive directory of verified travel agencies. Compare ratings, read reviews, and connect directly with trusted travel professionals.",
+        "searchPlaceholder": "Search by agency name or location...",
+        "searchButton": "Search",
+        "statsAgencies": "Agencies",
+        "statsCities": "Cities",
+        "statsRating": "Avg Rating",
+        "statsReviews": "Reviews"
+    },
+    "Features": {
+        "title": "Why Choose Our Directory?",
+        "subtitle": "We make finding the right travel agency easy, transparent, and reliable.",
+        "verifiedTitle": "Verified Agencies",
+        "verifiedDesc": "All agencies are verified with real reviews and ratings from Google.",
+        "topRatedTitle": "Top Rated",
+        "topRatedDesc": "Find the highest-rated travel agencies with proven track records.",
+        "contactTitle": "Instant Contact",
+        "contactDesc": "Connect directly with agencies via phone, website, or Google Maps.",
+        "globalTitle": "Global Coverage",
+        "globalDesc": "Browse agencies from multiple countries and destinations worldwide."
+    },
+    "Featured": {
+        "title": "Featured Travel Agencies",
+        "subtitleLocation": "Showing the best agencies nearest to you.",
+        "subtitleDefault": "Top-rated agencies with excellent reviews and proven track records.",
+        "useLocation": "Use my location to find nearby agencies",
+        "retry": "Retry",
+        "viewAll": "View All Agencies",
+        "distance": "{distance} km away",
+        "locateError": {
+            "unsupported": "Geolocation is not supported by your browser.",
+            "denied": "Location access denied. Please enable it in your browser settings to find nearby agencies.",
+            "unavailable": "Location information is unavailable.",
+            "timeout": "Location request timed out.",
+            "default": "Could not access location."
+        }
+    },
+    "Services": {
+        "title": "What Services Can You Find?",
+        "subtitle": "Our directory includes agencies offering a wide range of travel services.",
+        "flightsTitle": "Flight Bookings",
+        "flightsDesc": "Find agencies that specialize in flight reservations and airfare deals.",
+        "hotelsTitle": "Hotel & Accommodation",
+        "hotelsDesc": "Discover experts in hotel bookings and accommodation packages.",
+        "toursTitle": "Tour Packages",
+        "toursDesc": "Connect with tour operators offering guided tours and experiences."
+    },
+    "Cities": {
+        "title": "Browse by City",
+        "subtitle": "Explore travel agencies in popular destinations around the world.",
+        "viewAll": "View All Destinations"
+    },
+    "HowItWorks": {
+        "title": "How It Works",
+        "subtitle": "Finding your ideal travel agency is simple and straightforward.",
+        "step1Title": "Search & Filter",
+        "step1Desc": "Use our powerful search to find agencies by location, rating, or specialty.",
+        "step2Title": "Compare & Review",
+        "step2Desc": "View detailed profiles, ratings, and reviews to make an informed decision.",
+        "step3Title": "Contact Directly",
+        "step3Desc": "Reach out via phone, website, or Google Maps to start planning your trip."
+    },
+    "FAQ": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know about finding the right travel agency",
+        "q1": "How do I find a reliable travel agency?",
+        "a1": "Use TravelAgencies.World to compare 2670+ verified travel agencies with real Google reviews. Filter by location, rating, and specialty to find the perfect match for your travel needs.",
+        "q2": "Are the travel agencies on this directory verified?",
+        "a2": "Yes, all 2670+ agencies in our directory are sourced from Google Maps with authentic reviews and ratings. We display real contact information and customer feedback.",
+        "q3": "How can I contact a travel agency?",
+        "a3": "Each agency listing includes direct contact information including phone numbers, websites, and Google Maps links. You can reach out directly without any intermediary.",
+        "q4": "Is it free to use TravelAgencies.World?",
+        "a4": "Yes, our directory is completely free to use for travelers. Browse, compare, and contact travel agencies at no cost.",
+        "q5": "What countries do you cover?",
+        "a5": "We cover 2670+ travel agencies in 50+ countries including France, USA, Canada, UK, Spain, Netherlands, Malaysia, United Arab Emirates and many more.",
+        "q6": "How do I choose the best travel agency for my trip?",
+        "a6": "Consider the agency's rating, number of reviews, location, and specialization. Read customer reviews and compare multiple agencies before making your decision.",
+        "q7": "Which cities have the most travel agencies?",
+        "a7": "Our directory features agencies in major cities worldwide including New York (50+), Toronto (45+), Ottawa (85+), Paris (100+), and many more destinations.",
+        "q8": "Can I find travel agencies without a website?",
+        "a8": "Yes, use our website filter to find agencies with or without websites. Many excellent local agencies rely on phone bookings and walk-ins."
+    },
+    "Trust": {
+        "verified": "Verified Data",
+        "reviews": "Real Reviews",
+        "trusted": "Trusted by Travelers",
+        "free": "Free to Use"
+    },
+    "About": {
+        "title": "About TravelAgencies.World",
+        "mission": "We're on a mission to make finding the perfect travel agency as easy as booking a flight. Your dream vacation starts with the right partner.",
+        "stats": {
+            "agencies": "Travel Agencies",
+            "countries": "Countries Covered",
+            "visitors": "Monthly Visitors",
+            "rating": "Average Rating"
+        },
+        "story": {
+            "title": "Our Story",
+            "quote": "We believe travel is the only thing you buy that makes you richer. But in a world dominated by cold algorithms, the human touch was fading away.",
+            "p1": "We've all been there: the late-night anxiety, wondering if that \"perfect\" hotel is real, or if there's actually a person to call when things don't go as planned. You aren't just booking a flight or a room; you are investing in your precious time, your family's memories, and your own dreams.",
+            "p2": "That's why we built TravelAgencies.World. Not as another faceless booking engine, but as a bridge back to trust. We wanted to shine a light on the dedicated experts—the passionate travel agents—who turn good trips into life-changing experiences.",
+            "p3": "Every agency here is more than a listing; it's a verified partner with a track record of care. Because we know that the most beautiful journeys aren't just about where you go, but who you trust to guide you there."
+        },
+        "values": {
+            "title": "Our Values",
+            "transparency": "Transparency",
+            "transparencyDesc": "We provide honest, verified information from real Google reviews to help you make informed decisions.",
+            "userFirst": "User-First",
+            "userFirstDesc": "Our platform is designed with travelers in mind, making it easy to find and connect with the right agency.",
+            "quality": "Quality",
+            "qualityDesc": "We highlight top-rated agencies with proven track records of excellent customer service.",
+            "globalReach": "Global Reach",
+            "globalReachDesc": "From local boutique agencies to international operators, we cover destinations worldwide."
+        },
+        "team": {
+            "title": "Meet the Creators",
+            "subtitle": "The passionate minds utilizing technology to revolutionize the travel industry.",
+            "oussamaRole": "AI Engineer | Data Scientist",
+            "oussamaDesc": "Driving the technical vision and ensuring a seamless, high-performance experience for travelers and agencies alike.",
+            "zakariaRole": "Storyteller & Creative Director",
+            "zakariaDesc": "Crafting intuitive digital experiences and building the robust architecture that powers our global directory.",
+            "ahmedRole": "Finance Consultant",
+            "ahmedDesc": "Expert in financial strategy and business planning, ensuring sustainable growth for our partner agencies.",
+            "amineRole": "Data Consultant",
+            "amineDesc": "Leveraging data analytics to uncover actionable insights and optimize performance for travel businesses.",
+            "connect": "Connect on LinkedIn"
+        },
+        "trust": {
+            "title": "Why Choose Our Directory?",
+            "verified": "Verified agencies with real Google reviews",
+            "search": "Easy-to-use search and filter functionality",
+            "contact": "Direct contact information for quick connections",
+            "coverage": "Comprehensive coverage across multiple countries",
+            "updates": "Regular updates to ensure accuracy",
+            "free": "Free to use, no registration required",
+            "browse": "Browse Agencies",
+            "builtBy": "Built for Excellence",
+            "builtDesc1": "TravelAgencies.World is proudly developed and maintained by Orious Strategy, a digital agency specializing in creating innovative web solutions and digital experiences.",
+            "builtDesc2": "We combine cutting-edge technology with user-centered design to build platforms that deliver real value to everyone.",
+            "visitOrious": "Visit Orious Strategy"
+        },
+        "cta": {
+            "title": "Ready to Find Your Perfect Travel Partner?",
+            "subtitle": "Browse our comprehensive directory and connect with trusted travel agencies today.",
+            "button": "Explore Agencies"
+        }
+    },
+    "Contact": {
+        "title": "Contact Us",
+        "subtitle": "Have questions or feedback? We'd love to hear from you. Get in touch and we'll respond as soon as possible.",
+        "form": {
+            "title": "Send us a Message",
+            "name": "Your Name",
+            "email": "Email Address",
+            "subject": "Subject",
+            "subjects": {
+                "select": "Select a subject",
+                "general": "General Inquiry",
+                "agency": "Add My Agency",
+                "feedback": "Feedback",
+                "partnership": "Partnership",
+                "support": "Technical Support"
+            },
+            "message": "Message",
+            "placeholder": "Tell us how we can help...",
+            "send": "Send Message",
+            "sending": "Sending...",
+            "successTitle": "Message Sent!",
+            "successDesc": "Thank you for contacting us. We'll get back to you shortly.",
+            "sendAnother": "Send another message",
+            "error": "Failed to send message. Please try again."
+        },
+        "info": {
+            "title": "Get in Touch",
+            "email": "Email",
+            "phone": "Phone",
+            "developedBy": "Developed by",
+            "agencyTitle": "Want to List Your Agency?",
+            "agencyDesc": "If you run a travel agency and would like to be featured in our directory, we'd love to hear from you. Contact us with your agency details and we'll get back to you.",
+            "benefit1": "Increase your online visibility",
+            "benefit2": "Connect with potential customers",
+            "benefit3": "Showcase your services"
+        }
+    },
+    "ForAgencies": {
+        "hero": {
+            "tag": "Join 2,670+ Smart Agencies",
+            "title": "Grow Your",
+            "titleHighlight": "Travel Business",
+            "subtitle": "Claim your free profile, manage your reputation, and connect with millions of travelers planning their next adventure.",
+            "listFree": "List My Agency for Free",
+            "viewDirectory": "View Directory"
+        },
+        "stats": {
+            "visitors": "Monthly Visitors",
+            "active": "Active Agencies",
+            "cities": "Cities Covered",
+            "leads": "Leads Generated"
+        },
+        "benefits": {
+            "title": "Why List Your Agency?",
+            "subtitle": "Travelers trust verified directories. Being listed on TravelAgencies.World puts your brand in front of customers right when they are ready to book.",
+            "visibility": "Enhanced Visibility",
+            "visibilityDesc": "Get discovered by travelers thousands of times per month searching for agencies in your city.",
+            "leads": "High-Quality Leads",
+            "leadsDesc": "Connect with serious travelers who are actively planning trips and looking for experts like you.",
+            "trust": "Build Trust",
+            "trustDesc": "Showcase your Verified status, Google reviews, and expertise to stand out from competitors.",
+            "insights": "Performance Insights",
+            "insightsDesc": "Track how many travelers view your profile and contact you directly."
+        },
+        "steps": {
+            "title": "Simple 3-Step Process",
+            "step1": "Create Your Account",
+            "step1Desc": "Sign up in seconds. It's completely free and no credit card is required.",
+            "step2": "Claim or Add Agency",
+            "step2Desc": "Find your agency in our database to claim it, or add a new listing if it doesn't exist.",
+            "step3": "Start Receiving Leads",
+            "step3Desc": "Optimize your profile with photos and services. Travelers will contact you directly.",
+            "cta": "Get Started Now",
+            "claim": "Claim Profile"
+        },
+        "cta": {
+            "title": "Ready to Scale Your Agency?",
+            "subtitle": "Join the fastest growing network of travel professionals today.",
+            "button": "List My Agency Now"
+        }
+    },
+    "Privacy": {
+        "title": "Privacy Policy",
+        "lastUpdated": "Last updated: December 2024",
+        "intro": {
+            "title": "Introduction",
+            "content": "TravelAgencies.World (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website."
+        },
+        "collect": {
+            "title": "Information We Collect",
+            "content": "We may collect information about you in various ways:",
+            "personal": "<strong>Personal Data:</strong> When you contact us through our forms, we collect your name, email address, and any message content you provide.",
+            "usage": "<strong>Usage Data:</strong> We automatically collect information about how you access and use our website, including your IP address, browser type, pages visited, and time spent on pages."
+        },
+        "use": {
+            "title": "How We Use Your Information",
+            "content": "We use the information we collect to:",
+            "list": [
+                "Provide and maintain our service",
+                "Respond to your inquiries and support requests",
+                "Improve our website and user experience",
+                "Send you relevant updates (with your consent)",
+                "Analyze usage patterns and trends"
+            ]
+        },
+        "sharing": {
+            "title": "Data Sharing",
+            "content": "We do not sell, trade, or otherwise transfer your personal information to outside parties. This does not include trusted third parties who assist us in operating our website, conducting our business, or servicing you, as long as those parties agree to keep this information confidential."
+        },
+        "cookies": {
+            "title": "Cookies",
+            "content": "Our website may use cookies to enhance your experience. Cookies are small files stored on your device that help us understand how you use our site. You can choose to disable cookies through your browser settings."
+        },
+        "thirdParty": {
+            "title": "Third-Party Services",
+            "content": "Our website displays information sourced from Google Places. By using our website, you acknowledge that this data is provided by Google and is subject to Google's privacy policies."
+        },
+        "security": {
+            "title": "Data Security",
+            "content": "We implement appropriate security measures to protect your personal information. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security."
+        },
+        "rights": {
+            "title": "Your Rights",
+            "content": "You have the right to:",
+            "list": [
+                "Access the personal data we hold about you",
+                "Request correction of inaccurate data",
+                "Request deletion of your data",
+                "Opt-out of marketing communications"
+            ]
+        },
+        "contact": {
+            "title": "Contact Us",
+            "content": "If you have any questions about this Privacy Policy, please contact us at:",
+            "email": "Email: contact@travelagencies.world",
+            "website": "Website: "
+        },
+        "changes": {
+            "title": "Changes to This Policy",
+            "content": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the \"Last updated\" date."
+        }
+    },
+    "Terms": {
+        "title": "Terms of Service",
+        "lastUpdated": "Last updated: December 2024",
+        "intro": {
+            "title": "1. Acceptance of Terms",
+            "content": "By accessing and using TravelAgencies.World (\"the Website\"), you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our website."
+        },
+        "services": {
+            "title": "2. Description of Service",
+            "content": "TravelAgencies.World is a directory service that provides information about travel agencies worldwide. We aggregate publicly available data from Google Places to help users find and compare travel agencies."
+        },
+        "usage": {
+            "title": "3. Use of the Website",
+            "content": "You agree to use this website only for lawful purposes. You may not:",
+            "list": [
+                "Use the website in any way that violates applicable laws",
+                "Attempt to gain unauthorized access to our systems",
+                "Use automated tools to scrape or collect data",
+                "Interfere with the proper functioning of the website",
+                "Upload malicious code or content"
+            ]
+        },
+        "accuracy": {
+            "title": "4. Information Accuracy",
+            "content": "While we strive to provide accurate and up-to-date information, the data displayed on our website is sourced from third-party services (primarily Google Places). We do not guarantee the accuracy, completeness, or reliability of this information.",
+            "warning": "<strong>Important:</strong> Before engaging with any travel agency, we recommend verifying their credentials, reading reviews, and conducting your own due diligence."
+        },
+        "disclaimer": {
+            "title": "5. No Endorsement",
+            "content": "The inclusion of a travel agency in our directory does not constitute an endorsement or recommendation. We are not responsible for the services, quality, or reliability of any travel agency listed on our website."
+        },
+        "links": {
+            "title": "6. Third-Party Links",
+            "content": "Our website contains links to external websites, including travel agency websites and Google Maps. We are not responsible for the content, privacy practices, or services of these third-party sites."
+        },
+        "intellectual": {
+            "title": "7. Intellectual Property",
+            "content": "The website design, logos, content, and code are the property of Orious Strategy and are protected by intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission."
+        },
+        "limitation": {
+            "title": "8. Limitation of Liability",
+            "content": "To the fullest extent permitted by law, TravelAgencies.World and its operators shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from your use of the website or any transactions with travel agencies found through our directory."
+        },
+        "indemnity": {
+            "title": "9. Indemnification",
+            "content": "You agree to indemnify and hold harmless TravelAgencies.World, its operators, and Orious Strategy from any claims, damages, or expenses arising from your use of the website or violation of these terms."
+        },
+        "changes": {
+            "title": "10. Changes to Terms",
+            "content": "We reserve the right to modify these Terms of Service at any time. Changes will be effective immediately upon posting to the website. Your continued use of the website constitutes acceptance of the modified terms."
+        },
+        "law": {
+            "title": "11. Governing Law",
+            "content": "These terms shall be governed by and construed in accordance with applicable laws. Any disputes shall be resolved in the appropriate courts."
+        },
+        "contact": {
+            "title": "12. Contact Information",
+            "content": "For questions about these Terms of Service, please contact us:",
+            "email": "Email: contact@travelagencies.world",
+            "developer": "Developer: "
+        }
+    },
+    "Agencies": {
+        "title": "Find Travel Agencies",
+        "subtitle": "Browse our directory of {count} verified travel agencies worldwide.",
+        "search": {
+            "placeholder": "Search by agency name, city, or category...",
+            "filters": "Filters"
+        },
+        "filters": {
+            "title": "Filters",
+            "city": "City",
+            "country": "Country",
+            "rating": "Rating",
+            "category": "Category",
+            "website": "Website",
+            "websiteAll": "All",
+            "websiteWith": "With Website",
+            "websiteWithout": "Without Website",
+            "clear": "Clear all filters",
+            "selectedCity": "City: {city}",
+            "selectedCountry": "Country: {country}",
+            "selectedRating": "Rating: {rating}+",
+            "showing": "Showing {start}-{end} of {total} agencies",
+            "empty": "No agencies found matching your criteria. Try adjusting your filters or search terms."
+        },
+        "view": {
+            "grid": "Grid view",
+            "list": "List view",
+            "map": "Map view"
+        },
+        "pagination": {
+            "goTo": "Go to page:",
+            "of": "of {total}",
+            "first": "First",
+            "prev": "Previous",
+            "next": "Next",
+            "last": "Last"
+        },
+        "loading": {
+            "map": "Loading map...",
+            "page": "Loading..."
+        }
+    },
+    "Destinations": {
+        "meta": {
+            "title": "Travel Agencies by Destination | 50+ Countries & 500+ Cities Worldwide",
+            "description": "Find travel agencies by country & city. 2670+ verified agencies in Morocco (CAN 2025), France, USA, Canada, UK, Spain, UAE & 50+ countries. Compare ratings, read reviews, book directly."
+        },
+        "breadcrumbs": {
+            "home": "Home",
+            "destinations": "Destinations"
+        },
+        "hero": {
+            "title": "Find Travel Agencies by Destination",
+            "subtitle": "Browse {count}+ verified travel agencies across {countries} countries. Find trusted local experts in your desired destination."
+        },
+        "countries": {
+            "title": "Browse Travel Agencies by Country",
+            "count": "{count} travel agencies"
+        },
+        "cities": {
+            "title": "Popular Cities for Travel Agencies",
+            "count": "{count} travel agencies",
+            "viewAll": "View All {count} Cities"
+        },
+        "seo": {
+            "title": "Find the Best Travel Agencies Worldwide",
+            "p1": "TravelAgencies.World is your comprehensive directory for finding verified travel agencies across the globe. Whether you're planning a trip to Morocco, exploring destinations in France, or searching for tour operators in any corner of the world, our directory helps you connect with trusted professionals.",
+            "p2": "Each listing includes real Google reviews, ratings, contact information, and detailed descriptions to help you make an informed decision. Compare agencies by location, specialty, and customer satisfaction to find your perfect travel partner."
+        },
+        "cta": {
+            "title": "Can't Find Your Destination?",
+            "subtitle": "Use our advanced search to find travel agencies anywhere in the world.",
+            "button": "Search All {count}+ Agencies"
+        }
+    }
+}

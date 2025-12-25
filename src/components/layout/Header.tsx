@@ -1,16 +1,22 @@
 "use client";
 
-import Link from "next/link";
+import { Link, usePathname, useRouter } from "@/navigation";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { User, LogOut, Menu, X, MapPin, Phone, Globe } from "lucide-react";
+import { User, LogOut, Menu, X, MapPin, Phone, Globe, ChevronDown } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const supabase = createClient();
+  const t = useTranslations('Navigation');
+  const tCommon = useTranslations('Common');
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     // Check active session
@@ -38,13 +44,16 @@ export default function Header() {
     setUser(null);
   };
 
+  const handleLocaleChange = (newLocale: string) => {
+    router.replace(pathname, { locale: newLocale });
+  };
+
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/agencies", label: "Find Agencies" },
-    { href: "/destinations", label: "Destinations" },
-    { href: "/blog", label: "Travel Guide" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
+    { href: "/", label: t('home') },
+    { href: "/agencies", label: t('agencies') },
+    { href: "/blog", label: t('blog') },
+    { href: "/about", label: t('about') },
+    { href: "/contact", label: t('contact') },
   ];
 
   return (
@@ -62,20 +71,48 @@ export default function Header() {
               <span className="hidden sm:inline">2670+ Agencies Listed</span>
             </span>
           </div>
-          <div className="flex items-center gap-1">
-            <Phone className="h-4 w-4" />
-            <a href="tel:+33745075668" className="hover:underline">
-              +33 7 45 07 56 68
-            </a>
+
+          <div className="flex items-center gap-4">
+            {/* Language Switcher */}
+            <div className="flex items-center gap-2 text-xs font-medium">
+              <button
+                onClick={() => handleLocaleChange('en')}
+                className={`hover:underline ${locale === 'en' ? 'font-bold underline' : 'opacity-80'}`}
+              >
+                EN
+              </button>
+              <span>|</span>
+              <button
+                onClick={() => handleLocaleChange('fr')}
+                className={`hover:underline ${locale === 'fr' ? 'font-bold underline' : 'opacity-80'}`}
+              >
+                FR
+              </button>
+              <span>|</span>
+              <button
+                onClick={() => handleLocaleChange('ar')}
+                className={`hover:underline ${locale === 'ar' ? 'font-bold underline' : 'opacity-80'}`}
+              >
+                AR
+              </button>
+            </div>
+
+            <div className="hidden sm:flex items-center gap-1">
+              <Phone className="h-4 w-4" />
+              <a href="tel:+33745075668" className="hover:underline">
+                +33 7 45 07 56 68
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Main navigation */}
       <nav className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
+        {/* Changed from flex/justify-between to grid/items-center to perfectly center the nav */}
+        <div className="grid grid-cols-[auto_1fr_auto] lg:grid-cols-3 items-center">
+          {/* Logo (Left) */}
+          <Link href="/" className="flex items-center justify-start">
             <Image
               src="/travellogos/travelagencies-text-blue-no-background.png"
               alt="TravelAgencies.World"
@@ -86,8 +123,8 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          {/* Desktop Navigation (Center) */}
+          <div className="hidden lg:flex items-center justify-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -97,17 +134,10 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            {/* Highlighted B2B Link */}
-            <Link
-              href="/for-agencies"
-              className="text-sm font-bold text-primary hover:text-primary/80 transition-colors border border-primary/20 bg-primary/5 px-3 py-1 rounded-full"
-            >
-              List Agency
-            </Link>
           </div>
 
-          {/* CTA Buttons / User Menu */}
-          <div className="hidden lg:flex items-center gap-4">
+          {/* CTA Buttons / User Menu (Right) */}
+          <div className="hidden lg:flex items-center justify-end gap-4">
             {!loading && (
               user ? (
                 <div className="flex items-center gap-4">
@@ -116,7 +146,7 @@ export default function Header() {
                     href="/for-agencies"
                     className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors hidden md:block"
                   >
-                    List your agency
+                    {t('forAgencies')}
                   </Link>
 
                   <Link href="/account" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
@@ -137,7 +167,7 @@ export default function Header() {
                     href="/auth/login"
                     className="text-foreground/80 hover:text-primary font-medium transition-colors"
                   >
-                    Sign In
+                    {t('login')}
                   </Link>
                   <Link
                     href="/auth/signup"
@@ -199,7 +229,7 @@ export default function Header() {
                       onClick={() => setIsMenuOpen(false)}
                       className="text-center text-foreground/80 hover:text-primary font-medium transition-colors border border-gray-200 py-2 rounded-lg"
                     >
-                      Sign In
+                      {t('login')}
                     </Link>
                     <Link
                       href="/auth/signup"

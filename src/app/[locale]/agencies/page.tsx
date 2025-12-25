@@ -14,21 +14,27 @@ import {
 } from "@/lib/agencies";
 import { COUNTRIES } from "@/lib/countries";
 import { Agency } from "@/types";
+import { useTranslations } from "next-intl";
 
 // Dynamic import for map component (no SSR)
 const FastAgencyMap = dynamic(() => import("@/components/ui/FastAgencyMap"), {
   ssr: false,
-  loading: () => (
-    <div className="h-[600px] bg-muted rounded-xl flex items-center justify-center">
-      <div className="flex flex-col items-center">
-        <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mb-3" />
-        <p className="text-muted-foreground">Loading map...</p>
+  loading: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const t = useTranslations('Agencies');
+    return (
+      <div className="h-[600px] bg-muted rounded-xl flex items-center justify-center">
+        <div className="flex flex-col items-center">
+          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin mb-3" />
+          <p className="text-muted-foreground">{t('loading.map')}</p>
+        </div>
       </div>
-    </div>
-  ),
+    )
+  },
 });
 
 function AgenciesContent() {
+  const t = useTranslations('Agencies');
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -131,11 +137,10 @@ function AgenciesContent() {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <h1 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in-up">
-            Find Travel Agencies
+            {t('title')}
           </h1>
           <p className="text-lg text-white/80 mb-6 animate-fade-in-up delay-100">
-            Browse our directory of {totalItems} verified travel agencies
-            worldwide.
+            {t('subtitle', { count: totalItems })}
           </p>
 
           {/* Search Bar */}
@@ -145,7 +150,7 @@ function AgenciesContent() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search by agency name, city, or category..."
+                placeholder={t('search.placeholder')}
                 className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40 focus:bg-white/15 transition-all text-white placeholder:text-white/60 backdrop-blur-sm"
               />
             </div>
@@ -154,7 +159,7 @@ function AgenciesContent() {
               className="md:hidden flex items-center justify-center gap-2 px-4 py-3 bg-white/10 border border-white/20 rounded-xl font-medium hover:bg-white/20 transition-colors backdrop-blur-sm"
             >
               <SlidersHorizontal className="h-5 w-5" />
-              Filters
+              {t('search.filters')}
             </button>
           </div>
 
@@ -166,7 +171,7 @@ function AgenciesContent() {
               <div className="flex flex-wrap gap-2 mt-4">
                 {selectedCity && (
                   <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
-                    City: {selectedCity}
+                    {t('filters.selectedCity', { city: selectedCity })}
                     <button onClick={() => setSelectedCity("")} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
                       <X className="h-4 w-4" />
                     </button>
@@ -174,7 +179,7 @@ function AgenciesContent() {
                 )}
                 {selectedCountry && (
                   <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
-                    Country: {selectedCountry}
+                    {t('filters.selectedCountry', { country: selectedCountry })}
                     <button onClick={() => setSelectedCountry("")} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
                       <X className="h-4 w-4" />
                     </button>
@@ -182,7 +187,7 @@ function AgenciesContent() {
                 )}
                 {selectedRating > 0 && (
                   <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
-                    Rating: {selectedRating}+
+                    {t('filters.selectedRating', { rating: selectedRating })}
                     <button onClick={() => setSelectedRating(0)} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
                       <X className="h-4 w-4" />
                     </button>
@@ -233,7 +238,7 @@ function AgenciesContent() {
             <div className="lg:hidden fixed inset-0 z-50 bg-black/50">
               <div className="absolute right-0 top-0 h-full w-80 bg-white overflow-y-auto">
                 <div className="p-4 border-b border-border flex justify-between items-center">
-                  <h3 className="font-bold">Filters</h3>
+                  <h3 className="font-bold">{t('filters.title')}</h3>
                   <button onClick={() => setShowFilters(false)}>
                     <X className="h-6 w-6" />
                   </button>
@@ -270,14 +275,18 @@ function AgenciesContent() {
             {/* Results Header */}
             <div className="flex justify-between items-center mb-6">
               <p className="text-muted-foreground">
-                Showing {Math.min((currentPage - 1) * itemsPerPage + 1, totalItems)} - {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems} agencies
+                {t('filters.showing', {
+                  start: Math.min((currentPage - 1) * itemsPerPage + 1, totalItems),
+                  end: Math.min(currentPage * itemsPerPage, totalItems),
+                  total: totalItems
+                })}
               </p>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setViewMode("grid")}
                   className={`p-2 rounded-lg transition-all ${viewMode === "grid" ? "bg-primary text-white shadow-md" : "bg-muted hover:bg-muted/80"
                     }`}
-                  aria-label="Grid view"
+                  aria-label={t('view.grid')}
                 >
                   <LayoutGrid className="h-5 w-5" />
                 </button>
@@ -285,7 +294,7 @@ function AgenciesContent() {
                   onClick={() => setViewMode("list")}
                   className={`p-2 rounded-lg transition-all ${viewMode === "list" ? "bg-primary text-white shadow-md" : "bg-muted hover:bg-muted/80"
                     }`}
-                  aria-label="List view"
+                  aria-label={t('view.list')}
                 >
                   <List className="h-5 w-5" />
                 </button>
@@ -293,7 +302,7 @@ function AgenciesContent() {
                   onClick={() => setViewMode("map")}
                   className={`p-2 rounded-lg transition-all ${viewMode === "map" ? "bg-primary text-white shadow-md" : "bg-muted hover:bg-muted/80"
                     }`}
-                  aria-label="Map view"
+                  aria-label={t('view.map')}
                 >
                   <Map className="h-5 w-5" />
                 </button>
@@ -328,13 +337,13 @@ function AgenciesContent() {
             ) : viewMode !== "map" ? (
               <div className="text-center py-12 animate-fade-in">
                 <p className="text-lg text-muted-foreground mb-4">
-                  No agencies found matching your criteria.
+                  {t('filters.empty')}
                 </p>
                 <button
                   onClick={clearFilters}
                   className="text-primary font-medium hover:underline"
                 >
-                  Clear all filters
+                  {t('filters.clear')}
                 </button>
               </div>
             ) : null}
@@ -344,7 +353,7 @@ function AgenciesContent() {
               <div className="flex flex-col items-center gap-4 mt-8">
                 {/* Page input for quick navigation */}
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <span>Go to page:</span>
+                  <span>{t('pagination.goTo')}</span>
                   <input
                     type="number"
                     min={1}
@@ -358,7 +367,7 @@ function AgenciesContent() {
                     }}
                     className="w-16 px-2 py-1 border border-border rounded-lg text-center focus:outline-none focus:ring-2 focus:ring-primary/50"
                   />
-                  <span>of {totalPages}</span>
+                  <span>{t('pagination.of', { total: totalPages })}</span>
                 </div>
 
                 {/* Pagination buttons */}
@@ -368,14 +377,14 @@ function AgenciesContent() {
                     disabled={currentPage === 1}
                     className="px-3 py-2 rounded-lg bg-muted disabled:opacity-50 text-sm"
                   >
-                    First
+                    {t('pagination.first')}
                   </button>
                   <button
                     onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                     disabled={currentPage === 1}
                     className="px-4 py-2 rounded-lg bg-muted disabled:opacity-50"
                   >
-                    Previous
+                    {t('pagination.prev')}
                   </button>
                   <div className="flex items-center gap-1">
                     {(() => {
@@ -432,14 +441,14 @@ function AgenciesContent() {
                     disabled={currentPage === totalPages}
                     className="px-4 py-2 rounded-lg bg-muted disabled:opacity-50"
                   >
-                    Next
+                    {t('pagination.next')}
                   </button>
                   <button
                     onClick={() => setCurrentPage(totalPages)}
                     disabled={currentPage === totalPages}
                     className="px-3 py-2 rounded-lg bg-muted disabled:opacity-50 text-sm"
                   >
-                    Last
+                    {t('pagination.last')}
                   </button>
                 </div>
               </div>
@@ -452,8 +461,9 @@ function AgenciesContent() {
 }
 
 export default function AgenciesPage() {
+  const t = useTranslations('Agencies');
   return (
-    <Suspense fallback={<div className="min-h-screen bg-muted/30 flex items-center justify-center">Loading...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-muted/30 flex items-center justify-center">{t('loading.page')}</div>}>
       <AgenciesContent />
     </Suspense>
   );

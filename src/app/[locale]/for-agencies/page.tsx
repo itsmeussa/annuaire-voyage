@@ -1,44 +1,49 @@
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { Metadata } from "next";
 import {
     Rocket,
     Target,
     BarChart3,
     ShieldCheck,
-    CheckCircle2,
     ArrowRight,
     Globe2,
     Users2
 } from "lucide-react";
 import CTASection from "@/components/ui/CTASection";
+import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-    title: "List Your Travel Agency - Get More Clients | TravelAgencies.World",
-    description: "Join 2670+ travel agencies. List your agency for free, improve your online visibility, and get direct leads from travelers planning their next trip.",
-    keywords: ["list travel agency", "b2b travel marketing", "travel agency directory", "get travel leads", "promote tour operator"],
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+    const t = await getTranslations({ locale, namespace: 'ForAgencies' });
 
-export default function ForAgenciesPage() {
+    return {
+        title: t('hero.title') + " " + t('hero.titleHighlight') + " | " + "TravelAgencies.World",
+        description: t('hero.subtitle'),
+    };
+}
+
+export default async function ForAgenciesPage() {
+    const t = await getTranslations('ForAgencies');
+
     const benefits = [
         {
             icon: <Globe2 className="w-6 h-6 text-primary" />,
-            title: "Enhanced Visibility",
-            description: "Get discovered by travelers thousands of times per month searching for agencies in your city."
+            title: t('benefits.visibility'),
+            description: t('benefits.visibilityDesc')
         },
         {
             icon: <Target className="w-6 h-6 text-primary" />,
-            title: "High-Quality Leads",
-            description: "Connect with serious travelers who are actively planning trips and looking for experts like you."
+            title: t('benefits.leads'),
+            description: t('benefits.leadsDesc')
         },
         {
             icon: <ShieldCheck className="w-6 h-6 text-primary" />,
-            title: "Build Trust",
-            description: "Showcase your Verified status, Google reviews, and expertise to stand out from competitors."
+            title: t('benefits.trust'),
+            description: t('benefits.trustDesc')
         },
         {
             icon: <BarChart3 className="w-6 h-6 text-primary" />,
-            title: "Performance Insights",
-            description: "Track how many travelers view your profile and contact you directly."
+            title: t('benefits.insights'),
+            description: t('benefits.insightsDesc')
         }
     ];
 
@@ -52,15 +57,15 @@ export default function ForAgenciesPage() {
                 <div className="container relative z-10 px-4 mx-auto text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm animate-fade-in-down">
                         <Rocket className="w-4 h-4" />
-                        <span className="text-sm font-medium text-white">Join 2,670+ Smart Agencies</span>
+                        <span className="text-sm font-medium text-white">{t('hero.tag')}</span>
                     </div>
 
                     <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl animate-fade-in-up">
-                        Grow Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Travel Business</span>
+                        {t('hero.title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">{t('hero.titleHighlight')}</span>
                     </h1>
 
                     <p className="max-w-2xl mx-auto mb-10 text-lg text-slate-300 md:text-xl animate-fade-in-up delay-100">
-                        Claim your free profile, manage your reputation, and connect with millions of travelers planning their next adventure.
+                        {t('hero.subtitle')}
                     </p>
 
                     <div className="flex flex-col gap-4 sm:flex-row justify-center animate-fade-in-up delay-200">
@@ -68,14 +73,14 @@ export default function ForAgenciesPage() {
                             href="/auth/signup"
                             className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all bg-primary rounded-xl hover:bg-primary/90 hover:scale-105 shadow-xl shadow-primary/25"
                         >
-                            List My Agency for Free
-                            <ArrowRight className="w-5 h-5 ml-2" />
+                            {t('hero.listFree')}
+                            <ArrowRight className="w-5 h-5 ml-2 rtl:rotate-180" />
                         </Link>
                         <Link
                             href="/agencies"
                             className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white transition-all bg-slate-800 border border-slate-700 rounded-xl hover:bg-slate-700"
                         >
-                            View Directory
+                            {t('hero.viewDirectory')}
                         </Link>
                     </div>
                 </div>
@@ -86,10 +91,10 @@ export default function ForAgenciesPage() {
                 <div className="container px-4 mx-auto">
                     <div className="grid grid-cols-2 gap-8 md:grid-cols-4 text-center">
                         {[
-                            { label: "Monthly Visitors", value: "50k+" },
-                            { label: "Active Agencies", value: "2,600+" },
-                            { label: "Cities Covered", value: "300+" },
-                            { label: "Leads Generated", value: "10k+" },
+                            { label: t('stats.visitors'), value: "50k+" },
+                            { label: t('stats.active'), value: "2,600+" },
+                            { label: t('stats.cities'), value: "300+" },
+                            { label: t('stats.leads'), value: "10k+" },
                         ].map((stat, i) => (
                             <div key={i}>
                                 <div className="text-3xl font-bold text-slate-900 mb-1">{stat.value}</div>
@@ -104,8 +109,8 @@ export default function ForAgenciesPage() {
             <section className="py-24 bg-slate-50">
                 <div className="container px-4 mx-auto">
                     <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Why List Your Agency?</h2>
-                        <p className="text-lg text-slate-600">Travelers trust verified directories. Being listed on TravelAgencies.World puts your brand in front of customers right when they are ready to book.</p>
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">{t('benefits.title')}</h2>
+                        <p className="text-lg text-slate-600">{t('benefits.subtitle')}</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -127,20 +132,20 @@ export default function ForAgenciesPage() {
                 <div className="container px-4 mx-auto">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <div>
-                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Simple 3-Step Process</h2>
+                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">{t('steps.title')}</h2>
                             <div className="space-y-8">
                                 {[
                                     {
-                                        title: "Create Your Account",
-                                        desc: "Sign up in seconds. It's completely free and no credit card is required."
+                                        title: t('steps.step1'),
+                                        desc: t('steps.step1Desc')
                                     },
                                     {
-                                        title: "Claim or Add Agency",
-                                        desc: "Find your agency in our database to claim it, or add a new listing if it doesn't exist."
+                                        title: t('steps.step2'),
+                                        desc: t('steps.step2Desc')
                                     },
                                     {
-                                        title: "Start Receiving Leads",
-                                        desc: "Optimize your profile with photos and services. Travelers will contact you directly."
+                                        title: t('steps.step3'),
+                                        desc: t('steps.step3Desc')
                                     }
                                 ].map((step, i) => (
                                     <div key={i} className="flex gap-4">
@@ -156,7 +161,7 @@ export default function ForAgenciesPage() {
                             </div>
                             <div className="mt-10">
                                 <Link href="/auth/signup" className="text-primary font-bold hover:underline inline-flex items-center">
-                                    Get Started Now <ArrowRight className="w-4 h-4 ml-1" />
+                                    {t('steps.cta')} <ArrowRight className="w-4 h-4 ml-1 rtl:rotate-180" />
                                 </Link>
                             </div>
                         </div>
@@ -181,7 +186,7 @@ export default function ForAgenciesPage() {
                                         <div className="h-3 w-3/4 bg-slate-100 rounded"></div>
                                     </div>
                                     <div className="mt-6 flex gap-3">
-                                        <div className="h-10 flex-1 bg-primary rounded-lg flex items-center justify-center text-white text-sm font-bold">Claim Profile</div>
+                                        <div className="h-10 flex-1 bg-primary rounded-lg flex items-center justify-center text-white text-sm font-bold">{t('steps.claim')}</div>
                                     </div>
                                 </div>
                             </div>
@@ -194,9 +199,9 @@ export default function ForAgenciesPage() {
 
             {/* CTA to close */}
             <CTASection
-                title="Ready to Scale Your Agency?"
-                subtitle="Join the fastest growing network of travel professionals today."
-                primaryAction={{ label: "List My Agency Now", href: "/auth/signup" }}
+                title={t('cta.title')}
+                subtitle={t('cta.subtitle')}
+                primaryAction={{ label: t('cta.button'), href: "/auth/signup" }}
             />
         </div>
     );

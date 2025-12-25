@@ -1,5 +1,4 @@
-import { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import Image from "next/image";
 import {
   Users,
@@ -9,69 +8,47 @@ import {
   CheckCircle,
   ArrowRight,
 } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "About TravelAgencies.World | #1 Free Travel Agency Directory Worldwide",
-  description:
-    "Discover TravelAgencies.World - the world's largest free directory with 2670+ verified travel agencies across 50+ countries. CAN 2025 Morocco travel specialists. Find trusted agencies in Casablanca, Marrakech, Paris, New York, Toronto & more.",
-  keywords: [
-    "about TravelAgencies.World",
-    "travel agency directory",
-    "free travel agency listing",
-    "verified travel agencies",
-    "CAN 2025 travel agencies",
-    "Morocco travel directory",
-    "international travel agents",
-    "tour operator directory",
-  ],
-  openGraph: {
-    title: "About TravelAgencies.World | World's #1 Free Travel Agency Directory",
-    description: "Learn about the world's largest free travel agency directory with 2670+ verified agencies in 50+ countries. CAN 2025 Morocco specialists.",
-    url: "https://www.travelagencies.world/about",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About TravelAgencies.World",
-    description: "World's largest free travel agency directory - 2670+ verified agencies in 50+ countries.",
-  },
-  alternates: {
-    canonical: "/about",
-  },
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale, namespace: 'About' });
 
-export default function AboutPage() {
+  return {
+    title: t('title') + " | " + t('stats.agencies'),
+    description: t('mission'),
+  };
+}
+
+export default async function AboutPage() {
+  const t = await getTranslations('About');
+
   const stats = [
-    { value: "3800+", label: "Travel Agencies" },
-    { value: "50+", label: "Countries Covered" },
-    { value: "10K+", label: "Monthly Visitors" },
-    { value: "4.5", label: "Average Rating" },
+    { value: "3800+", label: t('stats.agencies') },
+    { value: "50+", label: t('stats.countries') },
+    { value: "10K+", label: t('stats.visitors') },
+    { value: "4.5", label: t('stats.rating') },
   ];
 
   const values = [
     {
       icon: Target,
-      title: "Transparency",
-      description:
-        "We provide honest, verified information from real Google reviews to help you make informed decisions.",
+      title: t('values.transparency'),
+      description: t('values.transparencyDesc'),
     },
     {
       icon: Users,
-      title: "User-First",
-      description:
-        "Our platform is designed with travelers in mind, making it easy to find and connect with the right agency.",
+      title: t('values.userFirst'),
+      description: t('values.userFirstDesc'),
     },
     {
       icon: Award,
-      title: "Quality",
-      description:
-        "We highlight top-rated agencies with proven track records of excellent customer service.",
+      title: t('values.quality'),
+      description: t('values.qualityDesc'),
     },
     {
       icon: Globe,
-      title: "Global Reach",
-      description:
-        "From local boutique agencies to international operators, we cover destinations worldwide.",
+      title: t('values.globalReach'),
+      description: t('values.globalReachDesc'),
     },
   ];
 
@@ -79,13 +56,13 @@ export default function AboutPage() {
   const aboutSchema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    name: "About TravelAgencies.World",
-    description: "Learn about the world's largest free travel agency directory with 2670+ verified agencies.",
+    name: t('title'),
+    description: t('mission'),
     url: "https://www.travelagencies.world/about",
     mainEntity: {
       "@type": "Organization",
       name: "TravelAgencies.World",
-      description: "Free global directory of verified travel agencies",
+      description: t('mission'),
       numberOfEmployees: "2-10",
       foundingDate: "2024"
     }
@@ -125,11 +102,10 @@ export default function AboutPage() {
         <section className="hero-gradient text-white py-20">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              About TravelAgencies.World
+              {t('title')}
             </h1>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              We're on a mission to make finding the perfect travel agency as easy
-              as booking a flight. Your dream vacation starts with the right partner.
+              {t('mission')}
             </p>
           </div>
         </section>
@@ -155,24 +131,24 @@ export default function AboutPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center">
-                Our Story
+                {t('story.title')}
               </h2>
               <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100">
                 <div className="prose prose-lg mx-auto text-slate-600">
                   <blockquote className="text-2xl md:text-3xl font-medium text-slate-900 border-l-4 border-primary pl-6 mb-10 not-italic leading-relaxed">
-                    "We believe travel is the only thing you buy that makes you richer. But in a world dominated by cold algorithms, the human touch was fading away."
+                    "{t('story.quote')}"
                   </blockquote>
 
                   <p className="mb-6 leading-relaxed">
-                    We've all been there: the late-night anxiety, wondering if that "perfect" hotel is real, or if there's actually a person to call when things don't go as planned. You aren't just booking a flight or a room; <span className="text-slate-900 font-medium">you are investing in your precious time, your family's memories, and your own dreams.</span>
+                    {t('story.p1')}
                   </p>
 
                   <p className="mb-6 leading-relaxed">
-                    That's why we built <span className="text-primary font-bold">TravelAgencies.World</span>. Not as another faceless booking engine, but as a bridge back to trust. We wanted to shine a light on the dedicated experts—the passionate travel agents—who turn good trips into life-changing experiences.
+                    {t('story.p2')}
                   </p>
 
                   <p className="leading-relaxed">
-                    Every agency here is more than a listing; it's a verified partner with a track record of care. Because we know that the most beautiful journeys aren't just about where you go, but <strong>who you trust to guide you there.</strong>
+                    {t('story.p3')}
                   </p>
                 </div>
               </div>
@@ -184,7 +160,7 @@ export default function AboutPage() {
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center">
-              Our Values
+              {t('values.title')}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {values.map((value) => (
@@ -207,10 +183,10 @@ export default function AboutPage() {
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                Meet the Creators
+                {t('team.title')}
               </h2>
               <p className="text-lg text-slate-600">
-                The passionate minds utilizing technology to revolutionize the travel industry.
+                {t('team.subtitle')}
               </p>
             </div>
 
@@ -232,9 +208,9 @@ export default function AboutPage() {
                   <h3 className="text-2xl font-bold text-slate-900 text-center mb-1">
                     Oussama Mounajjim
                   </h3>
-                  <p className="text-primary font-medium text-center mb-4">AI Engineer | Data Scientist</p>
+                  <p className="text-primary font-medium text-center mb-4">{t('team.oussamaRole')}</p>
                   <p className="text-slate-600 text-center mb-6">
-                    Driving the technical vision and ensuring a seamless, high-performance experience for travelers and agencies alike.
+                    {t('team.oussamaDesc')}
                   </p>
                   <div className="flex justify-center">
                     <a
@@ -244,7 +220,7 @@ export default function AboutPage() {
                       className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0077b5] text-white rounded-full font-medium hover:bg-[#006396] transition-colors shadow-md hover:shadow-lg"
                     >
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
-                      Connect on LinkedIn
+                      {t('team.connect')}
                     </a>
                   </div>
                 </div>
@@ -267,9 +243,9 @@ export default function AboutPage() {
                   <h3 className="text-2xl font-bold text-slate-900 text-center mb-1">
                     Zakaria Kharoufi
                   </h3>
-                  <p className="text-indigo-600 font-medium text-center mb-4">Storyteller & Creative Director</p>
+                  <p className="text-indigo-600 font-medium text-center mb-4">{t('team.zakariaRole')}</p>
                   <p className="text-slate-600 text-center mb-6">
-                    Crafting intuitive digital experiences and building the robust architecture that powers our global directory.
+                    {t('team.zakariaDesc')}
                   </p>
                   <div className="flex justify-center">
                     <a
@@ -279,7 +255,77 @@ export default function AboutPage() {
                       className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0077b5] text-white rounded-full font-medium hover:bg-[#006396] transition-colors shadow-md hover:shadow-lg"
                     >
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
-                      Connect on LinkedIn
+                      {t('team.connect')}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Ahmed */}
+              <div className="group relative bg-white rounded-2xl p-8 shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative">
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-emerald-600 to-teal-600 p-1">
+                    <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden relative">
+                      <Image
+                        src="/travellogos/ahmed.jfif"
+                        alt="Ahmed Moukhafi"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 text-center mb-1">
+                    Ahmed Moukhafi
+                  </h3>
+                  <p className="text-emerald-600 font-medium text-center mb-4">{t('team.ahmedRole')}</p>
+                  <p className="text-slate-600 text-center mb-6">
+                    {t('team.ahmedDesc')}
+                  </p>
+                  <div className="flex justify-center">
+                    <a
+                      href="https://www.linkedin.com/in/ahmed-moukhafi-a1b14913b/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0077b5] text-white rounded-full font-medium hover:bg-[#006396] transition-colors shadow-md hover:shadow-lg"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
+                      {t('team.connect')}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Amine */}
+              <div className="group relative bg-white rounded-2xl p-8 shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative">
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-orange-600 to-amber-600 p-1">
+                    <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden relative">
+                      <Image
+                        src="/travellogos/amine.jfif"
+                        alt="Amine Arbaoui"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 text-center mb-1">
+                    Amine Arbaoui
+                  </h3>
+                  <p className="text-orange-600 font-medium text-center mb-4">{t('team.amineRole')}</p>
+                  <p className="text-slate-600 text-center mb-6">
+                    {t('team.amineDesc')}
+                  </p>
+                  <div className="flex justify-center">
+                    <a
+                      href="https://www.linkedin.com/in/amine-arbaoui-3b6839218/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0077b5] text-white rounded-full font-medium hover:bg-[#006396] transition-colors shadow-md hover:shadow-lg"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
+                      {t('team.connect')}
                     </a>
                   </div>
                 </div>
@@ -294,16 +340,16 @@ export default function AboutPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                  Why Choose Our Directory?
+                  {t('trust.title')}
                 </h2>
                 <ul className="space-y-4">
                   {[
-                    "Verified agencies with real Google reviews",
-                    "Easy-to-use search and filter functionality",
-                    "Direct contact information for quick connections",
-                    "Comprehensive coverage across multiple countries",
-                    "Regular updates to ensure accuracy",
-                    "Free to use, no registration required",
+                    t('trust.verified'),
+                    t('trust.search'),
+                    t('trust.contact'),
+                    t('trust.coverage'),
+                    t('trust.updates'),
+                    t('trust.free'),
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-3">
                       <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
@@ -316,23 +362,20 @@ export default function AboutPage() {
                     href="/agencies"
                     className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors"
                   >
-                    Browse Agencies
-                    <ArrowRight className="h-5 w-5" />
+                    {t('trust.browse')}
+                    <ArrowRight className="h-5 w-5 rtl:rotate-180" />
                   </Link>
                 </div>
               </div>
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Built for Excellence
+                  {t('trust.builtBy')}
                 </h3>
                 <p className="text-muted-foreground mb-6">
-                  TravelAgencies.World is proudly developed and maintained by Orious
-                  Strategy, a digital agency specializing in creating innovative web
-                  solutions and digital experiences.
+                  {t('trust.builtDesc1')}
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  We combine cutting-edge technology with user-centered design to
-                  build platforms that deliver real value to everyone.
+                  {t('trust.builtDesc2')}
                 </p>
                 <a
                   href="https://orioustrategy.com"
@@ -340,8 +383,8 @@ export default function AboutPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
                 >
-                  Visit Orious Strategy
-                  <ArrowRight className="h-5 w-5" />
+                  {t('trust.visitOrious')}
+                  <ArrowRight className="h-5 w-5 rtl:rotate-180" />
                 </a>
               </div>
             </div>
@@ -352,18 +395,17 @@ export default function AboutPage() {
         <section className="py-20 hero-gradient text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Find Your Perfect Travel Partner?
+              {t('cta.title')}
             </h2>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              Browse our comprehensive directory and connect with trusted travel
-              agencies today.
+              {t('cta.subtitle')}
             </p>
             <Link
               href="/agencies"
               className="inline-flex items-center gap-2 bg-white text-primary px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition-colors"
             >
-              Explore Agencies
-              <ArrowRight className="h-5 w-5" />
+              {t('cta.button')}
+              <ArrowRight className="h-5 w-5 rtl:rotate-180" />
             </Link>
           </div>
         </section>

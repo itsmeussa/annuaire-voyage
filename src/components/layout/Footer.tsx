@@ -1,15 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import Image from "next/image";
 import { MapPin, Phone, Mail, Globe, Facebook, Twitter, Instagram, Linkedin, Send, CheckCircle, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const t = useTranslations('Footer');
+  const tNav = useTranslations('Navigation');
+  const tCommon = useTranslations('Common');
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,7 +60,7 @@ export default function Footer() {
 
   const footerLinks = {
     explore: [
-      { href: "/agencies", label: "Browse Agencies" },
+      { href: "/agencies", label: tNav('agencies') },
       { href: "/destinations", label: "Destinations" },
       { href: "/blog", label: "Travel Guide" },
       { href: "/agencies?rating=5", label: "Top Rated" },
@@ -70,11 +74,11 @@ export default function Footer() {
       { href: "/agencies?country=AE", label: "UAE" },
     ],
     company: [
-      { href: "/for-agencies", label: "Partner with Us" },
-      { href: "/about", label: "About Us" },
-      { href: "/contact", label: "Contact" },
-      { href: "/privacy", label: "Privacy Policy" },
-      { href: "/terms", label: "Terms of Service" },
+      { href: "/for-agencies", label: t('partner') },
+      { href: "/about", label: tNav('about') },
+      { href: "/contact", label: tNav('contact') },
+      { href: "/privacy", label: t('privacy') },
+      { href: "/terms", label: t('terms') },
     ],
   };
 
@@ -95,9 +99,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-slate-400 mb-6 max-w-md">
-              Your trusted free global directory with 2670+ verified travel agencies
-              worldwide. Compare ratings, read real Google reviews, and connect directly with
-              travel professionals in France, USA, Canada & more.
+              {tCommon('description')}
             </p>
             <div className="flex gap-4">
               <a
@@ -267,7 +269,7 @@ export default function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
             <p>
-              © {currentYear} TravelAgencies.World. All rights reserved.
+              © {currentYear} TravelAgencies.World. {t('rights')}
             </p>
             <p className="flex items-center gap-2">
               Developed with ❤️ by{" "}

@@ -1,0 +1,454 @@
+{
+    "Common": {
+        "title": "TravelAgencies.World",
+        "description": "Le 1er Annuaire Mondial des Agences de Voyage"
+    },
+    "Navigation": {
+        "home": "Accueil",
+        "agencies": "Agences",
+        "map": "Carte",
+        "about": "À propos",
+        "blog": "Blogs",
+        "contact": "Contact",
+        "forAgencies": "Pour les Agences",
+        "listAgency": "Ajouter une Agence",
+        "login": "Connexion",
+        "dashboard": "Tableau de bord"
+    },
+    "Footer": {
+        "rights": "Tous droits réservés.",
+        "privacy": "Politique de Confidentialité",
+        "terms": "Conditions d'Utilisation",
+        "partner": "Devenez Partenaire"
+    },
+    "Hero": {
+        "title": "Trouvez l'Agence de Voyage",
+        "titleHighlight": "Idéale",
+        "titleSuffix": "pour Votre Aventure",
+        "subtitle": "Parcourez notre répertoire complet d'agences de voyage vérifiées. Comparez les notes, lisez les avis et contactez directement des professionnels de confiance.",
+        "searchPlaceholder": "Rechercher par nom d'agence ou lieu...",
+        "searchButton": "Rechercher",
+        "statsAgencies": "Agences",
+        "statsCities": "Villes",
+        "statsRating": "Note Moyenne",
+        "statsReviews": "Avis"
+    },
+    "Features": {
+        "title": "Pourquoi Choisir Notre Annuaire ?",
+        "subtitle": "Nous rendons la recherche de la bonne agence de voyage facile, transparente et fiable.",
+        "verifiedTitle": "Agences Vérifiées",
+        "verifiedDesc": "Toutes les agences sont vérifiées avec de vrais avis et notes provenant de Google.",
+        "topRatedTitle": "Les Mieux Notées",
+        "topRatedDesc": "Trouvez les agences de voyage les mieux notées avec des antécédents éprouvés.",
+        "contactTitle": "Contact Instantané",
+        "contactDesc": "Connectez-vous directement avec les agences par téléphone, site web ou Google Maps.",
+        "globalTitle": "Couverture Mondiale",
+        "globalDesc": "Parcourez des agences de multiples pays et destinations dans le monde entier."
+    },
+    "Featured": {
+        "title": "Agences de Voyage en Vedette",
+        "subtitleLocation": "Affichage des meilleures agences les plus proches de vous.",
+        "subtitleDefault": "Agences les mieux notées avec d'excellents avis et une expérience prouvée.",
+        "useLocation": "Utiliser ma position pour trouver des agences à proximité",
+        "retry": "Réessayer",
+        "viewAll": "Voir Toutes les Agences",
+        "distance": "à {distance} km",
+        "locateError": {
+            "unsupported": "La géolocalisation n'est pas prise en charge par votre navigateur.",
+            "denied": "Accès à la localisation refusé. Veuillez l'activer dans les paramètres de votre navigateur pour trouver des agences à proximité.",
+            "unavailable": "Les informations de localisation sont indisponibles.",
+            "timeout": "Délai d'attente de la demande de localisation dépassé.",
+            "default": "Impossible d'accéder à la localisation."
+        }
+    },
+    "Services": {
+        "title": "Quels Services Pouvez-vous Trouver ?",
+        "subtitle": "Notre annuaire inclut des agences offrant une large gamme de services de voyage.",
+        "flightsTitle": "Réservations de Vol",
+        "flightsDesc": "Trouvez des agences spécialisées dans les réservations de vols et les offres aériennes.",
+        "hotelsTitle": "Hôtels & Hébergement",
+        "hotelsDesc": "Découvrez des experts en réservation d'hôtels et forfaits d'hébergement.",
+        "toursTitle": "Voyages Organisés",
+        "toursDesc": "Connectez-vous avec des voyagistes proposant des visites guidées et des expériences."
+    },
+    "Cities": {
+        "title": "Parcourir par Ville",
+        "subtitle": "Explorez les agences de voyage dans les destinations populaires du monde entier.",
+        "viewAll": "Voir Toutes les Destinations"
+    },
+    "HowItWorks": {
+        "title": "Comment Ça Marche",
+        "subtitle": "Trouver votre agence de voyage idéale est simple et direct.",
+        "step1Title": "Rechercher & Filtrer",
+        "step1Desc": "Utilisez notre recherche puissante pour trouver des agences par lieu, note ou spécialité.",
+        "step2Title": "Comparer & Lire les Avis",
+        "step2Desc": "Consultez les profils détaillés, les notes et les avis pour prendre une décision éclairée.",
+        "step3Title": "Contacter Directement",
+        "step3Desc": "Contactez par téléphone, site web ou Google Maps pour commencer à planifier votre voyage."
+    },
+    "FAQ": {
+        "title": "Questions Fréquemment Posées",
+        "subtitle": "Tout ce que vous devez savoir pour trouver la bonne agence de voyage",
+        "q1": "Comment trouver une agence de voyage fiable ?",
+        "a1": "Utilisez TravelAgencies.World pour comparer plus de 2670 agences vérifiées avec de vrais avis Google. Filtrez par lieu, note et spécialité.",
+        "q2": "Les agences de voyage sont-elles vérifiées ?",
+        "a2": "Oui, toutes les agences proviennent de Google Maps avec des avis et notes authentiques.",
+        "q3": "Comment puis-je contacter une agence ?",
+        "a3": "Chaque fiche d'agence inclut les coordonnées directes : téléphone, site web et lien Google Maps.",
+        "q4": "Est-ce gratuit d'utiliser TravelAgencies.World ?",
+        "a4": "Oui, notre annuaire est entièrement gratuit pour les voyageurs.",
+        "q5": "Quels pays couvrez-vous ?",
+        "a5": "Nous couvrons plus de 50 pays dont la France, les USA, le Canada, le Royaume-Uni, l'Espagne, le Maroc, etc.",
+        "q6": "Comment choisir la meilleure agence ?",
+        "a6": "Considérez la note, le nombre d'avis, l'emplacement et la spécialisation de l'agence.",
+        "q7": "Quelles villes ont le plus d'agences ?",
+        "a7": "Nous avons des agences à New York, Toronto, Ottawa, Paris, Casablanca, Dubaï, et bien d'autres.",
+        "q8": "Puis-je trouver des agences sans site web ?",
+        "a8": "Oui, utilisez notre filtre pour trouver des agences avec ou sans site web."
+    },
+    "Trust": {
+        "verified": "Données Vérifiées",
+        "reviews": "Vrais Avis",
+        "trusted": "Approuvé par les Voyageurs",
+        "free": "Utilisation Gratuite"
+    },
+    "About": {
+        "title": "À propos de TravelAgencies.World",
+        "mission": "Notre mission est de rendre la recherche de l'agence de voyage idéale aussi simple que la réservation d'un vol. Vos vacances de rêve commencent avec le bon partenaire.",
+        "stats": {
+            "agencies": "Agences de Voyage",
+            "countries": "Pays Couverts",
+            "visitors": "Visiteurs Mensuels",
+            "rating": "Note Moyenne"
+        },
+        "story": {
+            "title": "Notre Histoire",
+            "quote": "Nous croyons que le voyage est la seule chose que l'on achète qui rend plus riche. Mais dans un monde dominé par des algorithmes froids, la touche humaine s'estompait.",
+            "p1": "Nous sommes tous passés par là : l'anxiété de fin de soirée, se demandant si cet hôtel \"parfait\" est réel, ou s'il y a vraiment une personne à appeler quand les choses ne se passent pas comme prévu. Vous ne réservez pas juste un vol ou une chambre ; vous investissez votre temps précieux, les souvenirs de votre famille et vos propres rêves.",
+            "p2": "C'est pourquoi nous avons créé TravelAgencies.World. Pas comme un autre moteur de réservation sans visage, mais comme un pont vers la confiance. Nous voulions mettre en lumière les experts dévoués — les agents de voyage passionnés — qui transforment de bons voyages en expériences qui changent la vie.",
+            "p3": "Chaque agence ici est plus qu'une liste ; c'est un partenaire vérifié avec un historique de soins. Parce que nous savons que les plus beaux voyages ne concernent pas seulement où vous allez, mais à qui vous faites confiance pour vous y guider."
+        },
+        "values": {
+            "title": "Nos Valeurs",
+            "transparency": "Transparence",
+            "transparencyDesc": "Nous fournissons des informations honnêtes et vérifiées à partir de vrais avis Google pour vous aider à prendre des décisions éclairées.",
+            "userFirst": "Utilisateur d'Abord",
+            "userFirstDesc": "Notre plateforme est conçue pour les voyageurs, facilitant la recherche et la connexion avec la bonne agence.",
+            "quality": "Qualité",
+            "qualityDesc": "Nous mettons en avant les agences les mieux notées avec un historique prouvé d'excellent service client.",
+            "globalReach": "Portée Mondiale",
+            "globalReachDesc": "Des agences boutiques locales aux opérateurs internationaux, nous couvrons des destinations dans le monde entier."
+        },
+        "team": {
+            "title": "Rencontrez les Créateurs",
+            "subtitle": "Les esprits passionnés utilisant la technologie pour révolutionner l'industrie du voyage.",
+            "oussamaRole": "Ingénieur IA | Data Scientist",
+            "oussamaDesc": "Pilote la vision technique et assure une expérience fluide et performante pour les voyageurs et les agences.",
+            "zakariaRole": "Conteur & Directeur Créatif",
+            "zakariaDesc": "Conçoit des expériences numériques intuitives et construit l'architecture robuste qui propulse notre annuaire mondial.",
+            "ahmedRole": "Consultant Finance",
+            "ahmedDesc": "Expert en stratégie financière et planification d'entreprise, assurant une croissance durable pour nos agences partenaires.",
+            "amineRole": "Consultant Data",
+            "amineDesc": "Exploite l'analyse de données pour découvrir des informations exploitables et optimiser les performances des entreprises de voyage.",
+            "connect": "Se connecter sur LinkedIn"
+        },
+        "trust": {
+            "title": "Pourquoi Choisir Notre Annuaire ?",
+            "verified": "Agences vérifiées avec vrais avis Google",
+            "search": "Fonctionnalité de recherche et de filtrage facile",
+            "contact": "Coordonnées directes pour des connexions rapides",
+            "coverage": "Couverture complète dans plusieurs pays",
+            "updates": "Mises à jour régulières pour assurer l'exactitude",
+            "free": "Utilisation gratuite, aucune inscription requise",
+            "browse": "Parcourir les Agences",
+            "builtBy": "Construit pour l'Excellence",
+            "builtDesc1": "TravelAgencies.World est fièrement développé et maintenu par Orious Strategy, une agence digitale spécialisée dans la création de solutions web innovantes.",
+            "builtDesc2": "Nous combinons une technologie de pointe avec un design centré sur l'utilisateur pour construire des plateformes qui apportent une réelle valeur.",
+            "visitOrious": "Visiter Orious Strategy"
+        },
+        "cta": {
+            "title": "Prêt à trouver votre partenaire de voyage idéal ?",
+            "subtitle": "Parcourez notre annuaire complet et connectez-vous avec des agences de confiance dès aujourd'hui.",
+            "button": "Explorer les Agences"
+        }
+    },
+    "Contact": {
+        "title": "Contactez-nous",
+        "subtitle": "Des questions ou des commentaires ? Nous aimerions vous entendre. Contactez-nous et nous vous répondrons dès que possible.",
+        "form": {
+            "title": "Envoyez-nous un message",
+            "name": "Votre Nom",
+            "email": "Adresse Email",
+            "subject": "Sujet",
+            "subjects": {
+                "select": "Sélectionnez un sujet",
+                "general": "Demande générale",
+                "agency": "Ajouter mon agence",
+                "feedback": "Retour d'expérience",
+                "partnership": "Partenariat",
+                "support": "Support Technique"
+            },
+            "message": "Message",
+            "placeholder": "Dites-nous comment nous pouvons vous aider...",
+            "send": "Envoyer le message",
+            "sending": "Envoi...",
+            "successTitle": "Message Envoyé !",
+            "successDesc": "Merci de nous avoir contactés. Nous reviendrons vers vous sous peu.",
+            "sendAnother": "Envoyer un autre message",
+            "error": "Échec de l'envoi du message. Veuillez réessayer."
+        },
+        "info": {
+            "title": "Entrer en contact",
+            "email": "Email",
+            "phone": "Téléphone",
+            "developedBy": "Développé par",
+            "agencyTitle": "Vous voulez lister votre agence ?",
+            "agencyDesc": "Si vous gérez une agence de voyage et souhaitez figurer dans notre annuaire, nous serions ravis de vous entendre. Contactez-nous avec les détails de votre agence.",
+            "benefit1": "Augmentez votre visibilité en ligne",
+            "benefit2": "Connectez-vous avec des clients potentiels",
+            "benefit3": "Mettez en avant vos services"
+        }
+    },
+    "ForAgencies": {
+        "hero": {
+            "tag": "Rejoignez 2,670+ Agences Intelligentes",
+            "title": "Développez Votre",
+            "titleHighlight": "Entreprise de Voyage",
+            "subtitle": "Réclamez votre profil gratuit, gérez votre réputation et connectez-vous avec des millions de voyageurs planifiant leur prochaine aventure.",
+            "listFree": "Lister Mon Agence Gratuitement",
+            "viewDirectory": "Voir l'Annuaire"
+        },
+        "stats": {
+            "visitors": "Visiteurs Mensuels",
+            "active": "Agences Actives",
+            "cities": "Villes Couvertes",
+            "leads": "Leads Générés"
+        },
+        "benefits": {
+            "title": "Pourquoi lister votre agence ?",
+            "subtitle": "Les voyageurs font confiance aux annuaires vérifiés. Être listé sur TravelAgencies.World place votre marque devant les clients au moment où ils sont prêts à réserver.",
+            "visibility": "Visibilité Améliorée",
+            "visibilityDesc": "Soyez découvert par des voyageurs cherchant des agences dans votre ville des milliers de fois par mois.",
+            "leads": "Leads de Haute Qualité",
+            "leadsDesc": "Connectez-vous avec des voyageurs sérieux qui planifient activement des voyages et cherchent des experts comme vous.",
+            "trust": "Construire la Confiance",
+            "trustDesc": "Mettez en avant votre statut Vérifié, vos avis Google et votre expertise pour vous démarquer de la concurrence.",
+            "insights": "Aperçus de Performance",
+            "insightsDesc": "Suivez combien de voyageurs consultent votre profil et vous contactent directement."
+        },
+        "steps": {
+            "title": "Processus simple en 3 étapes",
+            "step1": "Créez votre compte",
+            "step1Desc": "Inscrivez-vous en quelques secondes. C'est entièrement gratuit et aucune carte de crédit n'est requise.",
+            "step2": "Réclamez ou ajoutez une agence",
+            "step2Desc": "Trouvez votre agence dans notre base de données pour la réclamer, ou ajoutez une nouvelle fiche si elle n'existe pas.",
+            "step3": "Commencez à recevoir des leads",
+            "step3Desc": "Optimisez votre profil avec des photos et des services. Les voyageurs vous contacteront directement.",
+            "cta": "Commencer Maintenant",
+            "claim": "Réclamer le Profil"
+        },
+        "cta": {
+            "title": "Prêt à faire grandir votre agence ?",
+            "subtitle": "Rejoignez le réseau de professionnels du voyage à la croissance la plus rapide aujourd'hui.",
+            "button": "Lister Mon Agence Maintenant"
+        }
+    },
+    "Privacy": {
+        "title": "Politique de Confidentialité",
+        "lastUpdated": "Dernière mise à jour : Décembre 2024",
+        "intro": {
+            "title": "Introduction",
+            "content": "TravelAgencies.World (\"nous\", \"notre\" ou \"nos\") s'engage à protéger votre vie privée. Cette Politique de Confidentialité explique comment nous collectons, utilisons et protégeons vos informations lorsque vous visitez notre site web."
+        },
+        "collect": {
+            "title": "Informations que nous collectons",
+            "content": "Nous pouvons collecter des informations vous concernant de différentes manières :",
+            "personal": "<strong>Données Personnelles :</strong> Lorsque vous nous contactez via nos formulaires, nous collectons votre nom, votre adresse email et tout contenu de message que vous fournissez.",
+            "usage": "<strong>Données d'Utilisation :</strong> Nous collectons automatiquement des informations sur la façon dont vous accédez et utilisez notre site web, y compris votre adresse IP, le type de navigateur, les pages visitées et le temps passé sur les pages."
+        },
+        "use": {
+            "title": "Comment nous utilisons vos informations",
+            "content": "Nous utilisons les informations que nous collectons pour :",
+            "list": [
+                "Fournir et maintenir notre service",
+                "Répondre à vos demandes et au support",
+                "Améliorer notre site web et l'expérience utilisateur",
+                "Vous envoyer des mises à jour pertinentes (avec votre consentement)",
+                "Analyser les modèles d'utilisation et les tendances"
+            ]
+        },
+        "sharing": {
+            "title": "Partage de Données",
+            "content": "Nous ne vendons, n'échangeons ni ne transférons autrement vos informations personnelles à des tiers. Cela n'inclut pas les tiers de confiance qui nous aident à exploiter notre site web, à mener nos affaires ou à vous servir, tant que ces parties conviennent de garder ces informations confidentielles."
+        },
+        "cookies": {
+            "title": "Cookies",
+            "content": "Notre site web peut utiliser des cookies pour améliorer votre expérience. Les cookies sont de petits fichiers stockés sur votre appareil qui nous aident à comprendre comment vous utilisez notre site. Vous pouvez choisir de désactiver les cookies via les paramètres de votre navigateur."
+        },
+        "thirdParty": {
+            "title": "Services Tiers",
+            "content": "Notre site web affiche des informations provenant de Google Places. En utilisant notre site web, vous reconnaissez que ces données sont fournies par Google et sont soumises aux politiques de confidentialité de Google."
+        },
+        "security": {
+            "title": "Sécurité des Données",
+            "content": "Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos informations personnelles. Cependant, aucune méthode de transmission sur Internet n'est sécurisée à 100%, et nous ne pouvons garantir une sécurité absolue."
+        },
+        "rights": {
+            "title": "Vos Droits",
+            "content": "Vous avez le droit de :",
+            "list": [
+                "Accéder aux données personnelles que nous détenons à votre sujet",
+                "Demander la correction de données inexactes",
+                "Demander la suppression de vos données",
+                "Vous désinscrire des communications marketing"
+            ]
+        },
+        "contact": {
+            "title": "Nous Contacter",
+            "content": "Si vous avez des questions concernant cette Politique de Confidentialité, veuillez nous contacter à :",
+            "email": "Email : contact@travelagencies.world",
+            "website": "Site web : "
+        },
+        "changes": {
+            "title": "Modifications de cette Politique",
+            "content": "Nous pouvons mettre à jour cette Politique de Confidentialité de temps à autre. Nous vous informerons de tout changement en publiant la nouvelle Politique de Confidentialité sur cette page et en mettant à jour la date de \"Dernière mise à jour\"."
+        }
+    },
+    "Terms": {
+        "title": "Conditions d'Utilisation",
+        "lastUpdated": "Dernière mise à jour : Décembre 2024",
+        "intro": {
+            "title": "1. Acceptation des Conditions",
+            "content": "En accédant et en utilisant TravelAgencies.World (\"le Site Web\"), vous acceptez d'être lié par ces Conditions d'Utilisation. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser notre site web."
+        },
+        "services": {
+            "title": "2. Description du Service",
+            "content": "TravelAgencies.World est un service d'annuaire qui fournit des informations sur les agences de voyage dans le monde entier. Nous agrégeons des données accessibles au public provenant de Google Places pour aider les utilisateurs à trouver et comparer des agences de voyage."
+        },
+        "usage": {
+            "title": "3. Utilisation du Site Web",
+            "content": "Vous acceptez d'utiliser ce site web uniquement à des fins légales. Vous ne pouvez pas :",
+            "list": [
+                "Utiliser le site web de toute manière qui viole les lois applicables",
+                "Tenter d'obtenir un accès non autorisé à nos systèmes",
+                "Utiliser des outils automatisés pour extraire ou collecter des données",
+                "Interférer avec le bon fonctionnement du site web",
+                "Télécharger un code ou un contenu malveillant"
+            ]
+        },
+        "accuracy": {
+            "title": "4. Exactitude des Informations",
+            "content": "Bien que nous nous efforcions de fournir des informations précises et à jour, les données affichées sur notre site web proviennent de services tiers (principalement Google Places). Nous ne garantissons pas l'exactitude, l'exhaustivité ou la fiabilité de ces informations.",
+            "warning": "<strong>Important :</strong> Avant de vous engager avec une agence de voyage, nous vous recommandons de vérifier ses informations d'identification, de lire les avis et de faire vos propres vérifications."
+        },
+        "disclaimer": {
+            "title": "5. Aucune Approbation",
+            "content": "L'inclusion d'une agence de voyage dans notre annuaire ne constitue pas une approbation ou une recommandation. Nous ne sommes pas responsables des services, de la qualité ou de la fiabilité de toute agence de voyage répertoriée sur notre site web."
+        },
+        "links": {
+            "title": "6. Liens Tiers",
+            "content": "Notre site web contient des liens vers des sites web externes, y compris des sites web d'agences de voyage et Google Maps. Nous ne sommes pas responsables du contenu, des pratiques de confidentialité ou des services de ces sites tiers."
+        },
+        "intellectual": {
+            "title": "7. Propriété Intellectuelle",
+            "content": "La conception du site web, les logos, le contenu et le code sont la propriété d'Orious Strategy et sont protégés par les lois sur la propriété intellectuelle. Vous ne pouvez pas reproduire, distribuer ou créer des œuvres dérivées sans notre autorisation écrite expresse."
+        },
+        "limitation": {
+            "title": "8. Limitation de Responsabilité",
+            "content": "Dans toute la mesure permise par la loi, TravelAgencies.World et ses opérateurs ne seront pas responsables de tout dommage direct, indirect, accessoire, spécial ou consécutif résultant de votre utilisation du site web ou de toute transaction avec des agences de voyage trouvées via notre annuaire."
+        },
+        "indemnity": {
+            "title": "9. Indemnisation",
+            "content": "Vous acceptez d'indemniser et de dégager de toute responsabilité TravelAgencies.World, ses opérateurs et Orious Strategy contre toute réclamation, dommage ou dépense découlant de votre utilisation du site web ou de la violation de ces conditions."
+        },
+        "changes": {
+            "title": "10. Modifications des Conditions",
+            "content": "Nous nous réservons le droit de modifier ces Conditions d'Utilisation à tout moment. Les modifications entreront en vigueur immédiatement après leur publication sur le site web. Votre utilisation continue du site web constitue une acceptation des conditions modifiées."
+        },
+        "law": {
+            "title": "11. Loi Applicable",
+            "content": "Ces conditions seront régies et interprétées conformément aux lois applicables. Tout litige sera résolu devant les tribunaux compétents."
+        },
+        "contact": {
+            "title": "12. Coordonnées",
+            "content": "Pour toute question concernant ces Conditions d'Utilisation, veuillez nous contacter :",
+            "email": "Email : contact@travelagencies.world",
+            "developer": "Développeur : "
+        }
+    },
+    "Agencies": {
+        "title": "Trouver des Agences de Voyage",
+        "subtitle": "Parcourez notre répertoire de {count} agences de voyage vérifiées dans le monde entier.",
+        "search": {
+            "placeholder": "Rechercher par nom d'agence, ville ou catégorie...",
+            "filters": "Filtres"
+        },
+        "filters": {
+            "title": "Filtres",
+            "city": "Ville",
+            "country": "Pays",
+            "rating": "Note",
+            "category": "Catégorie",
+            "website": "Site Web",
+            "websiteAll": "Tous",
+            "websiteWith": "Avec Site Web",
+            "websiteWithout": "Sans Site Web",
+            "clear": "Effacer tous les filtres",
+            "selectedCity": "Ville : {city}",
+            "selectedCountry": "Pays : {country}",
+            "selectedRating": "Note : {rating}+",
+            "showing": "Affichage {start}-{end} sur {total} agences",
+            "empty": "Aucune agence trouvée correspondant à vos critères. Essayez d'ajuster vos filtres ou termes de recherche."
+        },
+        "view": {
+            "grid": "Vue Grille",
+            "list": "Vue Liste",
+            "map": "Vue Carte"
+        },
+        "pagination": {
+            "goTo": "Aller à la page :",
+            "of": "sur {total}",
+            "first": "Premier",
+            "prev": "Précédent",
+            "next": "Suivant",
+            "last": "Dernier"
+        },
+        "loading": {
+            "map": "Chargement de la carte...",
+            "page": "Chargement..."
+        }
+    },
+    "Destinations": {
+        "meta": {
+            "title": "Agences de Voyage par Destination | 50+ Pays et 500+ Villes",
+            "description": "Trouvez des agences de voyage par pays et ville. 2670+ agences vérifiées au Maroc, France, USA, Canada, Espagne, etc."
+        },
+        "breadcrumbs": {
+            "home": "Accueil",
+            "destinations": "Destinations"
+        },
+        "hero": {
+            "title": "Trouvez des Agences de Voyage par Destination",
+            "subtitle": "Parcourez des agences vérifiées dans {countries} pays. Trouvez des experts locaux de confiance."
+        },
+        "countries": {
+            "title": "Parcourir les Agences par Pays",
+            "count": "{count} agences de voyage"
+        },
+        "cities": {
+            "title": "Villes Populaires pour les Agences de Voyage",
+            "count": "{count} agences de voyage",
+            "viewAll": "Voir toutes les {count} villes"
+        },
+        "seo": {
+            "title": "Trouvez les Meilleures Agences de Voyage dans le Monde",
+            "p1": "TravelAgencies.World est votre annuaire complet pour trouver des agences de voyage vérifiées à travers le monde. Que vous planifiez un voyage au Maroc, en France ou ailleurs, notre annuaire vous aide à vous connecter avec des professionnels de confiance.",
+            "p2": "Chaque fiche comprend de vrais avis Google, des notes, des coordonnées et des descriptions détaillées pour vous aider à prendre une décision éclairée."
+        },
+        "cta": {
+            "title": "Vous ne trouvez pas votre destination ?",
+            "subtitle": "Utilisez notre recherche avancée pour trouver des agences de voyage partout dans le monde.",
+            "button": "Rechercher parmi {count}+ agences"
+        }
+    }
+}

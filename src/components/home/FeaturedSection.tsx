@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
-import Link from "next/link";
+// Use custom Link from navigation for i18n
+import { Link } from "@/navigation";
 import { ArrowRight, MapPin, Loader2, RefreshCw } from "lucide-react";
 import AgencyCard from "@/components/ui/AgencyCard";
 import { Agency } from "@/types";
+import { useTranslations } from "next-intl";
 
 interface FeaturedSectionProps {
     initialAgencies: Agency[];
@@ -25,6 +27,7 @@ function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: numbe
 }
 
 export default function FeaturedSection({ initialAgencies }: FeaturedSectionProps) {
+    const t = useTranslations('Featured');
     const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
     const [isLocating, setIsLocating] = useState(false);
     const [locationError, setLocationError] = useState<string | null>(null);
@@ -42,7 +45,7 @@ export default function FeaturedSection({ initialAgencies }: FeaturedSectionProp
 
     const detectLocation = useCallback(() => {
         if (!navigator.geolocation) {
-            setLocationError("Geolocation is not supported by your browser.");
+            setLocationError(t('locateError.unsupported'));
             return;
         }
 
@@ -87,17 +90,17 @@ export default function FeaturedSection({ initialAgencies }: FeaturedSectionProp
             },
             (error) => {
                 console.error("Geolocation error:", error);
-                let message = "Could not access location.";
-                if (error.code === 1) message = "Location access denied. Please enable it in your browser settings to find nearby agencies.";
-                else if (error.code === 2) message = "Location information is unavailable.";
-                else if (error.code === 3) message = "Location request timed out.";
+                let message = t('locateError.default');
+                if (error.code === 1) message = t('locateError.denied');
+                else if (error.code === 2) message = t('locateError.unavailable');
+                else if (error.code === 3) message = t('locateError.timeout');
 
                 setLocationError(message);
                 setIsLocating(false);
             },
             { timeout: 10000, maximumAge: 600000, enableHighAccuracy: false }
         );
-    }, [initialAgencies]);
+    }, [initialAgencies, t]);
 
     return (
         <section className="py-20 bg-muted/30">
@@ -105,14 +108,14 @@ export default function FeaturedSection({ initialAgencies }: FeaturedSectionProp
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
                     <div>
                         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2 flex items-center gap-3">
-                            Featured Travel Agencies
+                            {t('title')}
                             {isLocating && <Loader2 className="w-5 h-5 animate-spin text-primary" />}
                             {userLocation && <MapPin className="w-6 h-6 text-green-600 animate-bounce" />}
                         </h2>
                         <p className="text-lg text-muted-foreground">
                             {userLocation
-                                ? "Showing the best agencies nearest to you."
-                                : "Top-rated agencies with excellent reviews and proven track records."}
+                                ? t('subtitleLocation')
+                                : t('subtitleDefault')}
                         </p>
 
                         {locationError && (
@@ -123,7 +126,7 @@ export default function FeaturedSection({ initialAgencies }: FeaturedSectionProp
                                     className="underline font-medium hover:text-amber-700 flex items-center gap-1"
                                     disabled={isLocating}
                                 >
-                                    <RefreshCw className={`w-3 h-3 ${isLocating ? 'animate-spin' : ''}`} /> Retry
+                                    <RefreshCw className={`w-3 h-3 ${isLocating ? 'animate-spin' : ''}`} /> {t('retry')}
                                 </button>
                             </div>
                         )}
@@ -133,7 +136,7 @@ export default function FeaturedSection({ initialAgencies }: FeaturedSectionProp
                                 onClick={detectLocation}
                                 className="text-primary text-sm font-medium hover:underline mt-2 flex items-center gap-1 group"
                             >
-                                <MapPin className="w-3 h-3 group-hover:scale-125 transition-transform" /> Use my location to find nearby agencies
+                                <MapPin className="w-3 h-3 group-hover:scale-125 transition-transform" /> {t('useLocation')}
                             </button>
                         )}
                     </div>
@@ -141,8 +144,8 @@ export default function FeaturedSection({ initialAgencies }: FeaturedSectionProp
                         href="/agencies"
                         className="inline-flex items-center gap-2 text-primary font-semibold hover:underline group"
                     >
-                        View All Agencies
-                        <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                        {t('viewAll')}
+                        <ArrowRight className="h-5 w-5 rtl:rotate-180 group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </div>
 
@@ -152,7 +155,7 @@ export default function FeaturedSection({ initialAgencies }: FeaturedSectionProp
                             <AgencyCard agency={agency} featured={agency.featured} />
                             {(agency as any).distance !== undefined && (agency as any).distance !== Infinity && (
                                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur text-xs font-bold px-2 py-1 rounded-full shadow-sm text-slate-700 z-10 border border-slate-100 animate-scale-in">
-                                    {((agency as any).distance).toFixed(1)} km away
+                                    {t('distance', { distance: ((agency as any).distance).toFixed(1) })}
                                 </div>
                             )}
                         </div>

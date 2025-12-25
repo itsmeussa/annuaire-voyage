@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/navigation";
 import dynamic from "next/dynamic";
 import {
   Search,
@@ -24,6 +24,7 @@ import {
   getUniqueCountries,
 } from "@/lib/agencies";
 import FeaturedSection from "@/components/home/FeaturedSection";
+import { getTranslations } from "next-intl/server";
 
 // Lazy load video background for performance
 const VideoBackground = dynamic(() => import("@/components/ui/VideoBackground"), {
@@ -31,61 +32,80 @@ const VideoBackground = dynamic(() => import("@/components/ui/VideoBackground"),
   loading: () => null,
 });
 
-// FAQ data for SEO
-const faqData = [
-  {
-    question: "How do I find a reliable travel agency?",
-    answer: "Use TravelAgencies.World to compare 2670+ verified travel agencies with real Google reviews. Filter by location, rating, and specialty to find the perfect match for your travel needs."
-  },
-  {
-    question: "Are the travel agencies on this directory verified?",
-    answer: "Yes, all 2670+ agencies in our directory are sourced from Google Maps with authentic reviews and ratings. We display real contact information and customer feedback."
-  },
-  {
-    question: "How can I contact a travel agency?",
-    answer: "Each agency listing includes direct contact information including phone numbers, websites, and Google Maps links. You can reach out directly without any intermediary."
-  },
-  {
-    question: "Is it free to use TravelAgencies.World?",
-    answer: "Yes, our directory is completely free to use for travelers. Browse, compare, and contact travel agencies at no cost."
-  },
-  {
-    question: "What countries do you cover?",
-    answer: "We cover 2670+ travel agencies in 50+ countries including France, USA, Canada, UK, Spain, Netherlands, Malaysia, United Arab Emirates and many more. Our database is continuously growing."
-  },
-  {
-    question: "How do I choose the best travel agency for my trip?",
-    answer: "Consider the agency's rating, number of reviews, location, and specialization. Read customer reviews and compare multiple agencies before making your decision."
-  },
-  {
-    question: "Which cities have the most travel agencies?",
-    answer: "Our directory features agencies in major cities worldwide including New York (50+), Toronto (45+), Ottawa (85+), Paris (100+), and many more destinations."
-  },
-  {
-    question: "Can I find travel agencies without a website?",
-    answer: "Yes, use our website filter to find agencies with or without websites. Many excellent local agencies rely on phone bookings and walk-ins."
-  }
-];
-
 export default async function Home() {
-  const allAgencies = await getAgencies(); // Fetch all for geolocation sorting (or limit if too big)
-  // Optimization: Maybe fetch top 100? For now all is fine (~4k records)
+  const tHero = await getTranslations('Hero');
+  const tFeatures = await getTranslations('Features');
+  const tServices = await getTranslations('Services');
+  const tCities = await getTranslations('Cities');
+  const tHowItWorks = await getTranslations('HowItWorks');
+  const tFAQ = await getTranslations('FAQ');
+  const tTrust = await getTranslations('Trust');
+  const tCommon = await getTranslations('Common');
 
+  const allAgencies = await getAgencies();
   const cities = (await getUniqueCities()).slice(0, 8);
-  // countries unused in render but used in logic? No only passed to nothing here.
-  // const countries = await getUniqueCountries(); 
-
   const totalAgencies = allAgencies.length;
-  // Fallback for featured logic in schema if needed, but we use client side for display.
-  // We can pick top 6 for schema.
   const schemaAgencies = allAgencies.slice(0, 6);
+
+  // FAQ data for Display and SEO
+  const faqData = [
+    { question: tFAQ('q1'), answer: tFAQ('a1') },
+    { question: tFAQ('q2'), answer: tFAQ('a2') },
+    { question: tFAQ('q3'), answer: tFAQ('a3') },
+    { question: tFAQ('q4'), answer: tFAQ('a4') },
+    { question: tFAQ('q5'), answer: tFAQ('a5') },
+    { question: tFAQ('q6'), answer: tFAQ('a6') },
+    { question: tFAQ('q7'), answer: tFAQ('a7') },
+    { question: tFAQ('q8'), answer: tFAQ('a8') },
+  ];
+
+  const features = [
+    {
+      icon: Shield,
+      title: tFeatures('verifiedTitle'),
+      description: tFeatures('verifiedDesc'),
+    },
+    {
+      icon: Star,
+      title: tFeatures('topRatedTitle'),
+      description: tFeatures('topRatedDesc'),
+    },
+    {
+      icon: Clock,
+      title: tFeatures('contactTitle'),
+      description: tFeatures('contactDesc'),
+    },
+    {
+      icon: Globe,
+      title: tFeatures('globalTitle'),
+      description: tFeatures('globalDesc'),
+    },
+  ];
+
+  const services = [
+    {
+      icon: Plane,
+      title: tServices('flightsTitle'),
+      description: tServices('flightsDesc'),
+    },
+    {
+      icon: Hotel,
+      title: tServices('hotelsTitle'),
+      description: tServices('hotelsDesc'),
+    },
+    {
+      icon: Camera,
+      title: tServices('toursTitle'),
+      description: tServices('toursDesc'),
+    },
+  ];
 
   // JSON-LD for homepage
   const homePageSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "TravelAgencies.World - Find the Best Travel Agencies Worldwide",
-    description: "Discover and compare top-rated travel agencies around the world. Find trusted partners for your next adventure with verified reviews, ratings, and direct contact information.",
+    name: tCommon('title') + " - " + tCommon('description'),
+    description: tHero('subtitle'),
     url: "https://travelagencies.world",
     mainEntity: {
       "@type": "ItemList",
@@ -140,51 +160,6 @@ export default async function Home() {
     ]
   };
 
-  const features = [
-    {
-      icon: Shield,
-      title: "Verified Agencies",
-      description:
-        "All agencies are verified with real reviews and ratings from Google.",
-    },
-    {
-      icon: Star,
-      title: "Top Rated",
-      description:
-        "Find the highest-rated travel agencies with proven track records.",
-    },
-    {
-      icon: Clock,
-      title: "Instant Contact",
-      description:
-        "Connect directly with agencies via phone, website, or Google Maps.",
-    },
-    {
-      icon: Globe,
-      title: "Global Coverage",
-      description:
-        "Browse agencies from multiple countries and destinations worldwide.",
-    },
-  ];
-
-  const services = [
-    {
-      icon: Plane,
-      title: "Flight Bookings",
-      description: "Find agencies that specialize in flight reservations and airfare deals.",
-    },
-    {
-      icon: Hotel,
-      title: "Hotel & Accommodation",
-      description: "Discover experts in hotel bookings and accommodation packages.",
-    },
-    {
-      icon: Camera,
-      title: "Tour Packages",
-      description: "Connect with tour operators offering guided tours and experiences.",
-    },
-  ];
-
   return (
     <>
       {/* Structured Data */}
@@ -216,18 +191,15 @@ export default async function Home() {
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 animate-fade-in-down">
               <Globe className="h-4 w-4 animate-pulse-slow" />
               <span className="text-sm font-medium">
-                {totalAgencies}+ Travel Agencies Worldwide
+                {totalAgencies}+ {tHero('titleHighlight')} Worldwide
               </span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in-up">
-              Find the Perfect <br />
-              <span className="text-yellow-300 animate-pulse-slow">Travel Agency</span> for Your
-              Adventure
+              {tHero('title')} <br />
+              <span className="text-yellow-300 animate-pulse-slow">{tHero('titleHighlight')}</span> {tHero('titleSuffix')}
             </h1>
             <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto animate-fade-in-up delay-200">
-              Browse our comprehensive directory of verified travel agencies.
-              Compare ratings, read reviews, and connect directly with trusted
-              travel professionals.
+              {tHero('subtitle')}
             </p>
 
             {/* Search Box */}
@@ -242,7 +214,7 @@ export default async function Home() {
                   <input
                     type="text"
                     name="q"
-                    placeholder="Search by agency name or location..."
+                    placeholder={tHero('searchPlaceholder')}
                     className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40 focus:bg-white/15 transition-all text-white placeholder:text-white/50"
                   />
                 </div>
@@ -251,7 +223,7 @@ export default async function Home() {
                   className="bg-gradient-to-r from-primary to-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:from-primary/90 hover:to-blue-500 transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/30 hover:scale-105 hover:shadow-xl hover:shadow-primary/40"
                 >
                   <Search className="h-5 w-5" />
-                  Search
+                  {tHero('searchButton')}
                 </button>
               </form>
             </div>
@@ -262,19 +234,19 @@ export default async function Home() {
                 <div className="text-3xl md:text-4xl font-bold">
                   {totalAgencies}+
                 </div>
-                <div className="text-white/70">Agencies</div>
+                <div className="text-white/70">{tHero('statsAgencies')}</div>
               </div>
               <div className="text-center hover:scale-110 transition-transform cursor-default">
                 <div className="text-3xl md:text-4xl font-bold">50+</div>
-                <div className="text-white/70">Cities</div>
+                <div className="text-white/70">{tHero('statsCities')}</div>
               </div>
               <div className="text-center hover:scale-110 transition-transform cursor-default">
                 <div className="text-3xl md:text-4xl font-bold">4.5</div>
-                <div className="text-white/70">Avg Rating</div>
+                <div className="text-white/70">{tHero('statsRating')}</div>
               </div>
               <div className="text-center hover:scale-110 transition-transform cursor-default">
                 <div className="text-3xl md:text-4xl font-bold">10K+</div>
-                <div className="text-white/70">Reviews</div>
+                <div className="text-white/70">{tHero('statsReviews')}</div>
               </div>
             </div>
           </div>
@@ -286,11 +258,10 @@ export default async function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Why Choose Our Directory?
+              {tFeatures('title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We make finding the right travel agency easy, transparent, and
-              reliable.
+              {tFeatures('subtitle')}
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
@@ -321,10 +292,10 @@ export default async function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              What Services Can You Find?
+              {tServices('title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our directory includes agencies offering a wide range of travel services.
+              {tServices('subtitle')}
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 stagger-children">
@@ -352,10 +323,10 @@ export default async function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Browse by City
+              {tCities('title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Explore travel agencies in popular destinations around the world.
+              {tCities('subtitle')}
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 stagger-children">
@@ -376,7 +347,7 @@ export default async function Home() {
               href="/destinations"
               className="inline-flex items-center gap-2 text-primary font-semibold hover:underline group"
             >
-              View All Destinations
+              {tCities('viewAll')}
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -388,31 +359,28 @@ export default async function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              How It Works
+              {tHowItWorks('title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Finding your ideal travel agency is simple and straightforward.
+              {tHowItWorks('subtitle')}
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
               {
                 step: "1",
-                title: "Search & Filter",
-                description:
-                  "Use our powerful search to find agencies by location, rating, or specialty.",
+                title: tHowItWorks('step1Title'),
+                description: tHowItWorks('step1Desc'),
               },
               {
                 step: "2",
-                title: "Compare & Review",
-                description:
-                  "View detailed profiles, ratings, and reviews to make an informed decision.",
+                title: tHowItWorks('step2Title'),
+                description: tHowItWorks('step2Desc'),
               },
               {
                 step: "3",
-                title: "Contact Directly",
-                description:
-                  "Reach out via phone, website, or Google Maps to start planning your trip.",
+                title: tHowItWorks('step3Title'),
+                description: tHowItWorks('step3Desc'),
               },
             ].map((item) => (
               <div key={item.step} className="text-center">
@@ -434,10 +402,10 @@ export default async function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Frequently Asked Questions
+              {tFAQ('title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Everything you need to know about finding the right travel agency
+              {tFAQ('subtitle')}
             </p>
           </div>
           <div className="max-w-3xl mx-auto space-y-4">
@@ -470,19 +438,19 @@ export default async function Home() {
           <div className="flex flex-wrap justify-center items-center gap-8 text-muted-foreground">
             <div className="flex items-center gap-2">
               <Shield className="h-5 w-5 text-green-500" />
-              <span>Verified Data</span>
+              <span>{tTrust('verified')}</span>
             </div>
             <div className="flex items-center gap-2">
               <Star className="h-5 w-5 text-yellow-500" />
-              <span>Real Reviews</span>
+              <span>{tTrust('reviews')}</span>
             </div>
             <div className="flex items-center gap-2">
               <Users className="h-5 w-5 text-blue-500" />
-              <span>Trusted by Travelers</span>
+              <span>{tTrust('trusted')}</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-green-500" />
-              <span>Free to Use</span>
+              <span>{tTrust('free')}</span>
             </div>
           </div>
         </div>

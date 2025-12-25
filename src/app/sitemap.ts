@@ -1,8 +1,8 @@
 import { MetadataRoute } from 'next'
-import { createClient } from '@/lib/supabase/server'
+import { createServerSupabaseClient } from '@/lib/supabase'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const supabase = createClient()
+  const supabase = createServerSupabaseClient()
   const baseUrl = 'https://www.travelagencies.world'
 
   // Fetch all approved agencies

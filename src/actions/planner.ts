@@ -5,6 +5,7 @@ import { searchSerpFlights, searchSerpHotels } from "@/lib/api/serp";
 
 export async function getRealItineraries(inputs: PlannerInputs): Promise<TripItinerary[]> {
     // 1. Generate the Base Structure (Smart Mocks)
+    // We still use this to get the City/Dates logic which is solid.
     const baseItineraries = generateItineraries(inputs);
 
     // 2. Enrich with Real Data (Async via SerpApi)
@@ -12,13 +13,12 @@ export async function getRealItineraries(inputs: PlannerInputs): Promise<TripIti
         // Deep clone to avoid mutation issues
         const newItinerary = JSON.parse(JSON.stringify(itinerary));
 
+        // RESET Price to 0 initially to ensure we don't show mock prices if API fails
+        newItinerary.totalPrice = 0;
+
         // -- Enrich Flights (First Leg) --
         if (newItinerary.days.length > 0 && newItinerary.days[0].transport?.type === 'flight') {
             const firstLeg = newItinerary.days[0].transport;
-
-            // Only fetch for the first variation (Standard) or if index is 0 to save API usage, 
-            // OR fetch for all. User has API key, let's fetch for all distinctly if cities differ.
-            // But usually variations have same start route.
 
             try {
                 const flight = await searchSerpFlights(firstLeg.from, firstLeg.to, newItinerary.days[0].date);
@@ -29,18 +29,21 @@ export async function getRealItineraries(inputs: PlannerInputs): Promise<TripIti
                         price: Math.round(flight.price),
                         duration: `${Math.floor(flight.duration / 60)}h ${flight.duration % 60}m`,
                         provider: flight.airline,
-                        bookingLink: flight.link || `https://www.google.com/travel/flights?q=Flights+to+${firstLeg.to}+from+${firstLeg.from}+on+${newItinerary.days[0].date}`,
+                        bookingLink: flight.link!, // We validated link presence in api/serp
                         isRealData: true,
-                        // Could add logo if we extended the type
                     };
 
-                    // Update Total Price
-                    // Note: flight.price is total for 1 adult usually.
-                    const diff = newItinerary.days[0].transport.price - firstLeg.price;
-                    newItinerary.totalPrice += diff;
+                    // Add to total price (Flight cost is per person usually, but let's assume total for now or multiply by travelers if API returns per-head)
+                    // SerpApi usually returns price per ticket.
+                    newItinerary.totalPrice += (flight.price * inputs.travelers);
+                } else {
+                    // API returned nothing? Mark as "Check Price"
+                    newItinerary.days[0].transport.price = 0;
+                    newItinerary.days[0].transport.provider = "Check Availability";
                 }
             } catch (e) {
                 console.error("Failed to enrich flight:", e);
+                newItinerary.days[0].transport.price = 0; // Failure state
             }
         }
 
@@ -48,6 +51,8 @@ export async function getRealItineraries(inputs: PlannerInputs): Promise<TripIti
         try {
             const firstCity = newItinerary.days[0].city;
             const checkIn = newItinerary.days[0].date;
+
+            // Find how many days we stay in this city
             const cityDays = newItinerary.days.filter((d: any) => d.city === firstCity).length;
 
             // Calculate Checkout
@@ -58,35 +63,39 @@ export async function getRealItineraries(inputs: PlannerInputs): Promise<TripIti
             const realHotels = await searchSerpHotels(firstCity, checkIn, checkOut);
 
             if (realHotels.length > 0) {
-                // Pick one based on variation if possible, otherwise just 0
-                // 'budget' -> lowest price? 'luxury' -> highest?
-                // Serp returns generic list. Let's just pick index based on variation map roughly or random.
+                // Pick one based on variation selection
                 let selectedHotel = realHotels[0];
                 if (itinerary.tags.includes('Luxury') && realHotels.length > 1) selectedHotel = realHotels[1];
+                if (itinerary.tags.includes('Cheapest') && realHotels.length > 0) selectedHotel = realHotels[0]; // Logic could be improved
 
                 const nightlyPrice = Math.round(selectedHotel.price);
 
-                let priceDiffAccumulator = 0;
-
                 newItinerary.days.forEach((day: any) => {
                     if (day.city === firstCity) {
-                        const oldPrice = day.accommodation.price;
-
                         day.accommodation = {
                             ...day.accommodation,
                             name: selectedHotel.name,
                             price: nightlyPrice,
                             rating: selectedHotel.rating,
                             image: selectedHotel.image || day.accommodation.image,
-                            bookingLink: selectedHotel.link || day.accommodation.bookingLink,
+                            bookingLink: selectedHotel.link,
                             isRealData: true
                         };
 
-                        priceDiffAccumulator += (day.accommodation.price - oldPrice);
+                        // Add to total price (Price * Rooms? Assuming 1 room for simplicity or per person share)
+                        // Typically hotel price is per night per room.
+                        // Let's add full room price per night to the total.
+                        newItinerary.totalPrice += nightlyPrice;
                     }
                 });
-
-                newItinerary.totalPrice += priceDiffAccumulator;
+            } else {
+                // No hotels found? Zero out mock prices
+                newItinerary.days.forEach((day: any) => {
+                    if (day.city === firstCity) {
+                        day.accommodation.price = 0;
+                        day.accommodation.name = "Check Availability";
+                    }
+                });
             }
         } catch (e) {
             console.error("Failed to enrich hotels:", e);

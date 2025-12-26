@@ -5,72 +5,93 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = createServerSupabaseClient()
   const baseUrl = 'https://www.travelagencies.world'
 
-  // Fetch all approved agencies
+  // Fetch all approved agencies with necessary fields
   const { data: agencies } = await supabase
     .from('agencies')
-    .select('slug, created_at')
+    .select('slug, created_at, country_normalized, city_normalized, category_normalized')
     .eq('status', 'approved')
     .order('created_at', { ascending: false })
 
-  // Static pages
-  const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/agencies`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/auth/login`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/auth/signup`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
+  // 1. Static pages
+  const staticRoutes = [
+    '',
+    '/agencies',
+    '/destinations',
+    // '/planner', // Hidden for now
+    '/blog',
+    '/about',
+    '/contact',
+    '/for-agencies',
+    '/auth/login',
+    '/auth/signup',
   ]
 
-  // Dynamic agency pages
+  const staticPages: MetadataRoute.Sitemap = staticRoutes.map(route => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: route === '' ? 'daily' : 'weekly',
+    priority: route === '' ? 1 : 0.8,
+  }))
+
+  // 2. Dynamic Agency Profiles
   const agencyPages: MetadataRoute.Sitemap = (agencies || []).map((agency) => ({
     url: `${baseUrl}/agencies/${agency.slug}`,
-    lastModified: new Date(agency.created_at),
-    changeFrequency: 'weekly' as const,
+    lastModified: new Date(agency.created_at || new Date()),
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  }))
+
+  // Data processing for groupings
+  const validAgencies = agencies || []
+
+  // 3. Category Pages
+  const categories = new Set(validAgencies
+    .map(a => a.category_normalized)
+    .filter(Boolean)
+    .filter(c => c !== 'Unknown'))
+
+  const categoryPages: MetadataRoute.Sitemap = Array.from(categories).map(category => ({
+    url: `${baseUrl}/agencies/category/${encodeURIComponent(category!)}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  }))
+
+  // 4. Country Pages
+  const countries = new Set(validAgencies
+    .map(a => a.country_normalized)
+    .filter(Boolean)
+    .filter(c => c !== 'Unknown'))
+
+  const countryPages: MetadataRoute.Sitemap = Array.from(countries).map(country => ({
+    url: `${baseUrl}/agencies/country/${encodeURIComponent(country!)}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
     priority: 0.8,
   }))
 
-  // Get unique countries and cities for filter pages
-  const { data: locations } = await supabase
-    .from('agencies')
-    .select('country_normalized, city_normalized')
-    .eq('status', 'approved')
+  // 5. City Pages (Country + City combo)
+  // We need to map cities to their countries to build the correct URL: /agencies/country/[country]/city/[city]
+  const cityMap = new Map<string, string>() // `${country}:${city}` -> url path
 
-  const countries = [...new Set(locations?.map(l => l.country_normalized) || [])]
-  const cities = [...new Set(locations?.map(l => l.city_normalized) || [])]
+  validAgencies.forEach(agency => {
+    if (agency.city_normalized &&
+      agency.country_normalized &&
+      agency.city_normalized !== 'Unknown' &&
+      agency.country_normalized !== 'Unknown') {
+      const key = `${agency.country_normalized}:${agency.city_normalized}`
+      if (!cityMap.has(key)) {
+        cityMap.set(key, `${baseUrl}/agencies/country/${encodeURIComponent(agency.country_normalized)}/city/${encodeURIComponent(agency.city_normalized)}`)
+      }
+    }
+  })
 
-  const locationPages: MetadataRoute.Sitemap = [
-    ...countries.map(country => ({
-      url: `${baseUrl}/agencies/country/${country}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    })),
-    ...cities.slice(0, 2000).map(city => ({ // Limit increased to 2000 for max SEO coverage
-      url: `${baseUrl}/agencies/country/${city.split(',')[1]?.trim() || 'city'}/city/${city}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
-    })),
-  ]
+  const cityPages: MetadataRoute.Sitemap = Array.from(cityMap.values()).map(url => ({
+    url: url,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  }))
 
-  return [...staticPages, ...agencyPages, ...locationPages]
+  return [...staticPages, ...agencyPages, ...categoryPages, ...countryPages, ...cityPages]
 }

@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { isAdminServer } from "../../../lib/auth/admin";
+import { isAdminServer } from "@/lib/auth/admin";
 import AccessRequestsTable from "@/components/admin/AccessRequestsTable";
 import { Shield } from "lucide-react";
 

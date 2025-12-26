@@ -35,7 +35,7 @@ const content = {
     priceValue: "500",
     priceCurrency: "DH",
     priceNote: "Paiement unique — visibilité permanente",
-    
+
     // Trust Stats
     stats: [
       { value: "2670+", label: "Agences référencées" },
@@ -103,8 +103,8 @@ const content = {
         desc: "Un seul paiement, une présence permanente. Pas d'abonnement mensuel.",
       },
       {
-        title: "Mise à jour gratuite",
-        desc: "Modifiez vos informations à tout moment, gratuitement.",
+        title: "Mise à jour facile",
+        desc: "Modifiez vos informations à tout moment.",
       },
     ],
 
@@ -146,7 +146,7 @@ const content = {
       },
       {
         q: "Puis-je modifier mes informations après l'inscription ?",
-        a: "Oui, contactez-nous via WhatsApp pour mettre à jour vos informations gratuitement à tout moment.",
+        a: "Oui, contactez-nous via WhatsApp pour mettre à jour vos informations à tout moment.",
       },
     ],
 
@@ -241,8 +241,8 @@ const content = {
         desc: "One payment, permanent presence. No monthly subscription.",
       },
       {
-        title: "Free Updates",
-        desc: "Update your information anytime, for free.",
+        title: "Easy Updates",
+        desc: "Update your information anytime.",
       },
     ],
 
@@ -284,7 +284,7 @@ const content = {
       },
       {
         q: "Can I update my information after registration?",
-        a: "Yes, contact us via WhatsApp to update your information for free at any time.",
+        a: "Yes, contact us via WhatsApp to update your information at any time.",
       },
     ],
 
@@ -379,8 +379,8 @@ const content = {
         desc: "دفعة واحدة، تواجد دائم. لا اشتراك شهري.",
       },
       {
-        title: "تحديث مجاني",
-        desc: "حدّث معلوماتك في أي وقت، مجاناً.",
+        title: "تحديث سهل",
+        desc: "حدّث معلوماتك في أي وقت.",
       },
     ],
 
@@ -422,7 +422,7 @@ const content = {
       },
       {
         q: "هل يمكنني تحديث معلوماتي بعد التسجيل؟",
-        a: "نعم، تواصل معنا عبر WhatsApp لتحديث معلوماتك مجاناً في أي وقت.",
+        a: "نعم، تواصل معنا عبر WhatsApp لتحديث معلوماتك في أي وقت.",
       },
     ],
 
@@ -464,25 +464,22 @@ export default function InscriptionMaroc() {
         <div className="max-w-6xl mx-auto px-4 py-2 flex justify-end gap-2">
           <button
             onClick={() => setLang("fr")}
-            className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
-              lang === "fr" ? "bg-emerald-600 text-white" : "text-slate-400 hover:text-white"
-            }`}
+            className={`px-3 py-1 rounded text-sm font-medium transition-colors ${lang === "fr" ? "bg-emerald-600 text-white" : "text-slate-400 hover:text-white"
+              }`}
           >
             Français
           </button>
           <button
             onClick={() => setLang("en")}
-            className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
-              lang === "en" ? "bg-emerald-600 text-white" : "text-slate-400 hover:text-white"
-            }`}
+            className={`px-3 py-1 rounded text-sm font-medium transition-colors ${lang === "en" ? "bg-emerald-600 text-white" : "text-slate-400 hover:text-white"
+              }`}
           >
             English
           </button>
           <button
             onClick={() => setLang("ar")}
-            className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
-              lang === "ar" ? "bg-emerald-600 text-white" : "text-slate-400 hover:text-white"
-            }`}
+            className={`px-3 py-1 rounded text-sm font-medium transition-colors ${lang === "ar" ? "bg-emerald-600 text-white" : "text-slate-400 hover:text-white"
+              }`}
           >
             العربية
           </button>
@@ -599,7 +596,7 @@ export default function InscriptionMaroc() {
               <h2 className="text-3xl font-bold text-slate-900 mb-3">{t.whoWeAreTitle}</h2>
               <p className="text-emerald-600 font-medium mb-6">{t.whoWeAreSubtitle}</p>
               <p className="text-slate-600 mb-8 leading-relaxed">{t.whoWeAreText}</p>
-              
+
               <ul className="space-y-4">
                 {t.whoWeArePoints.map((point, index) => (
                   <li key={index} className={`flex items-center gap-3 ${isRtl ? "flex-row-reverse" : ""}`}>
@@ -611,7 +608,7 @@ export default function InscriptionMaroc() {
                 ))}
               </ul>
             </div>
-            
+
             <div className={`relative ${isRtl ? "order-1 lg:order-2" : ""}`}>
               <img
                 src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800"
@@ -748,9 +745,8 @@ export default function InscriptionMaroc() {
                 >
                   {faq.q}
                   <ChevronDown
-                    className={`w-5 h-5 text-slate-400 transition-transform flex-shrink-0 ${
-                      openFaq === index ? "rotate-180" : ""
-                    }`}
+                    className={`w-5 h-5 text-slate-400 transition-transform flex-shrink-0 ${openFaq === index ? "rotate-180" : ""
+                      }`}
                   />
                 </button>
                 {openFaq === index && (

@@ -129,7 +129,7 @@ export default function RequestAccessButton({
                         )}
                     </button>
                     <p className="text-xs text-muted-foreground mt-4">
-                        ✓ Free to request • ✓ Quick approval process • ✓ No credit card required
+                        ✓ Quick approval process • ✓ No credit card required • ✓ Secure verification
                     </p>
                 </div>
             </div>

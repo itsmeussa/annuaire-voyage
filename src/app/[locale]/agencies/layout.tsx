@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Find 2670+ Travel Agencies Worldwide | Compare & Book Tour Operators",
   description:
-    "Search 2670+ verified travel agencies worldwide. Best agencies for CAN 2025 Morocco, France (800+), USA (500+), Canada (200+). Filter by country, city, rating. Real Google reviews & direct contact. 100% Free directory.",
+    "Search 2670+ verified travel agencies worldwide. Best agencies for CAN 2025 Morocco, France (800+), USA (500+), Canada (200+). Filter by country, city, rating. Real Google reviews & direct contact. Verified directory.",
   keywords: [
     "travel agencies directory",
     "find travel agency",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "2670+ Travel Agencies Worldwide | Free Directory",
+    title: "2670+ Travel Agencies Worldwide | Global Directory",
     description:
       "Search 2670+ verified travel agencies. Morocco, France, USA, Canada. Filter by location, rating, specialty.",
     images: ["/og-image.jpg"],

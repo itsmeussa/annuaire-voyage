@@ -23,7 +23,7 @@ export default function CTASection({
     "Access to 2670+ verified travel agencies",
     "Compare ratings and reviews instantly",
     "Direct contact with travel professionals",
-    "Free to use, no registration required",
+    "Easy access, no registration required",
   ];
 
   if (variant === "secondary") {

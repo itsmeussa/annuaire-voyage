@@ -111,7 +111,7 @@
         "verified": "Verified Data",
         "reviews": "Real Reviews",
         "trusted": "Trusted by Travelers",
-        "free": "Free to Use"
+        "free": "Open Access"
     },
     "About": {
         "title": "About TravelAgencies.World",
@@ -160,7 +160,7 @@
             "contact": "Direct contact information for quick connections",
             "coverage": "Comprehensive coverage across multiple countries",
             "updates": "Regular updates to ensure accuracy",
-            "free": "Free to use, no registration required",
+            "free": "Open access, no registration required",
             "browse": "Browse Agencies",
             "builtBy": "Built for Excellence",
             "builtDesc1": "TravelAgencies.World is proudly developed and maintained by Orious Strategy, a digital agency specializing in creating innovative web solutions and digital experiences.",
@@ -215,8 +215,8 @@
             "tag": "Join 2,670+ Smart Agencies",
             "title": "Grow Your",
             "titleHighlight": "Travel Business",
-            "subtitle": "Claim your free profile, manage your reputation, and connect with millions of travelers planning their next adventure.",
-            "listFree": "List My Agency for Free",
+            "subtitle": "Claim your profile, manage your reputation, and connect with millions of travelers planning their next adventure.",
+            "listFree": "List My Agency",
             "viewDirectory": "View Directory"
         },
         "stats": {
@@ -240,7 +240,7 @@
         "steps": {
             "title": "Simple 3-Step Process",
             "step1": "Create Your Account",
-            "step1Desc": "Sign up in seconds. It's completely free and no credit card is required.",
+            "step1Desc": "Sign up in seconds. No credit card is required.",
             "step2": "Claim or Add Agency",
             "step2Desc": "Find your agency in our database to claim it, or add a new listing if it doesn't exist.",
             "step3": "Start Receiving Leads",

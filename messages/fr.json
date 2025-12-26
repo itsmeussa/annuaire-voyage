@@ -111,7 +111,7 @@
         "verified": "Données Vérifiées",
         "reviews": "Vrais Avis",
         "trusted": "Reconnu par les Voyageurs",
-        "free": "Gratuit"
+        "free": "Accès Libre"
     },
     "About": {
         "title": "À propos de TravelAgencies.World",
@@ -160,7 +160,7 @@
             "contact": "Informations de contact directes",
             "coverage": "Couverture complète dans de nombreux pays",
             "updates": "Mises à jour régulières",
-            "free": "Gratuit, sans inscription requise",
+            "free": "Accès libre, sans inscription requise",
             "browse": "Parcourir les Agences",
             "builtBy": "Construit pour l'Excellence",
             "builtDesc1": "Développé par Orious Strategy.",
@@ -215,8 +215,8 @@
             "tag": "Rejoignez 2 670+ Agences",
             "title": "Développez Votre",
             "titleHighlight": "Agence de Voyage",
-            "subtitle": "Réclamez votre profil gratuit, gérez votre réputation et connectez-vous avec des millions de voyageurs.",
-            "listFree": "Inscrire mon Agence Gratuitement",
+            "subtitle": "Réclamez votre profil, grérez votre réputation et connectez-vous avec des millions de voyageurs.",
+            "listFree": "Inscrire mon Agence",
             "viewDirectory": "Voir le Répertoire"
         },
         "stats": {
@@ -240,7 +240,7 @@
         "steps": {
             "title": "Processus Simple en 3 Étapes",
             "step1": "Créez Votre Compte",
-            "step1Desc": "Inscription gratuite en quelques secondes.",
+            "step1Desc": "Inscription en quelques secondes.",
             "step2": "Réclamez ou Ajoutez une Agence",
             "step2Desc": "Trouvez votre agence ou ajoutez-en une nouvelle.",
             "step3": "Commencez à Recevoir des Leads",

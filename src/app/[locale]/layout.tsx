@@ -19,11 +19,11 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    default: "TravelAgencies.World - 2670+ Verified Travel Agencies Worldwide | CAN 2025 Morocco",
+    default: "TravelAgencies.World - 4000+ Verified Travel Agencies Worldwide | CAN 2025 Morocco",
     template: "%s | TravelAgencies.World",
   },
   description:
-    "Find and compare 2670+ verified travel agencies worldwide. Best Morocco travel agencies for CAN 2025 Africa Cup of Nations. Top-rated agencies in Casablanca, Marrakech, Rabat, France, USA, Canada & UK. Real Google reviews & direct contact.",
+    "Find and compare 4000+ verified travel agencies worldwide. Best Morocco travel agencies for CAN 2025 Africa Cup of Nations. Top-rated agencies in Casablanca, Marrakech, Rabat, France, USA, Canada & UK. Real Google reviews & direct contact.",
   keywords: [
     "travel agencies",
     "tour operators",

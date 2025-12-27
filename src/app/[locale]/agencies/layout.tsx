@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Find 2670+ Travel Agencies Worldwide | Compare & Book Tour Operators",
+  title: "Find 4000+ Travel Agencies Worldwide | Compare & Book Tour Operators",
   description:
-    "Search 2670+ verified travel agencies worldwide. Best agencies for CAN 2025 Morocco, France (800+), USA (500+), Canada (200+). Filter by country, city, rating. Real Google reviews & direct contact. Verified directory.",
+    "Search 4000+ verified travel agencies worldwide. Best agencies for CAN 2025 Morocco, France (800+), USA (500+), Canada (200+). Filter by country, city, rating. Real Google reviews & direct contact. Verified directory.",
   keywords: [
     "travel agencies directory",
     "find travel agency",
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
     "vacation packages",
   ],
   openGraph: {
-    title: "2670+ Travel Agencies Worldwide | Find & Compare | CAN 2025 Morocco",
+    title: "4000+ Travel Agencies Worldwide | Find & Compare | CAN 2025 Morocco",
     description:
-      "Search 2670+ verified travel agencies. Morocco CAN 2025, France, USA, Canada & more. Filter by location, rating. Real reviews and direct contact.",
+      "Search 4000+ verified travel agencies. Morocco CAN 2025, France, USA, Canada & more. Filter by location, rating. Real reviews and direct contact.",
     url: "https://www.travelagencies.world/agencies",
     type: "website",
     images: [
@@ -45,9 +45,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "2670+ Travel Agencies Worldwide | Global Directory",
+    title: "4000+ Travel Agencies Worldwide | Global Directory",
     description:
-      "Search 2670+ verified travel agencies. Morocco, France, USA, Canada. Filter by location, rating, specialty.",
+      "Search 4000+ verified travel agencies. Morocco, France, USA, Canada. Filter by location, rating, specialty.",
     images: ["/og-image.jpg"],
   },
   alternates: {

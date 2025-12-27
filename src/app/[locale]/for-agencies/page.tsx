@@ -175,7 +175,7 @@ export default async function ForAgenciesPage() {
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 bg-white rounded-3xl p-6 shadow-2xl border border-slate-100">
                         {[
                             { label: t('stats.visitors'), value: "50k+", icon: Users2, color: "text-blue-500" },
-                            { label: t('stats.active'), value: "2,670+", icon: Building2, color: "text-emerald-500" },
+                            { label: t('stats.active'), value: "4,000+", icon: Building2, color: "text-emerald-500" },
                             { label: t('stats.cities'), value: "300+", icon: Globe2, color: "text-purple-500" },
                             { label: t('stats.leads'), value: "12k+", icon: TrendingUp, color: "text-orange-500" },
                         ].map((stat, i) => (

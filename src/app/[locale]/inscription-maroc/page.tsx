@@ -176,7 +176,7 @@ const content = {
 
     // Trust Stats
     stats: [
-      { value: "2670+", label: "Listed Agencies" },
+      { value: "4000+", label: "Listed Agencies" },
       { value: "45+", label: "Countries Covered" },
       { value: "50K+", label: "Monthly Visitors" },
     ],
@@ -187,7 +187,7 @@ const content = {
     whoWeAreText: "TravelAgencies.World is an international travel agency directory, founded in France and developed in the United States. Our mission: connect travelers with reliable agencies worldwide. Today, we're opening our doors to Morocco to offer local agencies unprecedented international visibility.",
     whoWeArePoints: [
       "Presence in over 45 countries",
-      "More than 2670 travel agencies listed",
+      "More than 4000 travel agencies listed",
       "Thousands of international travelers every month",
       "Google-optimized SEO",
     ],
@@ -314,7 +314,7 @@ const content = {
 
     // Trust Stats
     stats: [
-      { value: "+2670", label: "وكالة مسجلة" },
+      { value: "+4000", label: "وكالة مسجلة" },
       { value: "+45", label: "دولة" },
       { value: "+50 ألف", label: "زائر شهرياً" },
     ],
@@ -325,7 +325,7 @@ const content = {
     whoWeAreText: "TravelAgencies.World هو دليل دولي لوكالات السفر، تأسس في فرنسا وتطور في الولايات المتحدة. مهمتنا: ربط المسافرين بوكالات موثوقة في جميع أنحاء العالم. اليوم، نفتح أبوابنا للمغرب لنقدم للوكالات المحلية ظهوراً دولياً غير مسبوق.",
     whoWeArePoints: [
       "تواجد في أكثر من 45 دولة",
-      "أكثر من 2670 وكالة سفر مسجلة",
+      "أكثر من 4000 وكالة سفر مسجلة",
       "آلاف المسافرين الدوليين كل شهر",
       "تحسين محركات البحث على Google",
     ],
@@ -439,6 +439,11 @@ const content = {
   },
 };
 
+export const metadata = {
+  title: "Inscription Agence de Voyage Maroc | Rejoignez +4000 Agences",
+  description: "Inscrivez votre agence de voyage au Maroc sur l'annuaire leader. Rejoignez plus de 4000 professionnels, améliorez votre visibilité et recevez des leads qualifiés.",
+};
+
 export default function InscriptionMaroc() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [copiedField, setCopiedField] = useState<string | null>(null);
@@ -546,7 +551,7 @@ export default function InscriptionMaroc() {
                   href="#benefits"
                   className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-medium transition-colors border border-white/20"
                 >
-                  {t.heroSecondary}
+                  {lang === "ar" ? "انضم إلى +4000 وكالة مغربية" : lang === "en" ? "Join +4000 Moroccan agencies" : "Rejoindre +4000 agences marocaines"}
                 </a>
               </div>
             </div>

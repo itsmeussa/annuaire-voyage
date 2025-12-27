@@ -92,9 +92,9 @@
         "title": "Questions Fréquemment Posées",
         "subtitle": "Tout ce que vous devez savoir pour trouver la bonne agence de voyage",
         "q1": "Comment trouver une agence de voyage fiable ?",
-        "a1": "Utilisez TravelAgencies.World pour comparer plus de 2670 agences vérifiées avec de vrais avis Google. Filtrez par lieu, note et spécialité.",
+        "a1": "Utilisez TravelAgencies.World pour comparer plus de 4000 agences vérifiées avec de vrais avis Google. Filtrez par lieu, note et spécialité.",
         "q2": "Les agences de ce répertoire sont-elles vérifiées ?",
-        "a2": "Oui, plus de 2670 agences sont sourcées depuis Google Maps avec des avis et notes authentiques.",
+        "a2": "Oui, plus de 4000 agences sont sourcées depuis Google Maps avec des avis et notes authentiques.",
         "q3": "Comment puis-je contacter une agence ?",
         "a3": "Chaque fiche d'agence inclut des coordonnées directes (téléphone, site web, Google Maps).",
         "q4": "Est-ce gratuit d'utiliser TravelAgencies.World ?",
@@ -213,7 +213,7 @@
     },
     "ForAgencies": {
         "hero": {
-            "tag": "Rejoignez 2 670+ Agences",
+            "tag": "Rejoignez 4 000+ Agences",
             "title": "Développez Votre",
             "titleHighlight": "Agence de Voyage",
             "subtitle": "Réclamez votre profil, grérez votre réputation et connectez-vous avec des millions de voyageurs.",

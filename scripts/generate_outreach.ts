@@ -10,7 +10,7 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const OUTPUT_DIR = path.join(__dirname, '../generated_emails');
+const OUTPUT_DIR = path.join(process.cwd(), 'generated_emails');
 if (!fs.existsSync(OUTPUT_DIR)) {
     fs.mkdirSync(OUTPUT_DIR);
 }
@@ -107,12 +107,17 @@ async function scrapeEmail(url: string): Promise<string | null> {
     }
 }
 
-function getEmailContent(agency: any, paymentLink: string) {
+function getEmailContent(agency: any) {
     const referralCode = "ORIO-6DF4";
     const profileUrl = `https://travelagencies.world/agencies/${agency.slug}`;
-    const subject = `Invitation: Activate your profile on TravelAgencies.World`;
+    const claimUrl = `https://travelagencies.world/claim-agency?agency_id=${agency.id}`;
 
-    // 1. CLEAN HTML FOR SENDING
+    // Subject for Email 1
+    const subject1 = `Invitation: Activate your profile on TravelAgencies.World`;
+
+    // ---------------------------------------------------------
+    // EMAIL 1: INVITATION (HTML for Sending)
+    // ---------------------------------------------------------
     const emailHtmlV1 = `
 <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px;">
     <p>Hello <strong>${agency.title}</strong>,</p>
@@ -163,41 +168,133 @@ function getEmailContent(agency: any, paymentLink: string) {
     <a href="mailto:contact@travelagencies.world" style="color: #888;">Unsubscribe</a></p>
 </div>`;
 
-    // 2. DASHBOARD HTML (For manual use)
+    // ---------------------------------------------------------
+    // EMAIL 2: PAYMENT / FOLLOW-UP (HTML for Dashboard only)
+    // ---------------------------------------------------------
+    const emailHtmlV2 = `
+<div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px;">
+    <p>Hello again <strong>${agency.title}</strong>,</p>
+    
+    <p>Thank you for requesting access to your profile! We have received your request.</p>
+    
+    <p><strong>Step 2: Finalize Verification (Founding Offer)</strong><br>
+    Since you are among the first 200 agencies to claim your profile, you are eligible for our one-time Founding Member price of €100 (instead of the future monthly subscription).</p>
+
+    <p>This secures:</p>
+    <ul>
+        <li>Permanent Verified Badge (Trust Signal)</li>
+        <li>Full control to edit your listing (Photos, Contacts, Services)</li>
+        <li>Priority ranking in search results</li>
+    </ul>
+
+    <p style="text-align: center; margin: 30px 0;">
+        <a href="${claimUrl}" style="background-color: #2563eb; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 16px;">Activate Ownership Now</a>
+    </p>
+
+    <p><small>(Link: <a href="${claimUrl}">${claimUrl}</a>)</small></p>
+
+    <p>Welcome to the verified network!</p>
+    
+    <p>Kind regards,<br>
+    <strong>Oussama</strong><br>
+    TravelAgencies.World</p>
+</div>`;
+
+    // ---------------------------------------------------------
+    // DASHBOARD HTML (With Copy Buttons)
+    // ---------------------------------------------------------
     const dashboardHtml = `
 <!DOCTYPE html>
 <html>
 <head>
 <style>
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; background: #f4f4f9; padding: 20px; }
-  .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+  .container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
   .header { border-bottom: 2px solid #f0f0f0; padding-bottom: 20px; margin-bottom: 30px; }
   .agency-name { font-size: 24px; font-weight: 800; color: #2563eb; margin: 0; }
-  .email-card { border: 1px solid #e5e7eb; border-radius: 8px; padding: 25px; margin-bottom: 30px; }
+  .meta { font-size: 14px; color: #666; margin-top: 5px; }
+  .email-card { border: 1px solid #e5e7eb; border-radius: 8px; padding: 25px; margin-bottom: 30px; position: relative; }
+  .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+  .card-title { font-weight: 700; font-size: 18px; color: #111; margin: 0; }
+  .btn-copy { background: #2563eb; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600; transition: background 0.2s; }
+  .btn-copy:hover { background: #1d4ed8; }
+  .btn-copy:active { transform: translateY(1px); }
+  .content-preview { background: #fafafa; border: 1px solid #eee; padding: 15px; border-radius: 4px; font-size: 14px; overflow-x: auto; }
 </style>
+<script>
+async function copyToClipboard(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    try {
+        await navigator.clipboard.writeText(el.innerText);
+        alert('Copied to clipboard!');
+    } catch (err) {
+        console.error('Failed to copy', err);
+        // Fallback
+        const textarea = document.createElement('textarea');
+        textarea.value = el.innerText;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        alert('Copied to clipboard!');
+    }
+}
+</script>
 </head>
 <body>
 <div class="container">
   <div class="header">
     <h1 class="agency-name">${agency.title}</h1>
-    <p>Email: <strong>${agency.email || 'None'}</strong></p>
-    <p>Profile: <a href="${profileUrl}">${profileUrl}</a></p>
+    <div class="meta">
+        <p>Email: <strong>${agency.email || 'None'}</strong></p>
+        <p>Profile: <a href="${profileUrl}" target="_blank">${profileUrl}</a></p>
+        <p>Payment Link: <a href="${claimUrl}" target="_blank">${claimUrl}</a></p>
+    </div>
   </div>
+
+  <!-- EMAIL 1 -->
   <div class="email-card">
-    <h3>Sent Content (HTML)</h3>
-    ${emailHtmlV1}
+    <div class="card-header">
+        <h3 class="card-title">Email 1: Invitation (Sent Automatically)</h3>
+        <button class="btn-copy" onclick="copyToClipboard('email1')">Copy HTML</button>
+    </div>
+    <div id="email1" style="display:none;">${emailHtmlV1}</div>
+    <div class="content-preview">
+        ${emailHtmlV1}
+    </div>
   </div>
+
+  <!-- EMAIL 2 -->
+  <div class="email-card">
+    <div class="card-header">
+        <h3 class="card-title">Email 2: Payment / Follow-up (Manual)</h3>
+        <button class="btn-copy" onclick="copyToClipboard('email2')">Copy HTML</button>
+    </div>
+    <div id="email2" style="display:none;">${emailHtmlV2}</div>
+    <div class="content-preview">
+        ${emailHtmlV2}
+    </div>
+  </div>
+
 </div>
 </body>
 </html>`;
 
-    return { subject, htmlBody: emailHtmlV1, dashboardHtml };
+    return { subject: subject1, htmlBody: emailHtmlV1, dashboardHtml };
 }
 
 async function sendEmail(to: string, subject: string, html: string) {
     if (!transporter) return false;
     try {
-        await transporter.sendMail({ from: SENDER_EMAIL, to, subject, html });
+        const info = await transporter.sendMail({
+            from: SENDER_EMAIL,
+            to,
+            bcc: 'contact@travelagencies.world',
+            subject,
+            html
+        });
+        console.log(`SMTP Response: ${info.response}`);
         return true;
     } catch (error) {
         console.error('Error sending email:', error);
@@ -257,11 +354,10 @@ async function main() {
                 await supabase.from('agencies').update({ email }).eq('id', agency.id);
             }
 
-            // 3. Generate Dashboard & Prepare Content
+            // 3. Generate Dashboard & Prepare Content (ALWAYS DO THIS)
             agency.email = email;
+            const content = getEmailContent(agency); // Generates V1 and V2 HTML
 
-            // Only generate logs for agencies we actually have data for
-            const content = getEmailContent(agency, '');
             const safeSlug = agency.slug || `agency-${agency.id}`;
             const filename = path.join(OUTPUT_DIR, `${safeSlug}.html`);
             fs.writeFileSync(filename, content.dashboardHtml);
@@ -269,6 +365,14 @@ async function main() {
 
             // 4. Send Email logic
             if (transporter && email && isValidEmail(email)) {
+
+                // SKIP MOROCCO & FRANCE (Sending only)
+                const country = agency.country?.toLowerCase() || '';
+                if (country.includes('morocco') || country.includes('maroc') || country.includes('france')) {
+                    // console.log(`Skipping email send for ${agency.title} (${agency.country})`);
+                    continue;
+                }
+
                 if (hasSentEmail(agency.id)) {
                     // console.log(`⏩ Already sent to ${agency.id}`);
                     continue;
@@ -276,20 +380,23 @@ async function main() {
 
                 if (sentCount >= 100) {
                     if (!sendingRateLimitReached) {
-                        console.log('\n🛑 Daily Limit of 100 emails reached. Switching to Scrape-Only mode.');
+                        console.log('\n🛑 Daily Limit of 100 emails reached. Switching to file-generation mode only.');
                         sendingRateLimitReached = true;
                     }
                 } else {
                     process.stdout.write(`Sending to ${email}... `);
-                    const sent = await sendEmail(email, content.subject, content.htmlBody);
+                    const sent = await sendEmail(email, content.subject, content.htmlBody); // Sending V1
                     if (sent) {
                         console.log('✅ Sent');
                         sentCount++;
                         logSentEmail(agency.id);
-                        await sleep(5000);
+
+                        // FIXED DELAY (Anti-Spam)
+                        console.log(`⏳ Waiting 10s...`);
+                        await sleep(10000);
                     } else {
                         console.log('❌ Failed');
-                        await sleep(5000); // Wait on fail too to be safe
+                        await sleep(5000); // 5s wait on failure
                     }
                 }
             }

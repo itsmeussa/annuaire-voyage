@@ -11,6 +11,10 @@ interface AgencyCardProps {
 
 // Generate a consistent image ID based on the agency
 function getAgencyImage(agency: Agency): string {
+  // Use uploaded image if available
+  if (agency.imageUrl) {
+    return agency.imageUrl;
+  }
   // Use a hash of the agency id to get consistent but varied images
   // Use the agency id (or slug) directly as seed to ensure uniqueness
   return `https://picsum.photos/seed/${agency.id}/400/200`;

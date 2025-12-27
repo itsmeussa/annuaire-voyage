@@ -45,3 +45,4 @@ scripts/test_email.ts
 extract-contacts.js
 export-vcf.js
 
+*.sql

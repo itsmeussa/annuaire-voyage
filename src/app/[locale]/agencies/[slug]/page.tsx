@@ -633,6 +633,35 @@ export default async function AgencyPage({ params }: PageProps) {
                     </div>
                   )}
 
+                  {agency.email && (
+                    <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-xl">
+                      <div className="h-5 w-5 flex items-center justify-center mt-0.5">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-4 w-4 text-primary"
+                        >
+                          <rect width="20" height="16" x="2" y="4" rx="2" />
+                          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground">Email</p>
+                        <a
+                          href={`mailto:${agency.email}`}
+                          className="text-primary hover:underline font-medium break-all"
+                        >
+                          {agency.email}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+
                   {agency.website && (
                     <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-xl">
                       <Globe className="h-5 w-5 text-primary mt-0.5" />
@@ -674,44 +703,46 @@ export default async function AgencyPage({ params }: PageProps) {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Agency Management & Experiences */}
-      <section className="py-16 bg-gray-50">
+      < section className="py-16 bg-gray-50" >
         <div className="container mx-auto px-4">
           <ManageAgency agencyId={agency.id} agencySlug={agency.slug} />
         </div>
-      </section>
+      </section >
 
       {/* Similar Agencies */}
-      {similarAgencies.length > 0 && (
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-foreground mb-3 animate-fade-in-up">
-                Similar Agencies in {agency.cityNormalized}
-              </h2>
-              <p className="text-muted-foreground">Discover more trusted travel agencies near you</p>
+      {
+        similarAgencies.length > 0 && (
+          <section className="py-16 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-10">
+                <h2 className="text-3xl font-bold text-foreground mb-3 animate-fade-in-up">
+                  Similar Agencies in {agency.cityNormalized}
+                </h2>
+                <p className="text-muted-foreground">Discover more trusted travel agencies near you</p>
+              </div>
+              <div className="grid md:grid-cols-3 gap-6 stagger-children">
+                {similarAgencies.map((a, index) => (
+                  <div key={a.id} className="hover-lift" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <AgencyCard agency={a} />
+                  </div>
+                ))}
+              </div>
+              <div className="text-center mt-10">
+                <Link
+                  href={`/agencies?city=${agency.cityNormalized}`}
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:from-primary/90 hover:to-blue-500 transition-all shadow-lg shadow-primary/25 hover:shadow-xl"
+                >
+                  View All Agencies in {agency.cityNormalized}
+                  <ArrowLeft className="h-5 w-5 rotate-180" />
+                </Link>
+              </div>
             </div>
-            <div className="grid md:grid-cols-3 gap-6 stagger-children">
-              {similarAgencies.map((a, index) => (
-                <div key={a.id} className="hover-lift" style={{ animationDelay: `${index * 0.1}s` }}>
-                  <AgencyCard agency={a} />
-                </div>
-              ))}
-            </div>
-            <div className="text-center mt-10">
-              <Link
-                href={`/agencies?city=${agency.cityNormalized}`}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:from-primary/90 hover:to-blue-500 transition-all shadow-lg shadow-primary/25 hover:shadow-xl"
-              >
-                View All Agencies in {agency.cityNormalized}
-                <ArrowLeft className="h-5 w-5 rotate-180" />
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )
+      }
 
       {/* CTA */}
       <CTASection variant="secondary" country={agency.country} />

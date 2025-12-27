@@ -32,6 +32,7 @@ export default function EditAgencyModal({
         state: "",
         country_code: "",
         phone: "",
+        email: "",
         website: "",
         category_name: "",
         google_maps_url: "",
@@ -59,6 +60,7 @@ export default function EditAgencyModal({
                 state: data.state || "",
                 country_code: data.country_code || "",
                 phone: data.phone || "",
+                email: data.email || "",
                 website: data.website || "",
                 category_name: data.category_name || "",
                 google_maps_url: data.url || "",
@@ -157,6 +159,7 @@ export default function EditAgencyModal({
                     state: formData.state,
                     country_code: formData.country_code,
                     phone: formData.phone,
+                    email: formData.email,
                     website: formData.website,
                     category_name: formData.category_name,
                     url: formData.google_maps_url,
@@ -425,6 +428,21 @@ export default function EditAgencyModal({
                                         setFormData({ ...formData, phone: e.target.value })
                                     }
                                     placeholder="+33 1 23 45 67 89"
+                                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                    Email Address
+                                </label>
+                                <input
+                                    type="email"
+                                    value={formData.email}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, email: e.target.value })
+                                    }
+                                    placeholder="contact@agency.com"
                                     className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
                                 />
                             </div>

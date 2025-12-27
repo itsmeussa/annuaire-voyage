@@ -91,14 +91,14 @@ export default function ManageAgency({ agencyId, agencySlug }: ManageAgencyProps
         <div className="space-y-6">
             {/* Owner Controls */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-0">
                     <div>
                         <h3 className="text-sm font-semibold text-blue-900">Agency Management</h3>
                         <p className="text-xs text-blue-700 mt-1">
                             You have edit access to this agency
                         </p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                         <button
                             onClick={() => setShowEditModal(true)}
                             className="flex items-center gap-2 px-4 py-2 bg-white border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-50 transition-colors text-sm font-medium"

@@ -76,7 +76,7 @@ export default function BlogContent() {
                       <div className="aspect-video md:aspect-auto">
                         <img
                           src={featuredPost.image}
-                          alt={featuredPost.title}
+                          alt={getLocalizedContent(featuredPost).title}
                           className="w-full h-full object-cover"
                         />
                       </div>
@@ -126,7 +126,7 @@ export default function BlogContent() {
                       <div className="aspect-video overflow-hidden">
                         <img
                           src={post.image}
-                          alt={post.title}
+                          alt={getLocalizedContent(post).title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                       </div>

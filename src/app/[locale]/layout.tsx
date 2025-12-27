@@ -80,12 +80,46 @@ export default async function RootLayout({
   const messages = await getMessages();
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "TravelAgencies.World",
+        "url": "https://www.travelagencies.world",
+        "logo": "https://www.travelagencies.world/travellogos/144x144.png",
+        "description": "4000+ Verified Travel Agencies Worldwide. Compare agencies in Morocco, France, USA & more.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "MA"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "TravelAgencies.World",
+        "url": "https://www.travelagencies.world",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.travelagencies.world/agencies?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  };
+
   return (
     <html lang={locale} dir={dir}>
       <head>
         <link rel="icon" href="/travellogos/144x144.png" type="image/png" />
       </head>
       <body className={poppins.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <NextIntlClientProvider messages={messages}>
           <ChatBotProvider>
             <div className="flex flex-col min-h-screen">

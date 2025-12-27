@@ -4,116 +4,26 @@ IndexNow API - Instant Bing & Yandex Indexing
 """
 
 import requests
+import os
+import xml.etree.ElementTree as ET
 
 API_KEY = "2b8aceb7cea24c529ede91c7a6d9ac34"
 HOST = "www.travelagencies.world"
 KEY_LOCATION = f"https://{HOST}/{API_KEY}.txt"
+# Fetch from LOCALHOST to get the latest sitemap generation with all 4000+ pages
+SITEMAP_URL = "http://localhost:3000/sitemap.xml"
 
-URLS_TO_INDEX = [
-    # ========== CORE PAGES ==========
-    f"https://{HOST}",
-    f"https://{HOST}/agencies",
-    f"https://{HOST}/destinations",
-    f"https://{HOST}/blog",
-    f"https://{HOST}/about",
-    f"https://{HOST}/contact",
-    f"https://{HOST}/privacy",
-    f"https://{HOST}/terms",
+# Explicitly list new pages that might not be in the sitemap yet
+NEW_PAGES = [
+    # ========== CAN 2025 BLOG POSTS ==========
+    f"https://{HOST}/blog/can-2025-predictions-maroc-favori",
+    f"https://{HOST}/blog/can-2025-qui-va-gagner-pronostics",
+    f"https://{HOST}/blog/can-2025-maroc-parcours-mondial",
+    f"https://{HOST}/blog/can-2025-calendrier-matchs-maroc",
+    f"https://{HOST}/blog/can-2025-voyage-maroc-supporters",
+    f"https://{HOST}/blog/can-2025-stades-maroc-villes-hotes",
     
-    # ========== ALL COUNTRY PAGES ==========
-    f"https://{HOST}/agencies/country/Australia",
-    f"https://{HOST}/agencies/country/Austria",
-    f"https://{HOST}/agencies/country/Bahrain",
-    f"https://{HOST}/agencies/country/Belgium",
-    f"https://{HOST}/agencies/country/Canada",
-    f"https://{HOST}/agencies/country/Denmark",
-    f"https://{HOST}/agencies/country/France",
-    f"https://{HOST}/agencies/country/Germany",
-    f"https://{HOST}/agencies/country/Hong%20Kong",
-    f"https://{HOST}/agencies/country/Iceland",
-    f"https://{HOST}/agencies/country/Ireland",
-    f"https://{HOST}/agencies/country/Italy",
-    f"https://{HOST}/agencies/country/Japan",
-    f"https://{HOST}/agencies/country/Malaysia",
-    f"https://{HOST}/agencies/country/Morocco",
-    f"https://{HOST}/agencies/country/Netherlands",
-    f"https://{HOST}/agencies/country/New%20Zealand",
-    f"https://{HOST}/agencies/country/Norway",
-    f"https://{HOST}/agencies/country/Portugal",
-    f"https://{HOST}/agencies/country/South%20Korea",
-    f"https://{HOST}/agencies/country/Spain",
-    f"https://{HOST}/agencies/country/Sweden",
-    f"https://{HOST}/agencies/country/United%20Arab%20Emirates",
-    f"https://{HOST}/agencies/country/United%20Kingdom",
-    f"https://{HOST}/agencies/country/United%20States",
-    
-    # ========== TOP CITY PAGES ==========
-    f"https://{HOST}/agencies/country/Morocco/city/Marrakech",
-    f"https://{HOST}/agencies/country/Morocco/city/Casablanca",
-    f"https://{HOST}/agencies/country/Morocco/city/Agadir",
-    f"https://{HOST}/agencies/country/Morocco/city/Fes",
-    f"https://{HOST}/agencies/country/Morocco/city/Tangier",
-    f"https://{HOST}/agencies/country/Morocco/city/Rabat",
-    f"https://{HOST}/agencies/country/Morocco/city/Essaouira",
-    f"https://{HOST}/agencies/country/Morocco/city/Ouarzazate",
-    f"https://{HOST}/agencies/country/France/city/Paris",
-    f"https://{HOST}/agencies/country/France/city/Lyon",
-    f"https://{HOST}/agencies/country/France/city/Marseille",
-    f"https://{HOST}/agencies/country/France/city/Nice",
-    f"https://{HOST}/agencies/country/France/city/Toulouse",
-    f"https://{HOST}/agencies/country/France/city/Bordeaux",
-    f"https://{HOST}/agencies/country/United%20Kingdom/city/London",
-    f"https://{HOST}/agencies/country/United%20Kingdom/city/Manchester",
-    f"https://{HOST}/agencies/country/United%20Kingdom/city/Birmingham",
-    f"https://{HOST}/agencies/country/United%20Kingdom/city/Edinburgh",
-    f"https://{HOST}/agencies/country/United%20Kingdom/city/Glasgow",
-    f"https://{HOST}/agencies/country/United%20Kingdom/city/Liverpool",
-    f"https://{HOST}/agencies/country/Spain/city/Barcelona",
-    f"https://{HOST}/agencies/country/Spain/city/Madrid",
-    f"https://{HOST}/agencies/country/Spain/city/Seville",
-    f"https://{HOST}/agencies/country/Spain/city/Valencia",
-    f"https://{HOST}/agencies/country/Spain/city/Malaga",
-    f"https://{HOST}/agencies/country/Italy/city/Rome",
-    f"https://{HOST}/agencies/country/Italy/city/Milan",
-    f"https://{HOST}/agencies/country/Italy/city/Florence",
-    f"https://{HOST}/agencies/country/Italy/city/Venice",
-    f"https://{HOST}/agencies/country/Italy/city/Naples",
-    f"https://{HOST}/agencies/country/United%20States/city/New%20York",
-    f"https://{HOST}/agencies/country/United%20States/city/Los%20Angeles",
-    f"https://{HOST}/agencies/country/United%20States/city/Miami",
-    f"https://{HOST}/agencies/country/United%20States/city/Las%20Vegas",
-    f"https://{HOST}/agencies/country/United%20States/city/San%20Francisco",
-    f"https://{HOST}/agencies/country/United%20States/city/Chicago",
-    f"https://{HOST}/agencies/country/Germany/city/Berlin",
-    f"https://{HOST}/agencies/country/Germany/city/Munich",
-    f"https://{HOST}/agencies/country/Germany/city/Frankfurt",
-    f"https://{HOST}/agencies/country/Germany/city/Hamburg",
-    f"https://{HOST}/agencies/country/Netherlands/city/Amsterdam",
-    f"https://{HOST}/agencies/country/Netherlands/city/Rotterdam",
-    f"https://{HOST}/agencies/country/Portugal/city/Lisbon",
-    f"https://{HOST}/agencies/country/Portugal/city/Porto",
-    f"https://{HOST}/agencies/country/Belgium/city/Brussels",
-    f"https://{HOST}/agencies/country/Belgium/city/Antwerp",
-    f"https://{HOST}/agencies/country/Japan/city/Tokyo",
-    f"https://{HOST}/agencies/country/Japan/city/Osaka",
-    f"https://{HOST}/agencies/country/Australia/city/Sydney",
-    f"https://{HOST}/agencies/country/Australia/city/Melbourne",
-    f"https://{HOST}/agencies/country/Canada/city/Toronto",
-    f"https://{HOST}/agencies/country/Canada/city/Vancouver",
-    f"https://{HOST}/agencies/country/United%20Arab%20Emirates/city/Dubai",
-    f"https://{HOST}/agencies/country/Ireland/city/Dublin",
-    
-    # ========== CATEGORY PAGES ==========
-    f"https://{HOST}/agencies/category/Travel%20Agency",
-    f"https://{HOST}/agencies/category/Tour%20operator",
-    f"https://{HOST}/agencies/category/Tourism%20Agency",
-    f"https://{HOST}/agencies/category/Adventure%20Tours",
-    f"https://{HOST}/agencies/category/Boat%20tour%20agency",
-    f"https://{HOST}/agencies/category/Bus%20tour%20agency",
-    f"https://{HOST}/agencies/category/Tourist%20attraction",
-    f"https://{HOST}/agencies/category/Sightseeing%20tour%20agency",
-    
-    # ========== BLOG PAGES ==========
+    # ========== EXISTING BLOG POSTS ==========
     f"https://{HOST}/blog/how-to-choose-travel-agency",
     f"https://{HOST}/blog/top-destinations-2025",
     f"https://{HOST}/blog/morocco-travel-guide",
@@ -122,10 +32,95 @@ URLS_TO_INDEX = [
     f"https://{HOST}/blog/travel-insurance-guide",
 ]
 
+def get_sitemap_urls(sitemap_url):
+    """Fetches all URLs from the XML sitemap."""
+    try:
+        print(f"📡 Fetching sitemap from {sitemap_url}...")
+        response = requests.get(sitemap_url)
+        if response.status_code != 200:
+            print(f"⚠️ Failed to fetch sitemap: Status {response.status_code}")
+            return []
+        
+        root = ET.fromstring(response.content)
+        namespace = {'ns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+        
+        urls = []
+        for url in root.findall('ns:url', namespace):
+            loc = url.find('ns:loc', namespace)
+            if loc is not None and loc.text:
+                urls.append(loc.text)
+        
+        print(f"✅ Found {len(urls)} URLs in sitemap.")
+        return urls
+    except Exception as e:
+        print(f"❌ Error parsing sitemap: {e}")
+        return []
+
+
+def get_env_var(name):
+    """Reads .env.local to find a variable."""
+    try:
+        env_path = os.path.join("c:\\Users\\pc\\Desktop\\freelance\\annuaire-voyage", ".env.local")
+        with open(env_path, "r") as f:
+            for line in f:
+                if line.startswith(name + "="):
+                    return line.strip().split("=", 1)[1].strip('"').strip("'")
+    except Exception as e:
+        print(f"⚠️ Could not read {name} from .env.local: {e}")
+    return None
+
+def get_all_agencies_from_db():
+    """Fetches all agency slugs directly from Supabase to bypass sitemap limits."""
+    print("📡 Fetching ALL agencies from Supabase DB...")
+    
+    sb_url = get_env_var("NEXT_PUBLIC_SUPABASE_URL")
+    sb_key = get_env_var("SUPABASE_SERVICE_ROLE_KEY")
+    
+    if not sb_url or not sb_key:
+        print("⚠️ Missing Supabase credentials, skipping DB fetch.")
+        return []
+
+    all_slugs = []
+    offset = 0
+    limit = 1000 # Supabase max rows per request
+    
+    while True:
+        headers = {
+            "apikey": sb_key,
+            "Authorization": f"Bearer {sb_key}",
+            "Range": f"{offset}-{offset + limit - 1}"
+        }
+        
+        try:
+            url = f"{sb_url}/rest/v1/agencies?select=slug&status=eq.approved"
+            response = requests.get(url, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                if not data:
+                    break
+                    
+                print(f"   Fetched {len(data)} agencies (offset {offset})...")
+                all_slugs.extend([f"https://{HOST}/agencies/{item['slug']}" for item in data])
+                
+                if len(data) < limit:
+                    break
+                    
+                offset += limit
+            else:
+                print(f"❌ Failed to fetch from DB: {response.status_code}")
+                break
+        except Exception as e:
+            print(f"❌ Error fetching from DB: {e}")
+            break
+            
+    print(f"✅ Found {len(all_slugs)} agencies in DB total.")
+    return all_slugs
 
 def submit_to_indexnow(urls: list, search_engine: str = "api.indexnow.org") -> dict:
     endpoint = f"https://{search_engine}/indexnow"
     payload = {"host": HOST, "key": API_KEY, "keyLocation": KEY_LOCATION, "urlList": urls}
+    # IndexNow accepts up to 10,000 URLs per batch
     response = requests.post(endpoint, json=payload, headers={"Content-Type": "application/json"})
     return {"search_engine": search_engine, "status_code": response.status_code, "urls_submitted": len(urls)}
 
@@ -133,14 +128,24 @@ def submit_to_indexnow(urls: list, search_engine: str = "api.indexnow.org") -> d
 def main():
     print("🚀 IndexNow - Instant Search Engine Notification")
     print("=" * 50)
-    print(f"📝 Submitting {len(URLS_TO_INDEX)} URLs...")
+    
+    # 1. Get URLs from Sitemap
+    sitemap_urls = get_sitemap_urls(SITEMAP_URL)
+    
+    # 2. Get Agencies from DB
+    agency_urls = get_all_agencies_from_db()
+    
+    # 3. Combine and deduplicate
+    all_urls = sorted(list(set(sitemap_urls + agency_urls + NEW_PAGES)))
+    
+    print(f"📝 Submitting {len(all_urls)} URLs...")
     print()
     
     engines = ["api.indexnow.org", "www.bing.com", "yandex.com"]
     
     for engine in engines:
         try:
-            result = submit_to_indexnow(URLS_TO_INDEX, engine)
+            result = submit_to_indexnow(all_urls, engine)
             if result["status_code"] in [200, 202]:
                 print(f"✅ {engine}: Submitted {result['urls_submitted']} URLs")
             else:

@@ -144,7 +144,7 @@ export default async function AgencyPage({ params }: PageProps) {
   }
 
   // Get similar agencies from the same city
-  const { agencies: similarList } = await filterAgencies("", agency.cityNormalized, "", 0, "", "all", 1, 20, supabase);
+  const { agencies: similarList } = await filterAgencies("", agency.cityNormalized, "", 0, "", "all", false, 1, 20, supabase);
   const similarAgencies = similarList
     .filter((a) => a.id !== agency.id)
     .slice(0, 3);

@@ -71,6 +71,7 @@ function mapDbToAgency(dbRecord: any): Agency {
     featured: dbRecord.featured || false,
     verified: dbRecord.verified || !!dbRecord.owner_id || false,
     email: dbRecord.email || null,
+    imageUrl: dbRecord.image_url || null,
     location: location
   };
 }

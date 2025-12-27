@@ -38,7 +38,7 @@ const content = {
 
     // Trust Stats
     stats: [
-      { value: "2670+", label: "Agences référencées" },
+      { value: "4000+", label: "Agences référencées" },
       { value: "45+", label: "Pays couverts" },
       { value: "50K+", label: "Visiteurs mensuels" },
     ],
@@ -49,7 +49,7 @@ const content = {
     whoWeAreText: "TravelAgencies.World est un annuaire international d'agences de voyage, fondé en France et développé aux États-Unis. Notre mission : connecter les voyageurs avec des agences fiables partout dans le monde. Aujourd'hui, nous ouvrons nos portes au Maroc pour offrir aux agences locales une visibilité internationale sans précédent.",
     whoWeArePoints: [
       "Présence dans plus de 45 pays",
-      "Plus de 2670 agences de voyage référencées",
+      "Plus de 4000 agences de voyage référencées",
       "Milliers de voyageurs internationaux chaque mois",
       "Référencement optimisé sur Google",
     ],
@@ -563,7 +563,7 @@ export default function InscriptionMaroc() {
                   {lang === "ar" ? "انضم إلى شبكتنا الدولية" : lang === "en" ? "Join Our Global Network" : "Rejoignez notre réseau international"}
                 </h3>
                 <p className="text-slate-500 text-sm">
-                  {lang === "ar" ? "أكثر من 2670 وكالة في 45+ دولة" : lang === "en" ? "2670+ agencies in 45+ countries" : "Plus de 2670 agences dans 45+ pays"}
+                  {lang === "ar" ? "أكثر من 4000 وكالة في 45+ دولة" : lang === "en" ? "4000+ agencies in 45+ countries" : "Plus de 4000 agences dans 45+ pays"}
                 </p>
               </div>
 

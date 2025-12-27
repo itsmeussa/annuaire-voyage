@@ -198,7 +198,7 @@ export default async function AboutPage() {
                   <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 p-1">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden relative">
                       <Image
-                        src="/travellogos/ous.jfif"
+                        src="/travellogos/ous.jpg"
                         alt="Oussama Mounajjim"
                         fill
                         className="object-cover"
@@ -233,7 +233,7 @@ export default async function AboutPage() {
                   <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-indigo-600 to-purple-600 p-1">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden relative">
                       <Image
-                        src="/travellogos/zak.jfif"
+                        src="/travellogos/zak.jpg"
                         alt="Zakaria Kharoufi"
                         fill
                         className="object-cover"
@@ -268,7 +268,7 @@ export default async function AboutPage() {
                   <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-emerald-600 to-teal-600 p-1">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden relative">
                       <Image
-                        src="/travellogos/ahmed.jfif"
+                        src="/travellogos/ahmed.jpg"
                         alt="Ahmed Moukhafi"
                         fill
                         className="object-cover"
@@ -303,7 +303,7 @@ export default async function AboutPage() {
                   <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-orange-600 to-amber-600 p-1">
                     <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden relative">
                       <Image
-                        src="/travellogos/amine.jfif"
+                        src="/travellogos/amine.jpg"
                         alt="Amine Arbaoui"
                         fill
                         className="object-cover"

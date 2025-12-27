@@ -45,7 +45,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { country } = await params;
   const decodedCountry = decodeURIComponent(country);
-  const { agencies } = await filterAgencies("", "", decodedCountry, 0, "", "all", 1, 10000);
+  const { agencies } = await filterAgencies("", "", decodedCountry, 0, "", "all", false, 1, 10000);
   const info = countryData[decodedCountry] || { name: decodedCountry, emoji: "🌍", description: `Find verified travel agencies in ${decodedCountry}.`, topCities: [] };
 
   const agencyCount = agencies.length;
@@ -96,7 +96,7 @@ export default async function CountryAgenciesPage({ params }: PageProps) {
     cities,
     categories
   ] = await Promise.all([
-    filterAgencies("", "", decodedCountry, 0, "", "all", 1, 12),
+    filterAgencies("", "", decodedCountry, 0, "", "all", false, 1, 12),
     getUniqueCities(decodedCountry),
     getUniqueCategories()
   ]);

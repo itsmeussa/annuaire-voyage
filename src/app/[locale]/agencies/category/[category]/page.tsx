@@ -64,7 +64,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category } = await params;
   const decodedCategory = decodeURIComponent(category);
-  const { agencies } = await filterAgencies("", "", "", 0, decodedCategory, "all", 1, 10000);
+  const { agencies } = await filterAgencies("", "", "", 0, decodedCategory, "all", false, 1, 10000);
   const info = categoryDescriptions[decodedCategory] || {
     title: decodedCategory,
     description: `Find verified ${decodedCategory.toLowerCase()} worldwide.`,
@@ -109,7 +109,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function CategoryAgenciesPage({ params }: PageProps) {
   const { category } = await params;
   const decodedCategory = decodeURIComponent(category);
-  const { agencies } = await filterAgencies("", "", "", 0, decodedCategory, "all", 1, 10000);
+  const { agencies } = await filterAgencies("", "", "", 0, decodedCategory, "all", false, 1, 10000);
   const info = categoryDescriptions[decodedCategory] || {
     title: decodedCategory,
     description: `Find verified ${decodedCategory.toLowerCase()} worldwide.`,

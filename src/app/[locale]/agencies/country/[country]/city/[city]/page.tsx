@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { country, city } = await params;
   const decodedCountry = decodeURIComponent(country);
   const decodedCity = decodeURIComponent(city);
-  const { agencies } = await filterAgencies("", decodedCity, decodedCountry, 0, "", "all", 1, 10000);
+  const { agencies } = await filterAgencies("", decodedCity, decodedCountry, 0, "", "all", false, 1, 10000);
 
   if (agencies.length === 0) {
     return { title: "City Not Found" };
@@ -90,7 +90,7 @@ export default async function CityAgenciesPage({ params }: PageProps) {
   const { country, city } = await params;
   const decodedCountry = decodeURIComponent(country);
   const decodedCity = decodeURIComponent(city);
-  const { agencies } = await filterAgencies("", decodedCity, decodedCountry, 0, "", "all", 1, 10000);
+  const { agencies } = await filterAgencies("", decodedCity, decodedCountry, 0, "", "all", false, 1, 10000);
 
   if (agencies.length === 0) {
     notFound();

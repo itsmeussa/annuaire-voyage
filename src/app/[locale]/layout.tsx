@@ -89,7 +89,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ChatBotProvider>
             <div className="flex flex-col min-h-screen">
-              <PromoBanner />
+              {/* <PromoBanner /> */}
               <Header />
               <main className="flex-1">{children}</main>
               <Footer />

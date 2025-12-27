@@ -14,7 +14,8 @@
         "forAgencies": "Pour les Agences",
         "listAgency": "Inscrire une Agence",
         "login": "Connexion",
-        "dashboard": "Tableau de bord"
+        "dashboard": "Tableau de bord",
+        "requestAccess": "Demander l'accès"
     },
     "Footer": {
         "rights": "Tous droits réservés.",
@@ -450,6 +451,117 @@
             "title": "Destination Introuvable ?",
             "subtitle": "Utilisez notre recherche avancée.",
             "button": "Rechercher parmi {count}+ Agences"
+        }
+    },
+    "Planner": {
+        "title": "Planificateur de Voyage IA",
+        "subtitle": "Votre assistant de voyage personnel. Racontez-nous votre rêve, nous planifierons le reste.",
+        "form": {
+            "destination": "Où voulez-vous aller ?",
+            "budget": "Quel est votre budget ?",
+            "travelers": "Combien de voyageurs ?",
+            "interests": "Quels sont vos intérêts ?",
+            "generate": "Générer l'itinéraire",
+            "generating": "Planification en cours..."
+        },
+        "placeholders": {
+            "destination": "ex: Paris, Tokyo, Marrakech",
+            "budget": "Sélectionner le budget",
+            "travelers": "Nombre de personnes",
+            "interests": "Sélectionner les intérêts"
+        },
+        "options": {
+            "budget": {
+                "budget": "Économique",
+                "moderate": "Modéré",
+                "luxury": "Luxe"
+            },
+            "interests": {
+                "culture": "Culture & Histoire",
+                "nature": "Nature & Aventure",
+                "food": "Gastronomie",
+                "shopping": "Shopping",
+                "relaxation": "Détente"
+            }
+        },
+        "results": {
+            "title": "Votre itinéraire de 3 jours",
+            "subtitle": "Basé sur vos préférences pour {destination}",
+            "day": "Jour {day}",
+            "morning": "Matin",
+            "afternoon": "Après-midi",
+            "evening": "Soirée",
+            "disclaimer": "Ceci est un itinéraire simulé généré par IA à des fins de démonstration.",
+            "book": "Réserver ce voyage"
+        }
+    },
+    "RequestAccess": {
+        "button": "Demander l'accès",
+        "buttonOwner": "Demander la propriété",
+        "title": "Gérer cette Agence",
+        "description": "Possédez-vous ou travaillez-vous pour {agencyName} ? Demandez l'accès pour gérer ce profil, mettre à jour les informations et répondre aux avis.",
+        "benefits": {
+            "title": "Pourquoi réclamer votre agence ?",
+            "b1": "Mettre à jour les infos et la description",
+            "b2": "Répondre aux avis clients",
+            "b3": "Ajouter des photos et offres spéciales"
+        },
+        "form": {
+            "name": "Nom complet",
+            "email": "Email professionnel",
+            "phone": "Numéro de téléphone",
+            "role": "Votre rôle",
+            "message": "Message supplémentaire",
+            "submit": "Envoyer la demande",
+            "cancel": "Annuler"
+        },
+        "success": {
+            "title": "Demande envoyée !",
+            "message": "Nous vérifions toutes les demandes pour garantir la sécurité. Vous aurez de nos nouvelles sous peu."
+        },
+        "error": {
+            "login": "Vous devez être connecté pour demander l'accès.",
+            "exists": "Vous avez déjà demandé l'accès à cette agence.",
+            "failed": "Échec de l'envoi de la demande. Veuillez réessayer."
+        },
+        "status": {
+            "pending": "Accès demandé",
+            "approved": "Accès approuvé",
+            "rejected": "Demande rejetée",
+            "pending_desc": "Nous examinerons votre demande et vous informerons par email.",
+            "requested_on": "Demandé le {date}"
+        },
+        "modal": {
+            "titleAccess": "Demander l'accès",
+            "titleOwner": "Demander la propriété",
+            "descAccess": "Vous demandez l'accès pour gérer {agencyTitle}.",
+            "descOwner": "Vous demandez la propriété de {agencyTitle}. Cette agence a actuellement un propriétaire. Veuillez expliquer pourquoi vous devriez avoir accès.",
+            "review": "Notre équipe examinera votre demande et vous informera par email une fois approuvée.",
+            "messageRequired": "Message (Requis)",
+            "messageOptional": "Message (Optionnel)",
+            "placeholderOwner": "Expliquez pourquoi vous devriez avoir la propriété de cette agence...",
+            "placeholderAccess": "Dites-nous pourquoi vous devriez avoir accès à cette agence...",
+            "submitting": "Envoi en cours...",
+            "loading": "Chargement..."
+        }
+    },
+    "Blog": {
+        "heroTitle": "Guide de Voyage",
+        "heroDesc": "Conseils d'experts, guides de destinations et avis de voyage pour vous aider à planifier votre aventure parfaite.",
+        "categories": {
+            "All": "Tout",
+            "CAN 2025": "CAN 2025",
+            "Travel Tips": "Conseils Voyage",
+            "Destinations": "Destinations",
+            "News": "Actualités"
+        },
+        "noArticles": "Aucun article trouvé dans cette catégorie.",
+        "loadMore": "Charger plus d'articles",
+        "newsletter": {
+            "title": "Restez Informé",
+            "desc": "Abonnez-vous à notre newsletter pour les derniers conseils de voyage, guides de destinations et offres exclusives.",
+            "placeholder": "Entrez votre email",
+            "button": "S'abonner"
         }
     }
 }

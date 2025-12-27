@@ -229,7 +229,7 @@ export default function FilterPanel({
       </button>
 
       {/* Promo Widget - Show CAN promo for Morocco, otherwise New Year promo */}
-      {selectedCountry === "Morocco" ? <PromoWidgetCAN /> : <PromoWidget />}
+      {/* {selectedCountry === "Morocco" ? <PromoWidgetCAN /> : <PromoWidget />} */}
     </div>
   );
 }

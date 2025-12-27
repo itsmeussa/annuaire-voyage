@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { KeyRound, Loader2 } from "lucide-react";
 import RequestAccessModal from "./RequestAccessModal";
+import { useTranslations } from "next-intl";
 
 interface RequestAccessButtonProps {
     agencyId: string;
@@ -22,6 +23,7 @@ export default function RequestAccessButton({
     hasOwner = false,
     existingRequest,
 }: RequestAccessButtonProps) {
+    const t = useTranslations('RequestAccess');
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const router = useRouter();

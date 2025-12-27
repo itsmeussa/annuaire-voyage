@@ -14,7 +14,8 @@
         "forAgencies": "For Agencies",
         "listAgency": "List Agency",
         "login": "Login",
-        "dashboard": "Dashboard"
+        "dashboard": "Dashboard",
+        "requestAccess": "Request Access"
     },
     "Footer": {
         "rights": "All rights reserved.",
@@ -450,6 +451,117 @@
             "title": "Can't Find Your Destination?",
             "subtitle": "Use our advanced search to find travel agencies anywhere in the world.",
             "button": "Search All {count}+ Agencies"
+        }
+    },
+    "Planner": {
+        "title": "AI Trip Planner",
+        "subtitle": "Your personal AI travel assistant. Tell us your dream, and we'll plan the rest.",
+        "form": {
+            "destination": "Where do you want to go?",
+            "budget": "What is your budget?",
+            "travelers": "How many travelers?",
+            "interests": "What are your interests?",
+            "generate": "Generate Itinerary",
+            "generating": "Planning your trip..."
+        },
+        "placeholders": {
+            "destination": "e.g., Paris, Tokyo, Marrakech",
+            "budget": "Select budget",
+            "travelers": "Number of people",
+            "interests": "Select interests"
+        },
+        "options": {
+            "budget": {
+                "budget": "Budget-Friendly",
+                "moderate": "Moderate",
+                "luxury": "Luxury"
+            },
+            "interests": {
+                "culture": "Culture & History",
+                "nature": "Nature & Adventure",
+                "food": "Food & Dining",
+                "shopping": "Shopping",
+                "relaxation": "Relaxation"
+            }
+        },
+        "results": {
+            "title": "Your 3-Day Itinerary",
+            "subtitle": "Based on your preferences for {destination}",
+            "day": "Day {day}",
+            "morning": "Morning",
+            "afternoon": "Afternoon",
+            "evening": "Evening",
+            "disclaimer": "This is a simulated AI-generated itinerary for demonstration purposes.",
+            "book": "Book This Trip"
+        }
+    },
+    "RequestAccess": {
+        "button": "Request Access",
+        "buttonOwner": "Request Ownership",
+        "title": "Manage This Agency",
+        "description": "Do you own or work for {agencyName}? Request access to manage this profile, update information, and respond to reviews.",
+        "benefits": {
+            "title": "Why claim your agency?",
+            "b1": "Update contact info and description",
+            "b2": "Respond to customer reviews",
+            "b3": "Add photos and special offers"
+        },
+        "form": {
+            "name": "Full Name",
+            "email": "Professional Email",
+            "phone": "Phone Number",
+            "role": "Your Role",
+            "message": "Additional Message",
+            "submit": "Submit Request",
+            "cancel": "Cancel"
+        },
+        "success": {
+            "title": "Request Sent!",
+            "message": "We verify all requests to ensure security. You will hear from us shortly."
+        },
+        "error": {
+            "login": "You must be logged in to request access.",
+            "exists": "You have already requested access to this agency.",
+            "failed": "Failed to submit request. Please try again."
+        },
+        "status": {
+            "pending": "Access Requested",
+            "approved": "Access Approved",
+            "rejected": "Request Rejected",
+            "pending_desc": "We'll review your request and notify you via email.",
+            "requested_on": "Requested on {date}"
+        },
+        "modal": {
+            "titleAccess": "Request Access",
+            "titleOwner": "Request Ownership",
+            "descAccess": "You're requesting access to manage {agencyTitle}.",
+            "descOwner": "You're requesting ownership of {agencyTitle}. This agency currently has an owner. Please explain why you should have access.",
+            "review": "Our team will review your request and notify you via email once approved.",
+            "messageRequired": "Message (Required)",
+            "messageOptional": "Message (Optional)",
+            "placeholderOwner": "Explain why you should have ownership of this agency...",
+            "placeholderAccess": "Tell us why you should have access to this agency...",
+            "submitting": "Submitting...",
+            "loading": "Loading..."
+        }
+    },
+    "Blog": {
+        "heroTitle": "Travel Guide",
+        "heroDesc": "Expert tips, destination guides, and travel advice to help you plan your perfect adventure.",
+        "categories": {
+            "All": "All",
+            "CAN 2025": "CAN 2025",
+            "Travel Tips": "Travel Tips",
+            "Destinations": "Destinations",
+            "News": "News"
+        },
+        "noArticles": "No articles found in this category.",
+        "loadMore": "Load More Articles",
+        "newsletter": {
+            "title": "Stay Updated",
+            "desc": "Subscribe to our newsletter for the latest travel tips, destination guides, and exclusive deals.",
+            "placeholder": "Enter your email",
+            "button": "Subscribe"
         }
     }
 }

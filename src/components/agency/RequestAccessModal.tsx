@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { X, Loader2, Send } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface RequestAccessModalProps {
     agencyId: string;
@@ -19,6 +20,7 @@ export default function RequestAccessModal({
     onClose,
     onSuccess,
 }: RequestAccessModalProps) {
+    const t = useTranslations('RequestAccess');
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");

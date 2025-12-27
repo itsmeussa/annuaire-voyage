@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Calendar, User, ArrowRight, Clock } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 // Blog posts data
 const blogPosts = [
@@ -157,8 +158,8 @@ const categories = ["All", "CAN 2025", "Travel Tips", "Destinations", "News"];
 export default function BlogContent() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const filteredPosts = selectedCategory === "All" 
-    ? blogPosts 
+  const filteredPosts = selectedCategory === "All"
+    ? blogPosts
     : blogPosts.filter(post => post.category === selectedCategory);
 
   const featuredPost = filteredPosts[0];
@@ -185,11 +186,10 @@ export default function BlogContent() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full font-medium transition-colors ${
-                  selectedCategory === category
+                className={`px-4 py-2 rounded-full font-medium transition-colors ${selectedCategory === category
                     ? "bg-primary text-white"
                     : "bg-muted hover:bg-primary/10"
-                }`}
+                  }`}
               >
                 {category}
               </button>

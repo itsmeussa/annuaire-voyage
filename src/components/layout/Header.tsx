@@ -51,7 +51,7 @@ export default function Header() {
   const navLinks = [
     { href: "/", label: t('home') },
     { href: "/agencies", label: t('agencies') },
-    // { href: "/planner", label: t('ai_planner') }, // Hidden for now
+    { href: "/planner", label: t('ai_planner') },
     { href: "/blog", label: t('blog') },
     { href: "/about", label: t('about') },
     { href: "/contact", label: t('contact') },

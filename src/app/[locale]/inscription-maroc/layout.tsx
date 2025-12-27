@@ -1,9 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Inscription Agence de Voyage Maroc | CAN 2025 - TravelAgencies.World",
-  description:
-    "Inscrivez votre agence de voyage marocaine sur TravelAgencies.World. Visibilité internationale pour la CAN 2025. 500 DH paiement unique. Casablanca, Marrakech, Rabat, Tanger, Fès, Agadir. Rejoignez 2670+ agences.",
+  title: "Inscription Agence de Voyage Maroc | Rejoignez +4000 Agences",
+  description: "Inscrivez votre agence de voyage au Maroc sur l'annuaire leader. Rejoignez plus de 4000 professionnels, améliorez votre visibilité et recevez des leads qualifiés.",
   keywords: [
     "inscription agence voyage Maroc",
     "CAN 2025 agence voyage",

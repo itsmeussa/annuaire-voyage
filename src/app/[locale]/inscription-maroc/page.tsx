@@ -439,10 +439,7 @@ const content = {
   },
 };
 
-export const metadata = {
-  title: "Inscription Agence de Voyage Maroc | Rejoignez +4000 Agences",
-  description: "Inscrivez votre agence de voyage au Maroc sur l'annuaire leader. Rejoignez plus de 4000 professionnels, améliorez votre visibilité et recevez des leads qualifiés.",
-};
+
 
 export default function InscriptionMaroc() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);

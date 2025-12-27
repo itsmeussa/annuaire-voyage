@@ -94,7 +94,7 @@ export default function ChatBot() {
           ...prev,
           {
             role: "assistant",
-            content: data.error || "Sorry, I'm having trouble responding. Please try again.",
+            content: "Sorry, I'm having trouble responding. Please try again.",
           },
         ]);
       }

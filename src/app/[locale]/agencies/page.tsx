@@ -6,15 +6,11 @@ import dynamic from "next/dynamic";
 import { Grid, List, SlidersHorizontal, X, Map, LayoutGrid } from "lucide-react";
 import AgencyCard from "@/components/ui/AgencyCard";
 import FilterPanel from "@/components/ui/FilterPanel";
-import {
-  filterAgencies,
-  getUniqueCities,
-  getUniqueCountries,
-  getUniqueCategories,
-} from "@/lib/agencies";
+import { filterAgencies, getUniqueCities, getUniqueCountries, getUniqueCategories } from "@/lib/agencies";
 import { COUNTRIES } from "@/lib/countries";
 import { Agency } from "@/types";
 import { useTranslations } from "next-intl";
+import HeroSearchBar from "@/components/agencies/HeroSearchBar";
 
 // Dynamic import for map component (no SSR)
 const FastAgencyMap = dynamic(() => import("@/components/ui/FastAgencyMap"), {
@@ -54,6 +50,9 @@ function AgenciesContent() {
   const [websiteFilter, setWebsiteFilter] = useState<'all' | 'with' | 'without'>(
     (searchParams.get("website") as 'all' | 'with' | 'without') || 'all'
   );
+  const [verifiedOnly, setVerifiedOnly] = useState(
+    searchParams.get("verified") === "true"
+  );
   const [viewMode, setViewMode] = useState<"grid" | "list" | "map">("grid");
   const [showFilters, setShowFilters] = useState(false);
   const [agencies, setAgencies] = useState<Agency[]>([]);
@@ -89,7 +88,21 @@ function AgenciesContent() {
     getUniqueCities(selectedCountry).then(setCities);
   }, [selectedCountry]);
 
-  // Update URL ... (same as before)
+  // Update URL parameters when filters change
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (query) params.set("q", query);
+    if (selectedCity) params.set("city", selectedCity);
+    if (selectedCountry) params.set("country", selectedCountry);
+    if (selectedRating > 0) params.set("rating", selectedRating.toString());
+    if (selectedCategory) params.set("category", selectedCategory);
+    if (websiteFilter !== 'all') params.set("website", websiteFilter);
+    if (verifiedOnly) params.set("verified", "true");
+    if (currentPage > 1) params.set("page", currentPage.toString());
+
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    router.replace(newUrl, { scroll: false });
+  }, [query, selectedCity, selectedCountry, selectedRating, selectedCategory, websiteFilter, verifiedOnly, currentPage, router]);
 
   useEffect(() => {
     const fetchAgencies = async () => {
@@ -100,6 +113,7 @@ function AgenciesContent() {
         selectedRating,
         selectedCategory,
         websiteFilter,
+        verifiedOnly,
         currentPage,
         itemsPerPage
       );
@@ -107,7 +121,7 @@ function AgenciesContent() {
       setTotalItems(total);
     };
     fetchAgencies();
-  }, [query, selectedCity, selectedCountry, selectedRating, selectedCategory, websiteFilter, currentPage]);
+  }, [query, selectedCity, selectedCountry, selectedRating, selectedCategory, websiteFilter, verifiedOnly, currentPage]);
 
   // Scroll to top ... (same)
 
@@ -119,6 +133,7 @@ function AgenciesContent() {
     setSelectedRating(0);
     setSelectedCategory("");
     setWebsiteFilter('all');
+    setVerifiedOnly(false);
     setCurrentPage(1);
   };
 
@@ -129,7 +144,7 @@ function AgenciesContent() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50/50 to-white">
       {/* Header */}
-      <div className="bg-gradient-to-r from-primary via-blue-600 to-primary text-white py-12 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-primary via-blue-600 to-primary text-white py-12 relative z-20">
         {/* Background decorations */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-0 left-1/4 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
@@ -144,22 +159,31 @@ function AgenciesContent() {
           </p>
 
           {/* Search Bar */}
-          <div className="flex flex-col md:flex-row gap-4 animate-fade-in-up delay-200">
-            <div className="flex-1 relative">
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder={t('search.placeholder')}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40 focus:bg-white/15 transition-all text-white placeholder:text-white/60 backdrop-blur-sm"
-              />
-            </div>
+          <HeroSearchBar
+            query={query}
+            setQuery={setQuery}
+            selectedCountry={selectedCountry}
+            setSelectedCountry={(c) => {
+              setSelectedCountry(c);
+              setSelectedCity("");
+              setCurrentPage(1);
+            }}
+            selectedCity={selectedCity}
+            setSelectedCity={setSelectedCity}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+            countries={countries}
+            cities={cities}
+            categories={categories}
+          />
+
+          <div className="flex justify-center md:hidden mb-6">
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="md:hidden flex items-center justify-center gap-2 px-4 py-3 bg-white/10 border border-white/20 rounded-xl font-medium hover:bg-white/20 transition-colors backdrop-blur-sm"
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-white/10 border border-white/20 rounded-full font-medium hover:bg-white/20 transition-colors backdrop-blur-sm shadow-lg"
             >
               <SlidersHorizontal className="h-5 w-5" />
-              {t('search.filters')}
+              {t('search.filters')} (Advanced)
             </button>
           </div>
 
@@ -167,7 +191,8 @@ function AgenciesContent() {
           {(selectedCity ||
             selectedCountry ||
             selectedRating > 0 ||
-            selectedCategory) && (
+            selectedCategory ||
+            verifiedOnly) && (
               <div className="flex flex-wrap gap-2 mt-4">
                 {selectedCity && (
                   <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
@@ -201,6 +226,14 @@ function AgenciesContent() {
                     </button>
                   </span>
                 )}
+                {verifiedOnly && (
+                  <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm backdrop-blur-sm border border-white/20">
+                    Verified Only
+                    <button onClick={() => setVerifiedOnly(false)} className="hover:bg-white/20 rounded-full p-0.5 transition-colors">
+                      <X className="h-4 w-4" />
+                    </button>
+                  </span>
+                )}
               </div>
             )}
         </div>
@@ -220,6 +253,7 @@ function AgenciesContent() {
               selectedRating={selectedRating}
               selectedCategory={selectedCategory}
               websiteFilter={websiteFilter}
+              verifiedOnly={verifiedOnly}
               onCityChange={setSelectedCity}
               onCountryChange={(country) => {
                 setSelectedCountry(country);
@@ -229,6 +263,7 @@ function AgenciesContent() {
               onRatingChange={setSelectedRating}
               onCategoryChange={setSelectedCategory}
               onWebsiteFilterChange={setWebsiteFilter}
+              onVerifiedOnlyChange={setVerifiedOnly}
               onClearFilters={clearFilters}
             />
           </div>
@@ -253,6 +288,7 @@ function AgenciesContent() {
                     selectedRating={selectedRating}
                     selectedCategory={selectedCategory}
                     websiteFilter={websiteFilter}
+                    verifiedOnly={verifiedOnly}
                     onCityChange={setSelectedCity}
                     onCountryChange={(country) => {
                       setSelectedCountry(country);
@@ -263,6 +299,7 @@ function AgenciesContent() {
                     onRatingChange={setSelectedRating}
                     onCategoryChange={setSelectedCategory}
                     onWebsiteFilterChange={setWebsiteFilter}
+                    onVerifiedOnlyChange={setVerifiedOnly}
                     onClearFilters={clearFilters}
                   />
                 </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Phone, Globe, ExternalLink, Users, Star, Map } from "lucide-react";
+import { MapPin, Phone, Globe, ExternalLink, Users, Star, Map, BadgeCheck } from "lucide-react";
 import StarRating from "@/components/ui/StarRating";
 import { Agency } from "@/types";
 
@@ -50,9 +50,14 @@ export default function AgencyCard({ agency, featured = false }: AgencyCardProps
         <div className="flex justify-between items-start mb-3">
           <div className="flex-1">
             <Link href={`/agencies/${agency.slug}`}>
-              <h3 className="text-lg font-bold text-foreground hover:text-primary transition-colors line-clamp-2 group-hover:text-primary">
-                {agency.title}
-              </h3>
+              <div className="flex items-start gap-1">
+                <h3 className="text-lg font-bold text-foreground hover:text-primary transition-colors line-clamp-2 group-hover:text-primary">
+                  {agency.title}
+                </h3>
+                {agency.verified && (
+                  <BadgeCheck className="h-5 w-5 text-blue-500 fill-blue-50 flex-shrink-0 mt-0.5" aria-label="Verified Agency" />
+                )}
+              </div>
             </Link>
             <p className="text-sm text-muted-foreground mt-1">
               {agency.category}

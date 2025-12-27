@@ -40,6 +40,9 @@ function PromoBannerContent() {
 
   if (!isVisible) return null;
 
+  // Hide on claim-agency payment pages
+  if (pathname.includes('/claim-agency')) return null;
+
   // Morocco CAN 2025 Promo
   if (isMorocco) {
     return (

@@ -22,6 +22,8 @@ export interface Agency {
     lat: number;
     lng: number;
   } | null;
+  verified?: boolean;
+  email?: string | null;
 }
 
 export interface FilterOptions {

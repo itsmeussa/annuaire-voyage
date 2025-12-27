@@ -14,6 +14,7 @@ import {
   CheckCircle,
   Clock,
   Shield,
+  BadgeCheck,
 } from "lucide-react";
 import StarRating from "@/components/ui/StarRating";
 import CTASection from "@/components/ui/CTASection";
@@ -439,9 +440,14 @@ export default async function AgencyPage({ params }: PageProps) {
                   Featured Agency
                 </span>
               )}
-              <h1 className="text-4xl md:text-5xl font-bold mb-3 drop-shadow-lg">
-                {agency.title}
-              </h1>
+              <div className="flex items-center gap-3 mb-3">
+                <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg">
+                  {agency.title}
+                </h1>
+                {agency.verified && (
+                  <BadgeCheck className="h-8 w-8 text-blue-400 fill-blue-900/50" aria-label="Verified Agency" />
+                )}
+              </div>
               <p className="text-xl text-white/90 mb-6 drop-shadow-md">
                 {agency.category} in {agency.cityNormalized}, {agency.country}
               </p>

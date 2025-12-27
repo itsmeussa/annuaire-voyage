@@ -1,6 +1,6 @@
 "use client";
 
-import { Star, MapPin, Tag, X, Globe } from "lucide-react";
+import { Star, MapPin, Tag, X, Globe, BadgeCheck } from "lucide-react";
 import PromoWidget from "./PromoWidget";
 import PromoWidgetCAN from "./PromoWidgetCAN";
 
@@ -13,11 +13,13 @@ interface FilterPanelProps {
   selectedRating: number;
   selectedCategory: string;
   websiteFilter: 'all' | 'with' | 'without';
+  verifiedOnly: boolean;
   onCityChange: (city: string) => void;
   onCountryChange: (country: string) => void;
   onRatingChange: (rating: number) => void;
   onCategoryChange: (category: string) => void;
   onWebsiteFilterChange: (filter: 'all' | 'with' | 'without') => void;
+  onVerifiedOnlyChange: (verified: boolean) => void;
   onClearFilters: () => void;
 }
 
@@ -30,15 +32,17 @@ export default function FilterPanel({
   selectedRating,
   selectedCategory,
   websiteFilter,
+  verifiedOnly,
   onCityChange,
   onCountryChange,
   onRatingChange,
   onCategoryChange,
   onWebsiteFilterChange,
+  onVerifiedOnlyChange,
   onClearFilters,
 }: FilterPanelProps) {
   const hasActiveFilters =
-    selectedCity || selectedCountry || selectedRating > 0 || selectedCategory || websiteFilter !== 'all';
+    selectedCity || selectedCountry || selectedRating > 0 || selectedCategory || websiteFilter !== 'all' || verifiedOnly;
 
   return (
     <div className="bg-white rounded-xl border border-border p-6 sticky top-24">
@@ -126,11 +130,10 @@ export default function FilterPanel({
             <button
               key={rating}
               onClick={() => onRatingChange(rating)}
-              className={`w-full flex items-center gap-2 px-4 py-2.5 rounded-lg border transition-all ${
-                selectedRating === rating
-                  ? "border-primary bg-primary/5 text-primary"
-                  : "border-border hover:border-primary/50"
-              }`}
+              className={`w-full flex items-center gap-2 px-4 py-2.5 rounded-lg border transition-all ${selectedRating === rating
+                ? "border-primary bg-primary/5 text-primary"
+                : "border-border hover:border-primary/50"
+                }`}
             >
               {rating === 0 ? (
                 <span>All Ratings</span>
@@ -140,11 +143,10 @@ export default function FilterPanel({
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`h-4 w-4 ${
-                          i < Math.floor(rating)
-                            ? "fill-yellow-400 text-yellow-400"
-                            : "text-gray-300"
-                        }`}
+                        className={`h-4 w-4 ${i < Math.floor(rating)
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-gray-300"
+                          }`}
                       />
                     ))}
                   </div>
@@ -171,19 +173,17 @@ export default function FilterPanel({
             <button
               key={option.value}
               onClick={() => onWebsiteFilterChange(option.value)}
-              className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg border transition-all ${
-                websiteFilter === option.value
-                  ? "border-primary bg-primary/5 text-primary"
-                  : "border-border hover:border-primary/50"
-              }`}
+              className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg border transition-all ${websiteFilter === option.value
+                ? "border-primary bg-primary/5 text-primary"
+                : "border-border hover:border-primary/50"
+                }`}
             >
               <span>{option.label}</span>
               <div
-                className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
-                  websiteFilter === option.value
-                    ? "bg-primary border-primary"
-                    : "border-gray-300"
-                }`}
+                className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${websiteFilter === option.value
+                  ? "bg-primary border-primary"
+                  : "border-gray-300"
+                  }`}
               >
                 {websiteFilter === option.value && (
                   <div className="w-2 h-2 rounded-full bg-white" />
@@ -192,6 +192,32 @@ export default function FilterPanel({
             </button>
           ))}
         </div>
+      </div>
+
+      {/* Verified Filter */}
+      <div className="mb-6">
+        <label className="flex items-center gap-2 text-sm font-medium text-foreground mb-3">
+          <BadgeCheck className="h-4 w-4 text-primary" />
+          Validation
+        </label>
+        <button
+          onClick={() => onVerifiedOnlyChange(!verifiedOnly)}
+          className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg border transition-all ${verifiedOnly
+            ? "border-primary bg-primary/5 text-primary"
+            : "border-border hover:border-primary/50"
+            }`}
+        >
+          <span>Verified Only</span>
+          <div
+            className={`w-10 h-6 rounded-full relative transition-colors ${verifiedOnly ? "bg-primary" : "bg-gray-300"
+              }`}
+          >
+            <div
+              className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${verifiedOnly ? "left-5" : "left-1"
+                }`}
+            />
+          </div>
+        </button>
       </div>
 
       {/* Apply Button */}

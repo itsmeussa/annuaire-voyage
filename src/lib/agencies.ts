@@ -69,6 +69,8 @@ function mapDbToAgency(dbRecord: any): Agency {
     url: dbRecord.url || "",
     description: dbRecord.description || "",
     featured: dbRecord.featured || false,
+    verified: dbRecord.verified || !!dbRecord.owner_id || false,
+    email: dbRecord.email || null,
     location: location
   };
 }
@@ -192,6 +194,7 @@ export async function filterAgencies(
   rating: number = 0,
   category: string = "",
   websiteFilter: 'all' | 'with' | 'without' = 'all',
+  verifiedOnly: boolean = false,
   page: number = 1,
   limit: number = 20,
   supabaseClient?: any
@@ -231,6 +234,10 @@ export async function filterAgencies(
     dbQuery = dbQuery.not('website', 'is', null).neq('website', '');
   } else if (websiteFilter === 'without') {
     dbQuery = dbQuery.or('website.is.null,website.eq.""');
+  }
+
+  if (verifiedOnly) {
+    dbQuery = dbQuery.not('owner_id', 'is', null);
   }
 
   // Sort
